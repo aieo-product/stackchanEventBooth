@@ -15,11 +15,20 @@
 
 ## 着せ替えのイメージ
 
-<div style="display:flex;justify-content:center;margin:24px 0;">
-  <img src="/accessory-concept.svg" alt="スタックチャン着せ替えイメージ" style="max-width:520px;width:100%;" />
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(240px,1fr));gap:12px;margin:24px 0;">
+  <img src="/img/IMG_8263.jpg" alt="スタックチャン用アクセサリーの展示テーブルとQRカード" style="width:100%;border-radius:10px;" />
+  <img src="/img/IMG_8265.jpg" alt="耳・キーホルダー・ネームバッジなどのアクセサリー" style="width:100%;border-radius:10px;" />
+  <img src="/img/IMG_8264.jpg" alt="3Dプリント製アクセサリーパーツ一式" style="width:100%;border-radius:10px;" />
+  <img src="/img/stackchan-decorated.jpg" alt="ヘッドホン等を装着したスタックチャン" style="width:100%;border-radius:10px;" />
 </div>
 
-> ※ 上図はイメージです。実際の造形は各制作者の許諾を得たものを使用します。
+<div style="display:flex;justify-content:center;margin:24px 0;">
+  <img src="/accessory-concept.svg" alt="スタックチャン着せ替えカテゴリ図" style="max-width:520px;width:100%;" />
+</div>
+
+::: info 画像について
+上記はコミュニティのお誕生日会で見られた **着想元の参考写真** です（撮影：本企画メンバー）。実際にブースで展示・印刷する造形は、**各制作者の許諾を得たもの** をクレジット付きで使用します。掲載に問題がある画像はご連絡ください。
+:::
 
 ## 造形例と制作者クレジット
 

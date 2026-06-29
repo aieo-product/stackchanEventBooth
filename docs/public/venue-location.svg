@@ -1,0 +1,61 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 900 540" font-family="'Helvetica Neue',Arial,'Hiragino Sans','Noto Sans JP',sans-serif">
+  <rect x="0" y="0" width="900" height="540" fill="#f1f5f9"/>
+  <text x="40" y="44" font-size="20" font-weight="800" fill="#0f172a">大手町プレイス ホール＆カンファレンス　1F</text>
+  <text x="40" y="66" font-size="12.5" fill="#64748b">AI Dev Day 2026 ／ スタックチャンブースの位置（概略・公式 1/200 図面を簡略化）</text>
+
+  <!-- 1F big label -->
+  <text x="60" y="150" font-size="58" font-weight="900" fill="#e2e8f0">1F</text>
+
+  <!-- top row conference rooms -->
+  <g font-size="12.5" font-weight="700" fill="#1e3a8a">
+    <rect x="300" y="92" width="150" height="92" rx="4" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/>
+    <text x="375" y="142" text-anchor="middle">Conference103</text>
+    <rect x="458" y="92" width="120" height="92" rx="4" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/>
+    <text x="518" y="142" text-anchor="middle">Conference102</text>
+    <rect x="586" y="92" width="138" height="92" rx="4" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/>
+    <text x="655" y="142" text-anchor="middle">Conference101</text>
+  </g>
+  <!-- 事務所 -->
+  <rect x="760" y="92" width="100" height="120" rx="4" fill="#e2e8f0" stroke="#94a3b8" stroke-width="1.5"/>
+  <text x="810" y="156" text-anchor="middle" font-size="13" font-weight="700" fill="#475569">事務所</text>
+
+  <!-- Conference105 (left tall room) -->
+  <rect x="120" y="92" width="92" height="150" rx="4" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="166" y="120" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1e3a8a">Conference</text>
+  <text x="166" y="136" text-anchor="middle" font-size="11.5" font-weight="700" fill="#1e3a8a">105</text>
+  <!-- Conference104 small -->
+  <rect x="220" y="150" width="70" height="56" rx="4" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/>
+  <text x="255" y="182" text-anchor="middle" font-size="10.5" font-weight="700" fill="#1e3a8a">Conf.104</text>
+
+  <!-- corridor -->
+  <rect x="120" y="250" width="604" height="36" fill="#ffffff" stroke="#cbd5e1" stroke-width="1"/>
+  <text x="422" y="273" text-anchor="middle" font-size="11" fill="#94a3b8">― 通路（幅 約4.4m）―</text>
+
+  <!-- OUR ZONE: community showcase (highlight) -->
+  <rect x="120" y="300" width="330" height="150" rx="8" fill="#fef08a" stroke="#d97706" stroke-width="3"/>
+  <text x="285" y="338" text-anchor="middle" font-size="16" font-weight="800" fill="#7c2d12">★ コミュニティショーケース</text>
+  <text x="285" y="362" text-anchor="middle" font-size="13.5" font-weight="700" fill="#92400e">スタックチャン お着替え＆撮影ブース</text>
+  <text x="285" y="392" text-anchor="middle" font-size="12" fill="#a16207">Conference105 前のオープンエリア</text>
+  <rect x="150" y="406" width="270" height="30" rx="6" fill="#fde68a" stroke="#b45309" stroke-width="1.2"/>
+  <text x="285" y="426" text-anchor="middle" font-size="11.5" font-weight="700" fill="#7c2d12">⏱ コミュニティが1時間シフトで交代</text>
+
+  <!-- lower rooms -->
+  <rect x="470" y="300" width="130" height="100" rx="4" fill="#eef2ff" stroke="#a5b4fc" stroke-width="1.5"/>
+  <text x="535" y="346" text-anchor="middle" font-size="11" font-weight="700" fill="#4338ca">Conf.107 / 106</text>
+  <text x="535" y="366" text-anchor="middle" font-size="10" fill="#6366f1">2Fへ 階段</text>
+
+  <rect x="612" y="300" width="84" height="64" rx="4" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+  <text x="654" y="337" text-anchor="middle" font-size="10.5" fill="#64748b">WC</text>
+  <rect x="708" y="300" width="78" height="64" rx="4" fill="#f8fafc" stroke="#cbd5e1" stroke-width="1.2"/>
+  <text x="747" y="330" text-anchor="middle" font-size="9.5" fill="#64748b">喫煙室/</text>
+  <text x="747" y="345" text-anchor="middle" font-size="9.5" fill="#64748b">自販機</text>
+
+  <!-- legend -->
+  <g font-size="11.5">
+    <rect x="120" y="478" width="16" height="16" rx="3" fill="#fef08a" stroke="#d97706" stroke-width="2"/>
+    <text x="144" y="491" fill="#475569">スタックチャンブース（想定位置）</text>
+    <rect x="350" y="478" width="16" height="16" rx="3" fill="#dbeafe" stroke="#3b82f6" stroke-width="1.5"/>
+    <text x="374" y="491" fill="#475569">カンファレンスルーム</text>
+  </g>
+  <text x="860" y="520" text-anchor="end" font-size="10.5" fill="#94a3b8">※ 概略図。正確な寸法は公式 1F 図面（1/200）を参照</text>
+</svg>

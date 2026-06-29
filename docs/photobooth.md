@@ -7,8 +7,16 @@
 スマホで撮るだけでSNS映えする画づくりを、卓上の小さなステージで実現します。来場者は着せ替えたスタックチャンを定位置に置いて、その場で撮影 → `#ｽﾀｯｸﾁｬﾝお誕生日2026` で投稿、という体験を楽しめます。
 
 <div style="display:flex;justify-content:center;margin:24px 0;">
-  <img src="/photobooth-concept.svg" alt="撮影ブースのコンセプト図" style="max-width:640px;width:100%;" />
+  <img src="/img/photobooth-diorama.jpg" alt="Happy Birthday スタックチャンのジオラマ撮影ブース実例" style="max-width:680px;width:100%;border-radius:12px;" />
 </div>
+
+<div style="display:flex;justify-content:center;margin:8px 0 24px;">
+  <img src="/photobooth-concept.svg" alt="撮影ブースのコンセプト図" style="max-width:600px;width:100%;" />
+</div>
+
+::: info 画像について
+上の写真はコミュニティで見られた **着想元のジオラマ撮影スポット** の参考例です（撮影：本企画メンバー）。本企画では装飾・小物を新規制作し、第三者の造形を流用する場合は許諾を取得します。
+:::
 
 ## 構成要素
 
