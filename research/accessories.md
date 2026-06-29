@@ -2,8 +2,18 @@
 
 `#ｽﾀｯｸﾁｬﾝお誕生日2026` 等で公開されているアクセサリー造形例の調査結果と、各制作者への許諾依頼ステータスを管理する。**コピーではなく、許諾を得てからブースに設置する** 方針。
 
-- 関連Issue: [#2 アクセサリー造形例・制作者リスト作成と許諾依頼](https://github.com/aieo-product/stackchanEventBooth/issues/2)
-- 調査方法: Chromeブラウザでハッシュタグ検索（X要ログイン）
+- 関連Issue: [#2 アクセサリー造形例・制作者リスト作成と許諾依頼](https://github.com/aieo-product/stackchanEventBooth/issues/2) ／ [#8 hermes_x_search_skill セキュリティレビュー](https://github.com/aieo-product/stackchanEventBooth/issues/8)
+
+## 調査方法の比較（無料でやれる手段）
+
+| 方法 | テキスト/投稿者/リンク | 画像 | 前提 | 状態 |
+|---|:--:|:--:|---|---|
+| **A. Chromeブラウザ自動操作** | ⭕ | ⭕ | Chrome拡張接続＋Xログイン | 拡張未接続でブロック中 |
+| **B. hermes_x_search_skill（Grok）** | ⭕ | ❌(ほぼ不可) | `hermes`導入＋Grok OAuth | この機械は`hermes`未導入。安全性は#8で確認済 |
+| C. 検索エンジン（WebSearch） | △ | ❌ | なし | ハッシュタグ個別ポストは拾えず不十分（実証済） |
+
+**推奨**：B で「投稿者＋ポストURL＋本文」を無料収集 → 画像は A もしくは各ポストURLを開いて取得、の二段構え。
+いずれも現状この機械では実行待ち（Chrome拡張接続 or hermes導入が必要）。
 
 ## ステータス凡例
 
