@@ -1,0 +1,63 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 560 420" font-family="'Helvetica Neue',Arial,'Hiragino Sans','Noto Sans JP',sans-serif">
+  <rect x="0" y="0" width="560" height="420" rx="16" fill="#f8fafc"/>
+  <text x="280" y="40" text-anchor="middle" font-size="18" font-weight="700" fill="#0f172a">スタックチャンを着せ替え</text>
+
+  <!-- center stackchan -->
+  <g transform="translate(280,230)">
+    <!-- body case -->
+    <rect x="-72" y="-66" width="144" height="150" rx="16" fill="#ffffff" stroke="#334155" stroke-width="4"/>
+    <!-- face screen -->
+    <rect x="-56" y="-50" width="112" height="100" rx="10" fill="#0f172a"/>
+    <circle cx="-22" cy="-8" r="10" fill="#38bdf8"/>
+    <circle cx="22" cy="-8" r="10" fill="#38bdf8"/>
+    <path d="M-18 22H18" stroke="#38bdf8" stroke-width="6" stroke-linecap="round"/>
+    <!-- base -->
+    <rect x="-40" y="84" width="80" height="22" rx="6" fill="#cbd5e1" stroke="#94a3b8" stroke-width="2"/>
+  </g>
+
+  <!-- cat ears (on top) -->
+  <g transform="translate(280,158)">
+    <path d="M-46 6L-58 -34L-22 -12Z" fill="#fbbf24" stroke="#b45309" stroke-width="2.5"/>
+    <path d="M46 6L58 -34L22 -12Z" fill="#fbbf24" stroke="#b45309" stroke-width="2.5"/>
+  </g>
+  <text x="280" y="120" text-anchor="middle" font-size="12.5" font-weight="600" fill="#b45309">🐱 耳</text>
+
+  <!-- headphones (left) -->
+  <g transform="translate(192,224)">
+    <circle cx="0" cy="0" r="20" fill="#f1f5f9" stroke="#475569" stroke-width="3"/>
+    <circle cx="0" cy="0" r="9" fill="#cbd5e1"/>
+  </g>
+  <text x="150" y="180" text-anchor="middle" font-size="12.5" font-weight="600" fill="#475569">🎧 ヘッドホン</text>
+  <line x1="158" y1="190" x2="183" y2="212" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4 3"/>
+
+  <!-- color case swatches (right) -->
+  <g transform="translate(470,150)">
+    <rect x="0" y="0" width="26" height="26" rx="5" fill="#ef4444"/>
+    <rect x="32" y="0" width="26" height="26" rx="5" fill="#0f172a"/>
+    <rect x="16" y="32" width="26" height="26" rx="5" fill="#ffffff" stroke="#cbd5e1" stroke-width="2"/>
+  </g>
+  <text x="500" y="135" text-anchor="middle" font-size="12.5" font-weight="600" fill="#334155">🧊 ボディケース</text>
+
+  <!-- hat (top right) -->
+  <g transform="translate(420,250)">
+    <path d="M-22 12H22L14 -20H-14Z" fill="#34d399" stroke="#047857" stroke-width="2.5"/>
+    <rect x="-28" y="10" width="56" height="8" rx="4" fill="#059669"/>
+  </g>
+  <text x="448" y="300" text-anchor="middle" font-size="12.5" font-weight="600" fill="#047857">🎩 帽子</text>
+  <line x1="430" y1="288" x2="424" y2="266" stroke="#94a3b8" stroke-width="1.5" stroke-dasharray="4 3"/>
+
+  <!-- keychain (bottom) -->
+  <g transform="translate(120,330)">
+    <circle cx="0" cy="0" r="9" fill="none" stroke="#a16207" stroke-width="3"/>
+    <rect x="6" y="6" width="34" height="16" rx="4" fill="#fde68a" stroke="#a16207" stroke-width="2"/>
+  </g>
+  <text x="150" y="372" text-anchor="middle" font-size="12.5" font-weight="600" fill="#a16207">🔑 キーホルダー</text>
+
+  <!-- name badge (bottom right) -->
+  <g transform="translate(430,360)">
+    <rect x="-26" y="-18" width="52" height="36" rx="6" fill="#ffffff" stroke="#334155" stroke-width="2"/>
+    <rect x="-18" y="-10" width="18" height="18" rx="2" fill="#0f172a"/>
+    <path d="M4 -8H18M4 0H18M4 8H12" stroke="#64748b" stroke-width="2.5" stroke-linecap="round"/>
+  </g>
+  <text x="430" y="408" text-anchor="middle" font-size="12.5" font-weight="600" fill="#334155">🪪 ネームバッジ(QR)</text>
+</svg>

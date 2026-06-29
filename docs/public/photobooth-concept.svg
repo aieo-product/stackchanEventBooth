@@ -1,0 +1,74 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 640 420" font-family="'Helvetica Neue',Arial,'Hiragino Sans','Noto Sans JP',sans-serif">
+  <!-- backdrop -->
+  <rect x="40" y="30" width="560" height="300" rx="12" fill="#fdf6ec"/>
+  <!-- wood panel lines -->
+  <g stroke="#f0e2cf" stroke-width="2">
+    <line x1="100" y1="30" x2="100" y2="330"/><line x1="160" y1="30" x2="160" y2="330"/>
+    <line x1="220" y1="30" x2="220" y2="330"/><line x1="280" y1="30" x2="280" y2="330"/>
+    <line x1="340" y1="30" x2="340" y2="330"/><line x1="400" y1="30" x2="400" y2="330"/>
+    <line x1="460" y1="30" x2="460" y2="330"/><line x1="520" y1="30" x2="520" y2="330"/>
+  </g>
+  <rect x="40" y="30" width="560" height="300" rx="12" fill="none" stroke="#e7d3b3" stroke-width="2"/>
+
+  <!-- garland HAPPY BIRTHDAY -->
+  <path d="M70 70 Q320 110 570 70" fill="none" stroke="#cbd5e1" stroke-width="2"/>
+  <g font-size="15" font-weight="800">
+    <g transform="translate(120,78)"><rect x="-13" y="-15" width="26" height="30" rx="4" fill="#f9a8d4"/><text x="0" y="6" text-anchor="middle" fill="#fff">H</text></g>
+    <g transform="translate(156,84)"><rect x="-13" y="-15" width="26" height="30" rx="4" fill="#fcd34d"/><text x="0" y="6" text-anchor="middle" fill="#fff">A</text></g>
+    <g transform="translate(192,88)"><rect x="-13" y="-15" width="26" height="30" rx="4" fill="#86efac"/><text x="0" y="6" text-anchor="middle" fill="#fff">P</text></g>
+    <g transform="translate(228,90)"><rect x="-13" y="-15" width="26" height="30" rx="4" fill="#93c5fd"/><text x="0" y="6" text-anchor="middle" fill="#fff">P</text></g>
+    <g transform="translate(264,90)"><rect x="-13" y="-15" width="26" height="30" rx="4" fill="#c4b5fd"/><text x="0" y="6" text-anchor="middle" fill="#fff">Y</text></g>
+    <g transform="translate(348,90)"><rect x="-13" y="-15" width="26" height="30" rx="4" fill="#f9a8d4"/><text x="0" y="6" text-anchor="middle" fill="#fff">B</text></g>
+    <g transform="translate(384,90)"><rect x="-13" y="-15" width="26" height="30" rx="4" fill="#fcd34d"/><text x="0" y="6" text-anchor="middle" fill="#fff">D</text></g>
+    <g transform="translate(420,88)"><rect x="-13" y="-15" width="26" height="30" rx="4" fill="#86efac"/><text x="0" y="6" text-anchor="middle" fill="#fff">A</text></g>
+    <g transform="translate(456,84)"><rect x="-13" y="-15" width="26" height="30" rx="4" fill="#93c5fd"/><text x="0" y="6" text-anchor="middle" fill="#fff">Y</text></g>
+  </g>
+
+  <!-- balloons -->
+  <g>
+    <ellipse cx="500" cy="150" rx="26" ry="32" fill="#c4b5fd"/>
+    <ellipse cx="540" cy="170" rx="22" ry="28" fill="#f9a8d4"/>
+    <path d="M500 182 Q505 210 520 240" stroke="#94a3b8" stroke-width="1.5" fill="none"/>
+    <path d="M540 198 Q536 220 522 240" stroke="#94a3b8" stroke-width="1.5" fill="none"/>
+    <text x="500" y="156" text-anchor="middle" font-size="11" font-weight="700" fill="#fff">5th</text>
+  </g>
+  <!-- shelf -->
+  <g stroke="#475569" stroke-width="3" fill="none">
+    <rect x="92" y="150" width="70" height="90"/>
+    <line x1="92" y1="180" x2="162" y2="180"/><line x1="92" y1="210" x2="162" y2="210"/>
+  </g>
+
+  <!-- floor -->
+  <rect x="40" y="300" width="560" height="60" fill="#deb887" opacity="0.5"/>
+
+  <!-- stage: chairs + table + stackchan -->
+  <!-- left chair -->
+  <g transform="translate(250,300)">
+    <rect x="-26" y="-40" width="34" height="44" rx="5" fill="#84cc16" stroke="#4d7c0f" stroke-width="2"/>
+    <rect x="-30" y="-2" width="42" height="12" rx="3" fill="#a3e635" stroke="#4d7c0f" stroke-width="2"/>
+  </g>
+  <!-- right chair -->
+  <g transform="translate(400,300)">
+    <rect x="-8" y="-40" width="34" height="44" rx="5" fill="#84cc16" stroke="#4d7c0f" stroke-width="2"/>
+    <rect x="-12" y="-2" width="42" height="12" rx="3" fill="#a3e635" stroke="#4d7c0f" stroke-width="2"/>
+  </g>
+  <!-- table + cake -->
+  <g transform="translate(325,308)">
+    <rect x="-30" y="-6" width="60" height="14" rx="3" fill="#e0c08a" stroke="#a16207" stroke-width="2"/>
+    <rect x="-24" y="8" width="48" height="22" fill="none" stroke="#c89b58" stroke-width="2"/>
+    <ellipse cx="0" cy="-10" rx="16" ry="8" fill="#fff7ed" stroke="#fbbf24" stroke-width="2"/>
+    <circle cx="-6" cy="-12" r="3" fill="#ef4444"/><circle cx="2" cy="-13" r="3" fill="#ef4444"/><circle cx="8" cy="-11" r="3" fill="#ef4444"/>
+    <rect x="-1" y="-26" width="2" height="10" fill="#f59e0b"/>
+  </g>
+
+  <!-- stackchan center stage -->
+  <g transform="translate(325,250)">
+    <rect x="-34" y="-32" width="68" height="72" rx="9" fill="#ffffff" stroke="#334155" stroke-width="3"/>
+    <rect x="-26" y="-24" width="52" height="46" rx="6" fill="#0f172a"/>
+    <circle cx="-10" cy="-3" r="5" fill="#38bdf8"/><circle cx="10" cy="-3" r="5" fill="#38bdf8"/>
+    <path d="M-8 11H8" stroke="#38bdf8" stroke-width="3" stroke-linecap="round"/>
+  </g>
+
+  <!-- caption -->
+  <text x="320" y="392" text-anchor="middle" font-size="14" font-weight="700" fill="#0f172a">「Happy Birthday スタックチャン」ジオラマ撮影ブース</text>
+</svg>
