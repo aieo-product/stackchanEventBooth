@@ -18,7 +18,9 @@ export default defineConfig({
       { text: 'アクセサリー', link: '/accessories' },
       { text: '撮影ブース', link: '/photobooth' },
       { text: '必要スペース', link: '/space' },
-      { text: '当日運営', link: '/schedule' }
+      { text: '当日運営', link: '/schedule' },
+      { text: '懸念点', link: '/concerns' },
+      { text: 'アイディア', link: '/ideas' }
     ],
     sidebar: [
       {
@@ -29,6 +31,13 @@ export default defineConfig({
           { text: '簡易撮影ブース', link: '/photobooth' },
           { text: '必要スペース', link: '/space' },
           { text: '当日運営（13:00–17:00）', link: '/schedule' }
+        ]
+      },
+      {
+        text: '検討事項',
+        items: [
+          { text: '⚠️ 懸念点（事前解決）', link: '/concerns' },
+          { text: '💡 アイディア（今後追加）', link: '/ideas' }
         ]
       }
     ],
