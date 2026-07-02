@@ -38,9 +38,15 @@
 具体的な造形例（写真）・制作者アカウント・配布元（Thingiverse / MakerWorld 等）・ライセンスは、許諾取得後にこの欄でクレジット付きで掲載します。進捗は GitHub Issue [#2](https://github.com/aieo-product/stackchanEventBooth/issues/2) で管理しています。
 :::
 
-| 種類 | 制作者 | 配布元 | ライセンス | 許諾 | 設置可否 |
-|---|---|---|---|:--:|:--:|
-| （調査中） | — | — | — | ☐ | — |
+| 種類 | 制作者(X) | 参考ポスト | 許諾 | 設置可否 |
+|---|---|---|:--:|:--:|
+| 撮影ブース（ジオラマ）| [@k8ark](https://x.com/k8ark/status/2071025950758994294) | 「Happy 5th Birthday」ジオラマ | ☐ 依頼中 | — |
+| ネームバッジ／ロゴバッジ | [@washishi](https://x.com/washishi) | ロゴ入り丸バッジ | ☐ | — |
+| カスタム各種（耳・髪 等）| [@hfujikawa77](https://x.com/hfujikawa77/status/2070783289095336198) | ネコ耳・超サイヤ人ヘア等 | ☐ | — |
+| Takao版ケース | [@mongonta555](https://x.com/mongonta555) | Takao版ベース | ☐ | — |
+| 麦わら帽子ほか | [@mmmzhstd](https://x.com/mmmzhstd/status/2063582300810727546) | 麦わら帽子スタックチャン | ☐ | — |
+
+> 調査は初回パス。純粋な3D造形データ（耳・帽子・ヘッドホン等の配布元）は `#スタックチャン`／Thingiverse／MakerWorld で継続調査します。詳細は [`research/accessories.md`](https://github.com/aieo-product/stackchanEventBooth/blob/main/research/accessories.md)。
 
 ## 取り扱いの約束
 
