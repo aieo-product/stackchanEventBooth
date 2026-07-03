@@ -116,6 +116,24 @@
 
 > 調査は継続中（`スタックチャン 配布`／`着せ替え` 等を Chrome で調査）。詳細な照合リストは [`research/accessories.md`](https://github.com/aieo-product/stackchanEventBooth/blob/main/research/accessories.md)、進捗は [Issue #2](https://github.com/aieo-product/stackchanEventBooth/issues/2)。耳/ヘッドホン単体の造形データ配布元は追加調査予定。
 
+## 造形データ配布元（データを確認 → 許諾へ）
+
+実際の3Dモデルデータの配布元・ライセンスを特定しました。**データを確認したうえで各作者に許諾を得て** 使用します。
+
+| 造形（種類）| 作者 | ライセンス | データ |
+|---|---|---|---|
+| 顔パーツ・耳カラー（サンプルパーツ）| kennel.org（@kennel_org）| CC BY-NC-SA | [MakerWorld](https://makerworld.com/ja/models/1145027-stack-chan_sample_piece) |
+| 🎧 ヘッドホン | sskw | CC BY-NC-SA | [MakerWorld](https://makerworld.com/ja/models/2858793-stack-chan-headphone) |
+| 🔑 クレーンゲームアクセサリー | sskw | CC BY-SA | [MakerWorld](https://makerworld.com/ja/models/564419-stack-chan-crane-machine-accessory) |
+| 🎩 帽子ジェネレータ | beavers_hive | CC BY | [MakerWorld](https://makerworld.com/ja/models/2772131-stackchan-custom-hat-generator) |
+| 🧊 ボディカバー | user_93648059 | 要確認 | [MakerWorld](https://makerworld.com/ja/models/2817922-m5stackchan-cover-no-frontpanel) |
+| 🚗 OpenCar with toio | kenichi | CC BY-NC | [MakerWorld](https://makerworld.com/ja/models/2922441-stack-chan-opencar-with-toio) |
+| タカオ版ケース/スタンド | @mongonta555（Takao）| BOOTH規約 | [BOOTH](https://mongonta.booth.pm/) |
+
+::: tip ライセンスとブース利用
+本ブースは **非商用のコミュニティ展示**。CC BY/BY-SA/BY-NC/BY-NC-SA いずれも展示・印刷は概ね可能な範囲ですが、**NC＝物販/有償頒布は不可**、**SA＝改変配布は同ライセンス継承**。方針どおり **各作者に許諾** を取ります。詳細は [`research/model-data.md`](https://github.com/aieo-product/stackchanEventBooth/blob/main/research/model-data.md)。
+:::
+
 ## 取り扱いの約束
 
 - 画像・造形データは制作者の権利物です。**無断転載・無断印刷は行いません。**
