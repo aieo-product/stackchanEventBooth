@@ -19,6 +19,8 @@ export default defineConfig({
       { text: '撮影ブース', link: '/photobooth' },
       { text: '必要スペース', link: '/space' },
       { text: '当日運営', link: '/schedule' },
+      { text: 'プリント環境', link: '/printing' },
+      { text: '経費', link: '/expenses' },
       { text: '懸念点', link: '/concerns' },
       { text: 'アイディア', link: '/ideas' }
     ],
@@ -31,6 +33,13 @@ export default defineConfig({
           { text: '簡易撮影ブース', link: '/photobooth' },
           { text: '必要スペース', link: '/space' },
           { text: '当日運営（13:00–17:00）', link: '/schedule' }
+        ]
+      },
+      {
+        text: '準備・経費',
+        items: [
+          { text: '🖨️ プリント環境と必要量', link: '/printing' },
+          { text: '💴 経費まとめ', link: '/expenses' }
         ]
       },
       {
