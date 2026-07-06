@@ -120,9 +120,32 @@
 
 > 調査は継続中（`スタックチャン 配布`／`着せ替え` 等を Chrome で調査）。詳細な照合リストは [`research/accessories.md`](https://github.com/aieo-product/stackchanEventBooth/blob/main/research/accessories.md)、進捗は [Issue #2](https://github.com/aieo-product/stackchanEventBooth/issues/2)。耳/ヘッドホン単体の造形データ配布元は追加調査予定。
 
+## 🖨️ MakerWorldで今すぐ印刷できる着せ替えアクセサリー（X2D対応）
+
+[MakerWorld](https://makerworld.com/ja) は Bambu Lab 公式の3Dモデル共有プラットフォーム。多くのモデルに **Print Profile（Bambu向け事前スライス済みデータ）** が付いており、Bambu Studio / Bambu Handy から **手持ちの X2D にワンクリックで送って印刷**できます（＝実質そのまま生成可能）。スタックチャンの**着せ替えアクセサリー**を、ライセンスを確認して一覧化しました（2026-07-06 確認）。
+
+| アクセサリー | 種別 | ライセンス | データ（MakerWorld）|
+|---|---|---|---|
+| スタックチャン アクセサリーセット（頭部）| 頭部アクセ複数 | CC BY-NC | [979116](https://makerworld.com/ja/models/979116) |
+| Stack-chan headphone | 🎧ヘッドホン | CC BY-NC-SA | [2858793](https://makerworld.com/ja/models/2858793) |
+| StackChan simple headphone | 🎧ヘッドホン | MakerWorld標準 | [2792626](https://makerworld.com/ja/models/2792626) |
+| Custom Hat Generator | 🎩帽子（自由生成）| CC BY | [2772131](https://makerworld.com/ja/models/2772131) |
+| Brick Hat | 🎩ブロック帽子 | CC BY-NC | [2855044](https://makerworld.com/ja/models/2855044) |
+| Pharaoh decoration | 👑かぶりもの | CC BY-SA | [2736962](https://makerworld.com/ja/models/2736962) |
+| スーパーサイヤ スタックチャン | ✨髪 | CC BY-NC-SA | [2834877](https://makerworld.com/ja/models/2834877) |
+| Eridian Xenolite body cover | 🧊ボディカバー | CC BY-NC | [3013279](https://makerworld.com/ja/models/3013279) |
+| ServoBodycover | 🧊ボディカバー（サーボ）| CC BY-NC | [2904501](https://makerworld.com/ja/models/2904501) |
+| 顔パーツ・耳カラー（sample piece）| 🐱顔/耳 | CC BY-NC-SA | [1145027](https://makerworld.com/ja/models/1145027) |
+
+::: warning ライセンスの見方（重要）
+- **CC BY**＝クレジットのみでOK（最も自由）／ **CC BY-SA**＝改変配布は同ライセンス継承 ／ **CC BY-NC・BY-NC-SA**＝非商用のみ（当ブースの無料展示はOK・**物販不可**）。
+- **「MakerWorld標準ライセンス」「MakerWorld限定ライセンス」**＝個人・非商用の印刷は可だが**データ再配布・商用は不可**。当ブース（無料展示・データ再配布なし）は範囲内。
+- いずれも**クレジット表示**を行い、可能な範囲で作者へも一報します。詳細は [`research/model-data.md`](https://github.com/aieo-product/stackchanEventBooth/blob/main/research/model-data.md)。
+:::
+
 ## 着せ替えアクセサリーの造形データ（データを確認 → 許諾へ）
 
-**本体に装着する着せ替えアクセサリー**の3Dモデルデータ配布元・制作者・ライセンスです。**データを確認したうえで各作者に許諾を得て** 使用します。会場（お誕生日会2026）で配布された **透明シェル・猫耳** は制作者が明確なため、許諾依頼の最優先とします。
+**本体に装着する着せ替えアクセサリー**の3Dモデルデータ配布元・制作者・ライセンスです。**データを確認したうえで各作者に許諾を得て** 使用します。会場（お誕生日会2026）で配布された **透明シェル・猫耳** は MakerWorld に無く（BOOTH/GitHub/直接配布）、制作者が明確なため許諾依頼の最優先とします。
 
 | 着せ替えアクセサリー | 制作者 | ライセンス/入手 | データ・出典 |
 |---|---|---|---|

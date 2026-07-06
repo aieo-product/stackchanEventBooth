@@ -53,6 +53,42 @@
 
 > 本ブースは非商用のコミュニティ展示のため多くは利用可の範囲だが、**方針どおり各作者に許諾を取る**。特に SA（改変時）・NC（物理配布/物販）・独自条件は事前確認必須。
 
+## MakerWorld = X2Dで最速の印刷供給源（2026-07-06 全ライセンス確認）
+
+MakerWorld は Bambu Lab 公式プラットフォーム。多くのモデルに **Print Profile（Bambu向け事前スライス済み3MF）** が付属し、Bambu Studio/Handy から **X2D へワンクリック送信で印刷可能**（＝実質そのまま生成できる）。`__NEXT_DATA__` から全ヒットのライセンスを一括取得した結果、スタックチャンの**着せ替えアクセサリー**は以下（各ページの `license` フィールドより）。
+
+### 着せ替えアクセサリー（印刷対象）
+
+| ID | アクセサリー | 種別 | ライセンス | 作者(uid) |
+|---|---|---|---|---|
+| [979116](https://makerworld.com/ja/models/979116) | スタックチャン アクセサリーセット/head accessory set | 頭部アクセ複数 | **BY-NC** | user_93648059 |
+| [2858793](https://makerworld.com/ja/models/2858793) | Stack-chan headphone | ヘッドホン | **BY-NC-SA** | sskw |
+| [2792626](https://makerworld.com/ja/models/2792626) | StackChan simple headphone | ヘッドホン | MakerWorld標準 | — |
+| [2772131](https://makerworld.com/ja/models/2772131) | StackChan Custom Hat Generator | 帽子(自由生成) | **BY** | beavers_hive |
+| [2855044](https://makerworld.com/ja/models/2855044) | StackChan Brick Hat | ブロック帽子 | **BY-NC** | — |
+| [2736962](https://makerworld.com/ja/models/2736962) | Pharaoh decoration of StackChan | かぶりもの | **BY-SA** | — |
+| [2834877](https://makerworld.com/ja/models/2834877) | ｽｰﾊﾟｰｻｲﾔｽﾀｯｸﾁｬﾝ | 髪 | **BY-NC-SA** | user_93648059 |
+| [3013279](https://makerworld.com/ja/models/3013279) | Eridian Xenolite StackChan body cover | ボディカバー | **BY-NC** | — |
+| [2904501](https://makerworld.com/ja/models/2904501) | StackChan-ServoBodycover | ボディカバー(サーボ) | **BY-NC** | — |
+| [1145027](https://makerworld.com/ja/models/1145027) | Stack-chan_sample_piece | 顔/耳パーツ | **BY-NC-SA** | kennel.org(@kennel_org) |
+| [564419](https://makerworld.com/ja/models/564419) | Stack-chan Crane Machine Accessory | タグ/キーホルダー | **BY-SA** | sskw |
+
+### 非アクセサリー（MakerWorldにあるが対象外）
+
+| ID | 名称 | 種別 | ライセンス |
+|---|---|---|---|
+| [2922441](https://makerworld.com/ja/models/2922441) | Stack-chan OpenCar with toio | 台車 | BY-NC |
+| [2750877](https://makerworld.com/ja/models/2750877) | スタックチャンBOX | 収納 | **CC0** |
+| [2781106](https://makerworld.com/ja/models/2781106) | 台座「Car-stom」| スタンド | MakerWorld限定 |
+| [2817922](https://makerworld.com/ja/models/2817922) | M5StackChan-Cover-no-FrontPanel | カバー | MakerWorld標準 |
+| [996135](https://makerworld.com/ja/models/996135) / [1349010](https://makerworld.com/ja/models/1349010) | M5Stack Stand-chan 各種 | スタンド | BY-NC |
+
+### ライセンス区分の注意
+
+- **CC0**：完全フリー（権利放棄）。**CC BY**：クレジットのみ。**CC BY-SA**：改変配布は同ライセンス継承。**CC BY-NC / BY-NC-SA**：非商用のみ（無料展示OK・物販不可）。
+- **「MakerWorld標準ライセンス(Standard Digital File License)」「MakerWorld限定ライセンス(Exclusive)」**：個人・非商用の**印刷は可**だが**データ再配布・商用は不可**。当ブース（無料展示・データ再配布なし）は範囲内。
+- MakerWorldはBambu連携でDL/印刷が容易＝**実質そのまま生成可能**。ただし透明シェル・猫耳（@mongonta555/@murasametech）は MakerWorld に無く、BOOTH/GitHub/直接許諾が必要。
+
 ## 次のアクション
 
 - [ ] @uk59 / @UtaAoya の具体的な配布モデルURLを特定（プロフィール/固定ポスト）
