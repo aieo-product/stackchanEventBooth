@@ -1,17 +1,21 @@
 # 用意するアクセサリー
 
-スタックチャン本体（M5Stack ベースの卓上ロボット）に取り付けて楽しむ、3Dプリント製の着せ替えアクセサリーを用意します。来場者がその場で付け替えて、自分だけのスタックチャンを作れます。
+スタックチャン本体（M5Stack ベースの卓上ロボット）に**装着して見た目を変える「着せ替えアクセサリー」**を用意します。来場者がその場で付け替えて、自分だけのスタックチャンを作れます。
 
-## カテゴリ一覧（6種）
+::: tip 「着せ替えアクセサリー」の範囲（2026-07 再整理）
+[ｽﾀｯｸﾁｬﾝお誕生日会2026](https://stack-chan.connpass.com/event/394846/)（2026-06-27・参加者140名）の参加者とX投稿を照合し、**本体に装着するもの**を「着せ替えアクセサリー」として選定しました。キーホルダー・ミニチュア・名札・乗り物・スタンド等は**着せ替えではない別カテゴリ**として切り分けています（[→ その他造形](#その他の造形-着せ替えではないもの)）。
+:::
+
+## カテゴリ一覧（着せ替えアクセサリー・本体に装着）
 
 | カテゴリ | 内容 | 数量目安 |
 |---|---|---|
-| 🐱 **耳** | ネコ耳・うさ耳など、頭頂に付ける耳パーツ | 各2〜3 |
-| 🎩 **帽子・かぶりもの** | ミニハット・キャップなど | 数種 |
+| 🫧 **透明シェル／着せ替えケース** | M5版本体の透明シェル。会場でも配布された交換式ケース | 数個 |
+| 🐱 **猫耳（LED対応）** | 頭頂に付ける猫耳。透明PLA製・LED対応 | 各2〜3 |
+| 🎩 **帽子・かぶりもの** | ミニハット・麦わら帽子・カスタム帽子など | 数種 |
 | 🎧 **ヘッドホン** | 装着型ヘッドホン（カラーバリエーション） | 2〜3 |
-| 🧊 **ボディケース** | 本体カラーケース（赤・黒・白など） | 数色 |
-| 🔑 **キーホルダー** | "stackchan 2026" などの記念キーホルダー | 配布用に多め |
-| 🪪 **ネームバッジ** | QR付きの名札・バッジ | — |
+| 🧥 **衣装（ファー帽子・マント）** | 着せ替え衣装 | 数種 |
+| ✨ **髪型・その他カスタム** | ヘアパーツなど | 数種 |
 
 ## 着せ替えのイメージ
 
@@ -116,23 +120,35 @@
 
 > 調査は継続中（`スタックチャン 配布`／`着せ替え` 等を Chrome で調査）。詳細な照合リストは [`research/accessories.md`](https://github.com/aieo-product/stackchanEventBooth/blob/main/research/accessories.md)、進捗は [Issue #2](https://github.com/aieo-product/stackchanEventBooth/issues/2)。耳/ヘッドホン単体の造形データ配布元は追加調査予定。
 
-## 造形データ配布元（データを確認 → 許諾へ）
+## 着せ替えアクセサリーの造形データ（データを確認 → 許諾へ）
 
-実際の3Dモデルデータの配布元・ライセンスを特定しました。**データを確認したうえで各作者に許諾を得て** 使用します。
+**本体に装着する着せ替えアクセサリー**の3Dモデルデータ配布元・制作者・ライセンスです。**データを確認したうえで各作者に許諾を得て** 使用します。会場（お誕生日会2026）で配布された **透明シェル・猫耳** は制作者が明確なため、許諾依頼の最優先とします。
 
-| 造形（種類）| 作者 | ライセンス | データ |
+| 着せ替えアクセサリー | 制作者 | ライセンス/入手 | データ・出典 |
 |---|---|---|---|
-| 顔パーツ・耳カラー（サンプルパーツ）| kennel.org（@kennel_org）| CC BY-NC-SA | [MakerWorld](https://makerworld.com/ja/models/1145027-stack-chan_sample_piece) |
+| 🫧 透明シェル／着せ替えケース | [@mongonta555](https://x.com/mongonta555)（Takao）| 要確認（会場配布）| [交換手順資料(SpeakerDeck)](https://speakerdeck.com/mongonta0716) |
+| 🐱 猫耳（LED・透明PLA製）| [@murasametech](https://x.com/murasametech) / [@mongonta555](https://x.com/mongonta555) | 要確認（会場配布）| 「猫耳を付けさせる会」（X投稿）|
 | 🎧 ヘッドホン | sskw | CC BY-NC-SA | [MakerWorld](https://makerworld.com/ja/models/2858793-stack-chan-headphone) |
-| 🔑 クレーンゲームアクセサリー | sskw | CC BY-SA | [MakerWorld](https://makerworld.com/ja/models/564419-stack-chan-crane-machine-accessory) |
-| 🎩 帽子ジェネレータ | beavers_hive | CC BY | [MakerWorld](https://makerworld.com/ja/models/2772131-stackchan-custom-hat-generator) |
-| 🧊 ボディカバー | user_93648059 | 要確認 | [MakerWorld](https://makerworld.com/ja/models/2817922-m5stackchan-cover-no-frontpanel) |
-| 🚗 OpenCar with toio | kenichi | CC BY-NC | [MakerWorld](https://makerworld.com/ja/models/2922441-stack-chan-opencar-with-toio) |
-| タカオ版ケース/スタンド | @mongonta555（Takao）| BOOTH規約 | [BOOTH](https://mongonta.booth.pm/) |
+| 🎩 帽子ジェネレータ（カスタム帽子）| beavers_hive | CC BY | [MakerWorld](https://makerworld.com/ja/models/2772131-stackchan-custom-hat-generator) |
+| 👒 麦わら帽子ほか | [@mmmzhstd](https://x.com/mmmzhstd)（翼）| 要確認 | X投稿（着せ替え例）|
+| 🧥 ファー帽子・マント | [@syumme](https://x.com/syumme)（≒syumme01?）| 要確認 | X投稿（着せ替え衣装）|
+| 🐱 顔パーツ・耳カラー（サンプルパーツ）| kennel.org（[@kennel_org](https://x.com/kennel_org)）| CC BY-NC-SA | [MakerWorld](https://makerworld.com/ja/models/1145027-stack-chan_sample_piece) |
 
 ::: tip ライセンスとブース利用
 本ブースは **非商用のコミュニティ展示**。CC BY/BY-SA/BY-NC/BY-NC-SA いずれも展示・印刷は概ね可能な範囲ですが、**NC＝物販/有償頒布は不可**、**SA＝改変配布は同ライセンス継承**。方針どおり **各作者に許諾** を取ります。詳細は [`research/model-data.md`](https://github.com/aieo-product/stackchanEventBooth/blob/main/research/model-data.md)。
 :::
+
+## その他の造形（着せ替えではないもの）
+
+以下は #ｽﾀｯｸﾁｬﾝお誕生日2026 で見られた造形ですが、**本体に装着する着せ替えアクセサリーではない**ため、今回の「お着替え体験」の対象外として区別します（キーホルダー等は配布品として別途検討）。
+
+| 造形 | 制作者 | 種別 |
+|---|---|---|
+| OpenCar with toio / atom mate マウント | [@kenichih](https://x.com/kenichih) | 台車・マウント |
+| 移動スタックチャン各種 | [@hfujikawa77](https://x.com/hfujikawa77) | 乗り物 |
+| ミニスタックチャン キーホルダー | [@mongonta555](https://x.com/mongonta555) | ミニチュア配布品 |
+| QR顔タグ / MakerChip / バッジ / コースター | [@kennel_org](https://x.com/kennel_org) / [@uk59](https://x.com/uk59) / [@washishi](https://x.com/washishi) | 名札・記念品 |
+| スタックチャン BOX / 台座 Car-stom | sugamo / Tanipochi（MakerWorld）| 収納・スタンド |
 
 ## 取り扱いの約束
 
