@@ -119,3 +119,19 @@ Bambu Lab公式ストア（日本）と主要ECサイトで、**2026-07-06時点
 :::
 
 → この見積りは [経費まとめ](/expenses) の「フィラメント」行に反映しています。
+
+## リスト経由の自動印刷（print/）
+
+「何を・どのファイルで・何色・何個 印刷するか」を **[`print/print-list.yaml`](https://github.com/aieo-product/stackchanEventBooth/blob/main/print/print-list.yaml)** に定義し、そのリスト経由で **X2D へ自動で印刷**する仕組みをリポジトリに用意しました。
+
+```bash
+cd print
+pip install -r requirements.txt
+python3 download.py          # 不足モデルの入手先URLを表示（MakerWorldのPrint Profile）
+python3 auto_print.py        # dry-run（印刷内容の確認）
+python3 auto_print.py --go   # 実行（X2DへLAN送信。★立ち会い必須）
+```
+
+- **X2D を LAN モード**にし、接続情報（IP/アクセスコード/シリアル）は macOS Keychain に登録（値はコミットしない）。
+- 実モデルファイルは **ライセンス配慮でGit管理外**（`print/files/`）。リスト経由で各自ローカルに集めます。
+- 詳細・安全上の注意は [`print/README.md`](https://github.com/aieo-product/stackchanEventBooth/blob/main/print/README.md)。**無人運転は禁止**（火災・失敗リスクのため逐次・立ち会い運用）。

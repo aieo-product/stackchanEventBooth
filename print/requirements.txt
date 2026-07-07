@@ -1,0 +1,5 @@
+# スタックチャン自動印刷ランナーの依存
+PyYAML>=6.0
+bambulabs_api>=2.0        # Bambu Lab プリンター LAN 制御（MQTT+FTP）
+# 参考: LAN モード必須。うまく動かない場合は installed バージョンの
+#       Printer/upload_file/start_print/get_state の引数を確認して合わせる。

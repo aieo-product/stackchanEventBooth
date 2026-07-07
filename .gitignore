@@ -5,3 +5,10 @@ docs/.vitepress/cache/
 docs/.vitepress/dist/
 *.local
 .dev.vars
+
+# 3Dモデルの実バイナリはライセンス（再配布制限）に配慮しGit管理外。
+# print-list.yaml のリスト経由で download.py が print/files/ に集める。
+print/files/*
+!print/files/.gitkeep
+print/.venv/
+__pycache__/

@@ -1,0 +1,157 @@
+# =============================================================================
+# スタックチャン イベントブース 印刷リスト（マニフェスト）
+# -----------------------------------------------------------------------------
+# このファイルが「何を・どのファイルで・何色・何個 印刷するか」の唯一の定義。
+# auto_print.py がこれを読み、Bambu Lab X2D へ順番にジョブを送る。
+# 実モデルファイル(3mf/STL)は print/files/ に置く（.gitignore 管理外）。
+#   - MakerWorld の Print Profile（事前スライス済み .gcode.3mf）推奨＝そのまま印刷可
+#   - download.py で不足ファイルの入手先を確認できる
+#
+# ライセンス略号: BY / BY-SA / BY-NC / BY-NC-SA / CC0 / MW-STD(標準) / MW-EX(限定)
+#   NC=非商用のみ(無料展示OK・物販不可) / SA=改変配布は同ライセンス継承
+#   MW-STD/MW-EX=個人非商用の印刷可・データ再配布不可
+# redistribute: リポジトリへのファイル同梱可否（true=CC0/BY/BY-SA/BY-NC-SA）
+# =============================================================================
+
+defaults:
+  printer: X2D          # 送信先プリンター（secrets の BAMBU_* を使用）
+  plate: 1              # Print Profile 内のプレート番号
+  use_ams: true         # AMS を使う場合 true
+  wait_between_sec: 30  # ジョブ完了後、次のジョブ開始までの待機（着脱・確認用）
+
+# 印刷ジョブ（上から順に実行）。enabled:false はスキップ。
+jobs:
+  # ---- 着せ替えアクセサリー（MakerWorld・X2Dで直接印刷可） -------------------
+  - key: hat-generator
+    name: StackChan Custom Hat Generator（帽子）
+    makerworld_id: "2772131"
+    url: https://makerworld.com/ja/models/2772131
+    license: BY
+    author: beavers_hive
+    redistribute: true
+    file: files/hat-generator.gcode.3mf
+    color: パステルピンク
+    ams_mapping: [0]
+    copies: 2
+    enabled: true
+    notes: CC BY（クレジットのみで自由）。テスト印刷の最優先候補。
+
+  - key: headphone
+    name: Stack-chan headphone（ヘッドホン）
+    makerworld_id: "2858793"
+    url: https://makerworld.com/ja/models/2858793
+    license: BY-NC-SA
+    author: sskw
+    redistribute: true
+    file: files/headphone.gcode.3mf
+    color: マリンブルー
+    ams_mapping: [1]
+    copies: 2
+    enabled: true
+
+  - key: accessory-set
+    name: スタックチャン アクセサリーセット（頭部）
+    makerworld_id: "979116"
+    url: https://makerworld.com/ja/models/979116
+    license: BY-NC
+    author: user_93648059
+    redistribute: false      # BY-NC は非商用再配布可だが、安全側で false 既定
+    file: files/accessory-set.gcode.3mf
+    color: アイボリーホワイト
+    ams_mapping: [0]
+    copies: 1
+    enabled: true
+
+  - key: brick-hat
+    name: StackChan Brick Hat（ブロック帽子）
+    makerworld_id: "2855044"
+    url: https://makerworld.com/ja/models/2855044
+    license: BY-NC
+    author: ""
+    redistribute: false
+    file: files/brick-hat.gcode.3mf
+    color: マリンブルー
+    ams_mapping: [1]
+    copies: 1
+    enabled: false
+
+  - key: pharaoh
+    name: Pharaoh decoration of StackChan（かぶりもの）
+    makerworld_id: "2736962"
+    url: https://makerworld.com/ja/models/2736962
+    license: BY-SA
+    author: ""
+    redistribute: true
+    file: files/pharaoh.gcode.3mf
+    color: アーモンドイエロー
+    ams_mapping: [2]
+    copies: 1
+    enabled: false
+
+  - key: super-saiyan
+    name: スーパーサイヤ スタックチャン（髪）
+    makerworld_id: "2834877"
+    url: https://makerworld.com/ja/models/2834877
+    license: BY-NC-SA
+    author: user_93648059
+    redistribute: true
+    file: files/super-saiyan.gcode.3mf
+    color: アーモンドイエロー
+    ams_mapping: [2]
+    copies: 1
+    enabled: false
+
+  - key: body-cover
+    name: Eridian Xenolite StackChan body cover（ボディカバー）
+    makerworld_id: "3013279"
+    url: https://makerworld.com/ja/models/3013279
+    license: BY-NC
+    author: ""
+    redistribute: false
+    file: files/body-cover.gcode.3mf
+    color: 半透明ライトジェイド
+    ams_mapping: [3]
+    copies: 1
+    enabled: false
+
+  - key: sample-piece
+    name: Stack-chan sample piece（顔/耳パーツ）
+    makerworld_id: "1145027"
+    url: https://makerworld.com/ja/models/1145027
+    license: BY-NC-SA
+    author: kennel.org(@kennel_org)
+    redistribute: true
+    file: files/sample-piece.gcode.3mf
+    color: アイボリーホワイト
+    ams_mapping: [0]
+    copies: 1
+    enabled: false
+
+  # ---- MakerWorld 外（透明シェル・猫耳）は作者許諾後に file を配置して有効化 ----
+  - key: transparent-shell
+    name: 透明シェル/着せ替えケース（@mongonta555）
+    source: booth-or-direct
+    url: https://speakerdeck.com/mongonta0716
+    license: 要確認（会場配布）
+    author: "@mongonta555"
+    redistribute: false
+    file: files/transparent-shell.gcode.3mf
+    color: 半透明ライトジェイド
+    ams_mapping: [3]
+    copies: 1
+    enabled: false
+    notes: MakerWorld非掲載。作者許諾＋データ入手後に file を置いて enabled:true。
+
+  - key: cat-ears
+    name: 猫耳（LED・透明PLA製／@murasametech・@mongonta555）
+    source: booth-or-direct
+    url: https://x.com/murasametech
+    license: 要確認（会場配布）
+    author: "@murasametech / @mongonta555"
+    redistribute: false
+    file: files/cat-ears.gcode.3mf
+    color: 半透明ライトジェイド
+    ams_mapping: [3]
+    copies: 3
+    enabled: false
+    notes: 「猫耳を付けさせる会」。作者許諾＋データ入手後に有効化。
