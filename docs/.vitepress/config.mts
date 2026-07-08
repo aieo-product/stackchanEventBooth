@@ -21,6 +21,7 @@ export default defineConfig({
       { text: '当日運営', link: '/schedule' },
       { text: 'プリント環境', link: '/printing' },
       { text: '経費', link: '/expenses' },
+      { text: 'LT', link: '/lt' },
       { text: '懸念点', link: '/concerns' },
       { text: 'アイディア', link: '/ideas' }
     ],
@@ -40,6 +41,12 @@ export default defineConfig({
         items: [
           { text: '🖨️ プリント環境と必要量', link: '/printing' },
           { text: '💴 経費まとめ', link: '/expenses' }
+        ]
+      },
+      {
+        text: '発信・LT',
+        items: [
+          { text: '🎤 LT企画（15分・歴史→実践）', link: '/lt' }
         ]
       },
       {
