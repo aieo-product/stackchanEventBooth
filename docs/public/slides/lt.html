@@ -137,11 +137,14 @@
   .zone{position:absolute; top:0; bottom:0; width:22%; z-index:4; cursor:pointer}
   .zone.left{left:0} .zone.right{right:0; width:78%}
   @media print{
-    body{overflow:visible; background:#fff}
-    #deck{position:static}
-    .stage{box-shadow:none; max-width:none; max-height:none; width:100%; height:auto}
-    .slide{position:relative; opacity:1!important; visibility:visible!important; transform:none!important;
-      page-break-after:always; height:56.25vw}
+    @page{ size:1280px 720px; margin:0; }
+    html,body{overflow:visible; background:#fff}
+    #deck{position:static; display:block}
+    .stage{box-shadow:none; max-width:none; max-height:none; width:1280px; height:720px; font-size:20px}
+    .slide{position:relative; inset:auto; width:1280px; height:720px;
+      opacity:1!important; visibility:visible!important; transform:none!important;
+      break-after:page; page-break-after:always;}
+    #prog,#count,.foot{display:none}
     .navhint,.zone{display:none}
   }
 </style>
