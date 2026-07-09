@@ -1,8 +1,12 @@
 # LT（ライトニングトーク）企画
 
 当日行う **15分LT** の企画・構成・進め方をまとめます。テーマは
-**「スタックチャンの歴史 → AIエージェントと会話する実践（レイテンシーとの戦い）」**。
-スライド本体は [`slides/lt-stackchan-ai-agent.md`](https://github.com/aieo-product/stackchanEventBooth/blob/main/slides/lt-stackchan-ai-agent.md)（Marp）。
+**「スタックチャンの歴史 → 電子工作素人が作ってみた → AIエージェントと会話する実践（レイテンシーとの戦い）」**。
+
+::: tip 🖥️ スライド本体（リッチHTML・そのまま投影可）
+**<a href="/slides/lt.html" target="_blank">/slides/lt.html を開く</a>**（別タブ）
+CDN非依存の**自己完結HTML**なので、会場のWi-Fi不調でも**オフラインで動作**します。`←/→`・スペースでめくり、`F`で全画面、`P`でPDF出力。制作写真（サーボ・配線・完成）入り。
+:::
 
 ## 狙い・ターゲット
 
@@ -21,13 +25,14 @@
 |---|---|--:|---|
 | 1 | つかみ・ゴール提示 | 1分 | 自己紹介は一言。「歴史→実践」の地図を見せる |
 | 2 | スタックチャンとは | 2分 | OSSのカワイイ手乗りロボット・5歳・コミュニティ |
-| 3 | 歴史（2021→2026）| 2分 | ChatGPT連携で"会話する相棒"へ／2026 Module-LLM |
-| 4 | なぜ"物理"なのか | 2分 | 画面の中の道具 → 顔・声・体で"相棒"に |
-| 5 | 会話の仕組み | 2分 | 聞く/考える/話す＝どこで動かすか。我々の構成 |
-| 6 | **実践：レイテンシーとの戦い** | **4分** | ★本番。7秒の沈黙 → 対策の積み上げ |
-| 7 | まとめ・ブース誘導 | 2分 | 世界観の再掲＋実機に会いに来てね |
+| 3 | 歴史（2021→2026）| 1.5分 | ChatGPT連携で"会話する相棒"へ／2026 Module-LLM |
+| 4 | なぜ"物理"なのか | 1.5分 | 画面の中の道具 → 顔・声・体で"相棒"に |
+| 5 | **作ってみた：電子工作素人の壁** | **2.5分** | 初めての電子工作／ケーブルの海／サーボとの格闘／動いた感動（制作写真） |
+| 6 | 会話の仕組み | 2分 | 聞く/考える/話す＝どこで動かすか。我々の構成 |
+| 7 | **実践：レイテンシーとの戦い** | **3.5分** | ★本番。7秒の沈黙 → 対策の積み上げ |
+| 8 | まとめ・ブース誘導 | 1分 | 世界観の再掲＋実機に会いに来てね |
 
-> 合計15分。**第6章（レイテンシー）が山場**なので、1〜5章は巻きで進めて時間を確保する。
+> 合計15分。**第5章（電子工作の苦労）と第7章（レイテンシー）が山場**。スライドは全28枚（セクション扉含む）で、扉は数秒で流す。写真スライドは"語り"中心に。
 
 ## 山場：レイテンシー物語（実話・出典付き）
 
@@ -45,28 +50,29 @@
 
 ## スライドの作り方・進め方
 
-スライドは **Marp**（Markdown → PDF/PPTX/HTML）で管理します。1ファイルで編集でき、当日は PDF 全画面 or PowerPoint 変換で投影できます。
+スライドは **リッチHTML**（[`docs/public/slides/lt.html`](https://github.com/aieo-product/stackchanEventBooth/blob/main/docs/public/slides/lt.html)）を正とします。1ファイル自己完結で**オフライン投影可**、公開サイトからも **[/slides/lt.html](/slides/lt.html)** で開けます。
+
+- **投影**：ブラウザで開いて `F` で全画面。`←/→`・スペースでめくる。タッチスワイプ対応。
+- **編集**：HTMLを直接編集（各スライドは `<section class="slide">`）。制作写真は `docs/public/slides/assets/`。
+- **PDF化**：ブラウザで `P`（印刷→PDFで保存）。または Chromeヘッドレスで書き出し可。
 
 ```bash
-# プレビュー（VS Code なら「Marp for VS Code」拡張が手軽）
-npx @marp-team/marp-cli@latest -p slides/lt-stackchan-ai-agent.md
-
-# PDF 書き出し（当日投影用・推奨）
-npx @marp-team/marp-cli@latest slides/lt-stackchan-ai-agent.md -o lt.pdf
-
-# PowerPoint / HTML が要る場合
-npx @marp-team/marp-cli@latest slides/lt-stackchan-ai-agent.md --pptx -o lt.pptx
-npx @marp-team/marp-cli@latest slides/lt-stackchan-ai-agent.md --html -o lt.html
+# PDF書き出し（Chromeヘッドレス・任意）
+"/Applications/Google Chrome.app/Contents/MacOS/Google Chrome" \
+  --headless=new --print-to-pdf=lt.pdf --no-pdf-header-footer \
+  "http://localhost:5173/slides/lt.html"   # ローカル配信 or 公開URLでも可
 ```
+
+> 旧Marp版 [`slides/lt-stackchan-ai-agent.md`](https://github.com/aieo-product/stackchanEventBooth/blob/main/slides/lt-stackchan-ai-agent.md) も残置（テキスト管理したい場合の代替）。内容の正はHTML版。
 
 ### これから詰める作業（チェックリスト）
 
-- [ ] **実機デモ映像/写真**を数点差し込む（会話の様子・アーキ図）。画像は `docs/public/img/` を流用可
-- [ ] aieo-stack-chan の **アーキテクチャ図**（`docs/public/diagrams/architecture-overview.svg`）を1枚入れる
-- [ ] レイテンシーの **体感が伝わる図**（声→間つなぎ→本答え のタイムライン）を作成
-- [ ] **リハーサルで15分に収める**（特に1〜5章を巻く）。第6章に時間を残す
-- [ ] 可能なら**ライブデモ**（実機で1往復）。失敗時に備え**録画バックアップ**も用意
-- [ ] 話者ノート（各スライドの `<!-- -->`）を見ながら通し練習
+- [x] **制作写真**（組み立て・ケーブル・サーボ・完成）を差し込み ✅
+- [x] レイテンシーの **体感が伝わる図**（声→間つなぎ→本答えのタイムライン）✅
+- [ ] aieo-stack-chan の **アーキテクチャ図**を1枚追加（`architecture-overview.svg` を assets へ）
+- [ ] **リハーサルで15分に収める**（セクション扉は数秒で流す。第5章・第7章に時間を残す）
+- [ ] 可能なら**ライブデモ**（実機で1往復）。失敗に備え**録画バックアップ**を用意
+- [ ] 会場PCで**事前に表示確認**（フォント・全画面・めくり）
 
 ::: warning 当日の保険
 会場は混雑Wi-Fiが想定される（[懸念点](/concerns)）。**ライブ会話デモはネット不調で失敗し得る**ため、
@@ -75,7 +81,8 @@ npx @marp-team/marp-cli@latest slides/lt-stackchan-ai-agent.md --html -o lt.html
 
 ## 関連
 
-- スライド本体（Marp）: [`slides/lt-stackchan-ai-agent.md`](https://github.com/aieo-product/stackchanEventBooth/blob/main/slides/lt-stackchan-ai-agent.md)
+- 🖥️ **スライド本体（リッチHTML）**: [/slides/lt.html](/slides/lt.html)
+- スライド旧版（Marp）: [`slides/lt-stackchan-ai-agent.md`](https://github.com/aieo-product/stackchanEventBooth/blob/main/slides/lt-stackchan-ai-agent.md)
 - 実開発リポジトリ: [aieo-product/aieo-stack-chan](https://github.com/aieo-product/aieo-stack-chan)
 - ブースのアイディア（LLM Moduleデモ）: [/ideas](/ideas)
 - 事前に潰す懸念点（ネットワーク）: [/concerns](/concerns)
