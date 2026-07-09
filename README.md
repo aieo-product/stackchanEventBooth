@@ -4,6 +4,9 @@
 
 イベントを盛り上げるための **スタックチャン用アクセサリー** と **簡易撮影ブース** を制作し、来場者に「スタックチャンを着せ替えて撮って楽しむ」体験を提供します。
 
+📄 **公開提案サイト（Cloudflare Pages）: https://stackchan-event-booth.pages.dev/**
+🎤 LTスライド（リッチHTML）: https://stackchan-event-booth.pages.dev/slides/lt.html
+
 ## このリポジトリの目的
 
 - ブース企画（アクセサリー／撮影ブース／必要スペース）の管理
@@ -30,6 +33,8 @@
 
 ## 関連リンク
 
+- 📄 公開提案サイト（Cloudflare Pages）: https://stackchan-event-booth.pages.dev/
+- 🎤 LTスライド（リッチHTML）: https://stackchan-event-booth.pages.dev/slides/lt.html
 - AI Dev Day 2026: https://aidevday.com/
 - ハッシュタグ: `#ｽﾀｯｸﾁｬﾝお誕生日2026`
 
