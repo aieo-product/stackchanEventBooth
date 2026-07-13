@@ -5,6 +5,7 @@
 - 関連Issue: [#2](https://github.com/aieo-product/stackchanEventBooth/issues/2)
 - 調査日: 2026-07-03 / 方法: Chrome自動操作（MakerWorld `tag:stack-chan` / `tag:stackchan` 等）＋Web検索
 - ライセンス確認済みは MakerWorld のモデルページ表記に基づく
+- **更新調査**: [makerworld-survey-20260713.md](./makerworld-survey-20260713.md)（2026-07-13・全33件）— 本書で「要確認」のライセンスが判明（ku-nelカバー=MW標準 / BOX=CC0 / Car-stom=MW限定）
 
 ## MakerWorld（データDL可・ライセンス明記）
 
