@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8" />
 <meta name="viewport" content="width=device-width, initial-scale=1" />
-<title>スタックチャンとAIエージェント｜AI Dev Day 2026 LT</title>
+<title>スタックチャンとローカルLLM｜AI Dev Day 2026 LT</title>
 <style>
   :root{
     --blue:#1D76DB; --blue-d:#125bb0; --ink:#1b2430; --paper:#ffffff;
@@ -56,12 +56,16 @@
   .section .num{
     font-size:1.1em; font-weight:800; color:var(--yellow); letter-spacing:.2em; margin-bottom:.3em}
   .section .sub{color:#eaf4ff; font-size:1.2em; margin-top:.5em}
+  /* main-part divider: warm gradient to mark speaker change */
+  .slide.section.handoff{
+    background:linear-gradient(135deg,#7a2ff0 0%, #b83ad6 55%, #e0455e 100%);
+  }
 
   /* ---- title slide ---- */
   .cover{background:radial-gradient(1200px 700px at 78% 12%, #eaf3ff 0, #ffffff 60%);}
   .cover .robot{position:absolute; right:5%; bottom:0; width:34%; opacity:.96}
-  .cover h1{font-size:3.15em}
-  .cover .ttl-sub{font-size:1.35em; color:var(--ink); margin-top:.5em; font-weight:700}
+  .cover h1{font-size:3.05em}
+  .cover .ttl-sub{font-size:1.3em; color:var(--ink); margin-top:.5em; font-weight:700}
   .cover .by{margin-top:1.3em; color:var(--muted); font-size:1.05em}
   .badge{align-self:flex-start; background:var(--yellow); color:#5b4a00; font-weight:800;
          padding:.3em .9em; border-radius:8px; font-size:.85em; margin-bottom:1em}
@@ -87,6 +91,7 @@
 
   /* cards / callout */
   .cols{display:grid; grid-template-columns:1fr 1fr; gap:1.2em; margin-top:.4em}
+  .cols3{display:grid; grid-template-columns:1fr 1fr 1fr; gap:1em; margin-top:.4em}
   .card{background:var(--card); border:1px solid var(--line); border-radius:14px; padding:1.1em 1.2em}
   .card h3{color:var(--blue-d); font-size:1.15em; margin-bottom:.35em}
   .big{font-size:2.1em; font-weight:800; color:var(--blue); text-align:center; margin:.3em 0}
@@ -157,28 +162,29 @@
     <!-- 1 COVER -->
     <section class="slide cover active">
       <span class="badge">AI Dev Day 2026 ｜ Lightning Talk</span>
-      <h1>スタックチャンと<br>AIエージェント</h1>
-      <div class="ttl-sub">〜 自分で育てた"相棒"が物理世界に立つまで 〜</div>
-      <div class="by">大谷 / aieo　｜　#ｽﾀｯｸﾁｬﾝお誕生日2026</div>
+      <h1>スタックチャンと<br>ローカルLLM</h1>
+      <div class="ttl-sub">〜 5年の歴史・Module-LLMの苦労・そして"全部ローカル"へ 〜</div>
+      <div class="by">大谷 / aieo　×　<b>A-Uta（@UtaAoya）</b>　｜　#ｽﾀｯｸﾁｬﾝお誕生日2026</div>
       <img class="robot" src="assets/craft-signed.jpg" alt="" style="border-radius:16px 0 0 0; width:30%; box-shadow:0 12px 40px rgba(0,0,0,.3)"/>
     </section>
 
-    <!-- 2 GOAL -->
+    <!-- 2 AGENDA -->
     <section class="slide">
-      <div class="kicker">このトークのゴール（15分）</div>
-      <ul>
-        <li>🧸 <b>スタックチャンって何？</b>（知らない人が大多数、の前提で）</li>
-        <li>🛠️ <b>電子工作素人が作ってみた</b>（サーボとケーブルとの格闘）</li>
-        <li>🗣️ <b>AIエージェントと"会話"するには？</b>（仕組みの全体像）</li>
-        <li>⚡ <b>実践の苦労＝レイテンシーとの戦い</b>（生々しい実話）</li>
-      </ul>
-      <div class="callout"><b>キーメッセージ：</b>育てたAIエージェントが、<b>顔と声と体</b>を持つと "相棒" になる。</div>
+      <div class="kicker">このトークの地図（15分・2人でリレー）</div>
+      <table>
+        <tr><th></th><th>パート</th><th>話す人</th><th class="r">目安</th></tr>
+        <tr><td>①</td><td>🧸 <b>スタックチャンの歴史</b>（2021→2026）</td><td>大谷</td><td class="r">4分</td></tr>
+        <tr><td>②</td><td>🛠️ <b>Module-LLMの苦労話</b>（オンデバイスAIの現実）</td><td>大谷</td><td class="r">3.5分</td></tr>
+        <tr><td>③</td><td>⚡ <b>ローカルLLM実装の最前線</b> ★メイン</td><td><b>A-Uta さん</b></td><td class="r"><b>6.5分</b></td></tr>
+        <tr><td>—</td><td>🎉 まとめ・ブース誘導</td><td>両名</td><td class="r">1分</td></tr>
+      </table>
+      <div class="callout"><b>キーメッセージ：</b>AIに<b>顔と声と体</b>を与える挑戦は、<b>クラウド頼み</b>から <b>"全部ローカル"</b> の時代へ。</div>
     </section>
 
-    <!-- 3 SECTION -->
+    <!-- 3 SECTION history -->
     <section class="slide section">
-      <div class="num">① INTRO</div>
-      <h1>そもそも、<br>スタックチャンとは？</h1>
+      <div class="num">① HISTORY ｜ 大谷</div>
+      <h1>スタックチャンの歴史</h1>
       <div class="sub">来場者の大多数は、まだ知らない</div>
     </section>
 
@@ -214,35 +220,21 @@
       <div class="src">※ このブースの着せ替え＆撮影も、コミュニティ文化から生まれています</div>
     </section>
 
-    <!-- 6 SECTION history -->
-    <section class="slide section">
-      <div class="num">② HISTORY</div>
-      <h1>スタックチャンの歴史</h1>
-      <div class="sub">2021 → 2026、AIとの合流</div>
-    </section>
-
-    <!-- 7 timeline -->
+    <!-- 6 timeline -->
     <section class="slide">
       <h2>カワイイ置物 → 会話する"相棒"へ</h2>
       <div class="timeline">
         <div class="tl"><div class="yr">2021</div><div class="ev">誕生。サーボ2個で首振り・M5Stackの"顔"</div></div>
         <div class="tl"><div class="yr">2022–23</div><div class="ev">コミュニティ拡大。<b>ChatGPT連携</b>で"しゃべる"化</div></div>
-        <div class="tl"><div class="yr">2024–25</div><div class="ev">LLM高性能化。<b>音声対話</b>が実用域に</div></div>
-        <div class="tl"><div class="yr">2026</div><div class="ev">M5公式版 <b>スタックチャン(K151)</b> 発売 ／ <b>Module-LLM</b>（オンデバイスLLM）登場</div></div>
+        <div class="tl"><div class="yr">2024–25</div><div class="ev">LLM高性能化。<b>音声対話</b>が実用域に／<b>Module-LLM</b>（オンデバイスLLM）登場</div></div>
+        <div class="tl"><div class="yr">2026</div><div class="ev">M5公式版 <b>スタックチャン(K151)</b> 発売。<b>ローカルLLM</b>で動かす作例が続々</div></div>
       </div>
-      <div class="callout">いま：<b>クラウドAI × オンデバイスAI</b> の二刀流時代へ</div>
+      <div class="callout">流れは明確：<b>クラウドAI頼み → オンデバイス/ローカルAI</b> へ。今日はこの最前線まで行きます</div>
     </section>
 
-    <!-- 8 SECTION physical -->
-    <section class="slide section">
-      <div class="num">③ WHY PHYSICAL</div>
-      <h1>なぜ"物理"なのか</h1>
-      <div class="sub">AIエージェントを画面から出す価値</div>
-    </section>
-
-    <!-- 9 embody -->
+    <!-- 7 why physical -->
     <section class="slide">
-      <h2>育てたエージェントが"体"を持つと</h2>
+      <h2>なぜ"物理"にこだわるのか</h2>
       <div class="cols">
         <div class="card"><h3>画面の中だけ</h3><p>便利な"道具"どまり。<br>呼んでも"そこに居ない"。</p></div>
         <div class="card" style="background:#eaf3ff;border-color:#b9d6f5"><h3>顔・声・体を持つと</h3><p>呼べば<b>振り向く</b>。そこに<b>"居る"</b>＝相棒。<br>育てた記憶・性格が<b>物理世界に立つ</b>。</p></div>
@@ -250,218 +242,156 @@
       <div class="big">AIエージェントを"育てた先"に見える、フィジカルな世界観</div>
     </section>
 
-    <!-- 10 SECTION build (NEW) -->
+    <!-- 8 SECTION module-llm -->
     <section class="slide section">
-      <div class="num">④ BUILD</div>
-      <h1>作ってみた：<br>電子工作素人の壁 🛠️</h1>
-      <div class="sub">サーボとケーブルとの、静かな戦い</div>
+      <div class="num">② MODULE-LLM ｜ 大谷</div>
+      <h1>Module-LLMの苦労話 🛠️</h1>
+      <div class="sub">オンデバイスAI、動けば速い。動かすまでが……</div>
     </section>
 
-    <!-- 11 first time (assembly photo) -->
-    <section class="slide photo">
-      <div class="bg" style="background-image:url(assets/craft-assembly.jpg)"></div>
-      <div class="scrim"></div>
-      <div class="cap">
-        <span class="chip">告白</span>
-        <h2>じつは、電子工作は初めてでした</h2>
-        <p>ドライバーとケースとにらめっこ。「これ、どこにネジ留めるの…？」から始まりました。</p>
-      </div>
-    </section>
-
-    <!-- 12 cables sea (cables photo) -->
-    <section class="slide photo">
-      <div class="bg" style="background-image:url(assets/craft-cables.jpg)"></div>
-      <div class="scrim"></div>
-      <div class="cap">
-        <span class="chip">壁①</span>
-        <h2>ケーブルの海でおぼれる</h2>
-        <p>Grove？ JST？ ポートA/B/C…？ <b>白いコネクタが全部同じに見える</b>。「どれをどこに挿すのか」で手が止まる。</p>
-      </div>
-    </section>
-
-    <!-- 13 servo struggle (wiring photo) -->
-    <section class="slide photo">
-      <div class="bg" style="background-image:url(assets/craft-servo-cable.jpg)"></div>
-      <div class="scrim"></div>
-      <div class="cap">
-        <span class="chip">壁②</span>
-        <h2>サーボとケーブルの格闘</h2>
-        <p>コネクタの<b>向き</b>、挿す<b>ポート</b>、配線の<b>取り回し</b>。ひとつ間違えると<b>首が回らない・電源が入らない</b>。素人には全部が初見の壁。</p>
-      </div>
-    </section>
-
-    <!-- 14 it worked (signed/working photo) -->
-    <section class="slide photo">
-      <div class="bg" style="background-image:url(assets/craft-signed.jpg)"></div>
-      <div class="scrim"></div>
-      <div class="cap">
-        <span class="chip">そして</span>
-        <h2>画面に"顔"が出た瞬間 🎉</h2>
-        <p>配線が通り、電源が入り、こちらを見て動く。<b>ただの基板が"相棒"になった</b>——この体験が、全部の入口でした。</p>
-      </div>
-    </section>
-
-    <!-- 15 SECTION how -->
-    <section class="slide section">
-      <div class="num">⑤ HOW</div>
-      <h1>AIエージェントと<br>会話するには？</h1>
-      <div class="sub">仕組みの全体像</div>
-    </section>
-
-    <!-- 16 4 steps -->
-    <section class="slide">
-      <h2>会話の4ステップ</h2>
-      <div class="pipe">
-        <div class="step"><div class="t">🎙️ 聞く</div><div class="d">STT（音声→文字）</div></div>
-        <div class="arrow">→</div>
-        <div class="step"><div class="t">🧠 考える</div><div class="d">LLM</div></div>
-        <div class="arrow">→</div>
-        <div class="step"><div class="t">🗣️ 話す</div><div class="d">TTS（文字→音声）</div></div>
-        <div class="arrow">→</div>
-        <div class="step"><div class="t">🔊 声</div><div class="d">スピーカー</div></div>
-      </div>
-      <div class="callout">各ステップを <b>どこで動かすか</b>（オンデバイス / クラウド）が勝負。速さと賢さは<b>トレードオフ</b>。</div>
-    </section>
-
-    <!-- 17 our stack -->
+    <!-- 9 what is module-llm -->
     <section class="slide">
       <div class="split figleft">
         <div>
-          <img src="assets/craft-wiring.jpg" alt="内部配線"/>
-          <div class="figcap">CoreS3＋Module-LLM の配線</div>
+          <img src="assets/craft-wiring.jpg" alt="CoreS3とModule-LLMの配線"/>
+          <div class="figcap">CoreS3＋Module-LLM の配線（自作機）</div>
         </div>
         <div>
-          <h2>我々の構成（aieo-stack-chan）</h2>
+          <h2>Module-LLM とは</h2>
           <ul>
-            <li>🧠 本体：<b>M5Stack CoreS3 + Module-LLM</b>（オンデバイスLLM/NPU）</li>
-            <li>☁️ 頭脳：Mac Studio 上の <b>Claude Agent SDK</b></li>
-            <li>🗣️ 声：<b>VOICEVOX（満別花丸）</b> で日本語TTS</li>
-            <li>🌐 どこでも：<b>Tailscale Funnel</b> で家/テザリング/カフェ 同一URL</li>
-            <li>🚦 3モード：🟢Full / 🟡Degraded / 🔴Offline</li>
+            <li>M5Stackに<b>重ねる</b>だけの <b>NPU搭載AIモジュール</b>（AX630C）</li>
+            <li>LLM・音声認識(ASR)・音声合成(TTS)を<b>ネット無しで</b>実行</li>
+            <li>つまり：<b>クラウドに頼らない</b>スタックチャンが作れる…はず</li>
           </ul>
+          <div class="callout">期待：「これで<b>最強のオンデバイス相棒</b>が作れる！」<br>現実：<b>そう甘くはなかった</b></div>
         </div>
       </div>
     </section>
 
-    <!-- 18 tiered cognition -->
+    <!-- 10 struggle 1: getting it to run -->
     <section class="slide">
-      <h2>鍵は "tiered cognition"（段階的な思考）</h2>
-      <div class="cols">
-        <div class="card"><h3>🟢 速い脳（本体内）</h3><p>軽い応答・聞き取りはオンデバイスで完結。</p></div>
-        <div class="card"><h3>☁️ 賢い脳（クラウド）</h3><p>深い思考は Claude に任せる。</p></div>
-      </div>
-      <div class="callout">🎭 <b>顔から声が出る</b>：入力＝Module-LLMのマイク／出力＝CoreS3のスピーカー。<br>「速い脳」と「賢い脳」を<b>使い分ける</b>のが自然な会話のコツ。</div>
-    </section>
-
-    <!-- 19 SECTION latency -->
-    <section class="slide section">
-      <div class="num">⑥ LATENCY</div>
-      <h1>実践の苦労<br>レイテンシーとの戦い ⚡</h1>
-      <div class="sub">ここからが本番</div>
-    </section>
-
-    <!-- 20 7 sec silence -->
-    <section class="slide">
-      <h2>問題：<span style="color:var(--red)">"7秒の沈黙"</span></h2>
+      <h2>苦労① 動かすまでが、長い</h2>
       <ul>
-        <li>声をかけてから返事まで <b>7秒</b></li>
+        <li>🔌 まず <b>UART疎通</b>から。本体と会話できるまでに一苦労</li>
+        <li>🎙️ マイクの<b>ゲイン設定が再起動で消える</b>——毎回無口に戻る</li>
+        <li>🤐 ある日突然、音声入力が<b>「入力待ち」のまま黙り込む</b>（取り込み障害）</li>
+        <li>🗣️ 日本語オンデバイスTTS（MeloTTS）は<b>NPUで動かすまでの道が険しい</b></li>
+      </ul>
+      <div class="quote" style="margin-top:.6em">"オンデバイスAI" は、動けば速い。<br>動かすまでが地獄。</div>
+      <div class="src">出典：aieo-stack-chan issue #29 / #76 / #127 / #55</div>
+    </section>
+
+    <!-- 11 struggle 2: latency -->
+    <section class="slide">
+      <h2>苦労② クラウド併用でも <span style="color:var(--red)">"7秒の沈黙"</span></h2>
+      <ul>
+        <li>賢い返答はクラウド(Claude)へ → 声かけから返事まで <b>7秒</b></li>
         <li>人は <b>2秒</b>黙られると「<b>壊れた?</b>」と感じる</li>
-        <li>STT→LLM→TTS→音声転送 の<b>往復が積み上がる</b></li>
       </ul>
       <div class="bars">
-        <div class="bar-row"><div class="lbl">応答 合計</div><div class="bar b7">約 7秒（うち Claude API 3–4秒が最大ボトルネック）</div></div>
+        <div class="bar-row"><div class="lbl">当初</div><div class="bar b7">約7秒（Claude API 3–4秒が最大ボトルネック）</div></div>
+        <div class="bar-row"><div class="lbl">モデル変更</div><div class="bar b5">5秒（Sonnet → Haiku）</div></div>
+        <div class="bar-row"><div class="lbl">間つなぎ</div><div class="bar b1">体感1秒</div></div>
       </div>
-      <div class="src">出典：aieo-stack-chan issue #54</div>
+      <div class="src">出典：issue #54（計測） / #70・#71（間つなぎ） / #87（ストリーミングTTS）</div>
     </section>
 
-    <!-- 21 fix1 haiku -->
+    <!-- 12 lesson: tiered cognition -->
     <section class="slide">
-      <h2>対策① モデル選び（7秒 → 5秒）</h2>
-      <div class="bars">
-        <div class="bar-row"><div class="lbl">Sonnet</div><div class="bar b7">7秒</div></div>
-        <div class="bar-row"><div class="lbl">Haiku 4.5</div><div class="bar b5">5秒</div></div>
-      </div>
-      <p style="margin-top:.7em">Claude API <b>3–4秒 → 1–2秒</b>。会話用途では「<b>そこそこ賢く・速い</b>」が正解。</p>
-      <div class="quote" style="margin-top:.5em">"一番賢いモデル" が "一番いい会話" とは限らない</div>
-      <div class="src">出典：issue #54 perf(latency)</div>
-    </section>
-
-    <!-- 22 fix2 streaming -->
-    <section class="slide">
-      <h2>対策② 全文を待たない（ストリーミングTTS）</h2>
-      <div class="cols">
-        <div class="card"><h3>従来</h3><p><b>全文</b>が返ってから喋り出す → 長い答えほど遅い。</p></div>
-        <div class="card" style="background:#eaf7ef;border-color:#9fe0b6"><h3>改善</h3><p><b>文の区切り</b>ごとに即 合成・発話。<br><b>最初の一文</b>ができた瞬間に喋り出す。</p></div>
-      </div>
-      <div class="quote" style="margin-top:.7em">"返事の速さ" ＝ 喋り<b>始め</b>の速さ</div>
-      <div class="src">出典：issue #87 文境界チャンクの即時TTS</div>
-    </section>
-
-    <!-- 23 fix3 filler -->
-    <section class="slide">
-      <h2>対策③ "間つなぎ"で沈黙を消す</h2>
+      <h2>たどり着いた答え："速い脳"と"賢い脳"の二刀流</h2>
       <div class="pipe">
         <div class="step"><div class="t">🎙️ 声かけ</div><div class="d">「ねえ、どなっく」</div></div>
         <div class="arrow">→</div>
-        <div class="step fill"><div class="t">即：間つなぎ</div><div class="d">「今日は東京駅で19時だったよね」</div></div>
+        <div class="step fill"><div class="t">即：間つなぎ</div><div class="d">オンデバイスで即応答（速い脳）</div></div>
         <div class="arrow">→</div>
-        <div class="step ans"><div class="t">本答え</div><div class="d">文単位で発話</div></div>
+        <div class="step ans"><div class="t">本答え</div><div class="d">クラウドLLMが文単位で発話（賢い脳）</div></div>
       </div>
       <ul style="margin-top:.7em">
-        <li>考えている間、<b>即座に相づち</b>。周囲会話から<b>単語抽出</b>（mecab・オンデバイス・<b>トークン0</b>）</li>
-        <li>事前合成キャッシュで <b>4秒 → 1秒</b></li>
+        <li>軽い応答・聞き取りは<b>オンデバイス</b>／深い思考は<b>クラウド</b></li>
+        <li>ただし賢さの本体は<b>まだクラウド頼み</b>——ここが正直な現在地</li>
       </ul>
-      <div class="src">出典：issue #70 / #71（文脈ワード抽出＋アドホックモード）</div>
     </section>
 
-    <!-- 24 fix4 ondevice -->
+    <!-- 13 bridge / handoff -->
     <section class="slide">
-      <h2>対策④ オンデバイス化 & セッション</h2>
-      <ul>
-        <li>TTSを<b>オンデバイス（MeloTTS/NPU）</b>へ → PCM転送 <b>1–2秒削減</b></li>
-        <li><b>セッション継続 + prompt caching</b> で起動コスト削減</li>
-        <li>ネット不調でも 🟡<b>Degraded</b>（オンデバイスのみ）で会話を止めない</li>
-      </ul>
-      <div class="callout">＝ 混雑会場の<b>Wi-Fi対策</b>にも直結（ブースの<a href="/concerns">懸念点</a>への答え）</div>
-      <div class="src">出典：issue #55 / #56</div>
-    </section>
-
-    <!-- 25 total -->
-    <section class="slide">
-      <h2>総力戦：<span style="color:var(--blue)">"速く"より"待たせない"</span></h2>
-      <div class="pipe">
-        <div class="step"><div class="t">🎙️ 声</div></div>
-        <div class="arrow">→</div>
-        <div class="step fill"><div class="t">（即）間つなぎ</div><div class="d">沈黙を埋める</div></div>
-        <div class="arrow">→</div>
-        <div class="step ans"><div class="t">本答えを文単位で発話</div><div class="d">最初の一文から</div></div>
+      <div class="kicker">ここで、疑問</div>
+      <div class="quote" style="font-size:2em">クラウドの力を借りずに、<br>"全部ローカル" でどこまで会話できるのか？</div>
+      <div class="callout" style="margin-top:1.2em">
+        その問いに真正面から向き合い、<b>展示会で実機を動かした人</b>が、今日ここにいます。<br>
+        <b style="font-size:1.25em">A-Uta さん（@UtaAoya）</b> — CPU・NPU・GPUを<b>総動員</b>したローカルLLMスタックチャンの実践者
       </div>
-      <div class="cols" style="margin-top:.9em">
-        <div class="card"><h3>速くする</h3><p>モデル選び・オンデバイス化</p></div>
-        <div class="card"><h3>待たせない</h3><p>間つなぎ・ストリーミング</p></div>
-      </div>
-      <div class="src">レイテンシーは <b>数字と体感</b> の両面で戦う</div>
+      <p class="muted small" style="margin-top:.8em">ここからが本日のメインです。バトンタッチ！ 🎤</p>
     </section>
 
-    <!-- 26 SECTION summary -->
-    <section class="slide section">
-      <div class="num">⑦ WRAP-UP</div>
-      <h1>まとめ</h1>
+    <!-- 14 SECTION local llm (handoff) -->
+    <section class="slide section handoff">
+      <div class="num">③ LOCAL LLM ★MAIN ｜ A-Uta さん</div>
+      <h1>ローカルLLM実装の最前線</h1>
+      <div class="sub">AI ｽﾀｯｸﾁｬﾝ ミニマル — クラウド無しで、会話する</div>
     </section>
 
-    <!-- 27 summary -->
+    <!-- 15 exhibit intro -->
     <section class="slide">
-      <h2>まとめ</h2>
+      <h2>「ローカルAIに向き合う展示会」に出展</h2>
       <ul>
-        <li>🧸 スタックチャン＝<b>カワイイOSSロボット</b>、5歳、強いコミュニティ</li>
-        <li>🛠️ <b>電子工作素人</b>でも、サーボとケーブルの壁を越えれば作れる</li>
-        <li>🤝 AIエージェントに<b>顔・声・体</b>を与えると <b>"相棒"</b> になる</li>
-        <li>⚡ 会話の鍵は<b>レイテンシー</b>：モデル/ストリーミング/間つなぎ/オンデバイスの<b>積み上げ</b></li>
-        <li>🌟 <b>育てたエージェントが物理世界に立つ</b> ＝ これからの世界観</li>
+        <li>🤖 <b>AI ｽﾀｯｸﾁｬﾝ ミニマル</b> — ネット接続なしで音声会話するスタックチャン</li>
+        <li>🏠 音声認識も・思考も・発話も、<b>すべて手元のマシン</b>で完結</li>
+        <li>📱 <b>スマホ版</b>もあり——こちらは<b>全部CPU</b>で動かす割り切り構成</li>
+      </ul>
+      <div class="callout"><b>ポイント：</b>「ローカルでもここまで会話できる」を<b>実機で証明</b>してきた</div>
+      <div class="src">出典：@UtaAoya 2025-12-06 のポスト（#ローカルAIに向き合う展示会）</div>
+    </section>
+
+    <!-- 16 distributed architecture -->
+    <section class="slide">
+      <h2>鍵は "分散処理"：CPU・NPU・GPU の適材適所</h2>
+      <div class="cols3">
+        <div class="card"><h3>🎙️ CPU</h3><p><b>Whisper</b><br>音声認識（聞く）</p></div>
+        <div class="card" style="background:#fff7e0;border-color:var(--yellow)"><h3>🧠 NPU</h3><p><b>LLM1：gpt-oss-20b</b>（FLM）<br>思考の主役</p></div>
+        <div class="card" style="background:#eaf7ef;border-color:#9fe0b6"><h3>⚡ GPU</h3><p><b>LLM2</b><br>もう一つの思考系統</p></div>
+      </div>
+      <div class="callout" style="margin-top:.9em">1台のマシンの<b>CPU/NPU/GPUを同時に使い分け</b>、パイプラインを止めない。<br>クラウドの代わりに、<b>手元の計算資源を隅々まで絞り出す</b>設計。</div>
+    </section>
+
+    <!-- 17 hardware -->
+    <section class="slide">
+      <h2>それを支えるハードウェア</h2>
+      <ul>
+        <li>🖥️ ベース：ミニPC <b>EVO X2</b>（NPU搭載）</li>
+        <li>🎮 拡張：<b>RTX 5070Ti × 2枚</b> を <b>OCuLink</b> 経由で外付け</li>
+        <li>🔗 ミニPCの機動力に、デスクトップ級GPUの馬力を"継ぎ足す"構成</li>
+      </ul>
+      <div class="quote" style="margin-top:.7em">"ローカルLLM" は、ハードの工夫で<br>ここまで戦える</div>
+      <div class="src">※ 詳細・デモはこのあと A-Uta さんから</div>
+    </section>
+
+    <!-- 18 A-Uta free slide: implementation flow -->
+    <section class="slide">
+      <h2>実装の流れ・デモ 🎤</h2>
+      <p class="lead" style="margin-top:.3em">（A-Uta さんパート：実装の勘所・ハマりどころ・実機デモ）</p>
+      <ul style="margin-top:.6em">
+        <li>モデル選び・量子化・メモリとの戦い</li>
+        <li>音声パイプラインをローカルで組む</li>
+        <li>実機デモ or 録画</li>
+      </ul>
+      <div class="src">※ このスライドは A-Uta さんの内容に合わせて差し替え予定</div>
+    </section>
+
+    <!-- 19 summary -->
+    <section class="slide">
+      <h2>まとめ：AIの"体"は、選べる時代へ</h2>
+      <div class="cols">
+        <div class="card"><h3>☁️ クラウド二刀流（大谷）</h3><p>賢さはクラウドから借り、<b>間つなぎ＋オンデバイス</b>で沈黙を消す。</p></div>
+        <div class="card" style="background:#eaf3ff;border-color:#b9d6f5"><h3>🏠 フルローカル（A-Uta さん）</h3><p><b>CPU/NPU/GPU総動員</b>で、ネット無しでも会話が成立。</p></div>
+      </div>
+      <ul style="margin-top:.7em">
+        <li>🧸 スタックチャン5年：カワイイ置物 → <b>会話する相棒</b>へ</li>
+        <li>🛠️ オンデバイスAIは<b>苦労も多いが、確実に前進</b>している</li>
+        <li>🌟 <b>育てたAIが、手元のマシンで、物理世界に立つ</b>——もう夢じゃない</li>
       </ul>
     </section>
 
-    <!-- 28 CTA -->
+    <!-- 20 CTA -->
     <section class="slide section">
       <div class="num">COME & SEE</div>
       <h1>ブースに会いに来てください 🎉</h1>
