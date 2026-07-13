@@ -22,6 +22,7 @@ export default defineConfig({
       { text: 'プリント環境', link: '/printing' },
       { text: '経費', link: '/expenses' },
       { text: 'LT', link: '/lt' },
+      { text: 'スライド', link: '/slides/lt.html', target: '_blank' },
       { text: '懸念点', link: '/concerns' },
       { text: 'アイディア', link: '/ideas' }
     ],
@@ -46,7 +47,8 @@ export default defineConfig({
       {
         text: '発信・LT',
         items: [
-          { text: '🎤 LT企画（15分・歴史→実践）', link: '/lt' }
+          { text: '🎤 LT企画（15分・歴史→実践）', link: '/lt' },
+          { text: '🖥️ LTスライド（発表資料）', link: '/slides/lt.html', target: '_blank' }
         ]
       },
       {
