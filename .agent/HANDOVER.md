@@ -24,6 +24,8 @@
 - MakerWorldスタックチャン関連の全数調査33件: `research/makerworld-survey-20260713.md`（6123fed）
   - 量産候補の優先度整理（CC0/BY=即量産可、BY-NC=許諾推奨、版権パロディ3件=非推奨）
   - print-list.yaml への新規追加候補5件（stackchancover, neck hanging parts, 公式デコ3種 等）
+- LT表紙の登壇者表記修正（476c362, 4bce415）→ デプロイ・本番反映確認済
+- **docs/accessories.md に調査結果を反映（ecf05b0）**: 「MakerWorldで今すぐ印刷できる」セクションを優先度付き量産候補15件＋展示非推奨3件に全面更新 → デプロイ済
 
 ## 未着手 📋
 - **量産対象の取捨選択（ユーザー判断待ち）** → 決定後 print-list.yaml へ統合・docs/accessories or printing への反映
