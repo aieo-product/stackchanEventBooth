@@ -122,25 +122,46 @@
 
 ## 🖨️ MakerWorldで今すぐ印刷できる着せ替えアクセサリー（X2D対応）
 
-[MakerWorld](https://makerworld.com/ja) は Bambu Lab 公式の3Dモデル共有プラットフォーム。多くのモデルに **Print Profile（Bambu向け事前スライス済みデータ）** が付いており、Bambu Studio / Bambu Handy から **手持ちの X2D にワンクリックで送って印刷**できます（＝実質そのまま生成可能）。スタックチャンの**着せ替えアクセサリー**を、ライセンスを確認して一覧化しました（2026-07-06 確認）。
+[MakerWorld](https://makerworld.com/ja) は Bambu Lab 公式の3Dモデル共有プラットフォーム。多くのモデルに **Print Profile（Bambu向け事前スライス済みデータ）** が付いており、Bambu Studio / Bambu Handy から **手持ちの X2D にワンクリックで送って印刷**できます（＝実質そのまま生成可能）。
 
-| アクセサリー | 種別 | ライセンス | データ（MakerWorld）|
+2026-07-13 に MakerWorld を**全数調査（33件）**し、装飾・着せ替えパーツ18件をライセンス別の量産優先度付きで整理しました（[調査詳細](https://github.com/aieo-product/stackchanEventBooth/blob/main/research/makerworld-survey-20260713.md)）。
+
+**優先度の凡例**：🟢 すぐ量産可（CC0／クレジットのみ）／ 🟡 公式・SA継承あり ／ 🟠 非商用限定 or MW標準（展示OK・許諾/確認推奨）。⭐ は Print Profile 付きで印刷実績のある推し。
+
+### 量産候補（優先度順・15件）
+
+| 優先度 | アクセサリー | 種別 | ライセンス | 制作者 | Profile |
+|:--:|---|---|---|---|:--:|
+| 🟢 | [stackchancover](https://makerworld.com/ja/models/2839068) | 🧊カバー | **CC0** | [user_2302219760](https://makerworld.com/en/@user_2302219760) | ✅ |
+| 🟢 | [Custom Hat Generator](https://makerworld.com/ja/models/2772131) ⭐ | 🎩帽子（自由生成） | **CC BY** | [beavers_hive](https://makerworld.com/en/@beavers_hive) | ✅ |
+| 🟢 | [neck hanging parts](https://makerworld.com/ja/models/2870969) | 🪢首掛けパーツ | **CC BY** | [kenichi](https://makerworld.com/en/@kenichi) | ✅ |
+| 🟡 | [Pharaoh decoration](https://makerworld.com/ja/models/2736962) ⭐ | 👑かぶりもの | CC BY-SA | [M5Stack公式](https://makerworld.com/en/@M5Stack) | ✅ |
+| 🟡 | [American football decoration](https://makerworld.com/ja/models/2736961) | 🏈ヘルメット | CC BY-SA | [M5Stack公式](https://makerworld.com/en/@M5Stack) | — |
+| 🟡 | [Christmas hat decoration](https://makerworld.com/ja/models/2736960) | 🎅サンタ帽 | CC BY-SA | [M5Stack公式](https://makerworld.com/en/@M5Stack) | — |
+| 🟠 | [Stack-chan headphone](https://makerworld.com/ja/models/2858793) ⭐ | 🎧ヘッドホン | CC BY-NC-SA | [sskw](https://makerworld.com/en/@sskw) | ✅ |
+| 🟠 | [Brick Hat](https://makerworld.com/ja/models/2855044) ⭐ | 🧱ブロック帽子 | CC BY-NC | [user_4023807793](https://makerworld.com/en/@user_4023807793) | ✅ |
+| 🟠 | [アクセサリーセット（頭部）](https://makerworld.com/ja/models/979116) | 🎀頭部アクセ複数 | CC BY-NC | [ku-nel](https://makerworld.com/en/@user_93648059) | ✅ |
+| 🟠 | [Eridian Xenolite body cover](https://makerworld.com/ja/models/3013279) | 🧊ボディカバー | CC BY-NC | [kenichi](https://makerworld.com/en/@kenichi) | ✅ |
+| 🟠 | [ServoBodycover](https://makerworld.com/ja/models/2904501) | 🧊ボディカバー（サーボ） | CC BY-NC | [user_2302219760](https://makerworld.com/en/@user_2302219760) | ✅ |
+| 🟠 | [Stackchan Pendant Top](https://makerworld.com/ja/models/3022476) | 📿ペンダント | CC BY-NC-SA | [user_2722792563](https://makerworld.com/en/@user_2722792563) | — |
+| 🟠 | [顔パーツ・耳カラー（sample piece）](https://makerworld.com/ja/models/1145027) | 🐱顔/耳 | CC BY-NC-SA | [kennel.org](https://makerworld.com/en/@kennel.org) | ✅ |
+| 🟠 | [M5StackChanカバー（前面パネル無](https://makerworld.com/ja/models/2817922)／[有）](https://makerworld.com/ja/models/2817921) | 🧊ケース2種 | MakerWorld標準 | [ku-nel](https://makerworld.com/en/@user_93648059) | ✅ |
+| 🟠 | [StackChan simple headphone](https://makerworld.com/ja/models/2792626) | 🎧ヘッドホン | MakerWorld標準 | [user_3807793624](https://makerworld.com/en/@user_3807793624) | ✅ |
+
+### 🔴 展示非推奨（版権パロディ・3件）
+
+他作品のパロディ造形のため、コミュニティ展示でも**ブースでは扱いません**（参考として記録のみ）。
+
+| アクセサリー | 元ネタ | ライセンス | 制作者 |
 |---|---|---|---|
-| スタックチャン アクセサリーセット（頭部）| 頭部アクセ複数 | CC BY-NC | [979116](https://makerworld.com/ja/models/979116) |
-| Stack-chan headphone | 🎧ヘッドホン | CC BY-NC-SA | [2858793](https://makerworld.com/ja/models/2858793) |
-| StackChan simple headphone | 🎧ヘッドホン | MakerWorld標準 | [2792626](https://makerworld.com/ja/models/2792626) |
-| Custom Hat Generator | 🎩帽子（自由生成）| CC BY | [2772131](https://makerworld.com/ja/models/2772131) |
-| Brick Hat | 🎩ブロック帽子 | CC BY-NC | [2855044](https://makerworld.com/ja/models/2855044) |
-| Pharaoh decoration | 👑かぶりもの | CC BY-SA | [2736962](https://makerworld.com/ja/models/2736962) |
-| スーパーサイヤ スタックチャン | ✨髪 | CC BY-NC-SA | [2834877](https://makerworld.com/ja/models/2834877) |
-| Eridian Xenolite body cover | 🧊ボディカバー | CC BY-NC | [3013279](https://makerworld.com/ja/models/3013279) |
-| ServoBodycover | 🧊ボディカバー（サーボ）| CC BY-NC | [2904501](https://makerworld.com/ja/models/2904501) |
-| 顔パーツ・耳カラー（sample piece）| 🐱顔/耳 | CC BY-NC-SA | [1145027](https://makerworld.com/ja/models/1145027) |
+| [Saint Seiya decoration](https://makerworld.com/ja/models/2736950) | 聖闘士星矢 | CC BY-SA | M5Stack公式 |
+| [スーパーサイヤ スタックチャン](https://makerworld.com/ja/models/2834877) | ドラゴンボール | CC BY-NC-SA | ku-nel |
+| [ミックチャンなりきりセット](https://makerworld.com/ja/models/2777168) | 初音ミク | CC BY-NC | sugamo |
 
 ::: warning ライセンスの見方（重要）
-- **CC BY**＝クレジットのみでOK（最も自由）／ **CC BY-SA**＝改変配布は同ライセンス継承 ／ **CC BY-NC・BY-NC-SA**＝非商用のみ（当ブースの無料展示はOK・**物販不可**）。
+- **CC0**＝権利放棄・制約なし ／ **CC BY**＝クレジットのみでOK ／ **CC BY-SA**＝改変配布は同ライセンス継承 ／ **CC BY-NC・BY-NC-SA**＝非商用のみ（当ブースの無料展示はOK・**物販不可**）。
 - **「MakerWorld標準ライセンス」「MakerWorld限定ライセンス」**＝個人・非商用の印刷は可だが**データ再配布・商用は不可**。当ブース（無料展示・データ再配布なし）は範囲内。
-- いずれも**クレジット表示**を行い、可能な範囲で作者へも一報します。詳細は [`research/model-data.md`](https://github.com/aieo-product/stackchanEventBooth/blob/main/research/model-data.md)。
+- いずれも**クレジット表示**を行い、方針どおり可能な範囲で作者へも一報します。詳細は [`research/makerworld-survey-20260713.md`](https://github.com/aieo-product/stackchanEventBooth/blob/main/research/makerworld-survey-20260713.md) / [`research/model-data.md`](https://github.com/aieo-product/stackchanEventBooth/blob/main/research/model-data.md)。
 :::
 
 ## 着せ替えアクセサリーの造形データ（データを確認 → 許諾へ）
