@@ -289,8 +289,8 @@ jobs:
     color: パステル各色
     ams_mapping: [0, 1, 2, 3]
     copies: 1
-    enabled: true
-    notes: Print Profile 42分・1プレート。教室レイアウトのベース。
+    enabled: false
+    notes: 不採用（2026-07-15 実物確認: 机・棚がベース一体成形のジオラマで単品配置不可）。代替を再調査中。
 
   - key: booth-prop-desk-set
     name: ミニチュアビンテージ学校机と椅子セット

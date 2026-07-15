@@ -61,7 +61,7 @@
 
 | 採用 | 小物 | 制作者 | ライセンス | 印刷時間 | 用途 |
 |:--:|---|---|---|--:|---|
-| ✅ | [教室のミニチュアシーン一式](https://makerworld.com/ja/models/2750405)（机・椅子・書棚・掲示板） | MonsieurPierre | MW標準 | 42分 | 教室レイアウトのベース |
+| ❌ | ~~[教室のミニチュアシーン一式](https://makerworld.com/ja/models/2750405)~~ | MonsieurPierre | MW標準 | — | **不採用**（机・棚がベース一体成形で単品配置不可と判明・2026-07-15）。単品ミニチュアを再調査中 |
 | ✅ | [ビンテージ学校机と椅子セット](https://makerworld.com/ja/models/1314963) ×2 | Printed a mini | MW標準 | 1.3h×2 | 主役家具（黒板前の定位置） |
 | ✅ | [1/12 校庭ベンチ](https://makerworld.com/ja/models/1276012)（拡縮対応設計） | Foximg | MW標準 | 48分 | ステージ端の校庭コーナー |
 | ✅ | [日本の自動販売機](https://makerworld.com/ja/models/1615169)（4色AMS・塗装不要） | PattyWithAP | MW標準 | 3.6h | 「現実世界の生活感」の決め手 |
