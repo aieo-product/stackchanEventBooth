@@ -195,7 +195,7 @@ jobs:
     enabled: false
 
   - key: ferris-base
-    name: 観覧車 ベースプレート（2分割・モーターマウント付）
+    name: 観覧車 ベースプレート（2分割・クランク軸受付）
     source: self-designed
     url: https://github.com/aieo-product/stackchanEventBooth/issues/12
     license: 自作（本企画オリジナル）
@@ -206,7 +206,7 @@ jobs:
     ams_mapping: [2]
     copies: 2
     enabled: false
-    notes: モーターマウント・小物類（60g/2.5h）は本ジョブのプレートに同梱して印刷。
+    notes: クランク軸受・ハンドル・フリクションダンパー・小物類（60g/2.5h）は本ジョブのプレートに同梱して印刷（2026-07-15 手回し版に決定・モーターマウント廃止）。
 
   # ---- 撮影ブース 床・壁（自作STL・Issue #13）STL確定後に有効化 -----------------
   - key: booth-floor-tile

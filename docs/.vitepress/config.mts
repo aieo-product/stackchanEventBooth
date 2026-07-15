@@ -34,7 +34,7 @@ export default defineConfig({
           { text: 'ブース概要', link: '/' },
           { text: '用意するアクセサリー', link: '/accessories' },
           { text: '簡易撮影ブース', link: '/photobooth' },
-          { text: '🎡 観覧車（電動・虹色LED）', link: '/ferris-wheel' },
+          { text: '🎡 観覧車（手回し・虹色LED）', link: '/ferris-wheel' },
           { text: '必要スペース', link: '/space' },
           { text: '当日運営（13:00–17:00）', link: '/schedule' }
         ]
