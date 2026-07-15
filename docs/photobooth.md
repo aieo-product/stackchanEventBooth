@@ -6,6 +6,14 @@
 
 スマホで撮るだけでSNS映えする画づくりを、卓上の小さなステージで実現します。来場者は着せ替えたスタックチャンを教室の定位置（黒板前）に置いて、その場で撮影 → `#ｽﾀｯｸﾁｬﾝお誕生日2026` で投稿、という体験を楽しめます。身長6cmのスタックチャンに対し、1/12ドールハウススケールの机・椅子は「小学生が教室にいる」サイズ感になります。
 
+### 完成予想図
+
+<div style="display:flex;justify-content:center;margin:16px 0;">
+  <img src="/img/booth/concept-render.jpg" alt="学校ジオラマ撮影ブースの完成予想CG（黒板・窓・掲示板の壁パネルと木床タイル、机椅子と自販機、黒板前のスタックチャン）" style="max-width:680px;width:100%;border-radius:12px;" />
+</div>
+
+> AI生成の完成イメージ（2026-07-15）。床＝フローリングタイル、背面壁＝窓／黒板／掲示板パネル、小物＝学校机椅子・ベンチ・自販機（MakerWorld選定品）、装飾＝紙ガーランド・時間割・造花という本設計の構成をそのまま再現しています。
+
 <div style="display:flex;justify-content:center;margin:24px 0;">
   <img src="/img/photobooth-diorama.jpg" alt="Happy Birthday スタックチャンのジオラマ撮影ブース実例" style="max-width:680px;width:100%;border-radius:12px;" />
 </div>
