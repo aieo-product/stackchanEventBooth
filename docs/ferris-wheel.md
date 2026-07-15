@@ -8,6 +8,17 @@
 3. X2D 1台・立ち会い運用で **7/23までに印刷が終わるスケジュール** を確定する
 :::
 
+## 着想元
+
+居酒屋で実際に見かけた**木製ドリンク観覧車**（回転する吊りトレイにグラスを載せる什器）。M5Stackデバイスを載せると「スタックチャンが観覧車に乗っている」画になることを確認済みで、これを電動・LED付きの3Dプリント版として再構成します。
+
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:12px;margin:16px 0;">
+  <img src="/img/ferris/reference-stackchan.jpg" alt="ドリンク観覧車に乗ったM5Stackデバイス（着想元）" style="width:100%;border-radius:10px;" />
+  <img src="/img/ferris/reference-wheel.jpg" alt="木製ドリンク観覧車の構造（ボルト接合・吊りトレイ）" style="width:100%;border-radius:10px;" />
+</div>
+
+> 撮影: 本企画メンバー。構造面でも「多角形プレート2枚＋ボルト接合＋自由回転の吊りトレイ」という本設計と同型で、**ゴンドラは深いバケットではなく吊りトレイ＋前面ガード**でも成立することの実物証明になっている。
+
 ## 全体仕様
 
 | 項目 | 仕様 | 備考 |
