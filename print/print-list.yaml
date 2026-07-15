@@ -150,10 +150,11 @@ jobs:
     author: 本企画
     redistribute: true
     file: files/ferris/diffuser.gcode.3mf
-    color: 半透明ライトジェイド
+    color: PETG半透明クリア（7/17購入予定）
     ams_mapping: [3]
     copies: 8
     enabled: false
+    notes: 無色クリアで虹色LEDの発色を優先。印刷前に乾燥必須（PETG）。
 
   - key: ferris-hub
     name: 観覧車 ハブ（シャフトフランジ）
@@ -176,10 +177,11 @@ jobs:
     author: 本企画
     redistribute: true
     file: files/ferris/gondola.gcode.3mf
-    color: パステル各色
-    ams_mapping: [0, 1, 2, 3]
+    color: PLAグラディエント 綿菓子の雲（7/17購入予定）
+    ams_mapping: [0]
     copies: 4
     enabled: false
+    notes: グラデーション色で可愛く。テスト印刷1個は手持ちパステルで公差確認のみ。
 
   - key: ferris-tower
     name: 観覧車 支柱（A型・上下分割）
