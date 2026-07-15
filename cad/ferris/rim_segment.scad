@@ -77,6 +77,10 @@ module rim_segment() {
         // --- dovetail mortise on the 0 deg end (opens +y) ---
         translate([rim_outer_r - rim_radial_w/2, 0, dt_z])
             dovetail_mortise(h = dt_h);
+        // --- gondola axle through-hole (Ø3 rod, E-ring retained outside) ---
+        rotate([0, 0, gon_axle_seg_angle])
+            translate([gon_axle_r, 0, -1])
+                cylinder(d = gon_axle_hole_d, h = rim_depth + 2);
     }
 }
 
