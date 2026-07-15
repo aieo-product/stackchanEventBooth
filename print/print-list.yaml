@@ -206,6 +206,75 @@ jobs:
     copies: 2
     enabled: false
 
+  # ---- 撮影ブース 床・壁（自作STL・Issue #13）STL確定後に有効化 -----------------
+  - key: booth-floor-tile
+    name: 撮影ブース 床タイル（教室フローリング・150角）
+    source: self-designed
+    url: https://github.com/aieo-product/stackchanEventBooth/issues/13
+    license: 自作（本企画オリジナル）
+    author: 本企画
+    redistribute: true
+    file: files/booth/floor-tile.gcode.3mf
+    color: アーモンドイエロー
+    ams_mapping: [2]
+    copies: 8
+    enabled: false
+
+  - key: booth-wall-blackboard
+    name: 撮影ブース 壁パネル（黒板）
+    source: self-designed
+    url: https://github.com/aieo-product/stackchanEventBooth/issues/13
+    license: 自作（本企画オリジナル）
+    author: 本企画
+    redistribute: true
+    file: files/booth/wall-blackboard.gcode.3mf
+    color: アッシュグレー
+    ams_mapping: [2]
+    copies: 2
+    enabled: false
+
+  - key: booth-wall-window
+    name: 撮影ブース 壁パネル（窓枠）
+    source: self-designed
+    url: https://github.com/aieo-product/stackchanEventBooth/issues/13
+    license: 自作（本企画オリジナル）
+    author: 本企画
+    redistribute: true
+    file: files/booth/wall-window.gcode.3mf
+    color: アイボリーホワイト
+    ams_mapping: [0]
+    copies: 4
+    enabled: false
+
+  - key: booth-wall-board
+    name: 撮影ブース 壁パネル（掲示板）
+    source: self-designed
+    url: https://github.com/aieo-product/stackchanEventBooth/issues/13
+    license: 自作（本企画オリジナル）
+    author: 本企画
+    redistribute: true
+    file: files/booth/wall-board.gcode.3mf
+    color: アイボリーホワイト
+    ams_mapping: [0]
+    copies: 2
+    enabled: false
+
+  - key: booth-wall-stand
+    name: 撮影ブース 壁スタンド・連結クリップ・定位置マーカー
+    source: self-designed
+    url: https://github.com/aieo-product/stackchanEventBooth/issues/13
+    license: 自作（本企画オリジナル）
+    author: 本企画
+    redistribute: true
+    file: files/booth/stand-clips.gcode.3mf
+    color: アッシュグレー
+    ams_mapping: [2]
+    copies: 1
+    enabled: false
+
+  # ---- 撮影ブース 教室小物（MakerWorld・Issue #13 調査結果で確定） --------------
+  # 学校机・椅子・黒板等の1/12ミニチュア。調査完了後にジョブ追加。
+
   # ---- MakerWorld 外（透明シェル・猫耳）は作者許諾後に file を配置して有効化 ----
   - key: transparent-shell
     name: 透明シェル/着せ替えケース（@mongonta555）
