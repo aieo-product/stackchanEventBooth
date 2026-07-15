@@ -49,6 +49,28 @@
 | 観覧車キット（可動） | 検索結果内 | NextMG | 要確認 | 要確認 | 可動 | 26/28 | 詳細未調査 |
 | 電動観覧車（k013付属品） | 検索結果内 | 辛勤的园丁 | 要確認 | 要確認 | k013キット前提 | 74/35 | k013部品の入手性が鍵（詳細未調査） |
 
+## 再調査: 単品ミニチュア（2026-07-15 夜・教室シーン不採用を受けて）
+
+「Classroom Interior Miniature Scene（2750405）」が**ベース一体成形のジオラマで単品配置不可**と実物確認で判明したため、「全パーツが独立オブジェクト」であることを説明文・実写真・プレート構成で個別確認する条件で再調査した（9件確認）。
+
+| カテゴリ | モデル | URL | 制作者 | ライセンス | Profile/時間 | 単品確認 | 👍/DL |
+|---|---|---|---|---|---|---|---|
+| 机椅子 | 椅子付き学校机（ドールハウス教室） | [2658444](https://makerworld.com/ja/models/2658444) | MonsieurPierre | MW-STD | 1P/1.6h | 高（実写真で机と椅子が別々に配置） | 116/26 |
+| 机椅子 | 1:12 スクールチェア（単体） | [3034038](https://makerworld.com/ja/models/3034038) | MonsieurPierre | MW-STD | 1P/1.1h | 高 | 1/7 |
+| 黒板 | ミニ教室黒板（自立型・ベース付き） | [2664912](https://makerworld.com/ja/models/2664912) | MonsieurPierre | MW-STD | 1P/2.8h | 高（「自立型として設計」明記） | 23/14 |
+| 黒板 | イーゼル黒板（Little Tikes風） | [1695271](https://makerworld.com/ja/models/1695271) | Cliffrose | MW-STD | 4P/6.4h | 高 | 34/67 |
+| 本棚 | 極小本棚＋極小本（1/12明記） | [997513](https://makerworld.com/ja/models/997513) | maker_snail | **CC BY-SA** | 2P/3h | 高（本は別STLで自由配置） | 135/68 |
+| ロッカー | 1:12 学校ロッカー（8扉単体） | [3034053](https://makerworld.com/ja/models/3034053) | MonsieurPierre | MW-STD | 1P/3.8h | 高 | 3/10 |
+| 小物 | ゴミ箱 1:12（Ø20×23mm） | [3045267](https://makerworld.com/ja/models/3045267) | box | MW-STD | 1P/16分 | 高 | 3/2 |
+| 小物 | 1/12 壁掛け時計 | [1700968](https://makerworld.com/ja/models/1700968) | BlueBucket | MW-STD | **STLのみ**（要スライス） | 中〜高 | 137/39 |
+| 小物 | ローポリ教室地球儀 | [2410472](https://makerworld.com/ja/models/2410472) | LowPolyFigures | **CC BY-NC** | 1P/1.1h | 高（要リサイズ） | 3/1 |
+| 小物 | ミニバックパック（通学カバン） | [2661075](https://makerworld.com/ja/models/2661075) | MonsieurPierre | MW-STD | 1P/1.6h | 高 | 34/21 |
+| 誕生日 | 1:12 バースデーケーキ | [3018883](https://makerworld.com/ja/models/3018883) | MonsieurPierre | MW-STD | 1P/38分 | 高 | 21/9 |
+| 誕生日 | ~~学校用誕生日ケーキ~~ | [774555](https://makerworld.com/ja/models/774555) | PLFR | MW-STD | 4P/10.2h | **除外**（実物大レプリカでミニチュアではない） | 266/131 |
+
+- MonsieurPierre統一シリーズ（机・椅子・黒板・ロッカー・バッグ・ケーキ）で世界観が揃う。表紙写真はドール演出のためスケールは本文記載値で判断
+- ライセンス: 本棚のみCC BY-SA（最も自由）、地球儀はBY-NC、他はMW-STD → 非売品展示の本ブースは範囲内
+
 ## 結論（プロジェクトへの反映）
 
 1. **撮影ブース小物**: 「教室ミニチュアシーン一式（42分）＋ビンテージ学校机椅子×2（2.6h）＋1/12校庭ベンチ（48分）＋日本の自動販売機（3.6h）」を採用（合計約7.7h・約150g）。MW-STDが大半＝**非売品展示はOK・再配布/販売は不可**・クレジット表示＋作者へ一報。

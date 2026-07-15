@@ -61,13 +61,18 @@
 
 | 採用 | 小物 | 制作者 | ライセンス | 印刷時間 | 用途 |
 |:--:|---|---|---|--:|---|
-| ❌ | ~~[教室のミニチュアシーン一式](https://makerworld.com/ja/models/2750405)~~ | MonsieurPierre | MW標準 | — | **不採用**（机・棚がベース一体成形で単品配置不可と判明・2026-07-15）。単品ミニチュアを再調査中 |
+| ❌ | ~~[教室のミニチュアシーン一式](https://makerworld.com/ja/models/2750405)~~ | MonsieurPierre | MW標準 | — | **不採用**（机・棚がベース一体成形で単品配置不可と判明・2026-07-15）→ 下記の単品ミニチュアに差し替え |
 | ✅ | [ビンテージ学校机と椅子セット](https://makerworld.com/ja/models/1314963) ×2 | Printed a mini | MW標準 | 1.3h×2 | 主役家具（黒板前の定位置） |
 | ✅ | [1/12 校庭ベンチ](https://makerworld.com/ja/models/1276012)（拡縮対応設計） | Foximg | MW標準 | 48分 | ステージ端の校庭コーナー |
 | ✅ | [日本の自動販売機](https://makerworld.com/ja/models/1615169)（4色AMS・塗装不要） | PattyWithAP | MW標準 | 3.6h | 「現実世界の生活感」の決め手 |
-| 任意 | [街灯](https://makerworld.com/ja/models/2732902)（24分）・[ミニロッカー](https://makerworld.com/ja/models/2724278)（9.8h〜） | MonsieurPierre / DUDKA | MW標準 | — | 時間が余れば追加。print-list登録は街灯のみ（enabled:false）、ロッカーは印刷長のため見送り |
+| ✅ | [極小本棚＋本](https://makerworld.com/ja/models/997513)（1/12・本は別STLで自由配置） | maker_snail | **CC BY-SA** | 3h | 教室の背面。ライセンス最も自由 |
+| ✅ | [1:12 バースデーケーキ](https://makerworld.com/ja/models/3018883) | MonsieurPierre | MW標準 | 38分 | 「教室でお誕生日会」の主役小物 |
+| ✅ | [ゴミ箱 1:12](https://makerworld.com/ja/models/3045267)（Ø20×23mm） | box | MW標準 | 16分 | 教室の隅の生活感 |
+| ✅ | [1/12 壁掛け時計](https://makerworld.com/ja/models/1700968)（STLのみ・要スライス） | BlueBucket | MW標準 | 約0.5h | 黒板上の壁パネルに接着 |
+| ✅ | [ローポリ教室地球儀](https://makerworld.com/ja/models/2410472)（要リサイズ） | LowPolyFigures | CC BY-NC | 1.1h | 教卓・本棚上の小物 |
+| 任意 | [MonsieurPierre 学校机+椅子](https://makerworld.com/ja/models/2658444)（1.6h）・[自立黒板](https://makerworld.com/ja/models/2664912)（2.8h）・[学校ロッカー](https://makerworld.com/ja/models/3034053)（3.8h）・[通学バッグ](https://makerworld.com/ja/models/2661075)（1.6h）・[街灯](https://makerworld.com/ja/models/2732902)（24分） | MonsieurPierre他 | MW標準 | — | 時間が余れば追加（同一作者シリーズで世界観統一可） |
 
-- 採用4点の合計は**約7.7h・約150g**（枠取り8h内）。スケールは1/8〜1/12混在だが、スタックチャン身長6cmに対し「小学生が教室にいる」サイズ感として成立。
+- 採用9点の合計は**約13h・約250g**（7/21に机椅子・ベンチ・自販機・ケーキ・ゴミ箱、残りは7/23予備日に配分）。すべて**単品配置可能なことを説明文・実写真・プレート構成で確認済み**（[再調査詳細](https://github.com/aieo-product/stackchanEventBooth/blob/main/research/makerworld-props-20260715.md)）。スケールは1/8〜1/12混在だが、スタックチャン身長6cmに対し「小学生が教室にいる」サイズ感として成立。
 - **ライセンス注意**: MW標準ライセンス＝個人・非商用の印刷可／**データ再配布・販売は不可**。本ブースは非売品展示のため範囲内。クレジット表示＋可能な範囲で作者へ一報（[調査方針](https://github.com/aieo-product/stackchanEventBooth/blob/main/research/makerworld-survey-20260713.md)踏襲）。ケーキ等のお誕生日小物は100均で代替。
 
 ## 装飾リスト（画像プリント＋100均）

@@ -334,6 +334,76 @@ jobs:
     enabled: true
     notes: 3.6h・塗装不要。「現実世界の生活感」担当。
 
+  - key: booth-prop-bookshelf
+    name: 極小本棚＋極小本（1/12）
+    makerworld_id: "997513"
+    url: https://makerworld.com/ja/models/997513
+    license: BY-SA
+    author: maker_snail
+    redistribute: true
+    file: files/booth/prop-bookshelf.gcode.3mf
+    color: PLAウッド（7/17購入予定）
+    ams_mapping: [2]
+    copies: 1
+    enabled: true
+    notes: 2プレート約3h。本は別STLで自由配置。CC BY-SAで最も自由。
+
+  - key: booth-prop-cake
+    name: 1:12 バースデーケーキ
+    makerworld_id: "3018883"
+    url: https://makerworld.com/ja/models/3018883
+    license: MW-STD
+    author: MonsieurPierre
+    redistribute: false
+    file: files/booth/prop-cake.gcode.3mf
+    color: アイボリーホワイト＋パステル
+    ams_mapping: [0, 1]
+    copies: 1
+    enabled: true
+    notes: 38分。「教室でお誕生日会」の主役小物。
+
+  - key: booth-prop-trashcan
+    name: ゴミ箱 1:12（Ø20×23mm）
+    makerworld_id: "3045267"
+    url: https://makerworld.com/ja/models/3045267
+    license: MW-STD
+    author: box
+    redistribute: false
+    file: files/booth/prop-trashcan.gcode.3mf
+    color: アッシュグレー
+    ams_mapping: [2]
+    copies: 1
+    enabled: true
+    notes: 16分。
+
+  - key: booth-prop-clock
+    name: 1/12 壁掛け時計（STLのみ・要スライス）
+    makerworld_id: "1700968"
+    url: https://makerworld.com/ja/models/1700968
+    license: MW-STD
+    author: BlueBucket
+    redistribute: false
+    file: files/booth/prop-clock.gcode.3mf
+    color: アイボリーホワイト
+    ams_mapping: [0]
+    copies: 1
+    enabled: true
+    notes: Print Profile未登録→Bambu Studioでスライス（約0.5h見込み）。黒板上の壁パネルに接着。
+
+  - key: booth-prop-globe
+    name: ローポリ教室地球儀（要リサイズ）
+    makerworld_id: "2410472"
+    url: https://makerworld.com/ja/models/2410472
+    license: BY-NC
+    author: LowPolyFigures
+    redistribute: false
+    file: files/booth/prop-globe.gcode.3mf
+    color: マリンブルー
+    ams_mapping: [1]
+    copies: 1
+    enabled: true
+    notes: 1.1h。1/12相当へスライサーでリサイズ（高さ25mm目安）。
+
   - key: booth-prop-street-lamp
     name: 街灯（都市照明モデル・任意）
     makerworld_id: "2732902"
