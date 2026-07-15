@@ -47,18 +47,20 @@
 - **壁**: パネル4枚×2段を連結し、背面の差し込みスタンドで自立。黒板パネルは中央に配置し、撮影の背景になる。
 - **装飾は印刷しない**: ポスター・時間割・バナーは紙に印刷して壁パネルの掲示板部に貼るだけ。100均の造花・ミニガーランドを床端に配置。
 
-## 教室の小物（MakerWorldで印刷）
+## 教室の小物（MakerWorldで印刷・2026-07-15 選定済み）
 
-机・椅子などの小物は**MakerWorldの既存ミニチュアモデル**を印刷します（新規モデリングしない＝時間節約）。スタックチャン身長6cmに対して1/12スケール（ドールハウス標準）が「子どもと教室」のサイズ感で適合します。選定リストは調査完了後に確定します（調査中・[Issue #13](https://github.com/aieo-product/stackchanEventBooth/issues/13)に反映）。
+机・椅子などの小物は**MakerWorldの既存ミニチュアモデル**を印刷します（新規モデリングしない＝時間節約）。調査（[research/makerworld-props-20260715.md](https://github.com/aieo-product/stackchanEventBooth/blob/main/research/makerworld-props-20260715.md)）の結果、以下を採用します。いずれもPrint Profile付きでそのまま印刷可能です。
 
-| 小物 | 想定 | 状態 |
-|---|---|---|
-| 学校机＋椅子 ×2〜3組 | 1/12ミニチュア（MakerWorld） | 🔎 調査中 |
-| 黒板（立て看板型） | 壁パネル黒板と併用 or 単体 | 🔎 調査中 |
-| 本棚・ロッカー | あれば教室感が増す（任意） | 🔎 調査中 |
-| ケーキ・パーティ小物 | お誕生日要素（任意・100均代替可） | 🔎 調査中 |
+| 採用 | 小物 | 制作者 | ライセンス | 印刷時間 | 用途 |
+|:--:|---|---|---|--:|---|
+| ✅ | [教室のミニチュアシーン一式](https://makerworld.com/ja/models/2750405)（机・椅子・書棚・掲示板） | MonsieurPierre | MW標準 | 42分 | 教室レイアウトのベース |
+| ✅ | [ビンテージ学校机と椅子セット](https://makerworld.com/ja/models/1314963) ×2 | Printed a mini | MW標準 | 1.3h×2 | 主役家具（黒板前の定位置） |
+| ✅ | [1/12 校庭ベンチ](https://makerworld.com/ja/models/1276012)（拡縮対応設計） | Foximg | MW標準 | 48分 | ステージ端の校庭コーナー |
+| ✅ | [日本の自動販売機](https://makerworld.com/ja/models/1615169)（4色AMS・塗装不要） | PattyWithAP | MW標準 | 3.6h | 「現実世界の生活感」の決め手 |
+| 任意 | [街灯](https://makerworld.com/ja/models/2732902)（24分）・[ミニロッカー](https://makerworld.com/ja/models/2724278)（9.8h〜） | MonsieurPierre / DUDKA | MW標準 | — | 時間が余れば追加（ロッカーは印刷長で優先度低） |
 
-> ライセンスはNC系が多い想定 → 無料展示はOK・クレジット表示必須・作者へ一報（[調査方針](https://github.com/aieo-product/stackchanEventBooth/blob/main/research/makerworld-survey-20260713.md)踏襲）。小物のフィラメント消費は約150g・印刷約8hを枠取り。
+- 採用4点の合計は**約7.4h・約150g**（枠取り8h内）。スケールは1/8〜1/12混在だが、スタックチャン身長6cmに対し「小学生が教室にいる」サイズ感として成立。
+- **ライセンス注意**: MW標準ライセンス＝個人・非商用の印刷可／**データ再配布・販売は不可**。本ブースは非売品展示のため範囲内。クレジット表示＋可能な範囲で作者へ一報（[調査方針](https://github.com/aieo-product/stackchanEventBooth/blob/main/research/makerworld-survey-20260713.md)踏襲）。ケーキ等のお誕生日小物は100均で代替。
 
 ## 装飾リスト（画像プリント＋100均）
 
