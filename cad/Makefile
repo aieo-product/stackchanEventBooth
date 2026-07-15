@@ -28,7 +28,7 @@ BOOTH_STL := \
 	$(BOOTH)/stand-clips.stl
 
 .PHONY: all ferris booth check clean dirs joint-test
-joint-test: dirs $(FERRIS)/joint-test.stl
+joint-test: dirs $(FERRIS)/joint-test-a.stl $(FERRIS)/joint-test-b.stl
 
 all: ferris booth
 ferris: dirs $(FERRIS_STL)
@@ -37,7 +37,10 @@ booth: dirs $(BOOTH_STL)
 dirs:
 	@mkdir -p $(FERRIS) $(BOOTH)
 
-$(FERRIS)/joint-test.stl: ferris/joint_test.scad ferris/rim_segment.scad $(COMMON)
+$(FERRIS)/joint-test-a.stl: ferris/joint_test_a.scad ferris/rim_segment.scad $(COMMON)
+	$(OPENSCAD) -o $@ $<
+
+$(FERRIS)/joint-test-b.stl: ferris/joint_test_b.scad ferris/rim_segment.scad $(COMMON)
 	$(OPENSCAD) -o $@ $<
 
 # --- ferris ---------------------------------------------------------------
