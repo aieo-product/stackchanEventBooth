@@ -127,6 +127,85 @@ jobs:
     copies: 1
     enabled: false
 
+  # ---- 観覧車（自作STL・Issue #12）STL確定後に file を置いて enabled:true ----
+  - key: ferris-rim-segment
+    name: 観覧車 リム1/4円弧（スポーク一体）
+    source: self-designed
+    url: https://github.com/aieo-product/stackchanEventBooth/issues/12
+    license: 自作（本企画オリジナル）
+    author: 本企画
+    redistribute: true
+    file: files/ferris/rim-segment.gcode.3mf
+    color: アイボリーホワイト
+    ams_mapping: [0]
+    copies: 8
+    enabled: false
+
+  - key: ferris-diffuser
+    name: 観覧車 LEDディフューザー（円弧カバー）
+    source: self-designed
+    url: https://github.com/aieo-product/stackchanEventBooth/issues/12
+    license: 自作（本企画オリジナル）
+    author: 本企画
+    redistribute: true
+    file: files/ferris/diffuser.gcode.3mf
+    color: 半透明ライトジェイド
+    ams_mapping: [3]
+    copies: 8
+    enabled: false
+
+  - key: ferris-hub
+    name: 観覧車 ハブ（シャフトフランジ）
+    source: self-designed
+    url: https://github.com/aieo-product/stackchanEventBooth/issues/12
+    license: 自作（本企画オリジナル）
+    author: 本企画
+    redistribute: true
+    file: files/ferris/hub.gcode.3mf
+    color: アッシュグレー
+    ams_mapping: [2]
+    copies: 2
+    enabled: false
+
+  - key: ferris-gondola
+    name: 観覧車 ゴンドラ（実機搭乗・内寸75×75×85）
+    source: self-designed
+    url: https://github.com/aieo-product/stackchanEventBooth/issues/12
+    license: 自作（本企画オリジナル）
+    author: 本企画
+    redistribute: true
+    file: files/ferris/gondola.gcode.3mf
+    color: パステル各色
+    ams_mapping: [0, 1, 2, 3]
+    copies: 4
+    enabled: false
+
+  - key: ferris-tower
+    name: 観覧車 支柱（A型・上下分割）
+    source: self-designed
+    url: https://github.com/aieo-product/stackchanEventBooth/issues/12
+    license: 自作（本企画オリジナル）
+    author: 本企画
+    redistribute: true
+    file: files/ferris/tower.gcode.3mf
+    color: アッシュグレー
+    ams_mapping: [2]
+    copies: 4
+    enabled: false
+
+  - key: ferris-base
+    name: 観覧車 ベースプレート（2分割・モーターマウント付）
+    source: self-designed
+    url: https://github.com/aieo-product/stackchanEventBooth/issues/12
+    license: 自作（本企画オリジナル）
+    author: 本企画
+    redistribute: true
+    file: files/ferris/base.gcode.3mf
+    color: アッシュグレー
+    ams_mapping: [2]
+    copies: 2
+    enabled: false
+
   # ---- MakerWorld 外（透明シェル・猫耳）は作者許諾後に file を配置して有効化 ----
   - key: transparent-shell
     name: 透明シェル/着せ替えケース（@mongonta555）
