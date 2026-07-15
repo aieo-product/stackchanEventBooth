@@ -27,13 +27,18 @@ BOOTH_STL := \
 	$(BOOTH)/wall-board.stl \
 	$(BOOTH)/stand-clips.stl
 
-.PHONY: all ferris booth check clean dirs
+.PHONY: all ferris booth check clean dirs joint-test
+joint-test: dirs $(FERRIS)/joint-test.stl
+
 all: ferris booth
 ferris: dirs $(FERRIS_STL)
 booth: dirs $(BOOTH_STL)
 
 dirs:
 	@mkdir -p $(FERRIS) $(BOOTH)
+
+$(FERRIS)/joint-test.stl: ferris/joint_test.scad ferris/rim_segment.scad $(COMMON)
+	$(OPENSCAD) -o $@ $<
 
 # --- ferris ---------------------------------------------------------------
 $(FERRIS)/rim-segment.stl: ferris/rim_segment.scad $(COMMON)
