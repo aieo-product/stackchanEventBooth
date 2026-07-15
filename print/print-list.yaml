@@ -8,6 +8,7 @@
 #   - download.py で不足ファイルの入手先を確認できる
 #
 # ライセンス略号: BY / BY-SA / BY-NC / BY-NC-SA / CC0 / MW-STD(標準) / MW-EX(限定)
+#   「自作（本企画オリジナル）」= 本企画で新規設計するSTL（source: self-designed）
 #   NC=非商用のみ(無料展示OK・物販不可) / SA=改変配布は同ライセンス継承
 #   MW-STD/MW-EX=個人非商用の印刷可・データ再配布不可
 # redistribute: リポジトリへのファイル同梱可否（true=CC0/BY/BY-SA/BY-NC-SA）
@@ -205,6 +206,7 @@ jobs:
     ams_mapping: [2]
     copies: 2
     enabled: false
+    notes: モーターマウント・小物類（60g/2.5h）は本ジョブのプレートに同梱して印刷。
 
   # ---- MakerWorld 外（透明シェル・猫耳）は作者許諾後に file を配置して有効化 ----
   - key: transparent-shell
