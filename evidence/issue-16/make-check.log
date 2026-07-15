@@ -1,0 +1,18 @@
+python3 check_dims.py ../print/files
+part                      X        Y        Z    <=250  check
+--------------------------------------------------------------------------
+floor-tile           158.00   158.00     3.00      yes  tile thickness t3 (X/Y 150 body + 8 dovetail): 3.00 vs 3.0 OK
+stand-clips          100.00    81.60    80.00      yes  
+wall-blackboard      150.00   136.99     5.00      yes  panel 150: 150.00 vs 150.0 OK
+wall-board           150.00   136.99     6.50      yes  panel 150: 150.00 vs 150.0 OK
+wall-window          150.00   136.99     5.00      yes  panel 150: 150.00 vs 150.0 OK
+base                 250.00   183.00    45.00      yes  board width 250: 250.00 vs 250.0 OK
+crank                152.50    25.50    44.00      yes  
+diffuser             152.00   152.00    23.20      yes  
+gondola               79.00    79.00   101.00      yes  
+hub                   80.00    80.00    25.00      yes  hub height 25: 25.00 vs 25.0 OK
+rim-segment          158.00   150.00    20.00      yes  rim outer radius 150 (Y; X carries the tenon): 150.00 vs 150.0 OK
+tower-lower          122.00    30.00   168.00      yes  
+tower-upper           86.62    30.00   145.00      yes  
+--------------------------------------------------------------------------
+ALL OK
