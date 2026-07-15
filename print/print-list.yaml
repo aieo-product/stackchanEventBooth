@@ -208,6 +208,144 @@ jobs:
     enabled: false
     notes: モーターマウント・小物類（60g/2.5h）は本ジョブのプレートに同梱して印刷。
 
+  # ---- 撮影ブース 床・壁（自作STL・Issue #13）STL確定後に有効化 -----------------
+  - key: booth-floor-tile
+    name: 撮影ブース 床タイル（教室フローリング・150角）
+    source: self-designed
+    url: https://github.com/aieo-product/stackchanEventBooth/issues/13
+    license: 自作（本企画オリジナル）
+    author: 本企画
+    redistribute: true
+    file: files/booth/floor-tile.gcode.3mf
+    color: アーモンドイエロー
+    ams_mapping: [2]
+    copies: 8
+    enabled: false
+
+  - key: booth-wall-blackboard
+    name: 撮影ブース 壁パネル（黒板）
+    source: self-designed
+    url: https://github.com/aieo-product/stackchanEventBooth/issues/13
+    license: 自作（本企画オリジナル）
+    author: 本企画
+    redistribute: true
+    file: files/booth/wall-blackboard.gcode.3mf
+    color: アッシュグレー
+    ams_mapping: [2]
+    copies: 2
+    enabled: false
+
+  - key: booth-wall-window
+    name: 撮影ブース 壁パネル（窓枠）
+    source: self-designed
+    url: https://github.com/aieo-product/stackchanEventBooth/issues/13
+    license: 自作（本企画オリジナル）
+    author: 本企画
+    redistribute: true
+    file: files/booth/wall-window.gcode.3mf
+    color: アイボリーホワイト
+    ams_mapping: [0]
+    copies: 4
+    enabled: false
+
+  - key: booth-wall-board
+    name: 撮影ブース 壁パネル（掲示板）
+    source: self-designed
+    url: https://github.com/aieo-product/stackchanEventBooth/issues/13
+    license: 自作（本企画オリジナル）
+    author: 本企画
+    redistribute: true
+    file: files/booth/wall-board.gcode.3mf
+    color: アイボリーホワイト
+    ams_mapping: [0]
+    copies: 2
+    enabled: false
+
+  - key: booth-wall-stand
+    name: 撮影ブース 壁スタンド・連結クリップ・定位置マーカー
+    source: self-designed
+    url: https://github.com/aieo-product/stackchanEventBooth/issues/13
+    license: 自作（本企画オリジナル）
+    author: 本企画
+    redistribute: true
+    file: files/booth/stand-clips.gcode.3mf
+    color: アッシュグレー
+    ams_mapping: [2]
+    copies: 1
+    enabled: false
+
+  # ---- 撮影ブース 教室小物（MakerWorld・Issue #13 2026-07-15選定） --------------
+  # MW-STD: 個人非商用の印刷可・データ再配布/販売不可（非売品展示は範囲内・クレジット表示）
+  - key: booth-prop-classroom
+    name: 教室のミニチュアシーン一式（机・椅子・書棚・掲示板）
+    makerworld_id: "2750405"
+    url: https://makerworld.com/ja/models/2750405
+    license: MW-STD
+    author: MonsieurPierre
+    redistribute: false
+    file: files/booth/prop-classroom.gcode.3mf
+    color: パステル各色
+    ams_mapping: [0, 1, 2, 3]
+    copies: 1
+    enabled: true
+    notes: Print Profile 42分・1プレート。教室レイアウトのベース。
+
+  - key: booth-prop-desk-set
+    name: ミニチュアビンテージ学校机と椅子セット
+    makerworld_id: "1314963"
+    url: https://makerworld.com/ja/models/1314963
+    license: MW-STD
+    author: Printed a mini
+    redistribute: false
+    file: files/booth/prop-desk-set.gcode.3mf
+    color: アーモンドイエロー
+    ams_mapping: [2]
+    copies: 2
+    enabled: true
+    notes: 1.3h/セット。フィラメント片をヒンジに使う組立ギミックあり。
+
+  - key: booth-prop-bench
+    name: 1/12 校庭ベンチ（拡縮対応設計）
+    makerworld_id: "1276012"
+    url: https://makerworld.com/ja/models/1276012
+    license: MW-STD
+    author: Foximg
+    redistribute: false
+    file: files/booth/prop-bench.gcode.3mf
+    color: アーモンドイエロー
+    ams_mapping: [2]
+    copies: 1
+    enabled: true
+    notes: 48分。スケールはスタックチャン実測で調整（1/24〜1/6対応）。
+
+  - key: booth-prop-vending
+    name: 日本の自動販売機（4色AMS）
+    makerworld_id: "1615169"
+    url: https://makerworld.com/ja/models/1615169
+    license: MW-STD
+    author: PattyWithAP
+    redistribute: false
+    file: files/booth/prop-vending.gcode.3mf
+    color: 多色（AMS4色）
+    ams_mapping: [0, 1, 2, 3]
+    copies: 1
+    enabled: true
+    notes: 3.6h・塗装不要。「現実世界の生活感」担当。
+
+  - key: booth-prop-street-lamp
+    name: 街灯（都市照明モデル・任意）
+    makerworld_id: "2732902"
+    url: https://makerworld.com/ja/models/2732902
+    license: MW-STD
+    author: MonsieurPierre
+    redistribute: false
+    file: files/booth/prop-street-lamp.gcode.3mf
+    color: アッシュグレー
+    ams_mapping: [2]
+    copies: 1
+    enabled: false
+    notes: 24分。時間が余れば追加。細い柱部は破損注意。
+
   # ---- MakerWorld 外（透明シェル・猫耳）は作者許諾後に file を配置して有効化 ----
   - key: transparent-shell
     name: 透明シェル/着せ替えケース（@mongonta555）
