@@ -12,3 +12,4 @@ print/files/*
 !print/files/.gitkeep
 print/.venv/
 __pycache__/
+baseIdea/観覧車/www.amazon.co.jp*
