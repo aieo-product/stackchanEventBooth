@@ -66,6 +66,25 @@ $(FERRIS)/fittest-floor.stl: ferris/fit_test_kit.scad ferris/rim_segment.scad fe
 $(FERRIS)/fittest-bridge.stl: ferris/fit_test_kit.scad ferris/rim_segment.scad ferris/gondola.scad $(COMMON)
 	$(OPENSCAD) -D 'PART="bridge"' -o $@ $<
 
+# --- swing test rig (pre-hardware bench test) ------------------------------
+RIG_STL := \
+	$(FERRIS)/rig-disc.stl \
+	$(FERRIS)/rig-shaft.stl \
+	$(FERRIS)/rig-stand.stl \
+	$(FERRIS)/rig-base.stl
+
+.PHONY: swing-test
+swing-test: dirs $(RIG_STL)
+
+$(FERRIS)/rig-disc.stl: ferris/swing_test_rig.scad $(COMMON)
+	$(OPENSCAD) -D 'PART="disc"' -o $@ $<
+$(FERRIS)/rig-shaft.stl: ferris/swing_test_rig.scad $(COMMON)
+	$(OPENSCAD) -D 'PART="shaft"' -o $@ $<
+$(FERRIS)/rig-stand.stl: ferris/swing_test_rig.scad $(COMMON)
+	$(OPENSCAD) -D 'PART="stand"' -o $@ $<
+$(FERRIS)/rig-base.stl: ferris/swing_test_rig.scad $(COMMON)
+	$(OPENSCAD) -D 'PART="base"' -o $@ $<
+
 # --- ferris ---------------------------------------------------------------
 $(FERRIS)/rim-segment.stl: ferris/rim_segment.scad $(COMMON)
 	$(OPENSCAD) -o $@ $<
@@ -114,8 +133,8 @@ viewer-models:
 	@ls -l $(VIEWER)/*.stl | awk '{printf "  %-28s %8.1f KB\n", $$9, $$5/1024}'
 
 # --- checks / cleanup -----------------------------------------------------
-check: all
+check: all swing-test
 	python3 check_dims.py $(OUT)
 
 clean:
-	rm -f $(FERRIS_STL) $(BOOTH_STL) $(MINI_STL)
+	rm -f $(FERRIS_STL) $(BOOTH_STL) $(MINI_STL) $(RIG_STL)

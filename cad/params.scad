@@ -127,6 +127,30 @@ axle_count     = 4;                  // one per gondola
 axle_spares    = 1;                  // print a spare axle
 cap_spares     = 2;                  // and a couple of spare caps
 
+// --- Swing test rig (cad/ferris/swing_test_rig.scad) -----------------------
+// Pre-hardware bench test (before the metal shaft 7/18 & 608 bearings 7/20-22):
+// dummy shaft -> mini rim discs -> printed axle -> gondola, verify the gondola
+// stays level while the wheel turns. Plain bushings (friction OK), tool-free.
+rig_disc_d     = 100;                // mini disc diameter
+rig_disc_t     = 6;                  // mini disc thickness
+rig_shaft_d    = 8;                  // dummy shaft (D-section, print flat)
+rig_shaft_flat = 3.2;               // D-flat chord distance from the shaft axis
+rig_bore_d     = 8.2;               // disc centre D-hole (mates the shaft D-flat -> co-rotates)
+rig_bore_flat  = 3.4;               // disc D-hole flat (0.2 mm clearance over the shaft)
+rig_bush_d     = 8.6;               // stand plain bushing bore (no bearing; friction OK)
+rig_axle_r     = 40;                // gondola axle hole radius on the mini disc
+rig_gap        = axle_rim_gap;      // 90: same gap as production (clears gondola depth 84)
+rig_bush_z     = 126;              // shaft centre height (gondola 70 below axle + orbit 40 + clear 10 over base); keeps stand <=150
+rig_shaft_len  = rig_gap + 2 * rig_disc_t + 2 * 14 + 2;   // ~132
+rig_stand_span = 34;               // stand foot half-span (X); feet stay within the 80-wide base
+rig_stand_t    = 8;                // stand plate thickness (Y)
+rig_stand_y    = rig_shaft_len/2 - 8;   // 58: stand positions along the shaft
+rig_base_x     = 80;               // base width (across the A-frame feet)
+rig_base_y     = 150;              // base length (along the shaft)
+rig_base_t     = 6;
+rig_foot_tab_w = 16;               // stand foot tab into the base slot
+rig_foot_tab_h = 8;                // tab depth into the base (keeps stand height <=150)
+
 // --- Mini ferris adapter (#19: Artec wooden kit 055521) --------------------
 // Drop-in bucket that replaces one wooden gondola. Values are PLACEHOLDERS
 // pending caliper measurement (arm-ring slot, pitch, wheel dia, seat tab).

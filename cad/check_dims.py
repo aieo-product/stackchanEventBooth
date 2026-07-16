@@ -39,6 +39,10 @@ EXPECTED = {
     "stand-clips":     (None, None, ""),
     "mini-adapter-atomcat": (None, None, ""),
     "mini-adapter-minimal": (None, None, ""),
+    "rig-disc":  ("X", 100.0, "mini disc Ø100"),
+    "rig-shaft": (None, None, ""),
+    "rig-stand": (None, None, ""),
+    "rig-base":  ("Y", 150.0, "rig base length 150"),
 }
 
 
