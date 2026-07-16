@@ -73,8 +73,8 @@ hub_set_insert_d = m3_insert;        // 4.0 press hole for M3 insert
 // Carries one M5Stack CoreS3/K151 unit (official base 48.0x56.0xh11.1, whole
 // 54.0x70.5x61.5, 187.2 g). Open front so the screen/body is visible; the unit
 // is loaded from the top and sits in a two-stage nested floor pocket.
-gon_floor_x   = 68;                  // seat plate width  (X, left-right)
-gon_floor_y   = 72;                  // seat plate depth  (Y, front-back)
+gon_floor_x   = 74;                  // seat plate width  (X): posts inner gap 60 > unit 54 (+3/side)
+gon_floor_y   = 84;                  // seat plate depth  (Y): clears the 70.5 envelope front & back
 gon_floor_t   = 6;                   // seat plate thickness
 
 // two-stage nested floor pockets (both measured down from the seat top)
@@ -93,7 +93,7 @@ gon_backrest_h = 25;                 // low back wall height
 
 gon_post_x    = 6;                   // hanger post cross-section (X)
 gon_post_y    = 18;                  // hanger post cross-section (Y)
-gon_post_cx   = 30;                  // post centre offset from X centre (clears the 54-wide unit)
+gon_post_cx   = 33;                  // post centre offset: inner faces at +/-30 -> 6 mm total clearance over the 54-wide unit
 gon_pivot_z   = 70;                  // swing-axle centre height (well above the loaded CoG ~z38)
 gon_bridge_y  = 30;                  // hanger-bridge length in Y (grips the axle over 30 mm)
 
@@ -104,6 +104,7 @@ gon_hook_d    = 3.4;                 // U-slot width for the Ø3 mm swing axle
 gon_axle_hole_d = 3.2;               // rim through-hole for the Ø3 rod (E-ring retained)
 gon_axle_r    = rim_inner_r + rim_radial_w/2;  // 140: rod centreline radius on the rim band
 gon_axle_seg_angle = 45;             // one rod hole per segment, mid-arc -> 4 rods per wheel
+// assembly note: keep >= 80 mm between the rim inner faces (gondola outer width 74)
 
 // --- Mini ferris adapter (#19: Artec wooden kit 055521) --------------------
 // Drop-in bucket that replaces one wooden gondola. Values are PLACEHOLDERS

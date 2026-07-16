@@ -46,8 +46,8 @@ module gondola() {
             translate([0, 0, bridge_bot])
                 translate([-(gon_post_cx + gon_post_x/2), -gon_bridge_y/2, 0])
                     cube([2 * gon_post_cx + gon_post_x, gon_bridge_y, bridge_top - bridge_bot]);
-            // --- front safety bar ---
-            translate([0, gon_floor_y/2 - gon_wall_t, seat_z + gon_bar_rise])
+            // --- front safety bar (at the very front edge, outside the 70.5 envelope) ---
+            translate([0, gon_floor_y/2 - gon_bar_d/2, seat_z + gon_bar_rise])
                 d_bar(2 * gon_post_cx, gon_bar_d);
         }
         // --- two-stage nested floor pockets ---
