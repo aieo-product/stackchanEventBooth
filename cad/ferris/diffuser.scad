@@ -28,8 +28,10 @@ module profile() {
 }
 
 module diffuser() {
-    rotate_extrude(angle = rim_seg_angle, $fn = 160)
-        profile();
+    // lift so the lowest face sits on z=0 (profile spans z = -wall .. band+wall)
+    translate([0, 0, wall])
+        rotate_extrude(angle = rim_seg_angle, $fn = 160)
+            profile();
 }
 
 diffuser();

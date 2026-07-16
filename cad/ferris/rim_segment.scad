@@ -8,10 +8,12 @@
 include <../params.scad>;
 use <../lib/dovetail.scad>;
 
-dt_h = 12;              // dovetail height (z), centred in the 20 mm band
-dt_z = (rim_depth - dt_h) / 2;   // = 4
+// #18 fix: every feature is grounded to z=0 (was floating at z=4). Spokes,
+// bosses and the dovetail now span the full band height 0..rim_depth, which
+// also prints support-free and is stiffer.
+dt_h = rim_depth;      // dovetail spans the full band height
+dt_z = 0;              // grounded to the build plate
 boss_side = 8;         // tangential + radial size of the joint boss
-boss_z = 12;
 boss_r_out = rim_inner_r;        // boss hangs inward from the inner rim face
 boss_r_in  = rim_inner_r - boss_side;
 boss_hole_r = (boss_r_out + boss_r_in) / 2;   // radius at which the bolt runs
@@ -23,9 +25,9 @@ module spoke() {
     difference() {
         union() {
             translate([(beam_r0 + beam_r1)/2, 0, rim_depth/2])
-                cube([beam_r1 - beam_r0, spoke_width, spoke_depth], center = true);
-            translate([spoke_mount_r, 0, rim_depth/2])
-                cylinder(d = spoke_pad_d, h = spoke_depth, center = true);
+                cube([beam_r1 - beam_r0, spoke_width, rim_depth], center = true);
+            translate([spoke_mount_r, 0, 0])
+                cylinder(d = spoke_pad_d, h = rim_depth);
         }
         // M3 clearance to bolt onto the hub face
         translate([spoke_mount_r, 0, -1])
@@ -34,11 +36,11 @@ module spoke() {
 }
 
 module joint_boss(hole_d) {
-    // block hanging inward from the inner rim, with a tangential bolt hole.
-    // Modelled at the 0 deg end (face on the x-z plane, y=0), protruding +y.
+    // block hanging inward from the inner rim, grounded to z=0, with a
+    // tangential bolt hole. Modelled at the 0 deg end (face on x-z plane).
     difference() {
-        translate([boss_r_in, 0, (rim_depth - boss_z)/2])
-            cube([boss_side, boss_side, boss_z]);
+        translate([boss_r_in, 0, 0])
+            cube([boss_side, boss_side, rim_depth]);
         // tangential hole along +y at radius boss_hole_r, mid height
         translate([boss_hole_r, -0.1, rim_depth/2])
             rotate([-90, 0, 0])

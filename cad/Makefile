@@ -8,6 +8,7 @@ OPENSCAD ?= openscad
 OUT      := ../print/files
 FERRIS   := $(OUT)/ferris
 BOOTH    := $(OUT)/booth
+MINI     := $(OUT)/mini
 COMMON   := params.scad lib/dovetail.scad
 
 FERRIS_STL := \
@@ -27,15 +28,26 @@ BOOTH_STL := \
 	$(BOOTH)/wall-board.stl \
 	$(BOOTH)/stand-clips.stl
 
-.PHONY: all ferris booth check clean dirs joint-test
+MINI_STL := \
+	$(MINI)/mini-adapter-atomcat.stl \
+	$(MINI)/mini-adapter-minimal.stl
+
+.PHONY: all ferris booth mini check clean dirs joint-test
 joint-test: dirs $(FERRIS)/joint-test-a.stl $(FERRIS)/joint-test-b.stl
 
-all: ferris booth
+all: ferris booth mini
 ferris: dirs $(FERRIS_STL)
 booth: dirs $(BOOTH_STL)
+mini: dirs $(MINI_STL)
 
 dirs:
-	@mkdir -p $(FERRIS) $(BOOTH)
+	@mkdir -p $(FERRIS) $(BOOTH) $(MINI)
+
+# --- mini ferris adapter --------------------------------------------------
+$(MINI)/mini-adapter-atomcat.stl: mini/adapter_gondola.scad $(COMMON)
+	$(OPENSCAD) -D 'variant="atomcat"' -o $@ $<
+$(MINI)/mini-adapter-minimal.stl: mini/adapter_gondola.scad $(COMMON)
+	$(OPENSCAD) -D 'variant="minimal"' -o $@ $<
 
 $(FERRIS)/joint-test-a.stl: ferris/joint_test_a.scad ferris/rim_segment.scad $(COMMON)
 	$(OPENSCAD) -o $@ $<
@@ -78,4 +90,4 @@ check: all
 	python3 check_dims.py $(OUT)
 
 clean:
-	rm -f $(FERRIS_STL) $(BOOTH_STL)
+	rm -f $(FERRIS_STL) $(BOOTH_STL) $(MINI_STL)

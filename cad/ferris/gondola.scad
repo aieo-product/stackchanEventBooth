@@ -1,43 +1,80 @@
-// ferris/gondola.scad
-// Swing gondola for one Stack-chan unit (approx 54x54x65, ~150 g).
-// Inner clear 75x75x85, front guard 40 mm with an upper loading opening,
-// bottom anti-slip ribs, and two upward-open hook slots that drop over the
-// Ø3 mm swing axle (print open-top-up -> no supports).
+// ferris/gondola.scad  (redesign #18: chair-type open gondola)
+// Carries one M5Stack K151 unit (base 48x56, whole 54x70.5x61.5, 187.2 g).
+// Open front + low rails so the screen/body is visible; the unit is loaded from
+// the top and sits in a two-stage nested floor pocket (inner = K151 base fit,
+// outer = generic/Takao base + gel tape). Hangs from a top bridge whose U-slot
+// drops over the Ø3 swing axle; the seat sits well below the pivot so the loaded
+// gondola swings as a stable pendulum. Prints floor-down, support-free.
+//
+// Axes: +X = left/right, +Y = front (open, camera side), Z = up. Seat top z=6.
 
 include <../params.scad>;
 use <../lib/dovetail.scad>;
 
-// axis convention: +X = front (guard), +/-Y = sides (hooks / swing axle in Y), Z = up
-floor_t = gon_wall;         // floor thickness = wall
-hook_x  = 14;               // hook tab width (X)
-hook_y  = 4;                // hook tab thickness (Y)
-hook_top = gon_out_z + gon_hook_rise;   // top of hook tab
-slot_depth = 10;            // U-slot depth
+seat_z   = gon_floor_t;                 // 6, top of the seat plate
+rail_top = seat_z + gon_side_h;         // 31
+bridge_bot = 67;                        // clears the ~65 mm tall unit
+bridge_top = gon_pivot_z + 7;           // 77
+
+module d_bar(len, d) {
+    // horizontal bar (along X) with a flat underside -> bridges support-free
+    intersection() {
+        rotate([0, 90, 0]) cylinder(d = d, h = len, center = true, $fn = 32);
+        translate([0, 0, 1.5]) cube([len + 1, d + 1, d], center = true);
+    }
+}
 
 module gondola() {
     difference() {
         union() {
-            rounded_box(gon_out_x, gon_out_y, gon_out_z, r = 3);
-            // hook tabs on the two side walls (+/-Y), centred in X
-            for (sy = [-1, 1])
-                translate([-hook_x/2, sy * (gon_out_y/2 - hook_y/2) - hook_y/2, gon_out_z])
-                    cube([hook_x, hook_y, gon_hook_rise]);
-            // floor anti-slip ribs (run in Y)
-            for (i = [0 : gon_rib_n - 1])
-                translate([-gon_in_x/2 + (i + 0.5) * gon_in_x / gon_rib_n - gon_rib_w/2,
-                           -gon_in_y/2, floor_t])
-                    cube([gon_rib_w, gon_in_y, gon_rib_h]);
+            // --- seat plate ---
+            translate([0, 0, seat_z/2])
+                cube([gon_floor_x, gon_floor_y, gon_floor_t], center = true);
+            // --- side rails (+/-X), full depth, low ---
+            for (sx = [-1, 1])
+                translate([sx * (gon_floor_x/2 - gon_wall_t/2), 0, seat_z + gon_side_h/2])
+                    cube([gon_wall_t, gon_floor_y, gon_side_h], center = true);
+            // --- backrest wall (-Y) ---
+            translate([0, -gon_floor_y/2 + gon_wall_t/2, seat_z + gon_backrest_h/2])
+                cube([gon_floor_x, gon_wall_t, gon_backrest_h], center = true);
+            // --- hanger posts (+/-X) up to the bridge ---
+            for (sx = [-1, 1])
+                translate([sx * gon_post_cx, 0, seat_z])
+                    translate([-gon_post_x/2, -gon_post_y/2, 0])
+                        cube([gon_post_x, gon_post_y, bridge_bot - seat_z + 2]);
+            // --- top hanger bridge (holds the swing-axle U-slot) ---
+            translate([0, 0, bridge_bot])
+                translate([-(gon_post_cx + gon_post_x/2), -gon_bridge_y/2, 0])
+                    cube([2 * gon_post_cx + gon_post_x, gon_bridge_y, bridge_top - bridge_bot]);
+            // --- front safety bar (at the very front edge, outside the 70.5 envelope) ---
+            translate([0, gon_floor_y/2 - gon_bar_d/2, seat_z + gon_bar_rise])
+                d_bar(2 * gon_post_cx, gon_bar_d);
         }
-        // inner cavity (open top)
-        translate([0, 0, floor_t])
-            rounded_box(gon_in_x, gon_in_y, gon_out_z, r = 2);
-        // front guard: lower the central front wall to guard height (loading opening)
-        translate([gon_in_x/2 - 0.5, -28, gon_guard_h])
-            cube([gon_wall + 4, 56, gon_out_z]);
-        // upward-open hook U-slots (drop over the Ø3 axle)
-        for (sy = [-1, 1])
-            translate([-gon_hook_d/2, sy * (gon_out_y/2) - 10, hook_top - slot_depth])
-                cube([gon_hook_d, 20, slot_depth + 1]);
+        // --- two-stage nested floor pockets ---
+        translate([0, 0, seat_z - gon_pocket_o_d])
+            cube([gon_pocket_o, gon_pocket_o, gon_pocket_o_d + 0.1], center = true);
+        translate([0, 0, seat_z - gon_pocket_i_d])
+            cube([gon_pocket_i_x, gon_pocket_i_y, gon_pocket_i_d + 0.1], center = true);
+        // --- J-slot (keyhole) for the Ø3 swing axle: drop in at the offset
+        // entry, slide sideways, rod settles 1.7 mm down into the seat.
+        // Escaping needs lift + sideways shift, so the loaded gondola cannot
+        // jump off while the wheel is cranked. Channels extruded along Y.
+        translate([0, gon_bridge_y/2 + 1, 0])
+            rotate([90, 0, 0])
+                linear_extrude(gon_bridge_y + 2)
+                    union() {
+                        // vertical entry channel (offset +4 in X)
+                        translate([4 - gon_hook_d/2, gon_pivot_z])
+                            square([gon_hook_d, bridge_top - gon_pivot_z + 1]);
+                        // horizontal transfer channel
+                        translate([-gon_hook_d/2, gon_pivot_z])
+                            square([4 + gon_hook_d, gon_hook_d]);
+                        // seat pocket (rod centre at gon_pivot_z)
+                        translate([0, gon_pivot_z])
+                            circle(d = gon_hook_d);
+                        translate([-gon_hook_d/2, gon_pivot_z - gon_hook_d/2])
+                            square([gon_hook_d, gon_hook_d/2]);
+                    }
     }
 }
 
