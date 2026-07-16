@@ -177,11 +177,11 @@ jobs:
     author: 本企画
     redistribute: true
     file: files/ferris/gondola.gcode.3mf
-    color: PLAグラディエント 綿菓子の雲（7/17購入予定）
-    ams_mapping: [0]
+    color: パステル各色（ピンク/黄/青/白・手持ち）
+    ams_mapping: [0, 1, 2, 3]
     copies: 4
     enabled: false
-    notes: グラデーション色で可愛く。テスト印刷1個は手持ちパステルで公差確認のみ。
+    notes: グラディエント綿菓子の雲は売切（2026-07-16）のため手持ちパステル4色に変更。1基1色で4色展開。
 
   - key: ferris-tower
     name: 観覧車 支柱（A型・上下分割）
@@ -342,7 +342,7 @@ jobs:
     author: maker_snail
     redistribute: true
     file: files/booth/prop-bookshelf.gcode.3mf
-    color: PLAウッド（7/17購入予定）
+    color: PLAウッド オーカーイエロー（7/16購入）
     ams_mapping: [2]
     copies: 1
     enabled: true
