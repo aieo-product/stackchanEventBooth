@@ -19,7 +19,8 @@ FERRIS_STL := \
 	$(FERRIS)/tower-upper.stl \
 	$(FERRIS)/tower-lower.stl \
 	$(FERRIS)/base.stl \
-	$(FERRIS)/crank.stl
+	$(FERRIS)/crank.stl \
+	$(FERRIS)/axle.stl
 
 BOOTH_STL := \
 	$(BOOTH)/floor-tile.stl \
@@ -82,6 +83,8 @@ $(FERRIS)/base.stl: ferris/base.scad $(COMMON)
 	$(OPENSCAD) -o $@ $<
 $(FERRIS)/crank.stl: ferris/crank.scad $(COMMON)
 	$(OPENSCAD) -o $@ $<
+$(FERRIS)/axle.stl: ferris/axle.scad $(COMMON)
+	$(OPENSCAD) -o $@ $<
 
 # --- booth ----------------------------------------------------------------
 $(BOOTH)/floor-tile.stl: booth/floor_tile.scad $(COMMON)
@@ -94,6 +97,21 @@ $(BOOTH)/wall-board.stl: booth/wall_panel.scad $(COMMON)
 	$(OPENSCAD) -D 'variant="board"' -o $@ $<
 $(BOOTH)/stand-clips.stl: booth/stand_clips.scad $(COMMON)
 	$(OPENSCAD) -o $@ $<
+
+# --- assembly viewer models (positioned, lightweight binary STL) ----------
+VIEWER       := ../docs/public/models/ferris
+VIEWER_PARTS := base tower-front tower-rear shaft hubs rim-front rim-rear \
+                diffusers axles gondola-1 gondola-2 gondola-3 gondola-4 crank
+
+.PHONY: viewer-models
+viewer-models:
+	@mkdir -p $(VIEWER)
+	@for p in $(VIEWER_PARTS); do \
+	  echo "  viewer $$p"; \
+	  $(OPENSCAD) -D '$$fn=40' -D "PART=\"$$p\"" --export-format binstl \
+	    -o $(VIEWER)/$$p.stl ferris/assembly.scad 2>/dev/null || exit 1; \
+	done
+	@ls -l $(VIEWER)/*.stl | awk '{printf "  %-28s %8.1f KB\n", $$9, $$5/1024}'
 
 # --- checks / cleanup -----------------------------------------------------
 check: all

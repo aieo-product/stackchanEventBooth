@@ -100,11 +100,31 @@ gon_bridge_y  = 30;                  // hanger-bridge length in Y (grips the axl
 gon_bar_d     = 6;                   // front safety bar diameter (D-section, flat underside)
 gon_bar_rise  = 22;                  // bar height above the seat top
 
-gon_hook_d    = 3.4;                 // U-slot width for the Ø3 mm swing axle
-gon_axle_hole_d = 3.2;               // rim through-hole for the Ø3 rod (E-ring retained)
-gon_axle_r    = rim_inner_r + rim_radial_w/2;  // 140: rod centreline radius on the rim band
-gon_axle_seg_angle = 45;             // one rod hole per segment, mid-arc -> 4 rods per wheel
-// assembly note: keep >= 80 mm between the rim inner faces (gondola outer width 74)
+// Swing axle: PRINTED Ø6 PLA axle (the user has no rod-cutting tools), replacing
+// the Ø3 metal rod. No E-ring needed - a push cap retains it. The ordered Ø3
+// steel rod / E-rings are repurposed for other builds.
+gon_axle_d    = 6.0;                 // printed Ø6 axle nominal
+gon_hook_d    = 6.5;                 // J-slot width for the Ø6 axle (was 3.4)
+gon_axle_hole_d = 6.4;               // rim through-hole for the Ø6 axle (was 3.2)
+gon_axle_r    = rim_inner_r + rim_radial_w/2;  // 140: axle centreline radius on the rim band
+gon_axle_seg_angle = 45;             // one axle hole per segment, mid-arc -> 4 axles per wheel
+// assembly note: the rim inner gap must clear the gondola DEPTH (gon_floor_y=84,
+// the front-back axis that runs along the axle), not its width -> gap 90 below.
+
+// --- Printed axle (cad/ferris/axle.scad) -----------------------------------
+axle_rim_gap   = 90;                 // clear gap between rim discs (> gondola depth 84 + clearance)
+axle_thru_len  = axle_rim_gap + 2 * rim_depth;   // 120: through both 20 mm rims
+axle_protrude  = 6;                  // shaft past the far rim for the cap to grab
+axle_shaft_len = axle_thru_len + axle_protrude;  // 126
+axle_head_d    = 10;                 // integral flange head
+axle_head_t    = 3;
+axle_total_len = axle_head_t + axle_shaft_len;   // 129 (~128 target)
+axle_cap_d     = 10;                 // push-cap outer diameter
+axle_cap_h     = 6;
+axle_cap_bore  = gon_axle_d - 0.2;   // 5.8: 0.2 mm interference press fit
+axle_count     = 4;                  // one per gondola
+axle_spares    = 1;                  // print a spare axle
+cap_spares     = 2;                  // and a couple of spare caps
 
 // --- Mini ferris adapter (#19: Artec wooden kit 055521) --------------------
 // Drop-in bucket that replaces one wooden gondola. Values are PLACEHOLDERS

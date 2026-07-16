@@ -1,0 +1,16 @@
+[
+  { "id": "base",        "file": "base.stl",        "name": "ベース（連結2枚）",        "color": "#C0C0C0", "explode": [0, 0, -1],      "group": "structure" },
+  { "id": "tower-front", "file": "tower-front.stl", "name": "支柱（前）",              "color": "#696969", "explode": [0, 1, 0],       "group": "structure" },
+  { "id": "tower-rear",  "file": "tower-rear.stl",  "name": "支柱（後）",              "color": "#696969", "explode": [0, -1, 0],      "group": "structure" },
+  { "id": "shaft",       "file": "shaft.stl",       "name": "シャフト（Φ8）",          "color": "#DCDCDC", "explode": [0, 1.2, 0],     "group": "drive" },
+  { "id": "hubs",        "file": "hubs.stl",        "name": "ハブ×2",                 "color": "#708090", "explode": [0, 0, 1],       "group": "drive" },
+  { "id": "rim-front",   "file": "rim-front.stl",   "name": "リム前ディスク",           "color": "#FFFFF0", "explode": [0, 1, 0],       "group": "wheel" },
+  { "id": "rim-rear",    "file": "rim-rear.stl",    "name": "リム後ディスク",           "color": "#FFFFF0", "explode": [0, -1, 0],      "group": "wheel" },
+  { "id": "diffusers",   "file": "diffusers.stl",   "name": "LEDディフューザー×8",      "color": "#98FB98", "explode": [0, 0, 1],       "group": "wheel" },
+  { "id": "axles",       "file": "axles.stl",       "name": "吊り軸×4（Φ6印刷）",       "color": "#DCDCDC", "explode": [0, 0, 1],       "group": "drive" },
+  { "id": "gondola-1",   "file": "gondola-1.stl",   "name": "ゴンドラ1",              "color": "#FFB6C1", "explode": [0.71, 0, 0.71],  "group": "wheel" },
+  { "id": "gondola-2",   "file": "gondola-2.stl",   "name": "ゴンドラ2",              "color": "#F0E68C", "explode": [-0.71, 0, 0.71], "group": "wheel" },
+  { "id": "gondola-3",   "file": "gondola-3.stl",   "name": "ゴンドラ3",              "color": "#87CEFA", "explode": [-0.71, 0, -0.71],"group": "wheel" },
+  { "id": "gondola-4",   "file": "gondola-4.stl",   "name": "ゴンドラ4",              "color": "#FFFFFF", "explode": [0.71, 0, -0.71], "group": "wheel" },
+  { "id": "crank",       "file": "crank.stl",       "name": "クランクハンドル",         "color": "#FFD700", "explode": [0, 1.2, 0],     "group": "drive" }
+]

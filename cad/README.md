@@ -39,6 +39,7 @@ STL はコミットしません。`openscad` CLI が必要です（`/opt/homebre
 | ferris/tower-lower | `ferris/tower.scad -D part="lower"` | 122×30×168 | A型下半・ベース差込タブ＋M3蝶ネジ穴・角ダボ(male)＋M3×2 |
 | ferris/base | `ferris/base.scad` | 250×183×45 | 250×175×15・長辺に自己相補ダブテール（同一部品を180°回転で連結）・支柱スロット2・M3蝶ネジ・クランク軸受Ø8.5 |
 | ferris/crank | `ferris/crank.scad` | 152.5×25.5×44 | クランク本体(Ø8.2＋M3イモネジ)＋自由回転グリップØ20×40(Eリング溝)＋フリクションダンパーC形クリップ（1プレート） |
+| ferris/axle | `ferris/axle.scad` | 90×40×139 | **Φ6印刷吊り軸(#20)**。一体フランジ頭Ø10×3＋Φ6シャフト、押込キャップØ10×6(内穴Φ5.8=0.2締め代)。金属棒不要(カット機材不要)。1プレートに軸5本＋キャップ6個(予備込) |
 | booth/floor-tile | `booth/floor_tile.scad` | 158×158×3 | 150×150×t3・木目板目0.6mm浮彫・裏ダブテール(+X/+Yオス, -X/-Yメス)（XY の +8 はテノン） |
 | booth/wall-blackboard | `wall_panel.scad -D variant="blackboard"` | 150×137×5 | 150×125×t5・中央浅凹(緑紙貼付)・下端スタンドタブ（Y の +12 はタブ） |
 | booth/wall-window | `wall_panel.scad -D variant="window"` | 150×137×5 | 2×2窓開口＋裏面レベット（空画像紙用） |
@@ -74,6 +75,17 @@ BBox はすべて 250mm 以内（X2Dビルドプレート内）。全パーツ m
   (base 48×56, 全体54×70.5×61.5, 187.2g)に合わせ2段ネスト凹みで位置決め。吊り軸(z70)を
   搭載重心(≈z38)より十分上に置き、振り子として安定。前面はバーのみでスクリーンが正面から見える。
 - **前面バー**は Dセクション(底面フラット)で 60mm ブリッジをサポートレス印刷。
+
+### #20 印刷吊り軸への変更
+- ゴンドラ吊り軸を金属Φ3棒→**Φ6印刷軸**に変更（ユーザーにカット機材が無いため）。E-ring不要・押込キャップで抜け止め。発注済みΦ3棒/Eリングは他用途に流用。
+- 追随して params: `gon_axle_hole_d` 3.2→**6.4**(リム穴)、`gon_hook_d` 3.4→**6.5**(J溝)、`gon_axle_d=6.0` 新設。
+- 曲げ検討(Φ6 PLA・スパン80・荷重3N): 応力 ≈2.8MPa(降伏50MPa→FoS≈18)・たわみ ≈0.14mm。印刷軸で十分（詳細 axle.scad コメント）。
+- **リム間隙間を 80→90mm に修正**: 隙間はゴンドラ幅(74)ではなく**奥行(gon_floor_y=84、軸方向)**をクリアする必要があるため（旧コメントの誤りを是正）。
+
+### 組立ビューア用モデル（`make viewer-models`）
+- `ferris/assembly.scad` が全パーツを組立座標系（原点=ベース底面中心・軸=Z高さ273でY方向）に配置。`PART="<name>"` で単一グループ出力、`PART="all"` で全体。
+- `make viewer-models` が **$fn=40 の軽量バイナリSTL**を `docs/public/models/ferris/` に書き出す（14ファイル・各≤375KB）。three.jsビューア用。
+- `docs/public/models/ferris/manifest.json`（id/file/日本語名/color/explode方向/group）を同梱。
 
 ### #19 ミニ観覧車アダプタ
 - Artec 木製キット 055521 の木製ゴンドラと差し替えるバケット。`variant` で atomcat(内底42角)/

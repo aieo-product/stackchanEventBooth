@@ -18,6 +18,7 @@ export default defineConfig({
       { text: 'アクセサリー', link: '/accessories' },
       { text: '撮影ブース', link: '/photobooth' },
       { text: '観覧車', link: '/ferris-wheel' },
+      { text: '3Dビューア', link: '/viewer/', target: '_blank' },
       { text: '必要スペース', link: '/space' },
       { text: '当日運営', link: '/schedule' },
       { text: 'プリント環境', link: '/printing' },
