@@ -92,8 +92,8 @@ module a_hubs() {
 module a_axles() {
     color("gainsboro")
         for (a = gon_ang)
-            translate([gon_axle_r * cos(a), -(tower_y - 8), shaft_z + gon_axle_r * sin(a)])
-                rotate([-90, 0, 0]) axle();
+            translate([gon_axle_r * cos(a), -(tower_y - 8), shaft_z + gon_axle_r * sin(a) - (gon_axle_d/2 - axle_flat)])
+                rotate([0, 0, 90]) axle();   // new lying-flat model: +X -> +Y, centreline re-zeroed
 }
 
 gon_colors = ["lightpink", "khaki", "lightskyblue", "white"];

@@ -117,6 +117,7 @@ axle_thru_len  = axle_rim_gap + 2 * rim_depth;   // 120: through both 20 mm rims
 axle_protrude  = 6;                  // shaft past the far rim for the cap to grab
 axle_shaft_len = axle_thru_len + axle_protrude;  // 126
 axle_head_d    = 10;                 // integral flange head
+axle_flat      = 0.4;                // D-flat depth (print-flat orientation)
 axle_head_t    = 3;
 axle_total_len = axle_head_t + axle_shaft_len;   // 129 (~128 target)
 axle_cap_d     = 10;                 // push-cap outer diameter

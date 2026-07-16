@@ -1,32 +1,51 @@
 // ferris/axle.scad
 // PRINTED Ø6 swing axle + push cap (replaces the Ø3 metal rod; the user has no
-// rod-cutting tools). One axle per gondola: the flange head seats against the
-// outer face of one rim disc, the shaft runs through both rim holes (Ø6.4) and
-// the gondola J-slot, and a push cap (0.2 mm interference) retains the far end.
+// rod-cutting tools). One axle per gondola: the head seats against the outer
+// face of one rim disc, the shaft runs through both rim holes (Ø6.4) and the
+// gondola J-slot (Ø6.5), and a push cap (0.2 mm interference) retains the far end.
 //
-// Load check (Ø6 PLA, simply-supported, span = rim gap 80 mm, load ~3 N =
-// gondola 74x84 chair + K151 187 g ~= 290 g):
-//   I = pi*d^4/64 = pi*6^4/64        = 63.6 mm^4
-//   M = P*L/4 = 3*80/4               = 60 N*mm
-//   sigma = M*(d/2)/I = 60*3/63.6    ~= 2.8 MPa   (PLA yield ~50 MPa -> FoS ~18)
-//   deflection = P*L^3/(48*E*I), E~3500 MPa = 3*80^3/(48*3500*63.6) ~= 0.14 mm
-// -> ample margin; a printed axle is fine at these loads.
+// Load check (Ø6 PLA, simply-supported, span = rim gap 90 mm, static load
+// ~2.8 N = gondola chair + K151 187 g ~= 290 g; x2 dynamic factor for cranking):
+//   Z = pi*d^3/32                       = 21.2 mm^3
+//   M(static) = P*L/4 = 2.8*90/4        = 63 N*mm   -> sigma ~= 3.0 MPa
+//   M(dynamic x2)                        = 126 N*mm  -> sigma ~= 5.9 MPa
+//   PLA flexural strength (along layers) ~80 MPa    -> FoS 13 (dynamic) / 27 (static)
+//   deflection = P*L^3/(48*E*I), E~3500 = 2.8*90^3/(48*3500*63.6) ~= 0.19 mm
+//   creep: 3 MPa sustained for a 4-6 h event is far below the ~10 MPa concern zone.
 //
-// Print orientation: lay flat in the slicer (rotate 90 deg) with a brim, or
-// print vertical head-down. Modelled vertical (head on the bed) so the STL and
-// check_dims ground check are clean.
+// PRINT ORIENTATION = AS MODELLED (lying flat, D-flat face down, no support):
+// layers then run ALONG the axle, the strongest direction for bending. The
+// gondola hangs from the TOP of the axle, so the bottom D-flat (3 mm wide chord)
+// never touches the bearing surface. Do NOT print this standing (interlayer
+// bending strength would halve the margin).
 
 include <../params.scad>;
 
+axle_ctr  = gon_axle_d/2 - axle_flat;   // shaft centreline height above the bed (flat chord ~3 mm)
+
 module axle() {
-    // flange head (bottom) + Ø6 shaft (up)
-    cylinder(d = axle_head_d, h = axle_head_t, $fn = 48);
-    translate([0, 0, axle_head_t - 0.01])
-        cylinder(d = gon_axle_d, h = axle_shaft_len + 0.01, $fn = 40);
+    // shaft along +X, D-flat on the bed
+    intersection() {
+        translate([0, 0, axle_ctr])
+            rotate([0, 90, 0])
+                cylinder(d = gon_axle_d, h = axle_shaft_len, $fn = 48);
+        translate([-1, -gon_axle_d, 0])
+            cube([axle_shaft_len + axle_head_t + 2, gon_axle_d * 2, gon_axle_d]);
+    }
+    // square head with a 45-deg roof (printable lying, no support)
+    head_w = axle_head_d;        // 10 wide (Y)
+    head_h = axle_head_d - 2;    // 8 tall (Z), chamfered top
+    translate([-axle_head_t, 0, 0])
+        rotate([90, 0, 90])
+            linear_extrude(axle_head_t)
+                polygon([[-head_w/2, 0], [head_w/2, 0],
+                         [head_w/2, head_h - 3], [0, head_h],
+                         [-head_w/2, head_h - 3]]);
 }
 
 module axle_cap() {
-    // push cap: Ø10 x 6 with a Ø5.8 blind bore (0.2 mm interference on the shaft)
+    // push cap: Ø10 x 6 with a Ø5.8 blind bore (0.2 mm interference on the
+    // round flanks of the shaft). Printed standing (short part, no issue).
     difference() {
         cylinder(d = axle_cap_d, h = axle_cap_h, $fn = 48);
         translate([0, 0, -0.01])
@@ -39,6 +58,6 @@ n_axle = axle_count + axle_spares;   // 5
 n_cap  = axle_count + cap_spares;    // 6
 
 for (i = [0 : n_axle - 1])
-    translate([i * 18, 0, 0]) axle();
+    translate([0, i * 14, 0]) axle();
 for (j = [0 : n_cap - 1])
-    translate([j * 16, 30, 0]) axle_cap();
+    translate([j * 16, -24, 0]) axle_cap();
