@@ -79,7 +79,10 @@ module splice_bolts() {
 }
 
 module tower(part) {
+    // #18: ground each half to z=0 for a print-ready STL (was modelled in the
+    // assembled position). Lower feet-tabs down; upper sits on its split face.
     if (part == "lower") {
+        translate([0, 0, foot_tab_h])
         difference() {
             union() {
                 intersection() {
@@ -93,6 +96,7 @@ module tower(part) {
             splice_bolts();
         }
     } else {
+        translate([0, 0, -split_z])
         difference() {
             intersection() {
                 frame_solid();

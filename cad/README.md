@@ -1,6 +1,6 @@
 # CAD (OpenSCAD) — 卓上観覧車 & 撮影ブース
 
-Issue #16 の3Dプリントパーツをパラメトリックに定義したOpenSCADソースです。
+Issue #16/#18/#19 の3Dプリントパーツをパラメトリックに定義したOpenSCADソースです。
 寸法・公差は [`params.scad`](params.scad) に一元化しています。設計根拠は
 [`docs/ferris-wheel.md`](../docs/ferris-wheel.md) / [`docs/photobooth.md`](../docs/photobooth.md)。
 
@@ -8,8 +8,8 @@ Issue #16 の3Dプリントパーツをパラメトリックに定義したOpenS
 
 ```bash
 cd cad
-make all      # 全STLを ../print/files/{ferris,booth}/ に生成
-make check    # 生成 + バウンディングボックス寸法チェック (python3, 標準ライブラリのみ)
+make all      # 全STLを ../print/files/{ferris,booth,mini}/ に生成
+make check    # 生成 + BBox寸法チェック + 接地(最下面z=0)チェック (python3, 標準ライブラリのみ)
 make clean    # 生成STLを削除
 ```
 
@@ -34,7 +34,7 @@ STL はコミットしません。`openscad` CLI が必要です（`/opt/homebre
 | ferris/rim-segment | `ferris/rim_segment.scad` | 158×150×20 | 1/4円弧・Ø300・スポーク2本一体・外周LED溝10.5×2.0・端部ダブテール＋接線M3ボス（X の +8 はテノン） |
 | ferris/diffuser | `ferris/diffuser.scad` | 152×152×23.2 | リム外周に被せるコの字スナップカバー・1/4円弧（半透明フィラメント推奨） |
 | ferris/hub | `ferris/hub.scad` | 80×80×25 | Ø80×25・シャフト穴Ø8.2貫通・スポークボルト穴8・M3イモネジ用インサート横穴2 |
-| ferris/gondola | `ferris/gondola.scad` | 79×79×101 | 内寸75×75×85・前面ガード40mm＋上部開口・底リブ5本・上開きU溝フック（Ø3.4/サポート不要） |
+| ferris/gondola | `ferris/gondola.scad` | 68×72×77 | **チェア型オープンゴンドラ(#18再設計)**。座面2段ネスト凹み(外62×62×1.5=汎用/ゲルテープ・内48.6×56.6×2.0=K151ベース48×56嵌合)・左右ハンガーポスト・背もたれ低壁25・前面Dセーフティバー・上部ブリッジのU溝で吊り軸を掴む(振り子安定)。前面開放でスクリーン可視・サポートレス |
 | ferris/tower-upper | `ferris/tower.scad -D part="upper"` | 86.6×30×145 | A型上半・608ポケットØ22.2×7.2＋抜け止めリップ・スプライスソケット |
 | ferris/tower-lower | `ferris/tower.scad -D part="lower"` | 122×30×168 | A型下半・ベース差込タブ＋M3蝶ネジ穴・角ダボ(male)＋M3×2 |
 | ferris/base | `ferris/base.scad` | 250×183×45 | 250×175×15・長辺に自己相補ダブテール（同一部品を180°回転で連結）・支柱スロット2・M3蝶ネジ・クランク軸受Ø8.5 |
@@ -44,9 +44,12 @@ STL はコミットしません。`openscad` CLI が必要です（`/opt/homebre
 | booth/wall-window | `wall_panel.scad -D variant="window"` | 150×137×5 | 2×2窓開口＋裏面レベット（空画像紙用） |
 | booth/wall-board | `wall_panel.scad -D variant="board"` | 150×137×6.5 | コルク風枠＋ピン穴グリッド5×5 |
 | booth/stand-clips | `booth/stand_clips.scad` | 100×81.6×80 | 壁差込チャンネルスタンド(100×80×t8)＋連結クリップ＋定位置マーカーØ24（1プレート） |
+| mini/mini-adapter-atomcat | `mini/adapter_gondola.scad -D variant="atomcat"` | 45.2×57.2×17 | **ミニ観覧車アダプタ(#19)**。Artec木製キット055521の木製ゴンドラ差替バケット。内底42×42・背面ペグ(アームリング穴挿込)。寸法はプレースホルダ(要ノギス実測) |
+| mini/mini-adapter-minimal | `mini/adapter_gondola.scad -D variant="minimal"` | 49.2×61.2×17 | 同上・ミニマル機用 内底46×46 |
 
 BBox はすべて 250mm 以内（X2Dビルドプレート内）。全パーツ manifold（`make check` および
-独立エッジ検査で確認済み）。
+独立エッジ検査で確認済み）。`make check` の**接地チェック**で全パーツの最下面が z=0（±0.01）
+にあることを検証（浮遊初層＝#18スパゲッティ化の根本原因を防止）。
 
 ## 設計上の判断（設計書からの補足）
 
@@ -62,3 +65,18 @@ BBox はすべて 250mm 以内（X2Dビルドプレート内）。全パーツ m
   基本。ベースの軸受ブラケット(Ø8.5)は軸端のガイド/低位ジャックシャフト用オプション。
 - **ディフューザー**: `rotate_extrude` 由来で OpenSCAD 上は PolySet 表示だが、閉じた多面体
   （エッジ検査で watertight 確認済み）。
+
+### #18 テスト印刷失敗の修正
+- **接地化**: rim_segment のスポーク梁・接合ボス・ダブテールが z=4 に浮いていた（初層が空中
+  スタート→糸くず化）ため、全て z=0 起点・バンド全高(0..20mm)化。ディフューザーと支柱上下も
+  印刷姿勢で最下面を z=0 に配置。`check_dims.py` に接地チェックを追加し全パーツ PASS。
+- **ゴンドラ全面再設計**: 箱型(内寸75角で実機がほぼ隠れる)→チェア型オープンゴンドラ。K151実寸
+  (base 48×56, 全体54×70.5×61.5, 187.2g)に合わせ2段ネスト凹みで位置決め。吊り軸(z70)を
+  搭載重心(≈z38)より十分上に置き、振り子として安定。前面はバーのみでスクリーンが正面から見える。
+- **前面バー**は Dセクション(底面フラット)で 60mm ブリッジをサポートレス印刷。
+
+### #19 ミニ観覧車アダプタ
+- Artec 木製キット 055521 の木製ゴンドラと差し替えるバケット。`variant` で atomcat(内底42角)/
+  minimal(内底46角)を切替。背面ペグでアームリング外周穴に挿込（キット非改造・原状復帰可）。
+- **タブ幅×厚×長・穴ピッチ・ホイール径・座席突起はプレースホルダ**（`params.scad` の `mini_*`）。
+  ノギス実測後に数値差し替えで再生成（パラメトリック）。前面ガードは軽量機のため低め。

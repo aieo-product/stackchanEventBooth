@@ -3,8 +3,11 @@
 
 Pure standard-library (binary + ASCII STL parser) so it runs without numpy-stl.
 Reads every STL under the output dir (default: ../print/files), prints each
-part's bounding box (X,Y,Z), checks it against the build-volume limit and
-against per-part expected dimensions, and flags anything out of range.
+part's bounding box (X,Y,Z), and checks:
+  - bounding box <= build-volume limit (250 mm)
+  - per-part expected design dimension (+/- 1 mm)
+  - GROUND check: the lowest face sits on z=0 (+/- 0.01) so no geometry prints
+    in mid-air (root cause of the #18 rim spaghetti failure).
 
 Usage:
     python3 check_dims.py [stl_dir]
@@ -16,6 +19,7 @@ import struct
 
 MAX_PART = 250.0          # build-volume guard (mm)
 TOL = 1.0                 # +/- design tolerance for the checked dimension (mm)
+GROUND_TOL = 0.01         # the STL's lowest point must be at z=0 +/- this
 
 # part basename -> (dimension, expected_value, label)
 # dimension: "X"/"Y"/"Z"/"maxxy" or None (only the <=250 guard is applied).
@@ -33,6 +37,8 @@ EXPECTED = {
     "wall-window":     ("X", 150.0, "panel 150"),
     "wall-board":      ("X", 150.0, "panel 150"),
     "stand-clips":     (None, None, ""),
+    "mini-adapter-atomcat": (None, None, ""),
+    "mini-adapter-minimal": (None, None, ""),
 }
 
 
@@ -67,7 +73,7 @@ def bbox(path):
             acc(vx[3], vx[4], vx[5])
             acc(vx[6], vx[7], vx[8])
             off += 50
-    return (hi[0] - lo[0], hi[1] - lo[1], hi[2] - lo[2])
+    return (hi[0] - lo[0], hi[1] - lo[1], hi[2] - lo[2], lo[2])
 
 
 def main():
@@ -77,14 +83,15 @@ def main():
     if not files:
         sys.exit(f"no STL files found under {stl_dir}")
 
-    print(f"{'part':<18}{'X':>9}{'Y':>9}{'Z':>9}   {'<=250':>6}  check")
-    print("-" * 74)
+    print(f"{'part':<22}{'X':>8}{'Y':>8}{'Z':>8}  {'<=250':>5} {'grounded':>8}  check")
+    print("-" * 84)
     all_ok = True
     for f in files:
         name = os.path.splitext(os.path.basename(f))[0]
-        dx, dy, dz = bbox(f)
+        dx, dy, dz, minz = bbox(f)
         fits = max(dx, dy, dz) <= MAX_PART
-        ok = fits
+        grounded = abs(minz) <= GROUND_TOL
+        ok = fits and grounded
         note = ""
         exp = EXPECTED.get(name)
         if exp and exp[0] is not None:
@@ -96,10 +103,12 @@ def main():
                 note = f"{label}: {actual:.2f} vs {val:.1f} {'OK' if within else 'FAIL'}"
         if not fits:
             note = (note + "  >250!").strip()
+        if not grounded:
+            note = (note + f"  FLOATING minz={minz:.2f}").strip()
         all_ok = all_ok and ok
-        print(f"{name:<18}{dx:>9.2f}{dy:>9.2f}{dz:>9.2f}   "
-              f"{'yes' if fits else 'NO':>6}  {note}")
-    print("-" * 74)
+        print(f"{name:<22}{dx:>8.2f}{dy:>8.2f}{dz:>8.2f}  "
+              f"{'yes' if fits else 'NO':>5} {'yes' if grounded else 'NO':>8}  {note}")
+    print("-" * 84)
     print("ALL OK" if all_ok else "SOME CHECKS FAILED")
     return 0 if all_ok else 1
 

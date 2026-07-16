@@ -69,24 +69,54 @@ hub_bolt_a0   = 22.5;                // first hole angle (matches spoke layout)
 hub_set_count = 2;                   // radial set-screw insert bosses
 hub_set_insert_d = m3_insert;        // 4.0 press hole for M3 insert
 
-// --- Gondola ---------------------------------------------------------------
-gon_in_x      = 75;                  // inner clear width
-gon_in_y      = 75;                  // inner clear depth
-gon_in_z      = 85;                  // inner clear height
-gon_wall      = 2.0;
-gon_out_x     = gon_in_x + gon_wall * 2;    // 79
-gon_out_y     = gon_in_y + gon_wall * 2;    // 79
-gon_out_z     = gon_in_z + gon_wall;        // 87 (open top), hooks add height
-gon_guard_h   = 40;                  // front guard height (front upper open above)
-gon_hook_d    = 3.4;                 // hook hole for Ø3 mm swing axle
+// --- Gondola (chair-type open gondola, redesign #18) ------------------------
+// Carries one M5Stack CoreS3/K151 unit (official base 48.0x56.0xh11.1, whole
+// 54.0x70.5x61.5, 187.2 g). Open front so the screen/body is visible; the unit
+// is loaded from the top and sits in a two-stage nested floor pocket.
+gon_floor_x   = 68;                  // seat plate width  (X, left-right)
+gon_floor_y   = 72;                  // seat plate depth  (Y, front-back)
+gon_floor_t   = 6;                   // seat plate thickness
+
+// two-stage nested floor pockets (both measured down from the seat top)
+gon_pocket_o  = 62;                  // outer pocket (square) - generic/Takao base + gel tape
+gon_pocket_o_d = 1.5;                // outer pocket depth
+k151_base_x   = 48.0;                // official K151 base footprint (X)
+k151_base_y   = 56.0;                // official K151 base footprint (Y)
+gon_pocket_fit = 0.3;                // clearance per side for the K151 base
+gon_pocket_i_x = k151_base_x + 2 * gon_pocket_fit;   // 48.6 inner pocket
+gon_pocket_i_y = k151_base_y + 2 * gon_pocket_fit;   // 56.6 inner pocket
+gon_pocket_i_d = 2.0;                // inner pocket depth (deeper -> locates the base)
+
+gon_side_h    = 25;                  // side rail + backrest height above the seat
+gon_wall_t    = 4;                   // rail / backrest thickness
+gon_backrest_h = 25;                 // low back wall height
+
+gon_post_x    = 6;                   // hanger post cross-section (X)
+gon_post_y    = 18;                  // hanger post cross-section (Y)
+gon_post_cx   = 30;                  // post centre offset from X centre (clears the 54-wide unit)
+gon_pivot_z   = 70;                  // swing-axle centre height (well above the loaded CoG ~z38)
+gon_bridge_y  = 30;                  // hanger-bridge length in Y (grips the axle over 30 mm)
+
+gon_bar_d     = 6;                   // front safety bar diameter (D-section, flat underside)
+gon_bar_rise  = 22;                  // bar height above the seat top
+
+gon_hook_d    = 3.4;                 // U-slot width for the Ø3 mm swing axle
 gon_axle_hole_d = 3.2;               // rim through-hole for the Ø3 rod (E-ring retained)
 gon_axle_r    = rim_inner_r + rim_radial_w/2;  // 140: rod centreline radius on the rim band
 gon_axle_seg_angle = 45;             // one rod hole per segment, mid-arc -> 4 rods per wheel
-gon_hook_r    = 8;                   // hook outer radius / arm size
-gon_hook_rise = 14;                  // how far hooks rise above the box top
-gon_rib_h     = 1.2;                 // bottom anti-slip rib height
-gon_rib_w     = 1.6;
-gon_rib_n     = 5;                   // number of floor ribs
+
+// --- Mini ferris adapter (#19: Artec wooden kit 055521) --------------------
+// Drop-in bucket that replaces one wooden gondola. Values are PLACEHOLDERS
+// pending caliper measurement (arm-ring slot, pitch, wheel dia, seat tab).
+mini_tab_w    = 10;                  // insertion tab width (into the arm-ring slot)
+mini_tab_t    = 3;                   // insertion tab thickness
+mini_tab_l    = 12;                  // insertion tab length
+mini_wall     = 1.6;                 // bucket wall thickness
+mini_atomcat_in = 42;               // bucket inner floor for Atom-cat (square)
+mini_minimal_in = 46;               // bucket inner floor for minimal unit (square)
+mini_depth    = 12;                  // bucket inner depth
+mini_guard_h  = 15;                  // front guard height (low, unit is light 30-60 g)
+mini_floor_t  = 2;                   // bucket floor thickness
 
 // --- Tower (A-frame, total H280, split upper/lower) ------------------------
 tower_total_h = 280;
