@@ -55,9 +55,26 @@ module gondola() {
             cube([gon_pocket_o, gon_pocket_o, gon_pocket_o_d + 0.1], center = true);
         translate([0, 0, seat_z - gon_pocket_i_d])
             cube([gon_pocket_i_x, gon_pocket_i_y, gon_pocket_i_d + 0.1], center = true);
-        // --- upward-open swing-axle U-slot in the bridge (Ø3 rod) ---
-        translate([-gon_hook_d/2, -gon_bridge_y/2 - 1, gon_pivot_z])
-            cube([gon_hook_d, gon_bridge_y + 2, bridge_top - gon_pivot_z + 1]);
+        // --- J-slot (keyhole) for the Ø3 swing axle: drop in at the offset
+        // entry, slide sideways, rod settles 1.7 mm down into the seat.
+        // Escaping needs lift + sideways shift, so the loaded gondola cannot
+        // jump off while the wheel is cranked. Channels extruded along Y.
+        translate([0, gon_bridge_y/2 + 1, 0])
+            rotate([90, 0, 0])
+                linear_extrude(gon_bridge_y + 2)
+                    union() {
+                        // vertical entry channel (offset +4 in X)
+                        translate([4 - gon_hook_d/2, gon_pivot_z])
+                            square([gon_hook_d, bridge_top - gon_pivot_z + 1]);
+                        // horizontal transfer channel
+                        translate([-gon_hook_d/2, gon_pivot_z])
+                            square([4 + gon_hook_d, gon_hook_d]);
+                        // seat pocket (rod centre at gon_pivot_z)
+                        translate([0, gon_pivot_z])
+                            circle(d = gon_hook_d);
+                        translate([-gon_hook_d/2, gon_pivot_z - gon_hook_d/2])
+                            square([gon_hook_d, gon_hook_d/2]);
+                    }
     }
 }
 
