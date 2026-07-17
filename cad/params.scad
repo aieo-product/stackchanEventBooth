@@ -94,7 +94,7 @@ gon_backrest_h = 25;                 // low back wall height
 gon_post_x    = 6;                   // hanger post cross-section (X)
 gon_post_y    = 18;                  // hanger post cross-section (Y)
 gon_post_cx   = 33;                  // post centre offset: inner faces at +/-30 -> 6 mm total clearance over the 54-wide unit
-gon_pivot_z   = 70;                  // swing-axle centre height (well above the loaded CoG ~z38)
+gon_pivot_z   = 73;                  // swing-axle centre height (raised for the Ø6.5 J-slot: 2.75 mm wall under the seat while bridge_bot 67 keeps 3 mm head clearance)
 gon_bridge_y  = 30;                  // hanger-bridge length in Y (grips the axle over 30 mm)
 
 gon_bar_d     = 6;                   // front safety bar diameter (D-section, flat underside)

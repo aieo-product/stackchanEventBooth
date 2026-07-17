@@ -14,7 +14,7 @@ use <../lib/dovetail.scad>;
 seat_z   = gon_floor_t;                 // 6, top of the seat plate
 rail_top = seat_z + gon_side_h;         // 31
 bridge_bot = 67;                        // clears the ~65 mm tall unit
-bridge_top = gon_pivot_z + 7;           // 77
+bridge_top = gon_pivot_z + gon_hook_d + 2.5;   // 82: full roof (2.5 mm) above the transfer channel
 
 module d_bar(len, d) {
     // horizontal bar (along X) with a flat underside -> bridges support-free
