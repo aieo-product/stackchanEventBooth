@@ -24,11 +24,16 @@ include <../params.scad>;
 axle_ctr  = gon_axle_d/2 - axle_flat;   // shaft centreline height above the bed (flat chord ~3 mm)
 
 module axle() {
-    // shaft along +X, D-flat on the bed
+    // shaft along +X, D-flat on the bed; 4 mm lead-in taper at the free end
+    // (7/19 test: square tips jammed in the printed holes)
     intersection() {
         translate([0, 0, axle_ctr])
             rotate([0, 90, 0])
-                cylinder(d = gon_axle_d, h = axle_shaft_len, $fn = 48);
+                union() {
+                    cylinder(d = gon_axle_d, h = axle_shaft_len - 4, $fn = 48);
+                    translate([0, 0, axle_shaft_len - 4])
+                        cylinder(d1 = gon_axle_d, d2 = 4.5, h = 4, $fn = 48);
+                }
         translate([-1, -gon_axle_d, 0])
             cube([axle_shaft_len + axle_head_t + 2, gon_axle_d * 2, gon_axle_d]);
     }

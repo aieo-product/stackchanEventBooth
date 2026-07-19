@@ -74,7 +74,7 @@ hub_set_insert_d = m3_insert;        // 4.0 press hole for M3 insert
 // 54.0x70.5x61.5, 187.2 g). Open front so the screen/body is visible; the unit
 // is loaded from the top and sits in a two-stage nested floor pocket.
 gon_floor_x   = 74;                  // seat plate width  (X): posts inner gap 60 > unit 54 (+3/side)
-gon_floor_y   = 84;                  // seat plate depth  (Y): clears the 70.5 envelope front & back
+gon_floor_y   = 86;                  // seat plate depth (Y): clears the 70.5 envelope + top-loading corridor
 gon_floor_t   = 6;                   // seat plate thickness
 
 // two-stage nested floor pockets (both measured down from the seat top)
@@ -104,11 +104,11 @@ gon_bar_rise  = 22;                  // bar height above the seat top
 // the Ø3 metal rod. No E-ring needed - a push cap retains it. The ordered Ø3
 // steel rod / E-rings are repurposed for other builds.
 gon_axle_d    = 6.0;                 // printed Ø6 axle nominal
-gon_hook_d    = 6.5;                 // J-slot width for the Ø6 axle (was 3.4)
-gon_axle_hole_d = 6.4;               // rim through-hole for the Ø6 axle (was 3.2)
+gon_hook_d    = 6.7;                 // J-slot width (printed holes shrink ~0.2; 7/19 test)
+gon_axle_hole_d = 6.8;               // rim/disc through-hole (7/19 test: 6.4 was too tight on the printed axle)
 gon_axle_r    = rim_inner_r + rim_radial_w/2;  // 140: axle centreline radius on the rim band
 gon_axle_seg_angle = 45;             // one axle hole per segment, mid-arc -> 4 axles per wheel
-// assembly note: the rim inner gap must clear the gondola DEPTH (gon_floor_y=84,
+// assembly note: the rim inner gap must clear the gondola DEPTH (gon_floor_y=86,
 // the front-back axis that runs along the axle), not its width -> gap 90 below.
 
 // --- Printed axle (cad/ferris/axle.scad) -----------------------------------
@@ -122,7 +122,7 @@ axle_head_t    = 3;
 axle_total_len = axle_head_t + axle_shaft_len;   // 129 (~128 target)
 axle_cap_d     = 10;                 // push-cap outer diameter
 axle_cap_h     = 6;
-axle_cap_bore  = gon_axle_d - 0.2;   // 5.8: 0.2 mm interference press fit
+axle_cap_bore  = gon_axle_d;         // 6.0: printed bore shrinks ~0.2-0.3 -> effective light press fit (7/19 tune)
 axle_count     = 4;                  // one per gondola
 axle_spares    = 1;                  // print a spare axle
 cap_spares     = 2;                  // and a couple of spare caps
@@ -135,9 +135,9 @@ rig_disc_d     = 100;                // mini disc diameter
 rig_disc_t     = 6;                  // mini disc thickness
 rig_shaft_d    = 8;                  // dummy shaft (D-section, print flat)
 rig_shaft_flat = 3.2;               // D-flat chord distance from the shaft axis
-rig_bore_d     = 8.2;               // disc centre D-hole (mates the shaft D-flat -> co-rotates)
-rig_bore_flat  = 3.4;               // disc D-hole flat (0.2 mm clearance over the shaft)
-rig_bush_d     = 8.6;               // stand plain bushing bore (no bearing; friction OK)
+rig_bore_d     = 8.6;               // disc centre D-hole (7/19: +0.4 for printed-shaft reality)
+rig_bore_flat  = 3.6;               // disc D-hole flat (7/19: +0.4 clearance)
+rig_bush_d     = 9.0;               // stand plain bushing bore (7/19: +0.4; friction OK)
 rig_axle_r     = 40;                // gondola axle hole radius on the mini disc
 rig_gap        = axle_rim_gap;      // 90: same gap as production (clears gondola depth 84)
 rig_bush_z     = 126;              // shaft centre height (gondola 70 below axle + orbit 40 + clear 10 over base); keeps stand <=150
