@@ -120,7 +120,7 @@ $(BOOTH)/stand-clips.stl: booth/stand_clips.scad $(COMMON)
 # --- assembly viewer models (positioned, lightweight binary STL) ----------
 VIEWER       := ../docs/public/models/ferris
 VIEWER_PARTS := base tower-front tower-rear shaft hubs rim-front rim-rear \
-                diffusers axles gondola-1 gondola-2 gondola-3 gondola-4 crank
+                diffusers axles gondola-1 gondola-2 gondola-3 gondola-4 crank stackchan
 
 .PHONY: viewer-models
 viewer-models:

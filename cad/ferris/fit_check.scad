@@ -7,6 +7,7 @@
 
 include <../params.scad>
 use <gondola.scad>
+use <k151.scad>
 
 K151_DIR = "/tmp/k151";   // override with -D
 
@@ -17,13 +18,10 @@ gondola();
 seat_top     = gon_floor_t;                       // 6
 pocket_floor = seat_top - gon_pocket_o_d - gon_pocket_i_d;  // 6-1.5-2.0 = 2.5
 
-// --- official base STL, centred in the inner pocket --------------------
-color("orange")
-    translate([0, 0, pocket_floor])
-        translate([-k151_base_x/2, -k151_base_y/2, 0])   // STL likely 0-origin
-            import(str(K151_DIR, "/StackChan-Base.stl"));
+// --- official K151 model (base + main body), seated in the inner pocket ---
+translate([0, 0, pocket_floor]) k151();
 
 // --- product envelope 54 x 70.5 x 61.5 (spec) as translucent proxy -----
-color("SteelBlue", 0.35)
+%color("SteelBlue", 0.25)
     translate([-54/2, -70.5/2, pocket_floor])
         cube([54, 70.5, 61.5]);

@@ -19,6 +19,7 @@ use <gondola.scad>;
 use <tower.scad>;
 use <crank.scad>;
 use <axle.scad>;
+use <k151.scad>;
 use <base.scad>;
 
 PART = "all";
@@ -104,6 +105,14 @@ module a_gondola(i) {
             gondola();
 }
 
+module a_stackchan() {
+    // official K151 riding in gondola 1 (fit/height reference for the viewer)
+    a = gon_ang[0];
+    translate([gon_axle_r * cos(a), 0, shaft_z + gon_axle_r * sin(a) - gon_pivot_z])
+        translate([0, 0, gon_floor_t - gon_pocket_o_d - gon_pocket_i_d])
+            k151();
+}
+
 module a_crank() {
     color("gold")
         translate([0, tower_y + 14, shaft_z]) rotate([-90, 0, 0]) crank_body();
@@ -114,6 +123,7 @@ if (PART == "all") {
     a_base(); a_tower_front(); a_tower_rear(); a_shaft(); a_hubs();
     a_rim_front(); a_rim_rear(); a_diffusers(); a_axles();
     for (i = [0:3]) a_gondola(i);
+    a_stackchan();
     a_crank();
 }
 else if (PART == "base")          a_base();
@@ -125,6 +135,7 @@ else if (PART == "rim-front")     a_rim_front();
 else if (PART == "rim-rear")      a_rim_rear();
 else if (PART == "diffusers")     a_diffusers();
 else if (PART == "axles")         a_axles();
+else if (PART == "stackchan")     a_stackchan();
 else if (PART == "crank")         a_crank();
 else if (PART == "gondola-1")     a_gondola(0);
 else if (PART == "gondola-2")     a_gondola(1);
