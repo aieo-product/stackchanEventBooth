@@ -1,0 +1,26 @@
+{
+  "updatedAt": "2026-07-21T18:00:00+09:00",
+  "posts": [
+    {
+      "id": "sample-1",
+      "user": "stackchan_fan",
+      "name": "サンプル投稿",
+      "text": "スタックチャン観覧車に乗ってきた！🎡 かわいすぎる #ｽﾀｯｸﾁｬﾝ写真館 #AIDevDay",
+      "images": ["../img/IMG_8263.jpg", "../img/IMG_8264.jpg"]
+    },
+    {
+      "id": "sample-2",
+      "user": "aidevday_visitor",
+      "name": "サンプル来場者",
+      "text": "学校ジオラマの撮影ブースが最高でした📸 #ｽﾀｯｸﾁｬﾝ写真館 #AIDevDay",
+      "images": ["../img/photobooth-diorama.jpg"]
+    },
+    {
+      "id": "sample-3",
+      "user": "robot_lover",
+      "name": "サンプル3",
+      "text": "デコったスタックチャンと記念撮影✨ みんなも #ｽﾀｯｸﾁｬﾝ写真館 で投稿してね #AIDevDay",
+      "images": ["../img/stackchan-decorated.jpg"]
+    }
+  ]
+}

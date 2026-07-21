@@ -1,0 +1,253 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>#ｽﾀｯｸﾁｬﾝ写真館 フォトウォール</title>
+<style>
+  * { box-sizing:border-box; margin:0; padding:0; }
+  html,body { width:100%; height:100%; }
+  body {
+    font-family:"Hiragino Sans","Noto Sans JP",sans-serif;
+    background:#000; color:#fff; overflow:hidden; cursor:default;
+  }
+  body.hide-cursor { cursor:none; }
+
+  /* ---- slide layers (crossfade) ---- */
+  .layer {
+    position:fixed; inset:0; opacity:0;
+    transition:opacity 1s ease;
+  }
+  .layer.visible { opacity:1; }
+  .layer .bg {
+    position:absolute; inset:-40px;
+    background-size:cover; background-position:center;
+    filter:blur(28px) brightness(.35) saturate(1.1);
+  }
+  .layer .photo {
+    position:absolute; inset:0; margin:auto;
+    max-width:100%; max-height:100%;
+    width:auto; height:auto;
+    object-fit:contain;
+  }
+
+  /* ---- bottom caption bar ---- */
+  #caption {
+    position:fixed; left:0; right:0; bottom:0; z-index:10;
+    padding:110px 48px 34px;
+    background:linear-gradient(to top, rgba(0,0,0,.88) 0%, rgba(0,0,0,.55) 55%, rgba(0,0,0,0) 100%);
+    transition:opacity .6s ease;
+  }
+  #caption.hidden { opacity:0; }
+  #cap-account { display:flex; align-items:baseline; gap:12px; margin-bottom:10px; }
+  #cap-name { font-size:30px; font-weight:700; text-shadow:0 1px 6px rgba(0,0,0,.8); }
+  #cap-user { font-size:22px; color:#b8c2d0; text-shadow:0 1px 6px rgba(0,0,0,.8); }
+  #cap-text {
+    font-size:26px; line-height:1.55; max-width:1500px;
+    text-shadow:0 1px 6px rgba(0,0,0,.8);
+    display:-webkit-box; -webkit-line-clamp:3; -webkit-box-orient:vertical; overflow:hidden;
+    white-space:pre-wrap;
+  }
+  #cap-text .tag { color:#6fc3ff; font-weight:600; }
+  #cap-count {
+    position:absolute; right:48px; bottom:34px;
+    font-size:18px; color:#8a94a4; letter-spacing:.06em;
+  }
+
+  /* ---- progress bar (10s) ---- */
+  #progress { position:fixed; left:0; right:0; top:0; height:5px; z-index:12; background:rgba(255,255,255,.12); }
+  #progress > div { height:100%; width:0%; background:#6fc3ff; }
+  #progress > div.run { animation:prog linear forwards; }
+  @keyframes prog { from { width:0% } to { width:100% } }
+
+  /* ---- header badge ---- */
+  #brand {
+    position:fixed; left:32px; top:24px; z-index:12;
+    display:flex; align-items:center; gap:14px;
+    font-weight:700; text-shadow:0 1px 8px rgba(0,0,0,.9);
+  }
+  #brand .t1 { font-size:26px; color:#ffd166; }
+  #brand .t2 { font-size:26px; color:#6fc3ff; }
+
+  /* ---- empty / waiting state ---- */
+  #empty {
+    position:fixed; inset:0; z-index:5;
+    display:flex; flex-direction:column; align-items:center; justify-content:center;
+    gap:28px; text-align:center; padding:40px;
+    background:radial-gradient(ellipse at center, #16202e 0%, #05080d 75%);
+  }
+  #empty.hidden { display:none; }
+  #empty .icon { font-size:110px; }
+  #empty h1 { font-size:44px; line-height:1.5; }
+  #empty p { font-size:28px; color:#9fb0c4; line-height:1.7; }
+  #empty .tags { font-size:36px; font-weight:700; color:#6fc3ff; line-height:1.6; }
+
+  #hint {
+    position:fixed; right:20px; top:20px; z-index:12;
+    font-size:12px; color:rgba(255,255,255,.35);
+    transition:opacity .6s ease;
+  }
+  #hint.hidden { opacity:0; }
+</style>
+</head>
+<body>
+
+<div id="progress"><div></div></div>
+<div id="brand"><span class="t1">#ｽﾀｯｸﾁｬﾝ写真館</span><span class="t2">#AIDevDay</span></div>
+<div id="hint">F: 全画面 / ←→: 送り</div>
+
+<div class="layer" id="layerA"><div class="bg"></div><img class="photo" alt=""></div>
+<div class="layer" id="layerB"><div class="bg"></div><img class="photo" alt=""></div>
+
+<div id="caption" class="hidden">
+  <div id="cap-account"><span id="cap-name"></span><span id="cap-user"></span></div>
+  <div id="cap-text"></div>
+  <div id="cap-count"></div>
+</div>
+
+<div id="empty">
+  <div class="icon">📸</div>
+  <h1>スタックチャンと写真を撮って<br>ハッシュタグを付けて投稿してね！</h1>
+  <div class="tags">#ｽﾀｯｸﾁｬﾝ写真館&nbsp;&nbsp;#AIDevDay</div>
+  <p>投稿された写真がここに表示されます</p>
+</div>
+
+<script>
+const SLIDE_MS = 10000;          // 1画像あたりの表示時間
+const REFRESH_MS = 60000;        // posts.json の再取得間隔
+const DATA_URL = new URLSearchParams(location.search).get('data') || 'posts.json';
+
+let slides = [];                 // {img, name, user, text, postIdx, imgIdx, imgTotal}
+let lastJson = '';
+let cur = -1;
+let front = 'A';                 // which layer is visible
+let timer = null;
+
+const $ = id => document.getElementById(id);
+
+function flatten(data){
+  const out = [];
+  (data.posts || []).forEach((p, pi) => {
+    (p.images || []).forEach((img, ii) => {
+      out.push({
+        img, text: p.text || '', name: p.name || '', user: p.user || '',
+        imgIdx: ii + 1, imgTotal: p.images.length
+      });
+    });
+  });
+  return out;
+}
+
+async function loadData(){
+  try {
+    const res = await fetch(DATA_URL + (DATA_URL.includes('?') ? '&' : '?') + 't=' + Date.now(), {cache:'no-store'});
+    if (!res.ok) return;
+    const text = await res.text();
+    if (text === lastJson) return;
+    lastJson = text;
+    const next = flatten(JSON.parse(text));
+    const hadNone = slides.length === 0;
+    slides = next;
+    if (slides.length === 0) { showEmpty(true); return; }
+    showEmpty(false);
+    if (hadNone) { cur = -1; advance(); }
+    // 既に再生中なら、リストだけ差し替えて現在位置から続行（新規分は巡回で表示される）
+  } catch (e) { /* 通信断でも現行スライドを継続 */ }
+}
+
+function showEmpty(on){
+  $('empty').classList.toggle('hidden', !on);
+  $('caption').classList.toggle('hidden', on);
+  $('hint').classList.toggle('hidden', false);
+  if (on) { clearTimeout(timer); cur = -1;
+    document.querySelectorAll('.layer').forEach(l => l.classList.remove('visible')); }
+}
+
+function renderText(el, text){
+  el.textContent = '';
+  text.split(/(#[^\s#＃]+|＃[^\s#＃]+)/).forEach(part => {
+    if (!part) return;
+    const span = document.createElement('span');
+    if (part.startsWith('#') || part.startsWith('＃')) span.className = 'tag';
+    span.textContent = part;
+    el.appendChild(span);
+  });
+}
+
+function show(i){
+  if (slides.length === 0) return;
+  cur = ((i % slides.length) + slides.length) % slides.length;
+  const s = slides[cur];
+
+  const back = front === 'A' ? 'B' : 'A';
+  const layer = $('layer' + back);
+  const photo = layer.querySelector('.photo');
+  const bg = layer.querySelector('.bg');
+
+  let swapped = false;
+  const swap = () => {
+    if (swapped) return;
+    swapped = true;
+    bg.style.backgroundImage = `url("${photo.src}")`;
+    $('layer' + front).classList.remove('visible');
+    layer.classList.add('visible');
+    front = back;
+
+    $('cap-name').textContent = s.name;
+    $('cap-user').textContent = s.user ? '@' + s.user.replace(/^@/, '') : '';
+    renderText($('cap-text'), s.text);
+    $('cap-count').textContent =
+      (s.imgTotal > 1 ? `${s.imgIdx}/${s.imgTotal} ・ ` : '') + `${cur + 1} / ${slides.length}`;
+    $('caption').classList.remove('hidden');
+
+    // progress bar restart
+    const bar = $('progress').firstElementChild;
+    bar.classList.remove('run'); void bar.offsetWidth;
+    bar.style.animationDuration = SLIDE_MS + 'ms';
+    bar.classList.add('run');
+
+    clearTimeout(timer);
+    timer = setTimeout(advance, SLIDE_MS);
+
+    // preload next
+    const n = slides[(cur + 1) % slides.length];
+    if (n) { const pre = new Image(); pre.src = n.img; }
+  };
+
+  photo.onload = swap;
+  photo.onerror = () => { clearTimeout(timer); timer = setTimeout(advance, 400); }; // 壊れ画像はスキップ
+  photo.src = s.img;
+  if (photo.complete && photo.naturalWidth > 0) swap();
+}
+
+function advance(){ show(cur + 1); }
+
+document.addEventListener('keydown', e => {
+  if (e.key === 'f' || e.key === 'F') toggleFullscreen();
+  else if (e.key === 'ArrowRight') advance();
+  else if (e.key === 'ArrowLeft') show(cur - 1);
+});
+document.addEventListener('dblclick', toggleFullscreen);
+
+function toggleFullscreen(){
+  if (document.fullscreenElement) document.exitFullscreen();
+  else document.documentElement.requestFullscreen().catch(()=>{});
+}
+
+// カーソル・ヒント自動非表示
+let cursorTimer = null;
+document.addEventListener('mousemove', () => {
+  document.body.classList.remove('hide-cursor');
+  $('hint').classList.remove('hidden');
+  clearTimeout(cursorTimer);
+  cursorTimer = setTimeout(() => {
+    document.body.classList.add('hide-cursor');
+    $('hint').classList.add('hidden');
+  }, 3000);
+});
+
+loadData();
+setInterval(loadData, REFRESH_MS);
+</script>
+</body>
+</html>
