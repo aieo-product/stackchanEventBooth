@@ -38,6 +38,7 @@
 - **ミニ観覧車(#19)**: 案A(ゲルテープ直付け)を試す→必要ならサドル式
 - **ゲストスライド(#22)**: @livinoffwater さんの画像/PDF待ち（7/23期限）。届いたら lt.html の `<h1>Module-LLMの苦労話 🛠️</h1>` 章扉の**直前**に1枚挿入→デプロイ
 - 100均買い出し（research/hyakkin-props-20260716.md・約¥3,300）／A-Utaさんスライド確認・許諾依頼送信（ユーザー領域）
+- **📺フォトウォール実装済・当日運用のみ残**: /photowall/ にXの `#ｽﾀｯｸﾁｬﾝ写真館 #AIDevDay` 写真を1枚10秒スライドショー（デプロイ済・サンプル=/photowall/?data=posts.sample.json）。当日は表示PCで開いて`F`全画面＋Claudeが `scripts/photowall/README.md` の手順で更新（Claude in Chromeスクレイピング→merge_posts.py→デプロイ）。**要: X ログイン済みChromeで拡張接続（今回のセッションでは未接続だった）**。不適切投稿は ban.json で除外
 
 ## Issues/PR
 - #12/#13=クローズ / #16=PR#17済 / **#18=オープン（v5まで反映済・テスト結果で更新）** / **#19=実測不要方針へ変更済** / #22=素材待ち
