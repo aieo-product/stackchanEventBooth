@@ -5,7 +5,8 @@ usage:
   python3 scripts/photowall/merge_posts.py scraped.json   # ファイルから
   cat scraped.json | python3 scripts/photowall/merge_posts.py  # stdinから
 
-- 入力: extract_tweets.js が返す配列 [{id, user, name, text, images[]}]
+- 入力: extract_tweets.js が返す配列 [{id, user, name, text, media:[{mid,fmt}]}]
+  (旧形式 images:[url] も受け付ける)
 - 画像は docs/public/photowall/images/<id>_<n>.<ext> にダウンロード(既存はスキップ)
 - posts.json に id で重複排除してマージ、id昇順(=投稿時刻順)でソート
 - docs/public/photowall/ban.json (idの配列) にある投稿は除外・削除
@@ -63,8 +64,13 @@ def main() -> None:
         pid = str(p.get("id", ""))
         if not pid or pid in banned:
             continue
+        # media:[{mid,fmt}] (DLP回避形式) を URL に再構築。旧 images:[url] 形式も許容
+        sources = [
+            f"https://pbs.twimg.com/media/{m['mid']}?format={m['fmt']}&name=large"
+            for m in p.get("media", [])
+        ] + p.get("images", [])
         local_images = []
-        for i, url in enumerate(p.get("images", []), 1):
+        for i, url in enumerate(sources, 1):
             if url.startswith("images/"):  # 既にローカル化済み
                 local_images.append(url)
                 continue

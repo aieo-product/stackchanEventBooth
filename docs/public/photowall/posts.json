@@ -1,4 +1,14 @@
 {
-  "updatedAt": "",
-  "posts": []
+  "updatedAt": "2026-07-21T17:38:35+09:00",
+  "posts": [
+    {
+      "id": "2079483191623303372",
+      "user": "otani_ai_memo",
+      "name": "オータニ@AI駆動開発",
+      "text": "投稿テスト\n#ｽﾀｯｸﾁｬﾝ写真館  #AIDevDay",
+      "images": [
+        "images/2079483191623303372_1.jpg"
+      ]
+    }
+  ]
 }

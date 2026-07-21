@@ -20,6 +20,8 @@ merge → deploy」を人手トリガー（or /loop）で回す。
    - タブを開く: `https://x.com/search?q=%23ｽﾀｯｸﾁｬﾝ写真館%20%23AIDevDay&src=typed_query&f=live`
      （`f=live`=最新タブ。X ログイン済みの Chrome 必須）
    - `javascript_tool` で `scripts/photowall/extract_tweets.js` の中身を実行 → JSON 配列が返る
+     （画像はURLでなく `media:[{mid,fmt}]` 形式。URLのままだと拡張のDLPで
+     `[BLOCKED: Cookie/query string data]` になるため — 2026-07-21リハーサルで確認済み）
    - 件数が多い日はスクロール（`computer` の scroll）→ 再実行を繰り返し、結果を連結
      （merge 側で id 重複排除されるので雑に連結してよい）
 2. **マージ（画像DL + posts.json 更新）**
