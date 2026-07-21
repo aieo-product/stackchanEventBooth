@@ -1,6 +1,7 @@
 // ferris/gondola.scad  (redesign v4, #18: robot faces the OPEN +X side)
 // Carries one M5Stack K151 unit (base 48x56, whole 54x70.5x61.5, 187.2 g).
 //
+// v5 (7/21): hooks -> CLOSED holes; pull the axle to swap the robot.
 // v4 lesson (7/21 test): in v3 the robot faced +Y - straight into the front
 // hook tower and the safety bar fused to it, so the screen was blocked.
 // The hook towers can only sit on the +/-Y edges (the axle runs along Y),
@@ -21,7 +22,7 @@
 include <../params.scad>;
 
 seat_z    = gon_floor_t;                        // 6, top of the seat plate
-tower_top = gon_pivot_z + gon_hook_d + 2.5;     // 89.2: 2.5 mm roof over the transfer channel
+tower_top = gon_pivot_z + gon_hook_d/2 + 4;     // 87.4: 4 mm wall above the closed hole
 tower_w   = 16;                                 // hook tower width (X)
 tower_t   = 6;                                  // hook tower thickness (Y)
 post_w    = 6;                                  // bar corner post size (X)
@@ -35,28 +36,27 @@ module d_bar_y(len, d) {
     }
 }
 
-module j_slot_2d() {
-    // keyhole profile in the X-Z plane; rod centre rests at (0, gon_pivot_z).
+module bearing_hole_2d() {
+    // plain CLOSED hole (v5, 7/21: J-slots swing/wear worse than a full hole;
+    // the axle is simply pulled out to swap the robot). Teardrop top so the
+    // horizontal hole prints clean without support.
     union() {
-        translate([4 - gon_hook_d/2, gon_pivot_z])
-            square([gon_hook_d, tower_top - gon_pivot_z + 1]);   // entry
-        translate([-gon_hook_d/2, gon_pivot_z])
-            square([4 + gon_hook_d, gon_hook_d]);                // transfer
-        translate([0, gon_pivot_z]) circle(d = gon_hook_d);      // seat
-        translate([-gon_hook_d/2, gon_pivot_z - gon_hook_d/2])
-            square([gon_hook_d, gon_hook_d/2]);
+        circle(d = gon_hook_d);
+        polygon([[-gon_hook_d/2 + 0.5, gon_hook_d/2 - 1.2],
+                 [ gon_hook_d/2 - 0.5, gon_hook_d/2 - 1.2],
+                 [ 0, gon_hook_d/2 + 1.6]]);
     }
 }
 
 module hook_tower(y_out) {
-    // tower standing on the +/-Y floor edge, J-slot cut through its thickness
+    // tower standing on the +/-Y floor edge, closed bearing hole through it
     difference() {
         translate([-tower_w/2, y_out - tower_t, 0])
             cube([tower_w, tower_t, tower_top]);
-        translate([0, y_out + 1, 0])
+        translate([0, y_out + 1, gon_pivot_z])
             rotate([90, 0, 0])
                 linear_extrude(tower_t + 2)
-                    j_slot_2d();
+                    bearing_hole_2d();
     }
 }
 

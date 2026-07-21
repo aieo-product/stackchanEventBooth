@@ -74,26 +74,23 @@ module stand_raw() {
                 }
             // base crossbar
             translate([-rig_stand_span - 8, 0, 0]) cube([2 * rig_stand_span + 16, rig_stand_t, 12]);
-            // apex bushing block (J-slot keyhole above the bore)
-            translate([-16, 0, apex_z - 16]) cube([32, rig_stand_t, 16 + rig_bush_d + 6.5]);
+            // apex bushing block around the closed bore
+            translate([-16, 0, apex_z - 16]) cube([32, rig_stand_t, 16 + rig_bush_d/2 + 5]);
             // foot tabs (down into the base)
             for (sx = [-1, 1])
                 translate([sx * rig_stand_span - rig_foot_tab_w/2, 0, -foot_tab_h])
                     cube([rig_foot_tab_w, rig_stand_t, foot_tab_h + 1]);
         }
-        // J-slot keyhole bearing (7/21: the shallow lip let the shaft pop out):
-        // drop in at the +6 offset entry, slide sideways, shaft settles into the
-        // round seat; escaping needs lift + sideways shift.
-        translate([0, rig_stand_t + 1, 0]) rotate([90, 0, 0])
+        // plain CLOSED bushing bore (v3, 7/21: hooks/slots are less reliable
+        // than a full hole - the shaft is simply threaded through both stands
+        // and the discs at assembly). Teardrop top = support-free print.
+        translate([0, rig_stand_t + 1, apex_z]) rotate([90, 0, 0])
             linear_extrude(rig_stand_t + 2)
                 union() {
-                    translate([6 - rig_bush_d/2, apex_z])
-                        square([rig_bush_d, rig_bush_d + 20]);            // entry
-                    translate([-rig_bush_d/2, apex_z])
-                        square([6 + rig_bush_d, rig_bush_d]);             // transfer
-                    translate([0, apex_z]) circle(d = rig_bush_d, $fn = 40);  // seat
-                    translate([-rig_bush_d/2, apex_z - rig_bush_d/2])
-                        square([rig_bush_d, rig_bush_d/2]);
+                    circle(d = rig_bush_d, $fn = 40);
+                    polygon([[-rig_bush_d/2 + 0.6, rig_bush_d/2 - 1.5],
+                             [ rig_bush_d/2 - 0.6, rig_bush_d/2 - 1.5],
+                             [ 0, rig_bush_d/2 + 2.0]]);
                 }
     }
 }
@@ -135,5 +132,14 @@ module assembled() {
 if (PART == "disc")       mini_disc();
 else if (PART == "shaft") dummy_shaft();
 else if (PART == "stand") stand();
+else if (PART == "bearing") {
+    // bearing-only test coupon: the stand apex (last ~35 mm) re-grounded on a pad
+    translate([0, 0, -(rig_bush_z + foot_tab_h - 30)])
+        intersection() {
+            stand();
+            translate([-500, -500, rig_bush_z + foot_tab_h - 30]) cube([1000, 1000, 200]);
+        }
+    translate([-16, -10, 0]) cube([32, 28, 2]);   // stabilising pad
+}
 else if (PART == "base")  base();
 else                      assembled();

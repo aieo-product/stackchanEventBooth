@@ -74,12 +74,15 @@ RIG_STL := \
 	$(FERRIS)/rig-base.stl
 
 .PHONY: swing-test
-swing-test: dirs $(RIG_STL)
+swing-test: dirs $(RIG_STL) $(FERRIS)/rig-bearing.stl
 
 $(FERRIS)/rig-disc.stl: ferris/swing_test_rig.scad $(COMMON)
 	$(OPENSCAD) -D 'PART="disc"' -o $@ $<
 $(FERRIS)/rig-shaft.stl: ferris/swing_test_rig.scad $(COMMON)
 	$(OPENSCAD) -D 'PART="shaft"' -o $@ $<
+$(FERRIS)/rig-bearing.stl: ferris/swing_test_rig.scad $(COMMON)
+	$(OPENSCAD) -D 'PART="bearing"' -o $@ $<
+
 $(FERRIS)/rig-stand.stl: ferris/swing_test_rig.scad $(COMMON)
 	$(OPENSCAD) -D 'PART="stand"' -o $@ $<
 $(FERRIS)/rig-base.stl: ferris/swing_test_rig.scad $(COMMON)
