@@ -73,8 +73,8 @@ hub_set_insert_d = m3_insert;        // 4.0 press hole for M3 insert
 // Carries one M5Stack CoreS3/K151 unit (official base 48.0x56.0xh11.1, whole
 // 54.0x70.5x61.5, 187.2 g). Open front so the screen/body is visible; the unit
 // is loaded from the top and sits in a two-stage nested floor pocket.
-gon_floor_x   = 74;                  // seat plate width  (X): posts inner gap 60 > unit 54 (+3/side)
-gon_floor_y   = 86;                  // seat plate depth (Y): clears the 70.5 envelope + top-loading corridor
+gon_floor_x   = 88;                  // seat plate length (X = robot facing dir): clears the 70.5 envelope + front bar
+gon_floor_y   = 74;                  // seat plate width (Y = along the axle): towers inner +/-31 > robot half-width 27
 gon_floor_t   = 6;                   // seat plate thickness
 
 // two-stage nested floor pockets (both measured down from the seat top)
@@ -83,8 +83,8 @@ gon_pocket_o_d = 1.5;                // outer pocket depth
 k151_base_x   = 48.0;                // official K151 base footprint (X)
 k151_base_y   = 56.0;                // official K151 base footprint (Y)
 gon_pocket_fit = 0.5;                // clearance per side for the K151 base (7/19: printed pockets shrink ~0.2-0.3; the feet are integral to the 48x56 base outline)
-gon_pocket_i_x = k151_base_x + 2 * gon_pocket_fit;   // 48.6 inner pocket
-gon_pocket_i_y = k151_base_y + 2 * gon_pocket_fit;   // 56.6 inner pocket
+gon_pocket_i_x = k151_base_y + 2 * gon_pocket_fit;   // 57.0: robot faces +X, base DEPTH lies along X
+gon_pocket_i_y = k151_base_x + 2 * gon_pocket_fit;   // 49.0: base WIDTH lies along Y
 gon_pocket_i_d = 2.0;                // inner pocket depth (deeper -> locates the base)
 
 gon_side_h    = 25;                  // side rail + backrest height above the seat
@@ -94,7 +94,7 @@ gon_backrest_h = 25;                 // low back wall height
 gon_post_x    = 6;                   // hanger post cross-section (X)
 gon_post_y    = 18;                  // hanger post cross-section (Y)
 gon_post_cx   = 33;                  // post centre offset: inner faces at +/-30 -> 6 mm total clearance over the 54-wide unit
-gon_pivot_z   = 73;                  // swing-axle centre height (raised for the Ø6.5 J-slot: 2.75 mm wall under the seat while bridge_bot 67 keeps 3 mm head clearance)
+gon_pivot_z   = 80;                  // swing-axle centre height (7/21 test: head-to-axle clearance 6->13 mm)
 gon_bridge_y  = 30;                  // hanger-bridge length in Y (grips the axle over 30 mm)
 
 gon_bar_d     = 6;                   // front safety bar diameter (D-section, flat underside)
@@ -108,8 +108,8 @@ gon_hook_d    = 6.7;                 // J-slot width (printed holes shrink ~0.2;
 gon_axle_hole_d = 6.8;               // rim/disc through-hole (7/19 test: 6.4 was too tight on the printed axle)
 gon_axle_r    = rim_inner_r + rim_radial_w/2;  // 140: axle centreline radius on the rim band
 gon_axle_seg_angle = 45;             // one axle hole per segment, mid-arc -> 4 axles per wheel
-// assembly note: the rim inner gap must clear the gondola DEPTH (gon_floor_y=86,
-// the front-back axis that runs along the axle), not its width -> gap 90 below.
+// assembly note: the rim inner gap must clear the gondola WIDTH along the axle
+// (gon_floor_y=74) -> gap 90 gives 8 mm/side.
 
 // --- Printed axle (cad/ferris/axle.scad) -----------------------------------
 axle_rim_gap   = 90;                 // clear gap between rim discs (> gondola depth 84 + clearance)
@@ -140,7 +140,7 @@ rig_bore_flat  = 3.6;               // disc D-hole flat (7/19: +0.4 clearance)
 rig_bush_d     = 9.0;               // stand plain bushing bore (7/19: +0.4; friction OK)
 rig_axle_r     = 40;                // gondola axle hole radius on the mini disc
 rig_gap        = axle_rim_gap;      // 90: same gap as production (clears gondola depth 84)
-rig_bush_z     = 126;              // shaft centre height (gondola 70 below axle + orbit 40 + clear 10 over base); keeps stand <=150
+rig_bush_z     = 140;              // shaft centre height (7/21: stand was too short; gondola hangs 80 below axle + orbit 40 + clear 20)
 rig_shaft_len  = rig_gap + 2 * rig_disc_t + 2 * 14 + 2;   // ~132
 rig_stand_span = 34;               // stand foot half-span (X); feet stay within the 80-wide base
 rig_stand_t    = 8;                // stand plate thickness (Y)

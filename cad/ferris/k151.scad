@@ -11,7 +11,7 @@
 K151_DIR = "../vendor/k151";   // relative to this file's directory
 
 module k151() {
-  rotate([0, 0, 180])   // face (screen opening / feet) toward +Y = the safety-bar side
+  rotate([0, 0, 90])    // face (screen opening / feet) toward +X = the open bar side (7/21: 90-deg fix)
   union() {
     // base plate incl. FEET at the front edge (bbox 82.7..130.7 / -352.5..-296.6 / -32.6..-21.5)
     color("#8a8a92")

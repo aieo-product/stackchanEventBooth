@@ -74,18 +74,27 @@ module stand_raw() {
                 }
             // base crossbar
             translate([-rig_stand_span - 8, 0, 0]) cube([2 * rig_stand_span + 16, rig_stand_t, 12]);
-            // apex bushing block (top at apex_z+14 -> stand stays <=150)
-            translate([-14, 0, apex_z - 16]) cube([28, rig_stand_t, 30]);
+            // apex bushing block (J-slot keyhole above the bore)
+            translate([-16, 0, apex_z - 16]) cube([32, rig_stand_t, 16 + rig_bush_d + 6.5]);
             // foot tabs (down into the base)
             for (sx = [-1, 1])
                 translate([sx * rig_stand_span - rig_foot_tab_w/2, 0, -foot_tab_h])
                     cube([rig_foot_tab_w, rig_stand_t, foot_tab_h + 1]);
         }
-        // bushing bore (along Y) + drop-in U-slot with a shallow retention lip
-        translate([0, -1, apex_z]) rotate([-90, 0, 0])
-            cylinder(d = rig_bush_d, h = rig_stand_t + 2, $fn = 40);
-        translate([-rig_bush_d/2, -1, apex_z]) cube([rig_bush_d, rig_stand_t + 2, 10]);      // channel
-        translate([-3.8, -1, apex_z + 10]) cube([7.6, rig_stand_t + 2, 6]);                  // lip entry
+        // J-slot keyhole bearing (7/21: the shallow lip let the shaft pop out):
+        // drop in at the +6 offset entry, slide sideways, shaft settles into the
+        // round seat; escaping needs lift + sideways shift.
+        translate([0, rig_stand_t + 1, 0]) rotate([90, 0, 0])
+            linear_extrude(rig_stand_t + 2)
+                union() {
+                    translate([6 - rig_bush_d/2, apex_z])
+                        square([rig_bush_d, rig_bush_d + 20]);            // entry
+                    translate([-rig_bush_d/2, apex_z])
+                        square([6 + rig_bush_d, rig_bush_d]);             // transfer
+                    translate([0, apex_z]) circle(d = rig_bush_d, $fn = 40);  // seat
+                    translate([-rig_bush_d/2, apex_z - rig_bush_d/2])
+                        square([rig_bush_d, rig_bush_d/2]);
+                }
     }
 }
 module stand() { translate([0, 0, foot_tab_h]) stand_raw(); }   // ground the tabs to z=0

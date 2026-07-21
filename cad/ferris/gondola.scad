@@ -1,39 +1,42 @@
-// ferris/gondola.scad  (redesign v3, #18: side-arm open-top gondola)
+// ferris/gondola.scad  (redesign v4, #18: robot faces the OPEN +X side)
 // Carries one M5Stack K151 unit (base 48x56, whole 54x70.5x61.5, 187.2 g).
 //
-// v3 lesson (7/19 test): a central top bridge blocks EVERY loading path -
-// the robot could not be placed at all. The bridge is gone; the axle is now
-// held by TWO hook towers at the front/back edges (outside the robot's 70.5
-// footprint), so the top is fully open and the unit drops straight in from
-// above into the nested floor pockets. Same as the izakaya drink-wheel that
-// inspired the build.
+// v4 lesson (7/21 test): in v3 the robot faced +Y - straight into the front
+// hook tower and the safety bar fused to it, so the screen was blocked.
+// The hook towers can only sit on the +/-Y edges (the axle runs along Y),
+// therefore the ROBOT must face +X: pocket, backrest and bar are rotated 90
+// degrees. The +X face now has only the low lap bar; the screen is fully
+// visible and the towers are beside the robot, not in front of it.
+// Pivot raised 73 -> 80 so the head-to-axle clearance grows 6 -> 13 mm.
 //
-// Loading corridor (numeric): unit 54(X) x 70.5(Y), descends from above.
-//   side rails inner  +/-37  vs unit +/-27    -> 10.0 mm/side
-//   hook towers inner +/-37(Y) vs unit +/-35.25 -> 1.75 mm/side
-//   front bar inner    +37   vs unit +35.25   -> 1.75 mm
-//   backrest inner     -39   vs unit -35.25   -> 3.75 mm
+// Loading corridor (numeric): unit descends from above,
+//   footprint 70.5(X) x 54(Y), envelope corners (+/-35.25, +/-27).
+//   hook towers inner  +/-31 (Y) vs +/-27      -> 4.0 mm/side
+//   backrest inner      -40 (X) vs -35.25      -> 4.75 mm
+//   bar corner posts    inner x=+37.5 vs +35.25 -> 2.25 mm
+//   above: fully open (no bridge; axle is 13 mm above the head when hung)
 //
-// Axes: +X = left/right, +Y = wheel axis (hook towers), Z = up. Seat top z=6.
+// Axes: +X = robot facing (open, audience side), +Y = wheel axle. Seat top z=6.
 
 include <../params.scad>;
 
 seat_z    = gon_floor_t;                        // 6, top of the seat plate
-tower_top = gon_pivot_z + gon_hook_d + 2.5;     // 82.2: 2.5 mm roof over the transfer channel
+tower_top = gon_pivot_z + gon_hook_d + 2.5;     // 89.2: 2.5 mm roof over the transfer channel
 tower_w   = 16;                                 // hook tower width (X)
 tower_t   = 6;                                  // hook tower thickness (Y)
+post_w    = 6;                                  // bar corner post size (X)
+post_l    = 8;                                  //   and (Y)
 
-module d_bar(len, d) {
-    // horizontal bar (along X) with a flat underside -> bridges support-free
+module d_bar_y(len, d) {
+    // horizontal bar (along Y) with a flat underside -> bridges support-free
     intersection() {
-        rotate([0, 90, 0]) cylinder(d = d, h = len, center = true, $fn = 32);
-        translate([0, 0, 1.5]) cube([len + 1, d + 1, d], center = true);
+        rotate([90, 0, 0]) cylinder(d = d, h = len, center = true, $fn = 32);
+        translate([0, 0, 1.5]) cube([d + 1, len + 1, d], center = true);
     }
 }
 
 module j_slot_2d() {
     // keyhole profile in the X-Z plane; rod centre rests at (0, gon_pivot_z).
-    // Drop in at the +4 offset entry, slide sideways, settle ~3 mm down.
     union() {
         translate([4 - gon_hook_d/2, gon_pivot_z])
             square([gon_hook_d, tower_top - gon_pivot_z + 1]);   // entry
@@ -46,7 +49,7 @@ module j_slot_2d() {
 }
 
 module hook_tower(y_out) {
-    // tower standing on the floor edge, J-slot cut through its 6 mm thickness
+    // tower standing on the +/-Y floor edge, J-slot cut through its thickness
     difference() {
         translate([-tower_w/2, y_out - tower_t, 0])
             cube([tower_w, tower_t, tower_top]);
@@ -63,21 +66,25 @@ module gondola() {
             // --- seat plate ---
             translate([0, 0, seat_z/2])
                 cube([gon_floor_x, gon_floor_y, gon_floor_t], center = true);
-            // --- side rails (+/-X), low, leave the top open ---
-            for (sx = [-1, 1])
-                translate([sx * (gon_floor_x/2 - gon_wall_t/2), 0, seat_z + gon_side_h/2])
-                    cube([gon_wall_t, gon_floor_y, gon_side_h], center = true);
-            // --- backrest wall (-Y) ---
-            translate([0, -gon_floor_y/2 + gon_wall_t/2, seat_z + gon_backrest_h/2])
-                cube([gon_floor_x, gon_wall_t, gon_backrest_h], center = true);
-            // --- hook towers on the front/back edges (axle along Y) ---
-            hook_tower(gon_floor_y/2);                    // front (+Y)
-            mirror([0, 1, 0]) hook_tower(gon_floor_y/2);  // back  (-Y)
-            // --- front safety bar (merges into the front tower) ---
-            translate([0, gon_floor_y/2 - gon_bar_d/2, seat_z + gon_bar_rise])
-                d_bar(2 * gon_post_cx, gon_bar_d);
+            // --- side rails on the +/-Y edges (low, merge with the towers) ---
+            for (sy = [-1, 1])
+                translate([0, sy * (gon_floor_y/2 - gon_wall_t/2), seat_z + gon_side_h/2])
+                    cube([gon_floor_x, gon_wall_t, gon_side_h], center = true);
+            // --- backrest wall on the -X edge (behind the robot) ---
+            translate([-gon_floor_x/2 + gon_wall_t/2, 0, seat_z + gon_backrest_h/2])
+                cube([gon_wall_t, gon_floor_y, gon_backrest_h], center = true);
+            // --- hook towers on the +/-Y edges (axle along Y) ---
+            hook_tower(gon_floor_y/2);
+            mirror([0, 1, 0]) hook_tower(gon_floor_y/2);
+            // --- lap bar across the open +X face, on two corner posts ---
+            for (sy = [-1, 1])
+                translate([gon_floor_x/2 - post_w - 0.5, sy * (gon_floor_y/2 - gon_wall_t - post_l/2), seat_z])
+                    translate([0, -post_l/2, 0])
+                        cube([post_w, post_l, gon_bar_rise + gon_bar_d/2]);
+            translate([gon_floor_x/2 - post_w/2 - 0.5, 0, seat_z + gon_bar_rise])
+                d_bar_y(gon_floor_y - 2 * gon_wall_t, gon_bar_d);
         }
-        // --- two-stage nested floor pockets ---
+        // --- two-stage nested floor pockets (robot faces +X) ---
         translate([0, 0, seat_z - gon_pocket_o_d])
             cube([gon_pocket_o, gon_pocket_o, gon_pocket_o_d + 0.1], center = true);
         translate([0, 0, seat_z - gon_pocket_i_d])
