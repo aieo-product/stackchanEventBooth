@@ -10,6 +10,8 @@
 include <../params.scad>
 use <rim_segment.scad>
 use <gondola.scad>
+use <hub.scad>
+use <crank.scad>
 
 PART = "rim";
 slab_rim   = 6;    // rim slice height
@@ -27,3 +29,21 @@ else if (PART == "floor")
 else if (PART == "bridge")
     translate([0, 0, -bridge_z0])          // re-ground the slice on the bed
         intersection() { gondola(); slab(bridge_z0, 100); }
+else if (PART == "hubcore")
+    // hub centre core: full-height cylinder around the bore + both set-screw bosses
+    intersection() {
+        hub();
+        union() {
+            cylinder(d = 34, h = 100);
+            translate([-50, -8, 0]) cube([100, 16, 100]);   // keep the radial bosses
+        }
+    }
+else if (PART == "crankboss")
+    // crank hub + a 20 mm arm stub (tests the Ø8.2 shaft fit + M3 set screw)
+    intersection() {
+        crank_body();
+        union() {
+            cylinder(d = crank_hub_d + 10, h = 100);
+            translate([-5, -crank_arm_w/2 - 1, -1]) cube([25, crank_arm_w + 2, 20]);
+        }
+    }

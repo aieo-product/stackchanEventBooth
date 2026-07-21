@@ -34,7 +34,7 @@ MINI_STL := \
 	$(MINI)/mini-adapter-minimal.stl
 
 .PHONY: all ferris booth mini check clean dirs joint-test fit-test
-fit-test: dirs $(FERRIS)/fittest-rim.stl $(FERRIS)/fittest-floor.stl $(FERRIS)/fittest-bridge.stl
+fit-test: dirs $(FERRIS)/fittest-rim.stl $(FERRIS)/fittest-floor.stl $(FERRIS)/fittest-bridge.stl $(FERRIS)/fittest-hubcore.stl $(FERRIS)/fittest-crankboss.stl
 joint-test: dirs $(FERRIS)/joint-test-a.stl $(FERRIS)/joint-test-b.stl
 
 all: ferris booth mini
@@ -56,6 +56,12 @@ $(FERRIS)/joint-test-a.stl: ferris/joint_test_a.scad ferris/rim_segment.scad $(C
 
 $(FERRIS)/joint-test-b.stl: ferris/joint_test_b.scad ferris/rim_segment.scad $(COMMON)
 	$(OPENSCAD) -o $@ $<
+
+$(FERRIS)/fittest-hubcore.stl: ferris/fit_test_kit.scad ferris/hub.scad $(COMMON)
+	$(OPENSCAD) -D 'PART="hubcore"' -o $@ $<
+
+$(FERRIS)/fittest-crankboss.stl: ferris/fit_test_kit.scad ferris/crank.scad $(COMMON)
+	$(OPENSCAD) -D 'PART="crankboss"' -o $@ $<
 
 $(FERRIS)/fittest-rim.stl: ferris/fit_test_kit.scad ferris/rim_segment.scad ferris/gondola.scad $(COMMON)
 	$(OPENSCAD) -D 'PART="rim"' -o $@ $<
