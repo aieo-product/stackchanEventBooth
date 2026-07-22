@@ -27,7 +27,17 @@ BOOTH_STL := \
 	$(BOOTH)/wall-blackboard.stl \
 	$(BOOTH)/wall-window.stl \
 	$(BOOTH)/wall-board.stl \
+	$(BOOTH)/wall-screen.stl \
+	$(BOOTH)/podium.stl \
+	$(BOOTH)/stage.stl \
 	$(BOOTH)/stand-clips.stl
+
+$(BOOTH)/wall-screen.stl: booth/wall_panel.scad $(COMMON)
+	$(OPENSCAD) -D 'variant="screen"' -o $@ $<
+$(BOOTH)/podium.stl: booth/lt_podium.scad $(COMMON)
+	$(OPENSCAD) -D 'PART="podium"' -o $@ $<
+$(BOOTH)/stage.stl: booth/lt_podium.scad $(COMMON)
+	$(OPENSCAD) -D 'PART="stage"' -o $@ $<
 
 MINI_STL := \
 	$(MINI)/mini-adapter-atomcat.stl \

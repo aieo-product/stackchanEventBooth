@@ -246,6 +246,28 @@ pin_grid      = 5;                   // pin hole grid count per axis
 pin_hole_d    = 2.0;
 pin_hole_depth = 1.5;
 
+// screen variant (7/23: LT-meetup diorama - whiteboard/projector screen.
+// Paper slides in from the TOP edge behind the front frame -> swappable slides)
+scr_front_t   = 1.2;                 // front frame layer thickness
+scr_slot_t    = 1.2;                 // paper channel thickness
+scr_slot_margin = 3;                 // channel extends this far behind the frame per side
+scr_tray_h    = 3;                   // whiteboard marker-tray lip height (front bottom)
+scr_tray_d    = 6;                   // tray depth (protrudes forward)
+
+// --- LT podium / stage (7/23, single-colour fast prints) -------------------
+pod_w         = 64;                  // podium width (robot is 54 wide)
+pod_d         = 35;                  // podium depth
+pod_h_front   = 42;                  // front height
+pod_h_back    = 36;                  // back height (slanted reading top)
+pod_wall      = 2.4;                 // shell wall
+pod_logo_w    = 44;                  // front logo-card recess
+pod_logo_h    = 26;
+pod_logo_d    = 0.8;
+stage_x       = 150;                 // stage riser (matches floor tile width)
+stage_y       = 100;
+stage_t       = 8;
+stage_chamfer = 3;
+
 // --- Stand / clips (100 x 80 x t8 triangle) --------------------------------
 stand_x       = 100;                 // base length
 stand_y       = 80;                  // height

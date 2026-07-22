@@ -72,6 +72,30 @@ module board() {
     }
 }
 
+module screen() {
+    // 7/23 LT-meetup: whiteboard / projector screen. The printed slide (paper)
+    // drops in from the TOP edge behind the front frame, so slides can be
+    // swapped during the event. Paper cut size: ~140 x 118 (see channel).
+    difference() {
+        union() {
+            base_panel();
+            // whiteboard marker-tray lip along the front bottom edge
+            translate([ix0, 2, wall_t])
+                cube([ix1 - ix0, scr_tray_d, scr_tray_h]);
+        }
+        // window opening through the front frame layer
+        translate([ix0, iy0, wall_t - scr_front_t])
+            cube([ix1 - ix0, iy1 - iy0, scr_front_t + 0.1]);
+        // paper channel: wider than the window, open through the top edge
+        translate([ix0 - scr_slot_margin, iy0 - scr_slot_margin,
+                   wall_t - scr_front_t - scr_slot_t])
+            cube([ix1 - ix0 + 2 * scr_slot_margin,
+                  wall_y - iy0 + scr_slot_margin + 1,
+                  scr_slot_t]);
+    }
+}
+
 if (variant == "window")          window();
 else if (variant == "board")      board();
+else if (variant == "screen")     screen();
 else                              blackboard();
