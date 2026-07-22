@@ -18,7 +18,7 @@ tol_snap     = 0.20;   // snap-fit clearance (diffuser over rim)
 // Common fastener nominal sizes
 m3_clear   = 3.4;      // M3 clearance hole
 m3_insert  = 4.0;      // heat-set insert press hole (M3)
-m3_thread  = 2.5;      // self-tapping / thread-forming pilot for M3
+m3_thread  = 2.9;      // self-tapping pilot for M3 (7/22 spokehub test: 2.5 printed ~2.2, too tight to bite; 2.9 prints ~2.6)
 
 // ---------------------------------------------------------------------------
 // Build volume guard (Bambu X2D style plate); every part must stay under this
