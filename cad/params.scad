@@ -67,7 +67,7 @@ hub_boltring_r = spoke_mount_r;      // 30, matches spoke pads
 hub_bolt_count = 8;                  // spoke bolt holes
 hub_bolt_a0   = 22.5;                // first hole angle (matches spoke layout)
 hub_set_count = 2;                   // radial set-screw insert bosses
-hub_set_insert_d = m3_insert;        // 4.0 press hole for M3 insert
+hub_set_insert_d = m3_thread;        // 7/22: insert undelivered -> M3 set screw taps directly into 2.9 pilot (pre-tap with a normal M3 bolt first)
 
 // --- Gondola (chair-type open gondola, redesign #18) ------------------------
 // Carries one M5Stack CoreS3/K151 unit (official base 48.0x56.0xh11.1, whole
@@ -199,7 +199,7 @@ crank_arm_w   = 14;
 crank_arm_t   = 10;
 crank_hub_d   = 20;                  // hub around shaft
 crank_shaft_d = shaft_hole_d;        // 8.2 fit onto shaft end
-crank_set_insert_d = m3_insert;      // set-screw insert to lock onto shaft
+crank_set_insert_d = m3_thread;      // 7/22: insert undelivered -> M3 set screw taps directly into 2.9 pilot (pre-tap with a normal M3 bolt first)
 grip_d        = 20;                  // free-spinning grip
 grip_h        = 40;
 grip_bore_d   = 5.2;                 // grip spins on a 5 mm post / screw

@@ -66,7 +66,7 @@ module rim_segment() {
                 rotate([0, 0, 90])
                     dovetail_tenon(h = dt_h);
             // --- insert boss on 0 deg end, clearance-lug on 90 deg end ---
-            joint_boss(m3_insert);                       // 0 deg end (insert)
+            joint_boss(m3_thread);                       // 0 deg end (7/22: insert undelivered -> M3 self-taps into 2.9 pilot. Rim #1 was printed with the old 4.0 hole -> use an M4 screw there)
             mirror([1, -1, 0]) joint_boss(m3_clear);     // 90 deg end (clearance)
         }
         // --- LED groove on the outer periphery ---
