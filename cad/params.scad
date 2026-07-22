@@ -94,7 +94,7 @@ gon_backrest_h = 25;                 // low back wall height
 gon_post_x    = 6;                   // hanger post cross-section (X)
 gon_post_y    = 18;                  // hanger post cross-section (Y)
 gon_post_cx   = 33;                  // post centre offset: inner faces at +/-30 -> 6 mm total clearance over the 54-wide unit
-gon_pivot_z   = 80;                  // swing-axle centre height (7/21 test: head-to-axle clearance 6->13 mm)
+gon_pivot_z   = 100;                 // swing-axle centre height (7/22: 80->100 so decorated robots (hats etc.) clear the axle; head clearance 13->33 mm. tower_total_h raised +20 in step to keep ground clearance)
 gon_bridge_y  = 30;                  // hanger-bridge length in Y (grips the axle over 30 mm)
 
 gon_bar_d     = 6;                   // front safety bar diameter (D-section, flat underside)
@@ -140,7 +140,7 @@ rig_bore_flat  = 3.6;               // disc D-hole flat (7/19: +0.4 clearance)
 rig_bush_d     = 9.0;               // stand plain bushing bore (7/19: +0.4; friction OK)
 rig_axle_r     = 40;                // gondola axle hole radius on the mini disc
 rig_gap        = axle_rim_gap;      // 90: same gap as production (clears gondola depth 84)
-rig_bush_z     = 140;              // shaft centre height (7/21: stand was too short; gondola hangs 80 below axle + orbit 40 + clear 20)
+rig_bush_z     = 160;              // shaft centre height (7/22: pivot 100 -> hang 100 below axle + orbit 40 + clear 20. Reprint only if re-running the swing test; the printed 140 rig now lacks floor clearance)
 rig_shaft_len  = rig_gap + 2 * rig_disc_t + 2 * 14 + 2;   // ~132
 rig_stand_span = 34;               // stand foot half-span (X); feet stay within the 80-wide base
 rig_stand_t    = 8;                // stand plate thickness (Y)
@@ -165,7 +165,7 @@ mini_guard_h  = 15;                  // front guard height (low, unit is light 3
 mini_floor_t  = 2;                   // bucket floor thickness
 
 // --- Tower (A-frame, total H280, split upper/lower) ------------------------
-tower_total_h = 280;
+tower_total_h = 300;                 // 7/22: 280->300 to offset gon_pivot_z +20 (keeps gondola-bottom clearance 38 mm over the base at the lowest point)
 tower_overlap = 30;                  // splice overlap length
 tower_split_h = 170;                 // each printed half <= 170
 tower_leg_w   = 18;                  // leg cross-section (in-plane)
