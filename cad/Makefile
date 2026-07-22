@@ -35,6 +35,20 @@ MINI_STL := \
 
 .PHONY: all ferris booth mini check clean dirs joint-test fit-test
 fit-test: dirs $(FERRIS)/fittest-rim.stl $(FERRIS)/fittest-floor.stl $(FERRIS)/fittest-bridge.stl $(FERRIS)/fittest-hubcore.stl $(FERRIS)/fittest-crankboss.stl
+joint-check: dirs $(FERRIS)/fittest-towerfoot.stl $(FERRIS)/fittest-baseslot.stl $(FERRIS)/fittest-splicelower.stl $(FERRIS)/fittest-spliceupper.stl $(FERRIS)/fittest-spokehub.stl $(FERRIS)/fittest-spokepad.stl
+
+$(FERRIS)/fittest-towerfoot.stl: ferris/fit_test_kit.scad ferris/tower.scad $(COMMON)
+	$(OPENSCAD) -D 'PART="towerfoot"' -o $@ $<
+$(FERRIS)/fittest-baseslot.stl: ferris/fit_test_kit.scad ferris/base.scad $(COMMON)
+	$(OPENSCAD) -D 'PART="baseslot"' -o $@ $<
+$(FERRIS)/fittest-splicelower.stl: ferris/fit_test_kit.scad ferris/tower.scad $(COMMON)
+	$(OPENSCAD) -D 'PART="splicelower"' -o $@ $<
+$(FERRIS)/fittest-spliceupper.stl: ferris/fit_test_kit.scad ferris/tower.scad $(COMMON)
+	$(OPENSCAD) -D 'PART="spliceupper"' -o $@ $<
+$(FERRIS)/fittest-spokehub.stl: ferris/fit_test_kit.scad ferris/hub.scad $(COMMON)
+	$(OPENSCAD) -D 'PART="spokehub"' -o $@ $<
+$(FERRIS)/fittest-spokepad.stl: ferris/fit_test_kit.scad ferris/rim_segment.scad $(COMMON)
+	$(OPENSCAD) -D 'PART="spokepad"' -o $@ $<
 joint-test: dirs $(FERRIS)/joint-test-a.stl $(FERRIS)/joint-test-b.stl
 
 all: ferris booth mini
