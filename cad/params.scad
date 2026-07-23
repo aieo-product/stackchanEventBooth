@@ -186,10 +186,10 @@ thumb_hole_d  = m3_clear;            // M3 thumbscrew through hole at foot
 base_x        = 250;                 // width of one board (shared long edge = 250)
 base_y        = 175;                 // depth of one board
 base_t        = 15;                  // thickness
-base_slot_w   = foot_tab_w + tol;    // tower foot slot width
-base_slot_t   = foot_tab_t + tol;
+base_slot_w   = foot_tab_w + 0.8;    // tower foot slot width (7/23: +0.3->+0.8; base is printed on a helper's machine -> absorb cross-printer shrink. The thumbscrew locks the foot, so a loose slot is fine)
+base_slot_t   = foot_tab_t + 0.8;
 base_slot_d   = foot_tab_h + 1;      // slot depth
-crank_bearing_d = 8.5;               // shaft pass-through at crank side (outside tower)
+crank_bearing_d = 8.8;               // shaft pass-through at crank side (7/23: 8.5->8.8, helper-printed base must clear the 8mm shaft; it is a loose journal, slop is fine)
 crank_boss_d  = 20;                  // boss around the crank bearing hole
 crank_boss_h  = 14;
 
@@ -268,7 +268,7 @@ pod_logo_h    = 26;
 pod_logo_d    = 0.8;
 stage_x       = 150;                 // stage riser (matches floor tile width)
 stage_y       = 100;
-stage_t       = 8;
+stage_t       = 6;                   // 7/23: 8->6, diorama needs no strength - print time down
 stage_chamfer = 3;
 
 // --- Stand / clips (100 x 80 x t8 triangle) --------------------------------
