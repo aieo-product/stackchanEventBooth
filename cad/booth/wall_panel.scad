@@ -95,7 +95,19 @@ module screen() {
     }
 }
 
-if (variant == "window")          window();
+module plainwall() {
+    // 7/23: plain office wall - flat panel with two shallow horizontal
+    // panel-seam grooves (shadow lines, no painting needed)
+    difference() {
+        base_panel();
+        for (gy = [42, 84])
+            translate([-1, gy - 0.3, wall_t - 0.6])
+                cube([wall_x + 2, 0.6, 0.7]);
+    }
+}
+
+if (variant == "plain")           plainwall();
+else if (variant == "window")     window();
 else if (variant == "board")      board();
 else if (variant == "screen")     screen();
 else                              blackboard();

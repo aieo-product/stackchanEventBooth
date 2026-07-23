@@ -223,6 +223,8 @@ tile_t        = 3;
 plank_w       = 25;                  // wood plank width
 groove_d      = 0.6;                 // plank seam depth
 groove_w      = 0.6;                 // plank seam width
+sock_w        = 10;                  // wall-socket curb width (7/23 LT diorama)
+sock_h        = 13;                  // curb height incl. tile (tab 12 -> 1 mm above table)
 
 // --- Wall panel (150 x 125 x t5), 3 variants -------------------------------
 wall_x        = 150;

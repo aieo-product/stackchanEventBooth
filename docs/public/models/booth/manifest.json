@@ -1,9 +1,9 @@
 [
- {"id": "floor",     "file": "floor.stl",     "name": "床タイル（2×2）",              "color": "#DEB887", "explode": [0, 0, -1],   "group": "structure"},
- {"id": "stage",     "file": "stage.stl",     "name": "ステージ台",                    "color": "#708090", "explode": [0, 0, -0.4], "group": "structure"},
- {"id": "podium",    "file": "podium.stl",    "name": "演台（ロゴ紙44×26）",           "color": "#F8F8F8", "explode": [0, -1, 0],   "group": "stage"},
- {"id": "robot",     "file": "robot.stl",     "name": "スタックチャン（K151・登壇者）", "color": "#B0C4DE", "explode": [0, 0, 1],    "group": "stage"},
- {"id": "screen",    "file": "screen.stl",    "name": "スクリーンパネル（紙139×117）",  "color": "#FFFFF0", "explode": [0, 1, 0.3],  "group": "wall"},
- {"id": "wall-side", "file": "wall-side.stl", "name": "窓パネル（横壁）",              "color": "#D3D3D3", "explode": [-1, 0, 0],   "group": "wall"},
- {"id": "stands",    "file": "stands.stl",    "name": "パネルスタンド×3",             "color": "#808080", "explode": [0, 1, -0.4], "group": "wall"}
+ {"id": "floor",       "file": "floor.stl",       "name": "床タイル2×2（ソケット付×3）",   "color": "#DEB887", "explode": [0, 0, -1],   "group": "structure"},
+ {"id": "stage",       "file": "stage.stl",       "name": "ステージ台",                     "color": "#708090", "explode": [0, 0, -0.4], "group": "structure"},
+ {"id": "podium",      "file": "podium.stl",      "name": "演台（ロゴ紙43×25）",            "color": "#F8F8F8", "explode": [0, -1, 0],   "group": "stage"},
+ {"id": "robot",       "file": "robot.stl",       "name": "スタックチャン（K151・登壇者）",  "color": "#B0C4DE", "explode": [0, 0, 1],    "group": "stage"},
+ {"id": "screen-wall", "file": "screen-wall.stl", "name": "スクリーン壁（紙139×117・差込）", "color": "#FFFFF0", "explode": [0, 1, 0.3],  "group": "wall"},
+ {"id": "plain-wall",  "file": "plain-wall.stl",  "name": "通常壁（差込）",                 "color": "#DCDCDC", "explode": [0.4, 1, 0.3], "group": "wall"},
+ {"id": "window-wall", "file": "window-wall.stl", "name": "窓付き壁（差込）",               "color": "#D3D3D3", "explode": [-1, 0, 0.3], "group": "wall"}
 ]
