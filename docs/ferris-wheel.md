@@ -113,13 +113,133 @@ X2Dのビルドプレートに収まるよう、**全パーツを最大250mm以�
 回転するリムへの給電は**スリップリングを使わず**、ハブ中央に小型モバイルバッテリー＋M5 Atom Liteを<b>同乗（一緒に回転）</b>させて解決します。配線のねじれが発生せず、手持ちのM5デバイスを活用できます。
 
 ```
-[回転部] モバイルバッテリー(5V) → M5 Atom Lite → WS2812Bテープ（リム外周・スポーク）
-[固定部]（フォールバック/追加）USB電源 → Atom Lite → ベース・支柱のWS2812B
+[回転部] モバイルバッテリー(5V) → M5 AtomS3R → SK6812テープ×2（前後リム外周）
+[固定部]（フォールバック/追加）USB電源 → AtomS3R → ベース・支柱のLED
 ```
 
-- レインボーアニメーションは Atom Lite の FastLED/M5Unified スケッチで実装（約30行）。
+- レインボーアニメーションは AtomS3R の FastLED/M5Unified スケッチで実装済み（[`firmware/led_rainbow/led_rainbow.ino`](https://github.com/aieo-product/stackchanEventBooth/blob/main/firmware/led_rainbow/led_rainbow.ino)・画面ボタンで輝度4段切替・900mA電力キャップ）。
 - バッテリーはハブ中心に置くため回転トルクへの影響は最小。10000mAh級で4時間運用は余裕（LED 2m・輝度50%で約1A）。
 - **フォールバック**: 回転部LEDが間に合わない場合は、支柱・ベースなど固定部のみのLED装飾に切り替え（バッテリー・配線不要でUSB給電）。
+
+#### 配線（AtomS3R Grove → SMコネクタ・2026-07-23確定）
+
+AtomS3Rには<b>何も加工しない</b>のがポイント。Groveケーブル1本を切断してバラ線化し、WAGOコネクタ4個でSMコネクタ付ケーブルのメス側と橋渡しする（はんだ不要）。部品はページ末尾の「🛒 最終購入リスト」参照。
+
+<style>
+.wiring-panel { background: var(--vp-c-bg-soft); border: 1px solid var(--vp-c-divider); border-radius: 10px; padding: 12px; overflow-x: auto; }
+.wiring-panel svg { display: block; min-width: 700px; width: 100%; height: auto; }
+.wiring-panel .wt { font-size: 12px; fill: var(--vp-c-text-1); }
+.wiring-panel .ws { font-size: 10.5px; fill: var(--vp-c-text-2); }
+</style>
+
+<div class="wiring-panel">
+<svg viewBox="0 0 860 560" role="img" aria-label="AtomS3RからLEDテープまでの配線図">
+  <defs>
+    <marker id="wire-arr" viewBox="0 0 8 8" refX="7" refY="4" markerWidth="7" markerHeight="7" orient="auto">
+      <path d="M0 0 L8 4 L0 8 z" fill="var(--vp-c-text-2)"/>
+    </marker>
+  </defs>
+  <rect x="18" y="200" width="104" height="104" rx="14" fill="#3a3f45" stroke="rgba(128,128,128,.6)"/>
+  <rect x="32" y="214" width="76" height="58" rx="6" fill="#111318"/>
+  <text x="70" y="247" text-anchor="middle" font-size="11" fill="#8be9a8">50%</text>
+  <text x="70" y="292" text-anchor="middle" font-size="11" fill="#c8cdd3" font-weight="600">AtomS3R</text>
+  <text x="70" y="190" text-anchor="middle" class="wt" font-weight="600">① 本体</text>
+  <rect x="118" y="234" width="16" height="36" rx="3" fill="#e6e6e6" stroke="rgba(128,128,128,.6)"/>
+  <text x="126" y="228" text-anchor="middle" class="ws">PORT.A</text>
+  <text x="126" y="322" text-anchor="middle" class="ws">底面ヘッダはバッテリー</text>
+  <text x="126" y="336" text-anchor="middle" class="ws">ベース用に空ける</text>
+  <g fill="none" stroke-linecap="round">
+    <path d="M134 240 H208" stroke="rgba(128,128,128,.6)" stroke-width="7"/><path d="M134 240 H208" stroke="#e03131" stroke-width="4.5"/>
+    <path d="M134 248 H208" stroke="rgba(128,128,128,.6)" stroke-width="7"/><path d="M134 248 H208" stroke="#26292e" stroke-width="4.5"/>
+    <path d="M134 256 H208" stroke="rgba(128,128,128,.6)" stroke-width="7"/><path d="M134 256 H208" stroke="#fafafa" stroke-width="4.5"/>
+    <path d="M134 264 H208" stroke="rgba(128,128,128,.6)" stroke-width="7"/><path d="M134 264 H208" stroke="#f5c518" stroke-width="4.5"/>
+  </g>
+  <line x1="222" y1="218" x2="222" y2="288" stroke="#e8590c" stroke-width="2" stroke-dasharray="5 4"/>
+  <text x="222" y="208" text-anchor="middle" font-size="11" fill="#e8590c" font-weight="700">✂ ② ここで切断</text>
+  <text x="222" y="302" text-anchor="middle" class="ws">反対側の余りは予備に</text>
+  <g fill="none" stroke-linecap="round">
+    <path d="M236 240 C300 240 280 96 344 96" stroke="rgba(128,128,128,.6)" stroke-width="7"/><path d="M236 240 C300 240 280 96 344 96" stroke="#e03131" stroke-width="4.5"/>
+    <path d="M236 248 C300 248 280 216 344 216" stroke="rgba(128,128,128,.6)" stroke-width="7"/><path d="M236 248 C300 248 280 216 344 216" stroke="#26292e" stroke-width="4.5"/>
+    <path d="M236 256 C300 256 280 336 344 336" stroke="rgba(128,128,128,.6)" stroke-width="7"/><path d="M236 256 C300 256 280 336 344 336" stroke="#fafafa" stroke-width="4.5"/>
+    <path d="M236 264 C300 264 280 456 344 456" stroke="rgba(128,128,128,.6)" stroke-width="7"/><path d="M236 264 C300 264 280 456 344 456" stroke="#f5c518" stroke-width="4.5"/>
+  </g>
+  <text x="290" y="130" class="ws" text-anchor="middle">赤 5V</text>
+  <text x="290" y="238" class="ws" text-anchor="middle">黒 GND</text>
+  <text x="290" y="320" class="ws" text-anchor="middle">白 G2</text>
+  <text x="290" y="440" class="ws" text-anchor="middle">黄 G1</text>
+  <text x="392" y="46" text-anchor="middle" class="wt" font-weight="600">③ WAGOで結線（4個）</text>
+  <g>
+    <rect x="344" y="72" width="96" height="48" rx="7" fill="var(--vp-c-bg)" stroke="rgba(128,128,128,.6)"/>
+    <rect x="352" y="64" width="80" height="12" rx="3" fill="#e8590c"/>
+    <text x="392" y="102" text-anchor="middle" font-size="11.5" class="wt" font-weight="600">WFR-3（3P）</text>
+    <text x="452" y="70" class="ws">5V: 赤1本→赤2本</text>
+  </g>
+  <g>
+    <rect x="344" y="192" width="96" height="48" rx="7" fill="var(--vp-c-bg)" stroke="rgba(128,128,128,.6)"/>
+    <rect x="352" y="184" width="80" height="12" rx="3" fill="#e8590c"/>
+    <text x="392" y="222" text-anchor="middle" font-size="11.5" class="wt" font-weight="600">WFR-3（3P）</text>
+    <text x="452" y="190" class="ws">GND: 黒1本→黒2本</text>
+  </g>
+  <g>
+    <rect x="344" y="312" width="96" height="48" rx="7" fill="var(--vp-c-bg)" stroke="rgba(128,128,128,.6)"/>
+    <rect x="352" y="304" width="80" height="12" rx="3" fill="#e8590c"/>
+    <text x="392" y="342" text-anchor="middle" font-size="11.5" class="wt" font-weight="600">WFR-2（2P）</text>
+    <text x="452" y="310" class="ws">白G2 ↔ ①の緑</text>
+  </g>
+  <g>
+    <rect x="344" y="432" width="96" height="48" rx="7" fill="var(--vp-c-bg)" stroke="rgba(128,128,128,.6)"/>
+    <rect x="352" y="424" width="80" height="12" rx="3" fill="#e8590c"/>
+    <text x="392" y="462" text-anchor="middle" font-size="11.5" class="wt" font-weight="600">WFR-2（2P）</text>
+    <text x="452" y="430" class="ws">黄G1 ↔ ②の緑</text>
+  </g>
+  <g fill="none" stroke-linecap="round">
+    <path d="M440 88 C500 88 480 108 540 108" stroke="rgba(128,128,128,.6)" stroke-width="7"/><path d="M440 88 C500 88 480 108 540 108" stroke="#e03131" stroke-width="4.5"/>
+    <path d="M440 104 C520 104 460 388 540 388" stroke="rgba(128,128,128,.6)" stroke-width="7"/><path d="M440 104 C520 104 460 388 540 388" stroke="#e03131" stroke-width="4.5"/>
+    <path d="M440 208 C500 208 480 140 540 140" stroke="rgba(128,128,128,.6)" stroke-width="7"/><path d="M440 208 C500 208 480 140 540 140" stroke="#26292e" stroke-width="4.5"/>
+    <path d="M440 224 C520 224 460 420 540 420" stroke="rgba(128,128,128,.6)" stroke-width="7"/><path d="M440 224 C520 224 460 420 540 420" stroke="#26292e" stroke-width="4.5"/>
+    <path d="M440 336 C510 336 470 124 540 124" stroke="rgba(128,128,128,.6)" stroke-width="7"/><path d="M440 336 C510 336 470 124 540 124" stroke="#2f9e44" stroke-width="4.5"/>
+    <path d="M440 456 C500 456 480 404 540 404" stroke="rgba(128,128,128,.6)" stroke-width="7"/><path d="M440 456 C500 456 480 404 540 404" stroke="#2f9e44" stroke-width="4.5"/>
+  </g>
+  <text x="588" y="72" text-anchor="middle" class="wt" font-weight="600">④ SMメス側</text>
+  <rect x="540" y="96" width="56" height="56" rx="7" fill="#f0efe9" stroke="rgba(128,128,128,.6)"/>
+  <text x="568" y="128" text-anchor="middle" font-size="10.5" fill="#3d4148" font-weight="600">SMメス</text>
+  <rect x="540" y="376" width="56" height="56" rx="7" fill="#f0efe9" stroke="rgba(128,128,128,.6)"/>
+  <text x="568" y="408" text-anchor="middle" font-size="10.5" fill="#3d4148" font-weight="600">SMメス</text>
+  <line x1="600" y1="124" x2="640" y2="124" stroke="var(--vp-c-text-2)" stroke-width="2" marker-end="url(#wire-arr)"/>
+  <text x="620" y="112" text-anchor="middle" class="ws">挿す</text>
+  <line x1="600" y1="404" x2="640" y2="404" stroke="var(--vp-c-text-2)" stroke-width="2" marker-end="url(#wire-arr)"/>
+  <text x="620" y="392" text-anchor="middle" class="ws">挿す</text>
+  <g>
+    <rect x="644" y="94" width="196" height="60" rx="8" fill="var(--vp-c-bg)" stroke="rgba(128,128,128,.6)"/>
+    <rect x="644" y="112" width="14" height="24" rx="3" fill="#f0efe9" stroke="rgba(128,128,128,.6)"/>
+    <text x="700" y="118" font-size="11.5" class="wt" font-weight="700">Din ▶▶</text>
+    <text x="668" y="140" font-size="11" class="wt">SK6812テープ① 前リム</text>
+    <text x="828" y="118" text-anchor="end" font-size="11" fill="#e03131" font-weight="700">DO側 ✕</text>
+    <text x="744" y="172" text-anchor="middle" class="ws">「Din」印字＋矢印の始点側に接続（⑤）</text>
+  </g>
+  <g>
+    <rect x="644" y="374" width="196" height="60" rx="8" fill="var(--vp-c-bg)" stroke="rgba(128,128,128,.6)"/>
+    <rect x="644" y="392" width="14" height="24" rx="3" fill="#f0efe9" stroke="rgba(128,128,128,.6)"/>
+    <text x="700" y="398" font-size="11.5" class="wt" font-weight="700">Din ▶▶</text>
+    <text x="668" y="420" font-size="11" class="wt">SK6812テープ② 後リム</text>
+    <text x="828" y="398" text-anchor="end" font-size="11" fill="#e03131" font-weight="700">DO側 ✕</text>
+    <text x="744" y="452" text-anchor="middle" class="ws">「Din」印字＋矢印の始点側に接続（⑤）</text>
+  </g>
+</svg>
+</div>
+
+| Grove側（切断した4線） | 結線コネクタ | SMピグテール側 | 行き先 |
+|---|---|---|---|
+| 赤（5V） | WAGO WFR-3 | ①の赤＋②の赤 | 両テープの5V |
+| 黒（GND） | WAGO WFR-3 | ①の黒＋②の黒 | 両テープのGND |
+| 白（G2） | WAGO WFR-2 | ①の緑 | 前リムテープのDin |
+| 黄（G1） | WAGO WFR-2 | ②の緑 | 後リムテープのDin |
+
+::: warning 7/22に光らなかった原因と対策
+- <b>DO側（終点側）に挿していた</b> — 信号は矢印の向きにしか流れない。必ず「Din」印字＋矢印の始点側へ
+- コネクタ無しの仮結線で接触不良 — WAGOはレバーを上げ→被覆を約11mm剥いた線を差し→レバーを倒す。結線後に軽く引いて抜けを確認
+- ピグテールの線色が違うロットあり — 色より<b>SMコネクタのピン位置</b>（テープ側の5V/Din/GND印字と対応）を最終確認
+:::
 
 ### パーツリスト（BOM・2026-07-15 実売調査済み：Amazonリンク付き）
 
