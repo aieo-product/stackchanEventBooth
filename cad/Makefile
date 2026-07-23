@@ -35,6 +35,7 @@ BOOTH_STL := \
 	$(BOOTH)/floor-tile-corner.stl \
 	$(BOOTH)/podium.stl \
 	$(BOOTH)/stage.stl \
+	$(BOOTH)/wall-foot.stl \
 	$(BOOTH)/stand-clips.stl
 
 $(BOOTH)/wall-plain.stl: booth/wall_panel.scad $(COMMON)
@@ -47,6 +48,8 @@ $(BOOTH)/floor-tile-wall.stl: booth/floor_tile.scad $(COMMON)
 	$(OPENSCAD) -D 'variant="wall"' -o $@ $<
 $(BOOTH)/floor-tile-corner.stl: booth/floor_tile.scad $(COMMON)
 	$(OPENSCAD) -D 'variant="corner"' -o $@ $<
+$(BOOTH)/wall-foot.stl: booth/wall_foot.scad $(COMMON)
+	$(OPENSCAD) -o $@ $<
 
 $(BOOTH)/wall-screen.stl: booth/wall_panel.scad $(COMMON)
 	$(OPENSCAD) -D 'variant="screen"' -o $@ $<
