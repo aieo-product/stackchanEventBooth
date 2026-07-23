@@ -174,7 +174,7 @@
       <table>
         <tr><th></th><th>パート</th><th>話す人</th><th class="r">目安</th></tr>
         <tr><td>①</td><td>🧸 <b>スタックチャンの歴史</b>（2021→2026）</td><td>大谷</td><td class="r">4分</td></tr>
-        <tr><td>②</td><td>🛠️ <b>Module-LLMの苦労話</b>（オンデバイスAIの現実）</td><td>大谷</td><td class="r">3.5分</td></tr>
+        <tr><td>②</td><td>🛠️ <b>Module-LLMの苦労と進化</b>（ケーブル・TTS・フィラー・母艦連携）</td><td>大谷</td><td class="r">3.5分</td></tr>
         <tr><td>③</td><td>⚡ <b>ローカルLLM実装の最前線</b> ★メイン</td><td><b>A-Uta さん</b></td><td class="r"><b>6.5分</b></td></tr>
         <tr><td>—</td><td>🎉 まとめ・ブース誘導</td><td>両名</td><td class="r">1分</td></tr>
       </table>
@@ -218,6 +218,31 @@
         <div class="card"><h3>🌏 世界に広がる</h3><p>無数のフォークと作例が生まれ続ける。</p></div>
       </div>
       <div class="src">※ このブースの着せ替え＆撮影も、コミュニティ文化から生まれています</div>
+    </section>
+
+    <!-- 5.4 BIRTHDAY PARTY -->
+    <section class="slide photo">
+      <div class="bg" style="background-image:url('assets/birthday-5th.jpg'); background-position:center 62%"></div>
+      <div class="scrim"></div>
+      <div class="cap">
+        <span class="chip">2026-07-02 ｜ #ｽﾀｯｸﾁｬﾝお誕生日2026</span>
+        <h2>今年7/2、5歳のお誕生日会 🎂</h2>
+        <p>日本中から"わが子"を連れたビルダーが集合。<b>畳一面のスタックチャン</b>と一緒に5歳を祝ってきました。</p>
+      </div>
+    </section>
+
+    <!-- 5.5 OPENAI CM -->
+    <section class="slide photo">
+      <div class="bg" style="background-image:url('assets/openai-cm-frame.jpg')"></div>
+      <div class="scrim"></div>
+      <img src="assets/openai-cm-post.png" alt="OpenAI Developers（@OpenAIDevs）の公式ポスト"
+           style="position:absolute; right:4%; top:6%; width:31%; border-radius:10px; box-shadow:0 12px 36px rgba(0,0,0,.5); border:1px solid rgba(255,255,255,.4)"/>
+      <div class="cap">
+        <span class="chip">OpenAI Developers 公式X（@OpenAIDevs）2026年7月</span>
+        <h2>OpenAIの公式CMにも登場！世界に羽ばたくスタックチャン 🌏</h2>
+        <p>Codex ambassadors の Build Week 世界ツアー動画に、スタックチャンたちが登場。<br>
+           <b>50,000+ builders / 20+ languages</b> の映像の真ん中に、日本生まれのOSSロボットが居る。</p>
+      </div>
     </section>
 
     <!-- 6 timeline -->
@@ -268,48 +293,85 @@
       </div>
     </section>
 
-    <!-- 10 struggle 1: getting it to run -->
+    <!-- 10 struggle 1: the cable -->
     <section class="slide">
-      <h2>苦労① 動かすまでが、長い</h2>
-      <ul>
-        <li>🔌 まず <b>UART疎通</b>から。本体と会話できるまでに一苦労</li>
-        <li>🎙️ マイクの<b>ゲイン設定が再起動で消える</b>——毎回無口に戻る</li>
-        <li>🤐 ある日突然、音声入力が<b>「入力待ち」のまま黙り込む</b>（取り込み障害）</li>
-        <li>🗣️ 日本語オンデバイスTTS（MeloTTS）は<b>NPUで動かすまでの道が険しい</b></li>
-      </ul>
-      <div class="quote" style="margin-top:.6em">"オンデバイスAI" は、動けば速い。<br>動かすまでが地獄。</div>
-      <div class="src">出典：aieo-stack-chan issue #29 / #76 / #127 / #55</div>
-    </section>
-
-    <!-- 11 struggle 2: latency -->
-    <section class="slide">
-      <h2>苦労② クラウド併用でも <span style="color:var(--red)">"7秒の沈黙"</span></h2>
-      <ul>
-        <li>賢い返答はクラウド(Claude)へ → 声かけから返事まで <b>7秒</b></li>
-        <li>人は <b>2秒</b>黙られると「<b>壊れた?</b>」と感じる</li>
-      </ul>
-      <div class="bars">
-        <div class="bar-row"><div class="lbl">当初</div><div class="bar b7">約7秒（Claude API 3–4秒が最大ボトルネック）</div></div>
-        <div class="bar-row"><div class="lbl">モデル変更</div><div class="bar b5">5秒（Sonnet → Haiku）</div></div>
-        <div class="bar-row"><div class="lbl">間つなぎ</div><div class="bar b1">体感1秒</div></div>
+      <h2>苦労① 専用ケーブルが、国内で売っていない 🔌</h2>
+      <div class="split">
+        <div>
+          <ul>
+            <li>Module-LLM の <b>2.5mmプラグ専用ケーブル</b>——これが<b>国内でほぼ流通していない</b></li>
+            <li>探しても探しても無い。<b>「ケーブル1本」で開発が止まる</b>入手大苦戦</li>
+          </ul>
+          <div class="quote" style="margin-top:.6em; font-size:1.3em">オンデバイスAIの最初の壁は、<br>AIではなくケーブルだった。</div>
+          <div class="callout">📦 朗報：<b>M5Stackの2026年6月以降の出荷分</b>からは<b>標準で付属</b>に！<br>→ これから始める人は、もうこの苦労をしなくていい</div>
+        </div>
+        <div style="align-self:stretch; display:flex; flex-direction:column; min-height:0; padding:1em 0">
+          <div style="flex:1; min-height:0; border-radius:14px; background:url('assets/k151-box-cable.jpg') 62% 28%/cover; box-shadow:0 10px 30px rgba(0,0,0,.22)"></div>
+          <div class="figcap">最新出荷分の公式スタックチャン（K151）にはケーブルが同梱</div>
+        </div>
       </div>
-      <div class="src">出典：issue #54（計測） / #70・#71（間つなぎ） / #87（ストリーミングTTS）</div>
     </section>
 
-    <!-- 12 lesson: tiered cognition -->
+    <!-- 11 struggle 2: TTS (MeloTTS -> Kokoro) -->
     <section class="slide">
-      <h2>たどり着いた答え："速い脳"と"賢い脳"の二刀流</h2>
+      <h2>苦労② MeloTTSでは喋れない → <b>Kokoro</b>を鍛えて突破 🗣️</h2>
+      <ul>
+        <li>標準の <b>MeloTTS</b>：日本語をNPUでまともに動かせず、<b>実用にならなかった</b></li>
+        <li><b>Kokoro TTS</b> に刷新——それでも罠だらけ：漢字が読めず<b>12〜22秒の破綻音声</b>・segfault・依存地獄</li>
+        <li><b>misaki G2P＋pykakasi漢字前処理</b>などチューニングを積み上げ、AX630CのNPUで <b>rtf≈0.5</b> を達成</li>
+      </ul>
+      <div class="callout">常駐サーバ化で発話要求の応答 <b>40〜60ms</b>。<b>やっと自然な日本語で喋れるように</b> 🎉</div>
+      <div class="src">出典：aieo-stack-chan issue #129 / #134 / #135（Kokoro+misaki 実装記録）</div>
+    </section>
+
+    <!-- 12 UX: filler speech -->
+    <section class="slide">
+      <h2>工夫① "フィラー発言"で沈黙を消す</h2>
+      <ul>
+        <li>人は <b>2秒</b>黙られると「<b>壊れた?</b>」と感じる——AIの推論待ちは致命傷</li>
+        <li>フィラー6種＋相槌を<b>事前レンダリング済みPCM</b>でキャッシュ → 合成<b>0ms</b>で即再生</li>
+        <li>呼びかけには即「<b>はい、聞いてますよ</b>」、考え中は「<b>調べて、分かったら声でお伝えしますね</b>」</li>
+      </ul>
+      <div class="quote" style="margin-top:.6em">沈黙が消えるだけで、<br>会話の体感は一変する。</div>
+      <div class="src">出典：issue #131（事前PCMキャッシュ） / #175（定型フィラーの合成済みボイス）</div>
+    </section>
+
+    <!-- 12.5 architecture diagram (2026-07) -->
+    <section class="slide" style="padding:3% 3.5%; background:#fff; justify-content:flex-start">
+      <div class="kicker" style="margin-bottom:.2em">工夫② 母艦連携 — 2026-07 実機構成（最新の全体図）</div>
+      <img src="assets/voice-route-2026-07.svg" alt="スタックちゃん音声応答ルート全体図（聞く=Module-LLM whisper / 考える=Gemma4司令官 / 話す=Kokoro）"
+           style="width:100%; flex:1; min-height:0; object-fit:contain"/>
+    </section>
+
+    <!-- 12.6 gemma4 commander -->
+    <section class="slide">
+      <h2>工夫② フロントを <b>Gemma4司令官</b> に → 爆速化 ⚡</h2>
       <div class="pipe">
-        <div class="step"><div class="t">🎙️ 声かけ</div><div class="d">「ねえ、どなっく」</div></div>
+        <div class="step"><div class="t">🎙️ 質問</div><div class="d">「ねえドナック、〇〇って何？」</div></div>
         <div class="arrow">→</div>
-        <div class="step fill"><div class="t">即：間つなぎ</div><div class="d">オンデバイスで即応答（速い脳）</div></div>
+        <div class="step fill"><div class="t">Gemma4（ローカル常駐）</div><div class="d">1コールで難易度分類＋回答生成<br>TTFB 0.3秒</div></div>
         <div class="arrow">→</div>
-        <div class="step ans"><div class="t">本答え</div><div class="d">クラウドLLMが文単位で発話（賢い脳）</div></div>
+        <div class="step ans"><div class="t">easy → そのまま発話</div><div class="d">1〜2秒・クラウド課金ゼロ</div></div>
       </div>
-      <ul style="margin-top:.7em">
-        <li>軽い応答・聞き取りは<b>オンデバイス</b>／深い思考は<b>クラウド</b></li>
-        <li>ただし賢さの本体は<b>まだクラウド頼み</b>——ここが正直な現在地</li>
+      <div class="bars">
+        <div class="bar-row"><div class="lbl">従来</div><div class="bar b7">全部クラウドSDK：9〜27秒</div></div>
+        <div class="bar-row"><div class="lbl">いま</div><div class="bar b1" style="width:30%">Gemma4フロント：1〜2秒</div></div>
+      </div>
+      <ul style="margin-top:.4em">
+        <li><b>hard</b>（予定・メール・多段推論）だけ、フィラーでつないで <b>Claude Agent SDK が別系統で深く推論</b> → 完了したら音声プッシュ</li>
       </ul>
+    </section>
+
+    <!-- 12.7 future: own robot -->
+    <section class="slide">
+      <div class="kicker">NEXT CHALLENGE</div>
+      <h2>この知見で、自社製コミュニケーションロボットへ 🤖</h2>
+      <ul>
+        <li><b>AIEO PROJECT</b>：家族と暮らす卓上コミュニケーションロボットを<b>自社制作</b>したい</li>
+        <li>🌱 最初は「あ・い・え・お」しか言えない子が、拡張パーツで成長して「<b>あいうえお！</b>」と言える日を目指す</li>
+        <li>🧠 スタックチャンで積んだ<b>音声パイプライン × ローカル+クラウド連携</b>のナレッジが、そのまま土台になる</li>
+      </ul>
+      <div class="callout">構想を公開中 → <b>aieo-robot.pages.dev</b>　（仲間・ツッコミ募集中！）</div>
     </section>
 
     <!-- 13 bridge / handoff -->
@@ -381,7 +443,7 @@
     <section class="slide">
       <h2>まとめ：AIの"体"は、選べる時代へ</h2>
       <div class="cols">
-        <div class="card"><h3>☁️ クラウド二刀流（大谷）</h3><p>賢さはクラウドから借り、<b>間つなぎ＋オンデバイス</b>で沈黙を消す。</p></div>
+        <div class="card"><h3>🏠×☁️ ローカル司令官＋クラウド（大谷）</h3><p>フロントは<b>ローカルGemma4で1〜2秒即応</b>。深い推論だけクラウドに任せ、<b>フィラー</b>で沈黙を消す。</p></div>
         <div class="card" style="background:#eaf3ff;border-color:#b9d6f5"><h3>🏠 フルローカル（A-Uta さん）</h3><p><b>CPU/NPU/GPU総動員</b>で、ネット無しでも会話が成立。</p></div>
       </div>
       <ul style="margin-top:.7em">
