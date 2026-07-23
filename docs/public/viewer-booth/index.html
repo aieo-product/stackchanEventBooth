@@ -1,0 +1,187 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>撮影ブース（LT会場ジオラマ）組立シミュレーター</title>
+<style>
+  :root { --bg:#1a1d24; --panel:#242833; --text:#e8eaf0; --muted:#9aa0b0; --accent:#4da3ff; }
+  * { box-sizing:border-box; margin:0; padding:0; }
+  body { font-family:"Hiragino Sans","Noto Sans JP",sans-serif; background:var(--bg); color:var(--text); overflow:hidden; }
+  #canvas-wrap { position:fixed; inset:0; }
+  #panel {
+    position:fixed; top:0; right:0; width:300px; height:100vh; overflow-y:auto;
+    background:var(--panel); padding:16px; box-shadow:-2px 0 12px rgba(0,0,0,.4); z-index:10;
+  }
+  #panel h1 { font-size:15px; margin-bottom:4px; }
+  #panel .sub { font-size:11px; color:var(--muted); margin-bottom:14px; }
+  .section { margin-bottom:16px; }
+  .section h2 { font-size:12px; color:var(--accent); margin-bottom:8px; border-bottom:1px solid #333a4a; padding-bottom:4px; }
+  .part-row { display:flex; align-items:center; gap:8px; padding:4px 2px; font-size:12.5px; }
+  .part-row:hover { background:#2c3140; border-radius:6px; }
+  .part-row input[type=checkbox] { accent-color:var(--accent); }
+  .swatch { width:12px; height:12px; border-radius:3px; flex:none; }
+  .part-name { flex:1; cursor:pointer; user-select:none; }
+  .part-row input[type=range] { width:70px; accent-color:var(--accent); }
+  .global-row { display:flex; align-items:center; gap:8px; font-size:12.5px; margin-bottom:8px; }
+  .global-row label { flex:1; }
+  .global-row input[type=range] { width:130px; accent-color:var(--accent); }
+  button.mode {
+    background:#2c3140; color:var(--text); border:1px solid #3a4155; border-radius:8px;
+    padding:6px 10px; font-size:12px; cursor:pointer; margin-right:6px; margin-bottom:6px;
+  }
+  button.mode.active { background:var(--accent); color:#08101d; border-color:var(--accent); }
+  #loading { position:fixed; inset:0; display:flex; align-items:center; justify-content:center;
+    background:var(--bg); z-index:20; font-size:14px; color:var(--muted); flex-direction:column; gap:12px; }
+  #loadbar { width:220px; height:6px; background:#2c3140; border-radius:3px; overflow:hidden; }
+  #loadbar>div { height:100%; width:0%; background:var(--accent); transition:width .2s; }
+  #hint { position:fixed; left:12px; bottom:10px; font-size:11px; color:var(--muted); z-index:5; }
+  @media (max-width:700px){ #panel{ width:230px; padding:10px; } }
+</style>
+</head>
+<body>
+<div id="loading"><div>モデル読み込み中…</div><div id="loadbar"><div></div></div></div>
+<div id="canvas-wrap"></div>
+<div id="hint">ドラッグ=回転 / ホイール=ズーム / 右ドラッグ=移動 / パーツ名クリック=単独表示⇔全表示</div>
+<div id="panel">
+  <h1>🎤 撮影ブース（LT会場ジオラマ）</h1>
+  <div class="sub">組立シミュレーター（設計CADと同一データ）。スクリーンの紙=139×117 / 演台ロゴ紙=43×25</div>
+
+  <div class="section">
+    <h2>表示モード</h2>
+    <button class="mode" id="btn-solid">通常</button>
+    <button class="mode" id="btn-xray">透視（内部構造）</button>
+    <button class="mode" id="btn-turntable">自動回転</button>
+  </div>
+
+  <div class="section">
+    <h2>分解ビュー</h2>
+    <div class="global-row"><label>分解距離</label><input type="range" id="explode" min="0" max="100" value="0"></div>
+    <div class="global-row"><label>全体の透明度</label><input type="range" id="gopacity" min="10" max="100" value="100"></div>
+  </div>
+
+  <div class="section">
+    <h2>パーツ（☑表示 / スライダー=透明度）</h2>
+    <div id="parts"></div>
+  </div>
+</div>
+
+<script type="importmap">
+{ "imports": {
+    "three": "https://unpkg.com/three@0.160.0/build/three.module.js",
+    "three/addons/": "https://unpkg.com/three@0.160.0/examples/jsm/"
+} }
+</script>
+<script type="module">
+import * as THREE from 'three';
+import { OrbitControls } from 'three/addons/controls/OrbitControls.js';
+import { STLLoader } from 'three/addons/loaders/STLLoader.js';
+
+const MODEL_BASE = '../models/booth/';
+const scene = new THREE.Scene();
+scene.background = new THREE.Color(0x1a1d24);
+
+const camera = new THREE.PerspectiveCamera(45, innerWidth/innerHeight, 1, 5000);
+camera.position.set(420, -420, 330);
+camera.up.set(0, 0, 1);
+
+const renderer = new THREE.WebGLRenderer({ antialias:true });
+renderer.setPixelRatio(devicePixelRatio);
+renderer.setSize(innerWidth, innerHeight);
+document.getElementById('canvas-wrap').appendChild(renderer.domElement);
+
+const controls = new OrbitControls(camera, renderer.domElement);
+controls.target.set(0, 0, 170);
+controls.enableDamping = true;
+
+scene.add(new THREE.HemisphereLight(0xffffff, 0x30364a, 1.0));
+const key = new THREE.DirectionalLight(0xffffff, 1.6); key.position.set(300, -350, 500); scene.add(key);
+const fill = new THREE.DirectionalLight(0xaac4ff, 0.5); fill.position.set(-350, 250, 200); scene.add(fill);
+
+const grid = new THREE.GridHelper(900, 30, 0x39415a, 0x272c3a);
+grid.rotation.x = Math.PI/2; scene.add(grid);
+
+const parts = [];   // {id,name,color,explode,mesh,center,visible,opacity}
+const listEl = document.getElementById('parts');
+const loadbar = document.querySelector('#loadbar>div');
+
+const manifest = await (await fetch(MODEL_BASE + 'manifest.json')).json();
+const loader = new STLLoader();
+let done = 0;
+
+await Promise.all(manifest.map(async (m) => {
+  const geo = await loader.loadAsync(MODEL_BASE + m.file);
+  geo.computeVertexNormals();
+  const mat = new THREE.MeshStandardMaterial({
+    color: new THREE.Color(m.color || '#cccccc'),
+    roughness: 0.55, metalness: 0.08, transparent: true, opacity: 1.0,
+  });
+  const mesh = new THREE.Mesh(geo, mat);
+  geo.computeBoundingBox();
+  const c = new THREE.Vector3(); geo.boundingBox.getCenter(c);
+  scene.add(mesh);
+  parts.push({ ...m, mesh, center:c, visible:true, opacity:1 });
+  loadbar.style.width = `${(++done / manifest.length) * 100}%`;
+}));
+parts.sort((a,b) => manifest.findIndex(x=>x.id===a.id) - manifest.findIndex(x=>x.id===b.id));
+document.getElementById('loading').style.display = 'none';
+
+// ---- UI ----
+let soloId = null;
+for (const p of parts) {
+  const row = document.createElement('div'); row.className = 'part-row';
+  const cb = document.createElement('input'); cb.type='checkbox'; cb.checked=true;
+  cb.onchange = () => { p.visible = cb.checked; soloId = null; applyState(); };
+  const sw = document.createElement('div'); sw.className='swatch'; sw.style.background=p.color;
+  const nm = document.createElement('div'); nm.className='part-name'; nm.textContent=p.name;
+  nm.onclick = () => { soloId = (soloId === p.id) ? null : p.id; applyState(); };
+  const op = document.createElement('input'); op.type='range'; op.min=10; op.max=100; op.value=100;
+  op.oninput = () => { p.opacity = op.value/100; applyState(); };
+  row.append(cb, sw, nm, op); listEl.appendChild(row);
+  p._cb = cb;
+}
+
+let xray = false, turntable = false, explodeF = 0, gOpacity = 1;
+const btnSolid = document.getElementById('btn-solid');
+const btnXray  = document.getElementById('btn-xray');
+const btnTurn  = document.getElementById('btn-turntable');
+btnSolid.classList.add('active');
+btnSolid.onclick = () => { xray=false; btnSolid.classList.add('active'); btnXray.classList.remove('active'); applyState(); };
+btnXray.onclick  = () => { xray=true;  btnXray.classList.add('active');  btnSolid.classList.remove('active'); applyState(); };
+btnTurn.onclick  = () => { turntable=!turntable; btnTurn.classList.toggle('active', turntable); };
+document.getElementById('explode').oninput  = (e) => { explodeF = e.target.value/100; applyState(); };
+document.getElementById('gopacity').oninput = (e) => { gOpacity = e.target.value/100; applyState(); };
+
+function applyState() {
+  for (const p of parts) {
+    const solo = soloId !== null;
+    const show = solo ? (p.id === soloId) : p.visible;
+    p.mesh.visible = show;
+    p._cb.checked = show;
+    const base = xray ? 0.28 : 1.0;
+    p.mesh.material.opacity = base * p.opacity * gOpacity;
+    p.mesh.material.depthWrite = p.mesh.material.opacity > 0.85;
+    const d = 90 * explodeF;
+    const e = p.explode || [0,0,0];
+    p.mesh.position.set(e[0]*d, e[1]*d, e[2]*d);
+  }
+}
+
+renderer.setAnimationLoop(() => {
+  if (turntable) {
+    const t = Date.now() * 0.00025;
+    const r = Math.hypot(camera.position.x, camera.position.y);
+    camera.position.x = r * Math.cos(t);
+    camera.position.y = r * Math.sin(t);
+    camera.lookAt(controls.target);
+  }
+  controls.update();
+  renderer.render(scene, camera);
+});
+addEventListener('resize', () => {
+  camera.aspect = innerWidth/innerHeight; camera.updateProjectionMatrix();
+  renderer.setSize(innerWidth, innerHeight);
+});
+</script>
+</body>
+</html>

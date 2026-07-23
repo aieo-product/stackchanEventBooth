@@ -69,6 +69,7 @@ features:
 - 💡 [**アイディア**](/ideas)：**LLM Moduleで低レイテンシー会話デモ**、**当日イベント案内・同フロア連携**など
 - 🎤 [**LT企画**](/lt)：15分LT「**スタックチャンの歴史 → Module-LLMの苦労話 → ローカルLLM実装**」（2人リレー構成）の構成・進め方
 - 🖥️ [**LTスライド（発表資料）**](/slides/lt.html){target="_blank"}：リッチHTML全20枚。ブラウザでそのまま投影可
+- 🎤 [**撮影ブース 3Dシミュレーター（LT会場ジオラマ）**](/viewer-booth/){target="_blank"}：登壇スタックチャン・演台・ステージ・スクリーンパネルの配置を3Dで確認
 - 📺 [**フォトウォール（当日投影用）**](/photowall/){target="_blank"}：<b>#ｽﾀｯｸﾁｬﾝ写真館 #AIDevDay</b> 付きXポストの写真を10秒ごとにスライドショー表示。`F`キーで全画面（[サンプル表示](/photowall/?data=posts.sample.json){target="_blank"}）
 
 ## イベント情報

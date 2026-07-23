@@ -165,6 +165,18 @@ viewer-models:
 	done
 	@ls -l $(VIEWER)/*.stl | awk '{printf "  %-28s %8.1f KB\n", $$9, $$5/1024}'
 
+BOOTH_VIEWER := ../docs/public/models/booth
+BOOTH_VIEWER_PARTS := floor stage podium robot screen wall-side stands
+
+viewer-models-booth:
+	@mkdir -p $(BOOTH_VIEWER)
+	@for p in $(BOOTH_VIEWER_PARTS); do \
+	  echo "  viewer $$p"; \
+	  $(OPENSCAD) -D '$$fn=40' -D "PART=\"$$p\"" --export-format binstl \
+	    -o $(BOOTH_VIEWER)/$$p.stl booth/assembly.scad 2>/dev/null || exit 1; \
+	done
+	@ls -l $(BOOTH_VIEWER)/*.stl | awk '{printf "  %-28s %8.1f KB\n", $$9, $$5/1024}'
+
 # --- checks / cleanup -----------------------------------------------------
 check: all swing-test
 	python3 check_dims.py $(OUT)
