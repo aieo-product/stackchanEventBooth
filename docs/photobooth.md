@@ -1,6 +1,15 @@
 # 簡易撮影ブース（3Dプリント製・学校ジオラマ）
 
-> 🆕 <b>2026-07-23 方針転換</b>: 当日は「オフィス風LT会場」ジオラマ構成で組みます（登壇スタックチャン＋演台＋ステージ＋紙差し替え式スクリーンパネル）。構成は **[🎤 3D組立シミュレーター（LT会場）](/viewer-booth/){target="_blank"}** で確認できます。以下の学校ジオラマ記述は元計画の記録です。
+> 🆕 <b>2026-07-23 方針転換</b>: 当日は「オフィス風LT会場」ジオラマ構成で組みます。<b>床4枚（コーナーソケット×2＋ソケット×2）＋スクリーン壁L/R＋窓壁×2＋通常壁×2＋演台＋ステージ</b>、壁は床タイルに直差し込み・ブースパーツは0.6ノズル高速印刷。以下の学校ジオラマ記述は元計画の記録です。
+
+<div style="display:flex;gap:12px;flex-wrap:wrap;margin:12px 0;">
+  <a href="/viewer-booth/" target="_blank" style="display:inline-block;padding:10px 18px;background:#1D76DB;color:#fff;border-radius:8px;font-weight:700;text-decoration:none;">🎤 3D組立シミュレーターを開く（スクリーンに実バナー表示）</a>
+  <a href="/dl/lt-paper-a4.pdf" target="_blank" style="display:inline-block;padding:10px 18px;background:#444;color:#fff;border-radius:8px;font-weight:700;text-decoration:none;">📄 スクリーン紙・ロゴ紙のA4印刷PDF</a>
+</div>
+
+<div style="display:flex;justify-content:center;margin:8px 0 16px;">
+  <img src="/img/booth/lt-banner.png" alt="スクリーン壁に差し込むバナー紙（スタックチャンLT会！・AI Dev Day 2026ロゴ入り）" style="max-width:680px;width:100%;border-radius:8px;" />
+</div>
 
 着せ替えたスタックチャンを置いて記念撮影できる、卓上サイズの撮影ブースです。コンセプトは「**スタックチャンが現実世界で生活してる**」×「**Happy Birthday**」＝ **教室でお誕生日会** のジオラマ。床・壁を**3Dプリントで質感表現**し、装飾は画像プリント＋100円ショップ品で仕上げます（2026-07-15 方針変更：ボード工作 → 3Dプリント化、[Issue #13](https://github.com/aieo-product/stackchanEventBooth/issues/13)）。
 

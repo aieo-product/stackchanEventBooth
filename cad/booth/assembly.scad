@@ -3,13 +3,12 @@
 // browser assembly viewer (three.js), same pipeline as ferris/assembly.scad.
 //   - origin = centre of the 2x2 floor-tile area, z=0 on the table
 //   - audience side = -Y, screen wall at the back (+Y), window wall left (-X)
-// 7/23 rev2: walls plug DIRECTLY into socket-curb floor tiles (no stands).
-//   back-left tile  = socket -> screen wall
-//   back-right tile = socket -> plain wall
-//   front-left tile = socket rotated -90 -> window wall on the -X edge
-//   front-right     = plain tile
+// 7/23 rev3: 6 walls on a 2x2 floor, all plugged into socket curbs.
+//   back-left/right = CORNER tiles (curbs +Y and side) -> screen L/R + 1 side wall each
+//   front-left/right = single-socket tiles rotated -> side walls
+//   left column = window walls x2, right column = plain walls x2, front open
 // Export groups (Makefile `viewer-models-booth`, docs/public/models/booth/):
-//   floor, stage, podium, robot, screen-wall, plain-wall, window-wall
+//   floor, stage, podium, robot, screen-l, screen-r, window-walls, plain-walls
 
 include <../params.scad>;
 use <floor_tile.scad>;
@@ -29,10 +28,10 @@ tc = tile_x / 2;                          // 75
 
 module a_floor() {
     color("burlywood") {
-        translate([-tc,  tc, 0]) wall_socket_tile();                      // back-left  (screen L)
-        translate([ tc,  tc, 0]) wall_socket_tile();                      // back-right (screen R)
-        translate([-tc, -tc, 0]) rotate([0, 0, 90]) wall_socket_tile();   // front-left, curb on -X (window)
-        translate([ tc, -tc, 0]) rotate([0, 0, -90]) wall_socket_tile();  // front-right, curb on +X (plain)
+        translate([-tc,  tc, 0]) corner_socket_tile();                    // back-left: curbs +Y,-X
+        translate([ tc,  tc, 0]) rotate([0, 0, -90]) corner_socket_tile();// back-right: curbs +X,+Y
+        translate([-tc, -tc, 0]) rotate([0, 0, 90]) wall_socket_tile();   // front-left: curb -X
+        translate([ tc, -tc, 0]) rotate([0, 0, -90]) wall_socket_tile();  // front-right: curb +X
     }
 }
 
@@ -74,17 +73,17 @@ module a_screen_r() {
             standing("screen-r");
 }
 
-module a_plain_wall() {
-    // right side (front-right tile, curb on +X); faces inward (-X)
-    color("gainsboro")
-        translate([wall_yp + wall_t/2, 0, wall_z])
+module a_plain_walls() {
+    // right column x2; face inward (-X)
+    color("gainsboro") for (yy = [0, tile_y])
+        translate([wall_yp + wall_t/2, yy, wall_z])
             rotate([0, 0, -90]) standing("plain");
 }
 
-module a_window_wall() {
-    // front-left tile, curb on its -X edge -> wall plane along Y
-    color("lightgray")
-        translate([-(wall_yp + wall_t/2), -tile_y, wall_z])
+module a_window_walls() {
+    // left column x2; face inward (+X)
+    color("lightgray") for (yy = [-tile_y, 0])
+        translate([-(wall_yp + wall_t/2), yy, wall_z])
             rotate([0, 0, 90]) standing("window");
 }
 
@@ -94,9 +93,9 @@ else if (PART == "podium")      a_podium();
 else if (PART == "robot")       a_robot();
 else if (PART == "screen-l")    a_screen_l();
 else if (PART == "screen-r")    a_screen_r();
-else if (PART == "plain-wall")  a_plain_wall();
-else if (PART == "window-wall") a_window_wall();
+else if (PART == "plain-walls")  a_plain_walls();
+else if (PART == "window-walls") a_window_walls();
 else {
     a_floor(); a_stage(); a_podium(); a_robot();
-    a_screen_l(); a_screen_r(); a_plain_wall(); a_window_wall();
+    a_screen_l(); a_screen_r(); a_plain_walls(); a_window_walls();
 }

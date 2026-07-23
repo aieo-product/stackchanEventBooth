@@ -45,7 +45,7 @@
 <div id="hint">ドラッグ=回転 / ホイール=ズーム / 右ドラッグ=移動 / パーツ名クリック=単独表示⇔全表示</div>
 <div id="panel">
   <h1>🎤 撮影ブース（LT会場ジオラマ）</h1>
-  <div class="sub">組立シミュレーター（設計CADと同一データ）。スクリーンの紙=139×117 / 演台ロゴ紙=43×25</div>
+  <div class="sub">組立シミュレーター（設計CADと同一データ）。スクリーンの紙=288×117（A4横・2枚跨ぎ） / 演台ロゴ紙=43×25 / ブースパーツは0.6ノズル印刷</div>
 
   <div class="section">
     <h2>表示モード</h2>
@@ -125,6 +125,20 @@ await Promise.all(manifest.map(async (m) => {
 }));
 parts.sort((a,b) => manifest.findIndex(x=>x.id===a.id) - manifest.findIndex(x=>x.id===b.id));
 document.getElementById('loading').style.display = 'none';
+
+// ---- スクリーン壁に実物のバナー紙(288x117)をテクスチャ表示 ----
+{
+  const tex = new THREE.TextureLoader().load('../img/booth/lt-banner.png');
+  if ('SRGBColorSpace' in THREE) tex.colorSpace = THREE.SRGBColorSpace;
+  const paper = new THREE.Mesh(
+    new THREE.PlaneGeometry(288, 117),
+    new THREE.MeshBasicMaterial({ map: tex })
+  );
+  // 紙チャンネル位置: 壁面 y=147.5 の前枠(1.2)の奥 y≈144.3、下端 z=18
+  paper.position.set(0, 144.3, 18 + 117 / 2);
+  paper.rotation.x = Math.PI / 2;   // XY平面 → XZ平面(法線-Y=観客向き)
+  scene.add(paper);
+}
 
 // ---- UI ----
 let soloId = null;

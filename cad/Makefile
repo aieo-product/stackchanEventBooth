@@ -31,6 +31,7 @@ BOOTH_STL := \
 	$(BOOTH)/wall-screen-r.stl \
 	$(BOOTH)/wall-plain.stl \
 	$(BOOTH)/floor-tile-wall.stl \
+	$(BOOTH)/floor-tile-corner.stl \
 	$(BOOTH)/podium.stl \
 	$(BOOTH)/stage.stl \
 	$(BOOTH)/stand-clips.stl
@@ -43,6 +44,8 @@ $(BOOTH)/wall-screen-r.stl: booth/wall_panel.scad $(COMMON)
 	$(OPENSCAD) -D 'variant="screen-r"' -o $@ $<
 $(BOOTH)/floor-tile-wall.stl: booth/floor_tile.scad $(COMMON)
 	$(OPENSCAD) -D 'variant="wall"' -o $@ $<
+$(BOOTH)/floor-tile-corner.stl: booth/floor_tile.scad $(COMMON)
+	$(OPENSCAD) -D 'variant="corner"' -o $@ $<
 
 $(BOOTH)/wall-screen.stl: booth/wall_panel.scad $(COMMON)
 	$(OPENSCAD) -D 'variant="screen"' -o $@ $<
@@ -178,7 +181,7 @@ viewer-models:
 	@ls -l $(VIEWER)/*.stl | awk '{printf "  %-28s %8.1f KB\n", $$9, $$5/1024}'
 
 BOOTH_VIEWER := ../docs/public/models/booth
-BOOTH_VIEWER_PARTS := floor stage podium robot screen-l screen-r plain-wall window-wall
+BOOTH_VIEWER_PARTS := floor stage podium robot screen-l screen-r plain-walls window-walls
 
 viewer-models-booth:
 	@mkdir -p $(BOOTH_VIEWER)

@@ -225,6 +225,7 @@ groove_d      = 0.6;                 // plank seam depth
 groove_w      = 0.6;                 // plank seam width
 sock_w        = 10;                  // wall-socket curb width (7/23 LT diorama)
 sock_h        = 13;                  // curb height incl. tile (tab 12 -> 1 mm above table)
+sock_play     = 1.2;                 // slot clearance over tab/panel nominal (7/23: booth prints on the 0.6 nozzle -> looser than the 0.4-nozzle 0.8)
 
 // --- Wall panel (150 x 125 x t5), 3 variants -------------------------------
 wall_x        = 150;

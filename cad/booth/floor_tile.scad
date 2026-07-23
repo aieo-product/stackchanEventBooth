@@ -22,7 +22,7 @@ module planks() {
             cube([plank_w, groove_w, groove_d + 0.1]);
 }
 
-variant = "plain";            // "plain" | "wall" (socket curb on the +Y edge)
+variant = "plain";            // "plain" | "wall" (+Y curb) | "corner" (+Y and -X curbs)
 
 module floor_tile() {
     difference() {
@@ -46,20 +46,32 @@ module floor_tile() {
 // 7/23 LT-diorama: wall panels plug straight into the floor (no stands).
 // A raised socket curb on the +Y edge takes the panel's two bottom tabs
 // (20 x 5 at +/-40) -> ~12 mm engagement instead of the bare 3 mm tile.
-module wall_socket_tile() {
+module curb_y() {
+    // curb + two tab slots on the +Y edge (panel rests on the curb top at
+    // z=13; tabs reach z=1, just above the table)
     difference() {
-        union() {
-            floor_tile();
-            translate([-tile_x/2, tile_y/2 - sock_w, 0])
-                cube([tile_x, sock_w, sock_h]);
-        }
-        // two tab slots, through the curb and tile (panel rests on the curb
-        // top at z=13; tabs reach z=1, just above the table)
+        translate([-tile_x/2, tile_y/2 - sock_w, 0]) cube([tile_x, sock_w, sock_h]);
         for (o = [-40, 40])
-            translate([o - (wall_tab_w + 0.8)/2, tile_y/2 - sock_w/2 - (wall_t + 0.8)/2, -1])
-                cube([wall_tab_w + 0.8, wall_t + 0.8, sock_h + 2]);
+            translate([o - (wall_tab_w + sock_play)/2,
+                       tile_y/2 - sock_w/2 - (wall_t + sock_play)/2, -1])
+                cube([wall_tab_w + sock_play, wall_t + sock_play, sock_h + 2]);
     }
 }
 
-if (variant == "wall") wall_socket_tile();
-else                   floor_tile();
+module wall_socket_tile() {
+    union() { floor_tile(); curb_y(); }
+}
+
+module corner_socket_tile() {
+    // curbs on +Y AND -X (the two back corner tiles hold two walls each;
+    // the -90 deg rotated copy serves the opposite corner)
+    union() {
+        floor_tile();
+        curb_y();
+        rotate([0, 0, 90]) curb_y();    // -X edge
+    }
+}
+
+if (variant == "wall")        wall_socket_tile();
+else if (variant == "corner") corner_socket_tile();
+else                          floor_tile();

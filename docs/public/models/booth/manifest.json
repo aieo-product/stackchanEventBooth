@@ -1,10 +1,10 @@
 [
- {"id": "floor",       "file": "floor.stl",       "name": "床タイル2×2（全てソケット付）",  "color": "#DEB887", "explode": [0, 0, -1],    "group": "structure"},
- {"id": "stage",       "file": "stage.stl",       "name": "ステージ台",                      "color": "#708090", "explode": [0, 0, -0.4],  "group": "structure"},
- {"id": "podium",      "file": "podium.stl",      "name": "演台（ロゴ紙43×25）",             "color": "#F8F8F8", "explode": [0, -1, 0],    "group": "stage"},
- {"id": "robot",       "file": "robot.stl",       "name": "スタックチャン（K151・登壇者）",   "color": "#B0C4DE", "explode": [0, 0, 1],     "group": "stage"},
- {"id": "screen-l",    "file": "screen-l.stl",    "name": "スクリーン壁L（ダブテール凸）",    "color": "#FFFFF0", "explode": [-0.6, 1, 0.3], "group": "wall"},
- {"id": "screen-r",    "file": "screen-r.stl",    "name": "スクリーン壁R（紙は2枚跨ぎ288×117）", "color": "#FFFFF0", "explode": [0.6, 1, 0.3], "group": "wall"},
- {"id": "plain-wall",  "file": "plain-wall.stl",  "name": "通常壁（右側面・差込）",          "color": "#DCDCDC", "explode": [1, 0, 0.3],   "group": "wall"},
- {"id": "window-wall", "file": "window-wall.stl", "name": "窓付き壁（左側面・差込）",        "color": "#D3D3D3", "explode": [-1, 0, 0.3],  "group": "wall"}
+ {"id": "floor",        "file": "floor.stl",        "name": "床タイル2×2（コーナー×2＋ソケット×2）", "color": "#DEB887", "explode": [0, 0, -1],    "group": "structure"},
+ {"id": "stage",        "file": "stage.stl",        "name": "ステージ台",                        "color": "#708090", "explode": [0, 0, -0.4],  "group": "structure"},
+ {"id": "podium",       "file": "podium.stl",       "name": "演台（ロゴ紙43×25）",               "color": "#F8F8F8", "explode": [0, -1, 0],    "group": "stage"},
+ {"id": "robot",        "file": "robot.stl",        "name": "スタックチャン（K151・登壇者）",     "color": "#B0C4DE", "explode": [0, 0, 1],     "group": "stage"},
+ {"id": "screen-l",     "file": "screen-l.stl",     "name": "スクリーン壁L（ダブテール凸）",      "color": "#FFFFF0", "explode": [-0.6, 1, 0.3], "group": "wall"},
+ {"id": "screen-r",     "file": "screen-r.stl",     "name": "スクリーン壁R（紙288×117跨ぎ）",     "color": "#FFFFF0", "explode": [0.6, 1, 0.3], "group": "wall"},
+ {"id": "window-walls", "file": "window-walls.stl", "name": "窓付き壁×2（左側面）",              "color": "#D3D3D3", "explode": [-1, 0, 0.3],  "group": "wall"},
+ {"id": "plain-walls",  "file": "plain-walls.stl",  "name": "通常壁×2（右側面）",                "color": "#DCDCDC", "explode": [1, 0, 0.3],   "group": "wall"}
 ]
