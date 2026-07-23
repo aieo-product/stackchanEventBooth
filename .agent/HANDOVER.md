@@ -32,9 +32,10 @@
 - /photowall/ 1枚10秒スライドショー・60秒毎posts.json再取得・Fで全画面。7/21実Xポストでリハ成功済(Chrome拡張+Xログイン要)
 - 更新手順=`scripts/photowall/README.md`(スクレイピングはmedia ID形式でDLP回避)。除外=ban.json
 
-## スライド(別セッションで修正作業中)
-- 実体: `slides/lt.html`(リポジトリ直下)→ビルドで docs/public/slides/ へ。本番 /slides/lt.html
-- **#22ゲストスライド**: @livinoffwater さん素材待ち(期限今日)。届いたら`<h1>Module-LLMの苦労話 🛠️</h1>`章扉の**直前**に1枚挿入→デプロイ
+## スライド(7/23昼 再構成デプロイ済み・25枚)
+- 実体: `docs/public/slides/lt.html`(生HTML・ビルドで dist へコピー)。本番 /slides/lt.html
+- 7/23再構成: ①歴史に「5歳お誕生日会」「OpenAI公式CM登場(@OpenAIDevs Build Week動画)」追加 / ②を新フロー化: 2.5mmケーブル入手難(6月出荷分から同梱)→MeloTTS挫折→Kokoroチューニング→フィラー0ms→最新音声ルート全体図SVG→Gemma4司令官(9〜27秒→1〜2秒)→AIEO構想(aieo-robot.pages.dev)→Utaさんへバトン。素材元=baseIdea/stackChan/(未コミット・slides/assetsに変換済コピーをコミット)
+- **#22ゲストスライド**: @livinoffwater さん素材待ち(期限今日)。届いたら`<h1>Module-LLMの苦労話 🛠️</h1>`章扉の**直前**に1枚挿入→デプロイ(アンカーは再構成後も不変)
 - **markdown-it罠**(docsのみ): `**…（…）**`+CJK隣接→`<b>`使用。lt.htmlは生HTMLなので無関係
 
 ## 定型作業
