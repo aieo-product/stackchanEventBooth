@@ -385,28 +385,29 @@ MakerWorldの既存観覧車を調査した結果（8件・詳細は [Issue #12]
 
 > 経費は [経費まとめ](/expenses) に反映済み。印刷ジョブは [`print/print-list.yaml`](https://github.com/aieo-product/stackchanEventBooth/blob/main/print/print-list.yaml) の `ferris-*` を参照（STL確定後に有効化）。
 
-## 🛒 最終購入リスト（2026-07-23 買い出し・確定版）
+## 🛒 最終購入リスト（2026-07-23 最小構成に確定）
 
-7/13 Amazon注文の遅延（7/27着）対応＋<b>LED配線不点灯の対策</b>（7/22夜に実機確認: SMコネクタの相手側が無く仮結線・DOUT側接続が原因）を合わせた確定リスト。<b>全品が千石電商 秋葉原本店1軒で揃います</b>（外神田1-8-6・11:00〜19:00・03-3253-4411）。在庫拠点=秋葉原を商品ページで確認済み（2026-07-23時点・店頭数は要電話確認）。
+<b>7/23 昼の強度見直しで最小構成に絞り込み</b>: フィットテストで嵌合がきつめ＝摩擦固定が効くこと、手回し低速で軸受精度が不要なことから、<b>締結は「リムを繋ぐM3ネジ」だけ</b>に削減。買い出しは千石電商 秋葉原本店1軒（外神田1-8-6・11:00〜19:00・03-3253-4411）。
 
-### 千石電商 秋葉原本店
+### 買うもの（最小構成・約¥2,200）
 
 | ✔ | 売場 | 品目 | 数量 | 価格 | 商品リンク | 用途 |
 |---|---|---|---|--:|---|---|
-| ☐ | 3階 メカトロ | ミネベア 608ZZ ベアリング | 3個 | ¥663 | [EEHD-4JWX](https://www.sengoku.co.jp/mod/sgk_cart/detail.php?code=EEHD-4JWX) | 支柱上端Φ22.2ポケット×2＋予備1 |
-| ☐ | 2階 ネジ | 鉄ナベ小ネジ M3×8（50本入） | 1袋 | ¥650 | [EEHD-6MP4](https://www.sengoku.co.jp/mod/sgk_cart/detail.php?code=EEHD-6MP4) | リム継手16本＋スポーク⇔ハブ16本＋予備（Φ2.9下穴セルフタップ） |
-| ☐ | 2階 ネジ | 鉄ナベ小ネジ M3×12（50本入） | 1袋 | ¥650 | [EEHD-6MP6](https://www.sengoku.co.jp/mod/sgk_cart/detail.php?code=EEHD-6MP6) | 支柱上下連結4本＋イモネジ穴の事前タップ立て＋予備 |
-| ☐ | 2階 ネジ | 鉄イモネジ（ホーロー）M3×8 | 10個 | ¥550 | [EEHD-6GTT](https://www.sengoku.co.jp/mod/sgk_cart/detail.php?code=EEHD-6GTT) | ハブ2枚×2本＋クランク2本＝使用6＋予備。<b>要六角レンチ1.5mm</b> |
-| ☐ | 2階 ネジ | 鉄蝶ボルト M3×12 | 6個 | ¥450 | [EEHD-6GGM](https://www.sengoku.co.jp/mod/sgk_cart/detail.php?code=EEHD-6GGM) | 支柱⇔ベース×2・ベース2分割連結（工具レス） |
-| ☐ | 2階 ネジ | 鉄蝶ボルト M3×8 | 4個 | ¥300 | [EEHD-6GGK](https://www.sengoku.co.jp/mod/sgk_cart/detail.php?code=EEHD-6GGK) | 長さ現物合わせ用のサブ |
-| ☐ | 2階 ネジ | M4×8 ネジ（セムス/トラス等可） | 4本 | 〜¥200 | [EEHD-6FGL](https://www.sengoku.co.jp/mod/sgk_cart/detail.php?code=EEHD-6FGL) | 印刷済みリム1号の旧Φ4.0継手穴の代替のみ |
-| ☐ | 1階 14番07列 | JST SM状コネクタ付ケーブル 3P オスメスセット（CAB-14575） | 3セット | ¥1,050 | [EEHD-57YB](https://www.sengoku.co.jp/mod/sgk_cart/detail.php?code=EEHD-57YB) | <b>メス側</b>をリムLEDテープのDin端（オス）に挿す×2＋予備1（¥350/セット） |
-| ☐ | 地下1階 | WAGO WFR-3 ワンタッチコネクター 3P | 4個 | ¥756 | [EEHD-4YR3](https://www.sengoku.co.jp/mod/sgk_cart/detail.php?code=EEHD-4YR3) | Grove赤→SM赤×2（5V分岐）・黒→黒×2（GND分岐）の3線結線＋予備（¥189/個） |
-| ☐ | 地下1階 | WAGO WFR-2 ワンタッチコネクター 2P | 4個 | ¥548 | [EEHD-4YMP](https://www.sengoku.co.jp/mod/sgk_cart/detail.php?code=EEHD-4YMP) | 信号線 白G2↔前リム緑Din・黄G1↔後リム緑Din の2線結線＋予備（¥137/個） |
-| ☐ | 工具売場 | 六角レンチ 1.5mm（手持ち無ければ） | 1本 | 〜¥300 | 店頭選定 | イモネジ用。<b>無いとシャフト固定不可</b> |
-| ☐ | （任意）2階 | 平ワッシャーM3 | 少量 | 〜¥100 | 店頭バラ | 蝶ボルト座面のPLA保護 |
+| ☐ | 2階 ネジ | 鉄ナベ小ネジ M3×8（50本入） | 1袋 | ¥650 | [EEHD-6MP4](https://www.sengoku.co.jp/mod/sgk_cart/detail.php?code=EEHD-6MP4) | <b>唯一の必須締結</b>。リム継手16本＋スポーク⇔ハブ16本＋予備（Φ2.9下穴セルフタップ） |
+| ☐ | 2階 ネジ | M4×8 ネジ（セムス/トラス等可） | 4本 | 〜¥200 | [EEHD-6FGL](https://www.sengoku.co.jp/mod/sgk_cart/detail.php?code=EEHD-6FGL) | 印刷済みリム1号の旧Φ4.0穴のみ（リム1号を使わないなら不要） |
+| ☐ | 1階 14番07列 | JST SM状コネクタ付ケーブル 3P オスメスセット（CAB-14575） | 2セット | ¥700 | [EEHD-57YB](https://www.sengoku.co.jp/mod/sgk_cart/detail.php?code=EEHD-57YB) | LED用。<b>メス側</b>をテープDin端（オス）に挿す×2（余裕あれば予備+1） |
+| ☐ | 地下1階 | WAGO WFR-3 ワンタッチコネクター 3P | 2個 | ¥378 | [EEHD-4YR3](https://www.sengoku.co.jp/mod/sgk_cart/detail.php?code=EEHD-4YR3) | LED用。5V分岐・GND分岐（¥189/個） |
+| ☐ | 地下1階 | WAGO WFR-2 ワンタッチコネクター 2P | 2個 | ¥274 | [EEHD-4YMP](https://www.sengoku.co.jp/mod/sgk_cart/detail.php?code=EEHD-4YMP) | LED用。信号線 白G2↔①Din・黄G1↔②Din（¥137/個） |
 
-<b>合計目安: 約¥6,200</b>（任意含む）
+### 買わない（省略の根拠・2026-07-23 強度見直し）
+
+| 品目 | 省略できる理由 | 滑った/緩んだ時のリカバリ |
+|---|---|---|
+| ~~608ZZベアリング~~ | 支柱のシャフト貫通穴は<b>Φ9.0</b>（CAD実測）— Φ8シャフトが直接乗る。ガタ約0.5mm・手回し低速では体感差なし | 現物合わせで気になればポケットに608を後日装着（7/27 Amazon便に同梱） |
+| ~~M3イモネジ＋六角レンチ~~ | クランク・ハブとも圧入がきつく摩擦固定で足りる（フィットテスト実測） | ハブ/クランクの<b>Φ2.9横穴にM3ネジを直接ねじ込む</b>（同じ50本袋で対応・頭は出るが機能する） |
+| ~~M3蝶ボルト~~ | 支柱・ベースは差し込みだけで自立安定 | 運搬時にガタつくならテープ養生で十分 |
+| ~~M3×12~~ | 支柱上下は角ダボ＋自重（圧縮方向）で保持 | 抜け方向が心配ならM3×8を短掛け |
+| ~~六角レンチ1.5mm・平ワッシャー~~ | イモネジ・蝶ボルト省略に伴い不要 | — |
 
 ### 任意・別店
 
