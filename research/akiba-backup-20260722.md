@@ -17,10 +17,10 @@
 | ☐ | 2階 ネジ | 鉄ナベ小ネジ M3×8（50本入） | 1袋 | ¥650 | [EEHD-6MP4](https://www.sengoku.co.jp/mod/sgk_cart/detail.php?code=EEHD-6MP4) | **唯一の必須締結**。リム継手16＋スポーク⇔ハブ16＋予備 |
 | ☐ | 2階 ネジ | M4×8 ネジ（セムス/トラス等可） | 4本 | 〜¥200 | [EEHD-6FGL](https://www.sengoku.co.jp/mod/sgk_cart/detail.php?code=EEHD-6FGL) | リム1号の旧Φ4.0穴のみ（リム1号を使わないなら不要） |
 
-**省略**（理由と滑った時のリカバリ）:
-- ~~608ZZ~~ → 支柱の貫通穴は**Φ9.0**でΦ8シャフトが直接乗る（ガタ0.5mm・手回しなら問題なし）
-- ~~イモネジ＋六角レンチ~~ → クランク/ハブは圧入固定。滑ったらΦ2.9横穴に同じM3ネジをねじ込む
-- ~~蝶ボルト~~ → 差し込みだけで自立安定。~~M3×12~~ → 角ダボ＋自重で保持
+**省略**（理由と滑った時のリカバリ。買うことにした場合のリンク付き）:
+- ~~608ZZ~~（[EEHD-4JWX](https://www.sengoku.co.jp/mod/sgk_cart/detail.php?code=EEHD-4JWX)・3階¥221/個）→ 支柱の貫通穴は**Φ9.0**でΦ8シャフトが直接乗る（ガタ0.5mm・手回しなら問題なし）
+- ~~イモネジ＋六角レンチ~~（[EEHD-6GTT](https://www.sengoku.co.jp/mod/sgk_cart/detail.php?code=EEHD-6GTT)・2階¥55/個）→ クランク/ハブは圧入固定。滑ったらΦ2.9横穴に同じM3ネジをねじ込む
+- ~~蝶ボルト~~（[M3×12: EEHD-6GGM](https://www.sengoku.co.jp/mod/sgk_cart/detail.php?code=EEHD-6GGM)／[M3×8: EEHD-6GGK](https://www.sengoku.co.jp/mod/sgk_cart/detail.php?code=EEHD-6GGK)・2階¥75/個）→ 差し込みだけで自立安定。~~M3×12~~（[EEHD-6MP6](https://www.sengoku.co.jp/mod/sgk_cart/detail.php?code=EEHD-6MP6)・50本¥650）→ 角ダボ＋自重で保持
 - LED配線材（下記）は**2セット/2個/2個に削減**（予備なし運用）
 
 ## LED配線（リムSK6812×2本 ⇔ AtomS3R）— 2026-07-23追記・必須
