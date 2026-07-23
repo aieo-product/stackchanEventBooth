@@ -1,16 +1,21 @@
-// ferris/crank.scad
-// Hand crank assembly, laid out side by side for a single print:
-//   1. crank body : hub (Ø8.2 shaft fit + M3 set-screw insert) + arm + grip post
-//   2. grip       : free-spinning sleeve Ø20 x 40 (E-ring groove on the post)
-//   3. damper     : C-clip friction damper that lightly pinches the Ø8 shaft
-// Shaft axis = Z (print flat). Arm swings in X-Y; grip spins on the Z post.
+// ferris/crank.scad (7/23 v2 - steel-rod handle)
+// The printed grip post snapped in testing -> the handle is now the SPARE
+// 8 mm stainless rod (the shafts came as a 2-pack): a stout boss at the arm
+// end takes the rod in a blind 8.2 socket locked by an M3 set screw. A
+// test-print sleeve (any 8.2-bore piece) slides over the rod as the grip.
+//   1. crank body : hub (8.2 bore + M3 set screw) + arm + rod socket boss
+//   2. damper     : C-clip friction damper (optional)
+// Shaft axis = Z (print flat).
 
 include <../params.scad>;
 use <../lib/dovetail.scad>;
 
 hub_h_c  = 16;
 arm_h    = crank_arm_t;        // 10
-post_h   = grip_h + 4;         // post a touch longer than the grip
+rod_boss_d = 18;               // handle boss around the rod socket
+rod_boss_h = 30;
+rod_sock_d = 8.4;              // spare-rod fit (a touch looser than the hub)
+rod_sock_depth = 26;           // blind socket from the boss top
 
 module crank_body() {
     difference() {
@@ -19,18 +24,18 @@ module crank_body() {
             translate([0, -crank_arm_w/2, 0])
                 cube([crank_arm_len, crank_arm_w, arm_h]);          // arm
             translate([crank_arm_len, 0, 0])
-                cylinder(d = 12, h = 4);                            // post boss
-            translate([crank_arm_len, 0, 0])
-                cylinder(d = grip_post_d, h = post_h);              // grip post
+                cylinder(d = rod_boss_d, h = rod_boss_h);           // rod socket boss
         }
         // shaft bore
         translate([0, 0, -1]) cylinder(d = crank_shaft_d, h = hub_h_c + 2);
         // radial M3 set-screw insert to the bore
         translate([crank_hub_d/2 + 2, 0, hub_h_c/2]) rotate([0, -90, 0])
             cylinder(d = crank_set_insert_d, h = crank_hub_d/2 + 3);
-        // E-ring groove near the post top
-        translate([crank_arm_len, 0, post_h - 4])
-            rotate_extrude() translate([grip_post_d/2 - 0.6, 0]) square([0.8, 1.0]);
+        // blind rod socket + radial M3 set screw
+        translate([crank_arm_len, 0, rod_boss_h - rod_sock_depth])
+            cylinder(d = rod_sock_d, h = rod_sock_depth + 1);
+        translate([crank_arm_len + rod_boss_d/2 + 1, 0, rod_boss_h - 12])
+            rotate([0, -90, 0]) cylinder(d = m3_thread, h = rod_boss_d/2 + 3);
     }
 }
 
@@ -56,7 +61,6 @@ module damper() {
     }
 }
 
-// layout for a single plate
+// layout for a single plate (grip sleeve = reuse any 8.2-bore test print)
 crank_body();
-translate([crank_arm_len + 35, 0, 0]) grip();
-translate([crank_arm_len + 75, 0, 0]) damper();
+translate([crank_arm_len + 45, 0, 0]) damper();
