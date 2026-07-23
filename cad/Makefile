@@ -19,6 +19,7 @@ FERRIS_STL := \
 	$(FERRIS)/tower-upper.stl \
 	$(FERRIS)/tower-lower.stl \
 	$(FERRIS)/base.stl \
+	$(FERRIS)/base-mini.stl \
 	$(FERRIS)/crank.stl \
 	$(FERRIS)/axle.stl
 
@@ -147,6 +148,8 @@ $(FERRIS)/tower-upper.stl: ferris/tower.scad $(COMMON)
 $(FERRIS)/tower-lower.stl: ferris/tower.scad $(COMMON)
 	$(OPENSCAD) -D 'part="lower"' -o $@ $<
 $(FERRIS)/base.stl: ferris/base.scad $(COMMON)
+	$(OPENSCAD) -o $@ $<
+$(FERRIS)/base-mini.stl: ferris/base_mini.scad $(COMMON)
 	$(OPENSCAD) -o $@ $<
 $(FERRIS)/crank.stl: ferris/crank.scad $(COMMON)
 	$(OPENSCAD) -o $@ $<
