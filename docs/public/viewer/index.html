@@ -64,6 +64,13 @@
     <h2>パーツ（☑表示 / スライダー=透明度）</h2>
     <div id="parts"></div>
   </div>
+
+  <div class="section">
+    <h2>接続パーツ（7/23 千石購入品）</h2>
+    <div class="global-row"><label>レイヤー表示</label><input type="checkbox" id="fast-all" checked></div>
+    <div id="fasteners"></div>
+    <div class="sub" style="margin-top:8px">●=取付位置の想定（概略）。品目・リンクは<a href="../ferris-wheel" style="color:var(--accent)">設計書の最終購入リスト</a></div>
+  </div>
 </div>
 
 <script type="importmap">
@@ -141,6 +148,87 @@ for (const p of parts) {
   p._cb = cb;
 }
 
+// ---- 接続パーツレイヤー（7/23 千石購入品の取付想定位置） ----
+// 座標系は assembly.scad と同一（原点=ベース底面中心・シャフト軸=Y・z上向き）。
+// STL実測: シャフト軸 z=293 / 支柱中心 y=±83 / リム継手ボス半径126 / スポークボルト円半径30。
+// evec は追従するパーツと同じ explode ベクトル（分解ビューで一緒に動く）。
+const SZ = 293, TY = 83, BOSS_R = 126, SPOKE_R = 30;
+const ring = (a, r) => [r * Math.cos(a * Math.PI / 180), r * Math.sin(a * Math.PI / 180)];
+const FASTENERS = [
+  { id:'f-608', name:'608ZZベアリング ×2＋予備', color:'#ffd43b', shape:'ring',
+    note:'支柱上端のΦ22.2ポケットに圧入。シャフトを受ける',
+    items:[ {p:[0, TY, SZ], e:[0,1,0]}, {p:[0,-TY, SZ], e:[0,-1,0]} ] },
+  { id:'f-m3-8', name:'M3×8 なべ（リム継手・スポーク）', color:'#ff6b6b', shape:'dot',
+    note:'リム継手ボス（Φ2.9下穴セルフタップ）＋スポーク⇔ハブ8穴×2枚',
+    items:[
+      ...[180,270].map(a => { const [x,z]=ring(a,BOSS_R); return {p:[x, 55, SZ+z], e:[0,1,0]}; }),
+      ...[0,90,180,270].map(a => { const [x,z]=ring(a,BOSS_R); return {p:[x,-55, SZ+z], e:[0,-1,0]}; }),
+      ...[...Array(8)].map((_,k) => { const [x,z]=ring(22.5+45*k,SPOKE_R); return {p:[x, 50, SZ+z], e:[0,1,0]}; }),
+      ...[...Array(8)].map((_,k) => { const [x,z]=ring(22.5+45*k,SPOKE_R); return {p:[x,-50, SZ+z], e:[0,-1,0]}; }),
+    ] },
+  { id:'f-m4', name:'M4×8 ×4（リム1号の旧Φ4.0穴のみ）', color:'#f06595', shape:'dot',
+    note:'印刷済みリム1号だけ旧インサート穴のためM4で代替',
+    items:[0,90].flatMap(a => { const [x,z]=ring(a,BOSS_R);
+      return [ {p:[x, 55, SZ+z], e:[0,1,0]}, {p:[x, 55, SZ+z-10], e:[0,1,0]} ]; }) },
+  { id:'f-m3-12', name:'M3×12（支柱 上下スプライス ×4）', color:'#845ef7', shape:'dot',
+    note:'角ダボ嵌合部を左右の脚でネジ留め（z=150付近）',
+    items:[
+      {p:[ 26, TY, 158], e:[0,1,0]}, {p:[-26, TY, 158], e:[0,1,0]},
+      {p:[ 26,-TY, 158], e:[0,-1,0]}, {p:[-26,-TY, 158], e:[0,-1,0]},
+    ] },
+  { id:'f-imo', name:'M3イモネジ ×6（ハブ・クランク）', color:'#ff922b', shape:'dot',
+    note:'Φ8シャフトへの radial 固定。要六角レンチ1.5mm。M3ネジで事前タップ',
+    items:[
+      {p:[0, 54, SZ+20], e:[0,0,1]}, {p:[20, 54, SZ], e:[0,0,1]},
+      {p:[0,-54, SZ+20], e:[0,0,1]}, {p:[20,-54, SZ], e:[0,0,1]},
+      {p:[0, 120, SZ+9], e:[0,1.2,0]}, {p:[13, 120, SZ], e:[0,1.2,0]},
+    ] },
+  { id:'f-thumb', name:'M3蝶ボルト ×6（支柱脚・ベース連結）', color:'#40c057', shape:'knob',
+    note:'現地組立で工具レス着脱する箇所',
+    items:[
+      {p:[ 48, TY, 23], e:[0,1,0]}, {p:[-48, TY, 23], e:[0,1,0]},
+      {p:[ 48,-TY, 23], e:[0,-1,0]}, {p:[-48,-TY, 23], e:[0,-1,0]},
+      {p:[ 50, 0, 18], e:[0,0,-1]}, {p:[-50, 0, 18], e:[0,0,-1]},
+    ] },
+  { id:'f-led', name:'LED配線（SMコネクタ・WAGO・AtomS3R）', color:'#22b8cf', shape:'knob',
+    note:'中央=AtomS3R＋バッテリー（ハブ同乗）／下端=テープDin端へSMメスを接続',
+    items:[
+      {p:[0, 0, SZ], e:[0,0,1]},
+      {p:[0, 55, SZ-150], e:[0,1,0]}, {p:[0,-55, SZ-150], e:[0,-1,0]},
+    ] },
+];
+const GEO = {
+  dot:  new THREE.SphereGeometry(4.5, 20, 14),
+  knob: new THREE.SphereGeometry(6, 20, 14),
+  ring: new THREE.TorusGeometry(11, 3.5, 12, 36),
+};
+const fastListEl = document.getElementById('fasteners');
+let fastLayerOn = true;
+for (const f of FASTENERS) {
+  const mat = new THREE.MeshStandardMaterial({
+    color: new THREE.Color(f.color), roughness: 0.35, metalness: 0.15,
+    emissive: new THREE.Color(f.color), emissiveIntensity: 0.35, transparent: true,
+  });
+  f.meshes = f.items.map(it => {
+    const m = new THREE.Mesh(GEO[f.shape], mat);
+    if (f.shape === 'ring') m.rotation.x = Math.PI / 2;   // 軸をY（シャフト方向）へ
+    m.userData = it;
+    m.position.set(...it.p);
+    scene.add(m);
+    return m;
+  });
+  f.visible = true;
+  const row = document.createElement('div'); row.className = 'part-row'; row.title = f.note;
+  const cb = document.createElement('input'); cb.type = 'checkbox'; cb.checked = true;
+  cb.onchange = () => { f.visible = cb.checked; applyState(); };
+  const sw = document.createElement('div'); sw.className = 'swatch'; sw.style.background = f.color;
+  const nm = document.createElement('div'); nm.className = 'part-name'; nm.textContent = f.name;
+  nm.onclick = () => { cb.checked = !cb.checked; cb.onchange(); };
+  row.append(cb, sw, nm); fastListEl.appendChild(row);
+  f._cb = cb;
+}
+document.getElementById('fast-all').onchange = (e) => { fastLayerOn = e.target.checked; applyState(); };
+
 let xray = false, turntable = false, explodeF = 0, gOpacity = 1;
 const btnSolid = document.getElementById('btn-solid');
 const btnXray  = document.getElementById('btn-xray');
@@ -164,6 +252,15 @@ function applyState() {
     const d = 90 * explodeF;
     const e = p.explode || [0,0,0];
     p.mesh.position.set(e[0]*d, e[1]*d, e[2]*d);
+  }
+  const fd = 90 * explodeF;
+  for (const f of FASTENERS) {
+    for (const m of f.meshes) {
+      m.visible = fastLayerOn && f.visible && soloId === null;
+      const [px, py, pz] = m.userData.p, [ex, ey, ez] = m.userData.e;
+      m.position.set(px + ex*fd, py + ey*fd, pz + ez*fd);
+      m.material.opacity = Math.max(0.9 * gOpacity, 0.35);
+    }
   }
 }
 
