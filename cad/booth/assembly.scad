@@ -29,10 +29,10 @@ tc = tile_x / 2;                          // 75
 
 module a_floor() {
     color("burlywood") {
-        translate([-tc,  tc, 0]) wall_socket_tile();                      // back-left
-        translate([ tc,  tc, 0]) wall_socket_tile();                      // back-right
-        translate([-tc, -tc, 0]) rotate([0, 0, 90]) wall_socket_tile();   // front-left, curb on -X
-        translate([ tc, -tc, 0]) floor_tile();                            // front-right
+        translate([-tc,  tc, 0]) wall_socket_tile();                      // back-left  (screen L)
+        translate([ tc,  tc, 0]) wall_socket_tile();                      // back-right (screen R)
+        translate([-tc, -tc, 0]) rotate([0, 0, 90]) wall_socket_tile();   // front-left, curb on -X (window)
+        translate([ tc, -tc, 0]) rotate([0, 0, -90]) wall_socket_tile();  // front-right, curb on +X (plain)
     }
 }
 
@@ -55,23 +55,30 @@ module a_robot() {
 module standing(v) {
     // panel stood upright (plane X-Z, tabs down)
     rotate([90, 0, 0])
-        if (v == "screen")      screen();
-        else if (v == "window") window();
-        else                    plainwall();
+        if (v == "screen-l")      screen_half("L");
+        else if (v == "screen-r") screen_half("R");
+        else if (v == "window")   window();
+        else                      plainwall();
 }
 
-module a_screen_wall() {
-    // back-left socket tile
+module a_screen_l() {
+    // back-left socket tile; seam dovetails reach into the R half
     color("ivory")
         translate([-tc - wall_x/2, wall_yp + wall_t/2, wall_z])
-            standing("screen");
+            standing("screen-l");
+}
+
+module a_screen_r() {
+    color("ivory")
+        translate([tc - wall_x/2, wall_yp + wall_t/2, wall_z])
+            standing("screen-r");
 }
 
 module a_plain_wall() {
-    // back-right socket tile
+    // right side (front-right tile, curb on +X); faces inward (-X)
     color("gainsboro")
-        translate([tc - wall_x/2, wall_yp + wall_t/2, wall_z])
-            standing("plain");
+        translate([wall_yp + wall_t/2, 0, wall_z])
+            rotate([0, 0, -90]) standing("plain");
 }
 
 module a_window_wall() {
@@ -85,10 +92,11 @@ if (PART == "floor")            a_floor();
 else if (PART == "stage")       a_stage();
 else if (PART == "podium")      a_podium();
 else if (PART == "robot")       a_robot();
-else if (PART == "screen-wall") a_screen_wall();
+else if (PART == "screen-l")    a_screen_l();
+else if (PART == "screen-r")    a_screen_r();
 else if (PART == "plain-wall")  a_plain_wall();
 else if (PART == "window-wall") a_window_wall();
 else {
     a_floor(); a_stage(); a_podium(); a_robot();
-    a_screen_wall(); a_plain_wall(); a_window_wall();
+    a_screen_l(); a_screen_r(); a_plain_wall(); a_window_wall();
 }

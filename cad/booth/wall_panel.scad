@@ -95,6 +95,41 @@ module screen() {
     }
 }
 
+module screen_half(side) {
+    // 7/23 rev2: the screen spans TWO tiles (300 wide) as an L+R pair joined
+    // by half-depth dovetails on the seam edge (z 0..2.4, below the paper
+    // channel z 2.6..3.8 -> one continuous channel across both halves).
+    // ONE paper sheet 288 x 117 (A4 landscape) slides in from the top.
+    // L = frame on the left/top/bottom, seam on +X. R = mirror (seam on -X).
+    seam_ten_y = [25, 62.5, 100];        // dovetail centres up the seam edge
+    difference() {
+        union() {
+            base_panel();
+            // marker-tray lip (stops short of the seam by 2)
+            if (side == "L") translate([ix0, 2, wall_t]) cube([wall_x - ix0 - 2, scr_tray_d, scr_tray_h]);
+            else             translate([2, 2, wall_t])   cube([ix1 - 2, scr_tray_d, scr_tray_h]);
+            // half-depth dovetail tenons on the L seam edge
+            if (side == "L")
+                for (yy = seam_ten_y)
+                    translate([wall_x, yy, 0]) rotate([0, 0, -90]) dovetail_tenon(h = 2.4);
+        }
+        // window opening through the front frame, open through the seam edge
+        if (side == "L") translate([ix0, iy0, wall_t - scr_front_t]) cube([wall_x - ix0 + 1, iy1 - iy0, scr_front_t + 0.1]);
+        else             translate([-1,  iy0, wall_t - scr_front_t]) cube([ix1 + 1,          iy1 - iy0, scr_front_t + 0.1]);
+        // paper channel, open through the seam edge AND the top edge
+        if (side == "L")
+            translate([ix0 - scr_slot_margin, iy0 - scr_slot_margin, wall_t - scr_front_t - scr_slot_t])
+                cube([wall_x - ix0 + scr_slot_margin + 1, wall_y - iy0 + scr_slot_margin + 1, scr_slot_t]);
+        else
+            translate([-1, iy0 - scr_slot_margin, wall_t - scr_front_t - scr_slot_t])
+                cube([ix1 + scr_slot_margin + 1, wall_y - iy0 + scr_slot_margin + 1, scr_slot_t]);
+        // half-depth dovetail mortises on the R seam edge
+        if (side == "R")
+            for (yy = seam_ten_y)
+                translate([0, yy, 0]) rotate([0, 0, 90]) dovetail_mortise(h = 2.55);
+    }
+}
+
 module plainwall() {
     // 7/23: plain office wall - flat panel with two shallow horizontal
     // panel-seam grooves (shadow lines, no painting needed)
@@ -107,6 +142,8 @@ module plainwall() {
 }
 
 if (variant == "plain")           plainwall();
+else if (variant == "screen-l")   screen_half("L");
+else if (variant == "screen-r")   screen_half("R");
 else if (variant == "window")     window();
 else if (variant == "board")      board();
 else if (variant == "screen")     screen();
