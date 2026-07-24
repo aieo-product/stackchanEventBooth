@@ -35,7 +35,7 @@
 ## スライド(7/23昼 再構成デプロイ済み・25枚)
 - 実体: `docs/public/slides/lt.html`(生HTML・ビルドで dist へコピー)。本番 /slides/lt.html
 - 7/23再構成: ①歴史に「5歳お誕生日会」「OpenAI公式CM登場(@OpenAIDevs Build Week動画)」追加 / ②を新フロー化: 2.5mmケーブル入手難(6月出荷分から同梱)→MeloTTS挫折→Kokoroチューニング→フィラー0ms→最新音声ルート全体図SVG→Gemma4司令官(9〜27秒→1〜2秒)→AIEO構想(aieo-robot.pages.dev)→Utaさんへバトン。素材元=baseIdea/stackChan/(未コミット・slides/assetsに変換済コピーをコミット)
-- **#22ゲストスライド**: @livinoffwater さん素材待ち(期限今日)。届いたら`<h1>Module-LLMの苦労話 🛠️</h1>`章扉の**直前**に1枚挿入→デプロイ(アンカーは再構成後も不変)
+- **#22ゲストスライド**: 7/24朝に素材(PlaiPin/Natalie Yeoさん PDF)到着→ユーザー指示で誕生日会スライド直後(6P)にフルスライド挿入・デプロイ済み(assets/plaipin-guest.jpg)
 - **markdown-it罠**(docsのみ): `**…（…）**`+CJK隣接→`<b>`使用。lt.htmlは生HTMLなので無関係
 
 ## 定型作業
