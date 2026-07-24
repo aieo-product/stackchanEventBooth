@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-24T15:02:06+09:00",
+  "updatedAt": "2026-07-24T15:22:07+09:00",
   "posts": [
     {
       "id": "2080518071429767287",
@@ -56,6 +56,15 @@
       "text": "力作。すごい！\n\n@otani_ai_memo\n \n\n#ｽﾀｯｸﾁｬﾝ写真館 #AIdevDay",
       "images": [
         "images/2080532716601426069_1.jpg"
+      ]
+    },
+    {
+      "id": "2080538173265072288",
+      "user": "hawkymisc",
+      "name": "ほーきー(Hawkie)Vibe Coder & Analytics",
+      "text": "#ｽﾀｯｸﾁｬﾝ写真館\n#AIDevDay",
+      "images": [
+        "images/2080538173265072288_1.jpg"
       ]
     }
   ]
