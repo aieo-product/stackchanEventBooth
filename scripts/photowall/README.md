@@ -17,8 +17,10 @@ merge → deploy」を人手トリガー（or /loop）で回す。
 ## 更新手順（Claude が実行）
 
 1. **スクレイピング（Claude in Chrome）**
-   - タブを開く: `https://x.com/search?q=%23ｽﾀｯｸﾁｬﾝ写真館%20%23AIDevDay&src=typed_query&f=live`
-     （`f=live`=最新タブ。X ログイン済みの Chrome 必須）
+   - タブを開く（7/25拡大版クエリ: `#AIDevDay (#ｽﾀｯｸﾁｬﾝ OR #スタックチャン)`）:
+     `https://x.com/search?q=%23AIDevDay%20%28%23%EF%BD%BD%EF%BE%80%EF%BD%AF%EF%BD%B8%EF%BE%81%EF%BD%AC%EF%BE%9D%20OR%20%23%E3%82%B9%E3%82%BF%E3%83%83%E3%82%AF%E3%83%81%E3%83%A3%E3%83%B3%29&src=typed_query&f=live`
+     （`f=live`=最新タブ。X ログイン済みの Chrome 必須。旧クエリ=`#ｽﾀｯｸﾁｬﾝ写真館 #AIDevDay`）
+   - 抽出結果が長い場合は `window.__pw` に格納して `.slice()` で分割取得（表示上限対策）
    - `javascript_tool` で `scripts/photowall/extract_tweets.js` の中身を実行 → JSON 配列が返る
      （画像はURLでなく `media:[{mid,fmt}]` 形式。URLのままだと拡張のDLPで
      `[BLOCKED: Cookie/query string data]` になるため — 2026-07-21リハーサルで確認済み）
