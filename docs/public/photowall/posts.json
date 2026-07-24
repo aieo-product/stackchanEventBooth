@@ -1,5 +1,5 @@
 {
-  "updatedAt": "2026-07-24T15:42:36+09:00",
+  "updatedAt": "2026-07-25T05:01:35+09:00",
   "posts": [
     {
       "id": "2080518071429767287",
@@ -59,6 +59,52 @@
       ]
     },
     {
+      "id": "2080536114297979066",
+      "user": "kakimo_ebi",
+      "name": "かきもエビ | kakimo_ebi",
+      "text": "Stack-Chan Minimal、キーホルダーサイズで登場。「相棒を手の中に持ち歩く未来が来た。」このコピーずるい。ちっちゃいのに顔がある #AIDevDay #スタックチャン",
+      "images": [
+        "images/2080536114297979066_1.jpg",
+        "images/2080536114297979066_2.jpg"
+      ]
+    },
+    {
+      "id": "2080536559951163804",
+      "user": "hawkymisc",
+      "name": "ほーきー(Hawkie)Vibe Coder & Analytics",
+      "text": "こちらは A-uta さん(@UtaAoya)のわかる人向けスライド\n\n#ｽﾀｯｸﾁｬﾝ\n#AIDevDay",
+      "images": [
+        "images/2080536559951163804_1.jpg"
+      ]
+    },
+    {
+      "id": "2080536613730553992",
+      "user": "kakimo_ebi",
+      "name": "かきもエビ | kakimo_ebi",
+      "text": "「技術を知らなくても、手軽にAIロボットで遊びたい！」→ Stack-Chan Minimal。組み立て＆インストールだけでローカルLLM搭載AIロボットが動く。こういう入口があるとMakerの裾野が広がる #AIDevDay #スタックチャン",
+      "images": [
+        "images/2080536613730553992_1.jpg"
+      ]
+    },
+    {
+      "id": "2080537298484277265",
+      "user": "kakimo_ebi",
+      "name": "かきもエビ | kakimo_ebi",
+      "text": "Stack-Chan Minimal の始め方。ATOM3SR（約4000円）買ってケース組んでWebインストーラでFW焼くだけ。あとはローカルLLMとWi-Fi繋げばAIロボットと会話できる。このハードルの低さはずるい #AIDevDay #スタックチャン",
+      "images": [
+        "images/2080537298484277265_1.jpg"
+      ]
+    },
+    {
+      "id": "2080537941093515451",
+      "user": "kakimo_ebi",
+      "name": "かきもエビ | kakimo_ebi",
+      "text": "Stack-Chan MinimalはAIoTも！心拍センサーをGroveで繋いでLLMにデータ送ると、体調を言葉で教えてくれる相棒になる 「今日ちょっと心拍高めだよ、大丈夫？」って言ってくれるの想像したら普通にかわいい #AIDevDay #スタックチャン",
+      "images": [
+        "images/2080537941093515451_1.jpg"
+      ]
+    },
+    {
       "id": "2080538173265072288",
       "user": "hawkymisc",
       "name": "ほーきー(Hawkie)Vibe Coder & Analytics",
@@ -74,6 +120,15 @@
       "text": "#ｽﾀｯｸﾁｬﾝ写真館\n#AIDevDay\n\n腕時計ｽﾀｯｸﾁｬﾝを勝手に持ち込んで展示しています(えっ)",
       "images": [
         "images/2080538864528064845_1.jpg"
+      ]
+    },
+    {
+      "id": "2080539901347635408",
+      "user": "kota_fuji",
+      "name": "Kota Fuji（冨士孔太）",
+      "text": "ミニがおるのか⁈\n\n#ｽﾀｯｸﾁｬﾝ\n#AIDevDay",
+      "images": [
+        "images/2080539901347635408_1.jpg"
       ]
     },
     {
