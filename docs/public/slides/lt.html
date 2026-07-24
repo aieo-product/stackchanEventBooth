@@ -190,8 +190,8 @@
           </ul>
         </div>
         <div>
-          <img src="assets/k151-5th.jpg" alt="公式スタックチャン(K151)と5周年記念ステッカー"/>
-          <div class="figcap">公式スタックチャン(K151)と5周年記念ステッカー。画面に"顔"が出る。</div>
+          <img src="assets/k151-5th.jpg" alt="公式スタックチャン(K151)と5周年記念ステッカー" style="max-height:480px; width:auto; max-width:100%; display:block; margin:0 auto"/>
+          <div class="figcap" style="text-align:center">公式スタックチャン(K151)と5周年記念ステッカー。画面に"顔"が出る。</div>
         </div>
       </div>
     </section>
@@ -434,51 +434,21 @@
       <div class="sub">AI ｽﾀｯｸﾁｬﾝ ミニマル — クラウド無しで、会話する</div>
     </section>
 
-    <!-- 15 exhibit intro -->
-    <section class="slide">
-      <h2>「ローカルAIに向き合う展示会」に出展</h2>
-      <ul>
-        <li>🤖 <b>AI ｽﾀｯｸﾁｬﾝ ミニマル</b> — ネット接続なしで音声会話するスタックチャン</li>
-        <li>🏠 音声認識も・思考も・発話も、<b>すべて手元のマシン</b>で完結</li>
-        <li>📱 <b>スマホ版</b>もあり——こちらは<b>全部CPU</b>で動かす割り切り構成</li>
-      </ul>
-      <div class="callout"><b>ポイント：</b>「ローカルでもここまで会話できる」を<b>実機で証明</b>してきた</div>
-      <div class="src">出典：@UtaAoya 2025-12-06 のポスト（#ローカルAIに向き合う展示会）</div>
+    <!-- 15-19 A-Uta slides (Stack-Chan Minimal, PDF提供) -->
+    <section class="slide" style="padding:2% 2.5%; background:#fff; justify-content:center">
+      <img src="assets/uta-1.jpg" alt="Stack-Chan Minimal — スタックチャン ミニマル：相棒を手の中に持ち歩く未来が来た。" style="width:100%; flex:1; min-height:0; object-fit:contain"/>
     </section>
-
-    <!-- 16 distributed architecture -->
-    <section class="slide">
-      <h2>鍵は "分散処理"：CPU・NPU・GPU の適材適所</h2>
-      <div class="cols3">
-        <div class="card"><h3>🎙️ CPU</h3><p><b>Whisper</b><br>音声認識（聞く）</p></div>
-        <div class="card" style="background:#fff7e0;border-color:var(--yellow)"><h3>🧠 NPU</h3><p><b>LLM1：gpt-oss-20b</b>（FLM）<br>思考の主役</p></div>
-        <div class="card" style="background:#eaf7ef;border-color:#9fe0b6"><h3>⚡ GPU</h3><p><b>LLM2</b><br>もう一つの思考系統</p></div>
-      </div>
-      <div class="callout" style="margin-top:.9em">1台のマシンの<b>CPU/NPU/GPUを同時に使い分け</b>、パイプラインを止めない。<br>クラウドの代わりに、<b>手元の計算資源を隅々まで絞り出す</b>設計。</div>
+    <section class="slide" style="padding:2% 2.5%; background:#fff; justify-content:center">
+      <img src="assets/uta-2.jpg" alt="技術を知らなくても、手軽にAIロボットで遊びたい！ マイコンは組立て&インストール + ローカルLLM → Stack-Chan Minimal" style="width:100%; flex:1; min-height:0; object-fit:contain"/>
     </section>
-
-    <!-- 17 hardware -->
-    <section class="slide">
-      <h2>それを支えるハードウェア</h2>
-      <ul>
-        <li>🖥️ ベース：ミニPC <b>EVO X2</b>（NPU搭載）</li>
-        <li>🎮 拡張：<b>RTX 5070Ti × 2枚</b> を <b>OCuLink</b> 経由で外付け</li>
-        <li>🔗 ミニPCの機動力に、デスクトップ級GPUの馬力を"継ぎ足す"構成</li>
-      </ul>
-      <div class="quote" style="margin-top:.7em">"ローカルLLM" は、ハードの工夫で<br>ここまで戦える</div>
-      <div class="src">※ 詳細・デモはこのあと A-Uta さんから</div>
+    <section class="slide" style="padding:2% 2.5%; background:#fff; justify-content:center">
+      <img src="assets/uta-3.jpg" alt="StackChan Minimal Web Installer — Webからインストールで完了（プログラミング無し）" style="width:100%; flex:1; min-height:0; object-fit:contain"/>
     </section>
-
-    <!-- 18 A-Uta free slide: implementation flow -->
-    <section class="slide">
-      <h2>実装の流れ・デモ 🎤</h2>
-      <p class="lead" style="margin-top:.3em">（A-Uta さんパート：実装の勘所・ハマりどころ・実機デモ）</p>
-      <ul style="margin-top:.6em">
-        <li>モデル選び・量子化・メモリとの戦い</li>
-        <li>音声パイプラインをローカルで組む</li>
-        <li>実機デモ or 録画</li>
-      </ul>
-      <div class="src">※ このスライドは A-Uta さんの内容に合わせて差し替え予定</div>
+    <section class="slide" style="padding:2% 2.5%; background:#fff; justify-content:center">
+      <img src="assets/uta-4.jpg" alt="Stack-Chan Minimal 作成ワークフロー簡易版 — 話しかけると返事するAIロボットを作るまでの流れ" style="width:100%; flex:1; min-height:0; object-fit:contain"/>
+    </section>
+    <section class="slide" style="padding:2% 2.5%; background:#fff; justify-content:center">
+      <img src="assets/uta-5.jpg" alt="Stack-Chan Minimal システム構成図 — 身体(Body)=マイコンと魂(Soul)=AI Serverの接続構成" style="width:100%; flex:1; min-height:0; object-fit:contain"/>
     </section>
 
     <!-- 19 summary -->
