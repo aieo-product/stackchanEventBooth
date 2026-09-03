@@ -366,8 +366,22 @@ pcb_comp_h        = 12;      // tallest other component (DC jack / caps / XH)
 box_wall          = 2.0;
 box_clear         = 1.5;     // per side, board to inner wall
 box_floor_t       = 2.0;
-box_standoff_h    = 5;       // board underside above the floor
 box_standoff_d    = 7;
 box_lip           = 2;       // lid lip depth
 box_conn_cut_h    = 10;      // connector-edge wall cut height (from the top)
 box_conn_cut_w    = 60;      // connector-edge cut width
+// Panel parts live on the LID over a PANEL BAY to the +X of the PCB (9/3 rev3):
+// the 22 mm E-stop body hangs ~30 mm below the lid, so nothing may sit under it.
+// The bay keeps the PCB free of any keep-out, and the PCB rides 20 mm standoffs
+// so the AtomS3R screen ends ~5 mm below the lid window.
+box_bay_w         = 44;      // panel bay width (E-stop mushroom Ø40 + wall)
+box_inner_h       = 40;      // tray inner depth (E-stop body 30 + clearance)
+box_standoff_h    = 20;      // (overrides the 5 above) PCB underside above the floor
+// panel positions relative to the BOX centre (x, y); bay centre x = 63.5
+panel_cx          = pcb_x/2 + box_clear + box_bay_w/2;
+panel_estop       = [panel_cx, 12];
+panel_pot         = [panel_cx - 10, -18];
+panel_btn         = [panel_cx + 10, -18];
+panel_estop_hole_d = 22.3;
+panel_pot_hole_d   = 7.2;
+panel_btn_hole_d   = 16.2;

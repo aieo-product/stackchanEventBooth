@@ -202,5 +202,53 @@
    0
   ],
   "group": "drive"
+ },
+ {
+  "id": "ctrl-box",
+  "file": "ctrl-box.stl",
+  "name": "制御ボックス（印刷トレイ＋蓋）",
+  "color": "#555555",
+  "explode": [
+   0,
+   0.8,
+   0
+  ],
+  "group": "control"
+ },
+ {
+  "id": "ctrl-pcb",
+  "file": "ctrl-pcb.stl",
+  "name": "制御基板 80×60（AtomS3R を挿すキャリア: 電源・DRV8871・コネクタ）",
+  "color": "#1f7a3a",
+  "explode": [
+   0,
+   0.8,
+   0.6
+  ],
+  "group": "control"
+ },
+ {
+  "id": "ctrl-panel",
+  "file": "ctrl-panel.stl",
+  "name": "操作パネル（非常停止・速度ツマミ・RUN/STOP）",
+  "color": "#d62828",
+  "explode": [
+   0,
+   0.8,
+   1.2
+  ],
+  "group": "control"
+ },
+ {
+  "id": "cables",
+  "file": "cables.stl",
+  "name": "配線（モーター・12V）",
+  "color": "#222222",
+  "explode": [
+   0,
+   0.4,
+   0
+  ],
+  "group": "control"
  }
 ]

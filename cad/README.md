@@ -43,8 +43,8 @@ STL はコミットしません。`openscad` CLI が必要です（`/opt/homebre
 | ferris/tower-upper-motor | `ferris/tower.scad -D part="upper-motor"` | 89×30×165 | **v7(9/3)** 上支柱＋外面に Φ2.9 パイロット×4（±14,±14）＝モーターブラケット取付。前支柱用に1個 |
 | ferris/motor-bracket | `ferris/motor_mount.scad -D PART="bracket"` | 48×68×47 | **v7** 箱型ブラケット: 支柱プレート(M3×4 座ぐり)＋側壁＋天板＋JGY-370 フランジ(18×33・Ø12)。下面開放・側面窓。カップリングを覆う挟まれガード兼用 |
 | ferris/motor-coupler | `ferris/motor_mount.scad -D PART="coupler"` | Ø20×30 | **v7** 印刷リジッドカプラー Ø8.2/Ø6.3D（アルミ フレキシブルカップリングの保険）。M3 直タップ×2 |
-| ferris/ctrl-box-tray | `ferris/ctrl_box.scad -D PART="tray"` | 87×67×23.6 | **v7** 制御基板 80×60 用トレイ。M3 直タップ スタンドオフ×4、+Y 辺コネクタ切欠き 60 |
-| ferris/ctrl-box-lid | `ferris/ctrl_box.scad -D PART="lid"` | 87×67×4 | **v7** 蓋。AtomS3R 窓 25×25（基板 (20,30)）＋通気スリット |
+| ferris/ctrl-box-tray | `ferris/ctrl_box.scad -D PART="tray"` | 131×67×42 | **v7** 制御基板 80×60（左）＋操作部ベイ 44（右・非常停止本体が垂れる）。M3 直タップ スタンドオフ×4（高さ20＝Atom 画面が蓋の 5mm 下）、+Y 辺コネクタ切欠き 60 |
+| ferris/ctrl-box-lid | `ferris/ctrl_box.scad -D PART="lid"` | 131×67×4 | **v7** 蓋。AtomS3R 窓 25×25（基板 (20,30)）＋ベイに非常停止 Ø22.3・ポット Ø7.2・ボタン Ø16.2（`panel_*`）＋通気スリット |
 | booth/floor-tile | `booth/floor_tile.scad` | 158×158×3 | 150×150×t3・木目板目0.6mm浮彫・裏ダブテール(+X/+Yオス, -X/-Yメス)（XY の +8 はテノン） |
 | booth/wall-blackboard | `wall_panel.scad -D variant="blackboard"` | 150×137×5 | 150×125×t5・中央浅凹(緑紙貼付)・下端スタンドタブ（Y の +12 はタブ） |
 | booth/wall-window | `wall_panel.scad -D variant="window"` | 150×137×5 | 2×2窓開口＋裏面レベット（空画像紙用） |

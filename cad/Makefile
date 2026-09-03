@@ -191,7 +191,7 @@ $(BOOTH)/stand-clips.stl: booth/stand_clips.scad $(COMMON)
 VIEWER       := ../docs/public/models/ferris
 VIEWER_PARTS := base tower-front tower-rear shaft hubs rim-front rim-rear \
                 diffusers axles gondola-1 gondola-2 gondola-3 gondola-4 stackchan \
-                motor-bracket coupling motor
+                motor-bracket coupling motor ctrl-box ctrl-pcb ctrl-panel cables
 
 .PHONY: viewer-models
 viewer-models:
