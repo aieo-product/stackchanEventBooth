@@ -43,6 +43,11 @@ EXPECTED = {
     "rig-shaft": (None, None, ""),
     "rig-stand": (None, None, ""),
     "rig-base":  ("Y", 150.0, "rig base length 150"),
+    "tower-upper-motor": (None, None, ""),
+    "motor-bracket": ("X", 48.0, "bracket outer width 48"),
+    "motor-coupler": ("Z", 30.0, "coupler length 30"),
+    "ctrl-box-tray": ("X", 87.0, "tray outer 87 (pcb 80 + 2x1.5 + 2x2)"),
+    "ctrl-box-lid":  ("X", 87.0, "lid outer 87"),
 }
 
 

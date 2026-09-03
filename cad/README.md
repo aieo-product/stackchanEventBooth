@@ -40,6 +40,11 @@ STL はコミットしません。`openscad` CLI が必要です（`/opt/homebre
 | ferris/base | `ferris/base.scad` | 250×183×45 | 250×175×15・長辺に自己相補ダブテール（同一部品を180°回転で連結）・支柱スロット2・M3蝶ネジ・クランク軸受Ø8.5 |
 | ferris/crank | `ferris/crank.scad` | 152.5×25.5×44 | クランク本体(Ø8.2＋M3イモネジ)＋自由回転グリップØ20×40(Eリング溝)＋フリクションダンパーC形クリップ（1プレート） |
 | ferris/axle | `ferris/axle.scad` | 90×40×139 | **Φ6印刷吊り軸(#20)**。一体フランジ頭Ø10×3＋Φ6シャフト、押込キャップØ10×6(内穴Φ5.8=0.2締め代)。金属棒不要(カット機材不要)。1プレートに軸5本＋キャップ6個(予備込) |
+| ferris/tower-upper-motor | `ferris/tower.scad -D part="upper-motor"` | 89×30×165 | **v7(9/3)** 上支柱＋外面に Φ2.9 パイロット×4（±14,±14）＝モーターブラケット取付。前支柱用に1個 |
+| ferris/motor-bracket | `ferris/motor_mount.scad -D PART="bracket"` | 48×68×47 | **v7** 箱型ブラケット: 支柱プレート(M3×4 座ぐり)＋側壁＋天板＋JGY-370 フランジ(18×33・Ø12)。下面開放・側面窓。カップリングを覆う挟まれガード兼用 |
+| ferris/motor-coupler | `ferris/motor_mount.scad -D PART="coupler"` | Ø20×30 | **v7** 印刷リジッドカプラー Ø8.2/Ø6.3D（アルミ フレキシブルカップリングの保険）。M3 直タップ×2 |
+| ferris/ctrl-box-tray | `ferris/ctrl_box.scad -D PART="tray"` | 87×67×23.6 | **v7** 制御基板 80×60 用トレイ。M3 直タップ スタンドオフ×4、+Y 辺コネクタ切欠き 60 |
+| ferris/ctrl-box-lid | `ferris/ctrl_box.scad -D PART="lid"` | 87×67×4 | **v7** 蓋。AtomS3R 窓 25×25（基板 (20,30)）＋通気スリット |
 | booth/floor-tile | `booth/floor_tile.scad` | 158×158×3 | 150×150×t3・木目板目0.6mm浮彫・裏ダブテール(+X/+Yオス, -X/-Yメス)（XY の +8 はテノン） |
 | booth/wall-blackboard | `wall_panel.scad -D variant="blackboard"` | 150×137×5 | 150×125×t5・中央浅凹(緑紙貼付)・下端スタンドタブ（Y の +12 はタブ） |
 | booth/wall-window | `wall_panel.scad -D variant="window"` | 150×137×5 | 2×2窓開口＋裏面レベット（空画像紙用） |
@@ -95,6 +100,12 @@ BBox はすべて 250mm 以内（X2Dビルドプレート内）。全パーツ m
 - `ferris/assembly.scad` が全パーツを組立座標系（原点=ベース底面中心・軸=Z高さ273でY方向）に配置。`PART="<name>"` で単一グループ出力、`PART="all"` で全体。
 - `make viewer-models` が **$fn=40 の軽量バイナリSTL**を `docs/public/models/ferris/` に書き出す（14ファイル・各≤375KB）。three.jsビューア用。
 - `docs/public/models/ferris/manifest.json`（id/file/日本語名/color/explode方向/group）を同梱。
+
+### v7 モーター駆動（2026-09-03・docs/ferris-v7-auto.md）
+- 手回しクランク → **JGY-370 12V 3rpm ウォームギアモーター**を前支柱（旧クランク側）外面に同軸配置。`params.scad` の `motor_*` / `mb_*` / `pc_*` / `pcb_*` / `box_*` セクションが正。
+- `motor_standoff`（支柱外面→ギアボックス面 = 47）は `shaft_protrude`(20) − `coupling_grip`(12) + `coupling_len`(25) + 2 + `motor_shaft_len`(12) で自動算出。シャフト実長に合わせて `shaft_protrude` を変えれば追随する。
+- `assembly.scad PART="all-v7"` / `motor-bracket` / `coupling` / `motor`（ビューア用グループ。crank はビューアから外した）。
+- 基板外形・穴・Atom 位置は `pcb_*` で先に固定 → 筐体を基板より先に印刷できる。EasyEDA 側はこの値に合わせる。
 
 ### #19 ミニ観覧車アダプタ
 - Artec 木製キット 055521 の木製ゴンドラと差し替えるバケット。`variant` で atomcat(内底42角)/

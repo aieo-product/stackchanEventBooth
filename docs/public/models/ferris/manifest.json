@@ -156,18 +156,6 @@
   "group": "wheel"
  },
  {
-  "id": "crank",
-  "file": "crank.stl",
-  "name": "クランクハンドル",
-  "color": "#FFD700",
-  "explode": [
-   0,
-   1.2,
-   0
-  ],
-  "group": "drive"
- },
- {
   "id": "stackchan",
   "file": "stackchan.stl",
   "name": "スタックチャン（公式K151・搭乗例）",
@@ -178,5 +166,41 @@
    0
   ],
   "group": "wheel"
+ },
+ {
+  "id": "motor-bracket",
+  "file": "motor-bracket.stl",
+  "name": "モーターブラケット（v7・支柱外面に M3×4）",
+  "color": "#FF8C00",
+  "explode": [
+   0,
+   1.0,
+   0
+  ],
+  "group": "drive"
+ },
+ {
+  "id": "coupling",
+  "file": "coupling.stl",
+  "name": "カップリング 6×8（アルミ or 印刷）",
+  "color": "#c0c0c0",
+  "explode": [
+   0,
+   1.4,
+   0
+  ],
+  "group": "drive"
+ },
+ {
+  "id": "motor",
+  "file": "motor.stl",
+  "name": "JGY-370 ウォームギアモーター 12V 3rpm",
+  "color": "#808080",
+  "explode": [
+   0,
+   1.8,
+   0
+  ],
+  "group": "drive"
  }
 ]

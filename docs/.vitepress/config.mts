@@ -18,6 +18,7 @@ export default defineConfig({
       { text: 'アクセサリー', link: '/accessories' },
       { text: '撮影ブース', link: '/photobooth' },
       { text: '観覧車', link: '/ferris-wheel' },
+      { text: '観覧車v7(自動回転)', link: '/ferris-v7-auto' },
       { text: '3Dビューア', link: '/viewer/', target: '_blank' },
       { text: '必要スペース', link: '/space' },
       { text: '当日運営', link: '/schedule' },
@@ -36,6 +37,7 @@ export default defineConfig({
           { text: '用意するアクセサリー', link: '/accessories' },
           { text: '簡易撮影ブース', link: '/photobooth' },
           { text: '🎡 観覧車（手回し・虹色LED）', link: '/ferris-wheel' },
+          { text: '🎡 観覧車 v7（自動回転・安全版・9/23）', link: '/ferris-v7-auto' },
           { text: '必要スペース', link: '/space' },
           { text: '当日運営（13:00–17:00）', link: '/schedule' }
         ]

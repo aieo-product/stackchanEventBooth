@@ -18,6 +18,7 @@ use <hub.scad>;
 use <gondola.scad>;
 use <tower.scad>;
 use <crank.scad>;
+use <motor_mount.scad>;
 use <axle.scad>;
 use <k151.scad>;
 use <base.scad>;
@@ -57,11 +58,7 @@ module a_tower_rear() {
         translate([0, -tower_y, base_top]) tower_full();
 }
 
-module a_shaft() {
-    color("gainsboro")
-        translate([0, -tower_y - 8, shaft_z]) rotate([-90, 0, 0])
-            cylinder(d = shaft_d, h = 2 * tower_y + 40, $fn = 32);
-}
+module a_shaft() { a_shaft_v7(); }   // v7 (9/3): shaft slid 12 mm rearward (was -tower_y-8 .. +130)
 
 module one_disc() {          // full ring in local XY, depth 0..rim_depth in +z
     for (k = [0 : 3]) rotate([0, 0, k * 90]) rim_segment();
@@ -113,6 +110,36 @@ module a_stackchan() {
             k151();
 }
 
+// --- v7 (9/3): motor drive on the former crank side (+Y tower) --------------
+// Shaft slid 12 mm toward -Y so both ends protrude shaft_protrude (20).
+module a_shaft_v7() {
+    color("gainsboro")
+        translate([0, -(tower_y + shaft_protrude), shaft_z]) rotate([-90, 0, 0])
+            cylinder(d = shaft_d, h = 2 * (tower_y + shaft_protrude), $fn = 32);
+}
+module a_motor_bracket() {
+    color("darkorange")
+        translate([0, tower_y, shaft_z]) rotate([0, 180, 0]) rotate([-90, 0, 0]) bracket();
+}
+module a_coupling() {
+    color("silver")
+        translate([0, tower_y + shaft_protrude - coupling_grip, shaft_z]) rotate([-90, 0, 0])
+            cylinder(d = coupling_d, h = coupling_len, $fn = 32);
+}
+module a_motor() {
+    // dummy JGY-370: gearbox block (shaft 15 from the top short end, can hangs down)
+    yf = tower_y + motor_standoff;
+    color("gray") {
+        translate([-motor_gb_w/2, yf, shaft_z - (motor_gb_h - motor_shaft_off)])
+            cube([motor_gb_w, motor_gb_t, motor_gb_h]);
+        translate([0, yf - 1, shaft_z]) rotate([-90, 0, 0]) cylinder(d = motor_shaft_d, h = motor_shaft_len + 1, $fn = 24);
+        // 370 can below the gearbox
+        translate([0, yf + motor_gb_t/2, shaft_z - (motor_gb_h - motor_shaft_off) + 0.01])
+            rotate([180, 0, 0]) cylinder(d = motor_body_d, h = motor_body_len, $fn = 32);
+    }
+}
+module a_drive_v7() { a_motor_bracket(); a_coupling(); a_motor(); }
+
 module a_crank() {
     color("gold")
         translate([0, tower_y + 14, shaft_z]) rotate([-90, 0, 0]) crank_body();
@@ -127,7 +154,7 @@ if (PART == "all") {
     a_crank();
 }
 else if (PART == "base")          a_base();
-else if (PART == "tower-front")   a_tower_front();
+else if (PART == "tower-front")   a_tower_front();   // v7: print tower-upper-motor for this one
 else if (PART == "tower-rear")    a_tower_rear();
 else if (PART == "shaft")         a_shaft();
 else if (PART == "hubs")          a_hubs();
@@ -137,6 +164,17 @@ else if (PART == "diffusers")     a_diffusers();
 else if (PART == "axles")         a_axles();
 else if (PART == "stackchan")     a_stackchan();
 else if (PART == "crank")         a_crank();
+else if (PART == "shaft-v7")      a_shaft_v7();
+else if (PART == "motor-bracket") a_motor_bracket();
+else if (PART == "coupling")      a_coupling();
+else if (PART == "motor")         a_motor();
+else if (PART == "all-v7") {
+    a_base(); a_tower_front(); a_tower_rear(); a_shaft_v7(); a_hubs();
+    a_rim_front(); a_rim_rear(); a_axles();
+    for (i = [0:3]) a_gondola(i);
+    a_stackchan();
+    a_drive_v7();
+}
 else if (PART == "gondola-1")     a_gondola(0);
 else if (PART == "gondola-2")     a_gondola(1);
 else if (PART == "gondola-3")     a_gondola(2);

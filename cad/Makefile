@@ -21,7 +21,12 @@ FERRIS_STL := \
 	$(FERRIS)/base.stl \
 	$(FERRIS)/base-mini.stl \
 	$(FERRIS)/crank.stl \
-	$(FERRIS)/axle.stl
+	$(FERRIS)/axle.stl \
+	$(FERRIS)/tower-upper-motor.stl \
+	$(FERRIS)/motor-bracket.stl \
+	$(FERRIS)/motor-coupler.stl \
+	$(FERRIS)/ctrl-box-tray.stl \
+	$(FERRIS)/ctrl-box-lid.stl
 
 BOOTH_STL := \
 	$(BOOTH)/floor-tile.stl \
@@ -138,6 +143,17 @@ $(FERRIS)/rig-base.stl: ferris/swing_test_rig.scad $(COMMON)
 	$(OPENSCAD) -D 'PART="base"' -o $@ $<
 
 # --- ferris ---------------------------------------------------------------
+# v7 motor drive (2026-09-03)
+$(FERRIS)/tower-upper-motor.stl: ferris/tower.scad $(COMMON)
+	$(OPENSCAD) -D 'part="upper-motor"' -o $@ $<
+$(FERRIS)/motor-bracket.stl: ferris/motor_mount.scad $(COMMON)
+	$(OPENSCAD) -D 'PART="bracket"' -o $@ $<
+$(FERRIS)/motor-coupler.stl: ferris/motor_mount.scad $(COMMON)
+	$(OPENSCAD) -D 'PART="coupler"' -o $@ $<
+$(FERRIS)/ctrl-box-tray.stl: ferris/ctrl_box.scad $(COMMON)
+	$(OPENSCAD) -D 'PART="tray"' -o $@ $<
+$(FERRIS)/ctrl-box-lid.stl: ferris/ctrl_box.scad $(COMMON)
+	$(OPENSCAD) -D 'PART="lid"' -o $@ $<
 $(FERRIS)/rim-segment.stl: ferris/rim_segment.scad $(COMMON)
 	$(OPENSCAD) -o $@ $<
 $(FERRIS)/diffuser.stl: ferris/diffuser.scad $(COMMON)
@@ -174,7 +190,8 @@ $(BOOTH)/stand-clips.stl: booth/stand_clips.scad $(COMMON)
 # --- assembly viewer models (positioned, lightweight binary STL) ----------
 VIEWER       := ../docs/public/models/ferris
 VIEWER_PARTS := base tower-front tower-rear shaft hubs rim-front rim-rear \
-                diffusers axles gondola-1 gondola-2 gondola-3 gondola-4 crank stackchan
+                diffusers axles gondola-1 gondola-2 gondola-3 gondola-4 stackchan \
+                motor-bracket coupling motor
 
 .PHONY: viewer-models
 viewer-models:
