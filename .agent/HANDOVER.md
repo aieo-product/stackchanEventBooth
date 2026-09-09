@@ -9,7 +9,7 @@
 ## 今いちばん大事な状態 🔥
 - **設計凍結済み・印刷先行**: 新規 STL 5 種（tower-upper-motor / motor-bracket / motor-coupler / ctrl-box-tray(131×67×42・右に操作部ベイ) / ctrl-box-lid、計約6.5h）を `make -C cad ferris` で生成、`check_dims.py` ALL OK。print-list.yaml に v7 ジョブ追加（enabled:true）
 - **Amazon 発注待ち**（ユーザー作業）: JGY-370 12V 3rpm、フレキシブルカップリング 6×8 D20L25、12V2A アダプタ、非常停止 22mm、10kポット、押しボタン、A3144+磁石、M3×12
-- **EasyEDA 基板（未着手）**: 仕様・ネットリスト・BOM = `hardware/ferris-ctrl-pcb/`。外形 80×60・M3 角4mm・Atom 中心(20,30)・コネクタ +Y 辺は `cad/params.scad pcb_*` と同期必須（筐体を先に印刷するため）。DRV8871 は JLC C75864 確認済み、他の C 番号は `?` 付き＝発注時に確定
+- **EasyEDA 基板（9/9 回路図・PCB 完成、Gerber 未出力）**: EasyEDA Std プロジェクト stackchan-ferris-ctrl-v7（take.otani）。Nets 25/25・DRC 0。作図は Chrome の EasyEDA ページで `easyeda.extension.exec(api=>...)` から `getSource/applySource`（type 5.x 文字列形式）でスクリプト生成（回路図はライブラリ API `/api/products/<C番号>/components` のシンボルを平行移動して配置）。**AtomS3R ソケット J9A/J9B の列間隔 18mm は仮置き＝実測後に再配置＋再配線が必要**。仕様・ネットリスト・BOM = `hardware/ferris-ctrl-pcb/`。外形 80×60・M3 角4mm・Atom 中心(20,30)・コネクタ +Y 辺は `cad/params.scad pcb_*` と同期必須（筐体を先に印刷するため）。DRV8871 は JLC C75864 確認済み、他の C 番号は `?` 付き＝発注時に確定
 - **ファーム**: `firmware/ferris_ctrl/ferris_ctrl.ino` AtomS3R でコンパイル OK（未実機）。G5/G6=PWM, G7=ポット, G8=ホール, G38=ボタン, G39=非常停止検知, Grove G1/G2=LED（従来）
 - **要実測**: Φ8 シャフト実長（設計 236・両端突出 20 想定 → `shaft_protrude`）、AtomS3R 底面ヘッダのピッチ、7/24 破損パーツ有無、会場 AC 電源
 
