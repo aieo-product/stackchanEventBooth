@@ -107,7 +107,7 @@ AtomS3R: G5/G6=PWM → DRV8871、G7=速度ポテンショ、G8=ホールセン�
   <img src="/img/ferris/v7-pcb-3d.jpg" alt="制御基板 3D" style="width:100%;border-radius:10px;" />
 </div>
 
-> EasyEDA プロジェクト stackchan-ferris-ctrl-v7。Nets 25/25・DRC 0。<b>AtomS3R ソケット列間隔（18mm 仮）とピン並びを実測確定後に Gerber 出力</b>。
+> EasyEDA プロジェクト stackchan-ferris-ctrl-v7。Nets 25/25・DRC 0。AtomS3R ソケットは公式 3D モデルと回路図から列間隔 15.24mm・ピン並び（5 ピン列 3V3/G5/G6/G7/G8、4 ピン列 G39/G38/5V/GND）を確定。Gerber・BOM・CPL は `hardware/ferris-ctrl-pcb/fab/` に書き出し済み（JLCPCB 発注待ち）。
 
 ### ファームウェア `firmware/ferris_ctrl/ferris_ctrl.ino`（コンパイル済み・AtomS3R）
 
