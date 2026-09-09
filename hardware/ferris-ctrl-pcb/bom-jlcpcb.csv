@@ -1,28 +1,28 @@
 Comment,Designator,Footprint,LCSC Part #,Qty,Note
 DRV8871DDAR,U1,SO-8-EP (HSOP-8),C75864,1,H-bridge 3.6A / current limit via R_ILIM (verified: JLC part page exists)
-LM2596S-5.0,U2,TO-263-5,C347423?,1,12V->5V 3A buck (LED 2x60 + Atom). C番号は発注時に検索確認
-SS54,D1,SMA (DO-214AC),C22452?,2,D1=逆接保護(12V入力直列) D2=バック用フライホイール
-100uH 3A,L1,SMD 12x12 / radial,C?,1,バック用インダクタ (CD127 12x12 級)
-470uF/25V,C1,Radial 8x12 or SMD,C?,1,12V 入力バルク
-330uF/10V,C2,Radial 8x12 or SMD,C?,1,5V 出力バルク (LM2596 推奨 220-1000uF 低ESR)
-1000uF/10V,C3,Radial 10x12,C?,1,LED 5V 側バルク（テープ直近）
+LM2596S-5.0,U2,TO-263-5,C347421,1,UMW製 12V->5V 3A buck（TI純正なら C116713）
+SS54,D1-D2,SMA (DO-214AC),C22452,2,D1=逆接保護(12V入力直列) D2=バック用フライホイール
+CYH127-100UH,L1,SMD 12x12x7,C2929505,1,100uH 1.7A（5V負荷 最大1.2A=LED0.9+Atom0.3 で足りる。3A欲しければ CD127 品を再検索）
+470uF/25V 電解,C1,Radial 8x12 THT,C?,1,12V 入力バルク（THT 手はんだ。LCSC 検索 "470uF 25V radial"）
+330uF/16V 電解 低ESR,C2,Radial 8x12 THT,C?,1,5V 出力バルク（LM2596 推奨 220-1000uF 低ESR）
+1000uF/16V 電解,C3,Radial 10x12 THT,C?,1,LED 5V 側バルク
 100nF 0603,C4-C8,0603,C14663,5,デカップリング (Basic)
 10uF 0805,C9-C10,0805,C15850,2,DRV8871 VM / Atom 5V (Basic)
 0.1uF 0603,C11,0603,C14663,1,DRV8871 VCP
-51k 0603,R1,0603,C23197?,1,DRV8871 R_ILIM -> I_TRIP = 64000/51k ≈ 1.25A（モーターストール保護）
+51k 0603,R1,0603,C23197,1,DRV8871 R_ILIM -> I_TRIP = 64000/51k ≈ 1.25A（モーターストール保護）
 10k 0603,R2-R5,0603,C25804,4,プルアップ (BTN/ESTOP/HALL) + LED LDO 用
 1k 0603,R6-R7,0603,C21190,2,LED データ直列抵抗（各テープ Din 直前・反射抑制）
 330R 0603,R8,0603,C23138,1,電源表示 LED 用
 LED 0603 green,LED1,0603,C72043,1,5V 電源表示
-SN74AHCT1G125DBVR,U3-U4,SOT-23-5,C7469?,2,LED データ 3.3V->5V レベルシフタ（各リム 1 個）
-MF-MSMF200 2A,F1,1812,C?,1,ポリスイッチ 2A（12V 入力）
-DC jack 5.5x2.1,J1,DC-005 THT,C381110?,1,12V 2A AC アダプタ
-XH-2P,J2,JST XH 2.54 THT,C158012?,1,モーター出力
-XH-3P,J3,JST XH 2.54 THT,C144394?,1,ホールセンサ (5V/GND/OUT)
-XH-3P,J4,JST XH 2.54 THT,C144394?,1,速度ポテンショ 10k (3V3/WIPER/GND)
-XH-2P,J5,JST XH 2.54 THT,C158012?,1,RUN/STOP 押しボタン
-XH-4P,J6,JST XH 2.54 THT,C144395?,1,非常停止 (12V モーター電源 直列 2P + 検知 2P)
-XH-3P,J7-J8,JST XH 2.54 THT,C144394?,2,LED テープ (5V/GND/DATA) ← 既存 JST SM ピグテールへ変換
-Female header 1x5 + 1x4 2.54,J9,M5Stack ATOM socket,C?,1,AtomS3R 底面ヘッダ受け（EasyEDA ライブラリ "M5Stack ATOM" のフットプリントを使用。実物ピッチ実測）
-Grove HY2.0-4P,J10,HY2.0-4P R/A,C160404?,1,任意: Atom Grove を基板経由で引き出す場合
+SN74AHCT1G125DBVR,U3-U4,SOT-23-5,C7484,2,LED データ 3.3V->5V レベルシフタ（各リム 1 個）
+MF-MSMF200-2,F1,1812,C210837,1,ポリスイッチ 2A hold/4A trip（12V 入力）
+DC-005-2.5A-2.0 (XKB),J1,DC-005 THT,C319099,1,12V 2A AC アダプタ 5.5x2.1
+B2B-XH-A,J2,JST XH 2.5 THT,C158012,1,モーター出力
+B3B-XH-A,J3,JST XH 2.5 THT,C144394,1,ホールセンサ (5V/GND/OUT)
+B3B-XH-A,J4,JST XH 2.5 THT,C144394,1,速度ポテンショ 10k (3V3/WIPER/GND)
+B2B-XH-A,J5,JST XH 2.5 THT,C158012,1,RUN/STOP 押しボタン
+B4B-XH-A,J6,JST XH 2.5 THT,C144395,1,非常停止 (12V モーター電源 直列 2P + 検知 2P)
+B3B-XH-A,J7-J8,JST XH 2.5 THT,C144394,2,LED テープ (5V/GND/DATA) ← 既存 JST SM ピグテールへ変換
+2.54-1*40P female header (切って使う),J9,M5Stack ATOM socket,C9811,1,AtomS3R 底面ヘッダ受け（1x40 を 1x4+1x5 に切断。EasyEDA "M5Stack ATOM" フットプリント・実物ピッチ実測）
+Grove HY2.0-4P,J10,HY2.0-4P R/A,C?,1,任意（今回は Atom の Grove から直接 LED へ配線するので省略可）
 M3 mounting holes x4,H1-H4,Hole 3.2,-,4,基板 80x60・角から 4mm（cad/params.scad pcb_* と一致させること）
