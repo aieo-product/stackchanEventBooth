@@ -56,6 +56,21 @@ Atom Grove G1/G2 ─ U3/U4 74AHCT1G125（3V3→5V）─ R6/R7 1k ─ J7/J8 DATA
 - 非常停止・ボタン・ポテンショは**筐体の蓋の操作部ベイ**（基板の +X 隣・幅 44）にパネル取付けし XH ケーブルで基板へ。
   基板の真上には何も垂れないので**基板側の部品高さ制約なし**（Atom 13mm が最高部品。蓋窓の 5mm 下）。
 
+## EasyEDA 実装状況（2026-09-09）
+
+- EasyEDA Std プロジェクト **stackchan-ferris-ctrl-v7**（take.otani アカウント／Personal）: 回路図 `Sheet_1`（37 部品・25 ネット）と PCB `PCB_stackchan-ferris-ctrl-v7`（80×60・2 層・M3 穴 4・両面 GND ベタ）。
+- PCB は **Nets 25/25 接続・DRC エラー 0**（Design Rule: 幅 0.4 / クリアランス 0.2 / ビア 0.8-0.4mm）。配線はクラウドオートルーター＋残りを自前スクリプトで補完。
+- 部品配置（基板座標 mm）: J1 DC (12,8) / J2 (26,5) / J10 (37,5) / J7 (48,5) / J8 (58,5) 上辺、J6 (73,13) / J3 (73,27) / J4 (73,39) / J5 (73,50) 右辺、AtomS3R ソケット J9A (11,30)・J9B (29,30)。
+- **AtomS3R ソケットの 2 列間隔は 18mm の仮置き**。実機の底面ヘッダ列間隔・ピン並びを実測して `J9A`/`J9B` の位置とピン割当（下表）を確定してから Gerber を出す。
+
+| ソケット | pin1 | pin2 | pin3 | pin4 | pin5 |
+|---|---|---|---|---|---|
+| J9A（電源側） | 3V3 | ESTOP_S (G39) | BTN (G38) | 5V | GND |
+| J9B（GPIO側） | IN1 (G5) | IN2 (G6) | POT (G7) | HALL (G8) | NC |
+
+- 回路上の変更点: DRV8871 に VCP ピンは無いので C11 は削除。R5 は未使用。Grove 入力は J10（B4B-XH-A: GND/5V/G2/G1）で受けて U3/U4 へ。
+- 未実施: Gerber / BOM / CPL の書き出し（ファイル > Generate PCB Fabrication File）と JLCPCB 発注。シルク文字（コネクタ名）は部品番号のみ。
+
 ## 発注
 
 1. EasyEDA → PCB 完成 → `Generate Fabrication File` で Gerber、`Export BOM`（LCSC 番号付き）、`Export Pick and Place`。

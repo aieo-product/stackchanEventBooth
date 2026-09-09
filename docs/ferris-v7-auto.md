@@ -100,6 +100,15 @@ AtomS3R: G5/G6=PWM → DRV8871、G7=速度ポテンショ、G8=ホールセン�
 | 速度 | 10kΩ ポテンショ → 30〜100% デューティ（ウォームは低デューティで止まるため下限あり） |
 | ストール検知 | ハブ外周に Ø5 磁石 1 個 + A3144 ホール。想定周期（20s）の 2.5 倍パルス無しで停止・赤表示 |
 
+### 基板レイアウト（EasyEDA・2026-09-09）
+
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px;margin:12px 0;">
+  <img src="/img/ferris/v7-pcb-2d.jpg" alt="制御基板 2D（80×60・両面GNDベタ）" style="width:100%;border-radius:10px;" />
+  <img src="/img/ferris/v7-pcb-3d.jpg" alt="制御基板 3D" style="width:100%;border-radius:10px;" />
+</div>
+
+> EasyEDA プロジェクト stackchan-ferris-ctrl-v7。Nets 25/25・DRC 0。<b>AtomS3R ソケット列間隔（18mm 仮）とピン並びを実測確定後に Gerber 出力</b>。
+
 ### ファームウェア `firmware/ferris_ctrl/ferris_ctrl.ino`（コンパイル済み・AtomS3R）
 
 - 起動＝STOP。外部ボタン短押し／画面ボタン長押しで RUN⇄STOP。RUN は 2 秒ソフトスタート。
