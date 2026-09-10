@@ -2,11 +2,35 @@
  {
   "id": "base",
   "file": "base.stl",
-  "name": "ベース（連結2枚）",
+  "name": "土台ボックス（モーター側・制御基板内蔵）",
   "color": "#C0C0C0",
   "explode": [
    0,
    0,
+   -1
+  ],
+  "group": "structure"
+ },
+ {
+  "id": "base-lid",
+  "file": "base-lid.stl",
+  "name": "土台ボックス 底蓋（PCBスタンドオフ付き）",
+  "color": "#A9A9A9",
+  "explode": [
+   0,
+   0,
+   -1.6
+  ],
+  "group": "structure"
+ },
+ {
+  "id": "base-rear",
+  "file": "base-rear.stl",
+  "name": "土台ボックス（平ライザー・反対側支柱）",
+  "color": "#BEBEBE",
+  "explode": [
+   0,
+   -1,
    -1
   ],
   "group": "structure"
@@ -168,14 +192,26 @@
   "group": "wheel"
  },
  {
-  "id": "motor-bracket",
-  "file": "motor-bracket.stl",
-  "name": "モーターブラケット（v7・支柱外面に M3×4）",
+  "id": "motor-pod",
+  "file": "motor-pod.stl",
+  "name": "モーターポッド（密閉ケース・v7.1）",
   "color": "#FF8C00",
   "explode": [
    0,
    1.0,
    0
+  ],
+  "group": "drive"
+ },
+ {
+  "id": "pod-cover",
+  "file": "pod-cover.stl",
+  "name": "モーターポッド スライド蓋",
+  "color": "#FFB347",
+  "explode": [
+   0,
+   1.2,
+   -0.4
   ],
   "group": "drive"
  },
@@ -204,26 +240,14 @@
   "group": "drive"
  },
  {
-  "id": "ctrl-tray",
-  "file": "ctrl-tray.stl",
-  "name": "制御ボックス トレイ（印刷）",
-  "color": "#555555",
+  "id": "ctrl-pcb",
+  "file": "ctrl-pcb.stl",
+  "name": "制御基板 80×60（発注レイアウト・実装部品を反映）",
+  "color": "#1f7a3a",
   "explode": [
    0,
    0.8,
-   -0.3
-  ],
-  "group": "control"
- },
- {
-  "id": "ctrl-lid",
-  "file": "ctrl-lid.stl",
-  "name": "制御ボックス 蓋（印刷・外すと内部が見える）",
-  "color": "#666666",
-  "explode": [
-   0,
-   0.8,
-   1.2
+   0.6
   ],
   "group": "control"
  },
@@ -236,18 +260,6 @@
    0,
    0.8,
    0.8
-  ],
-  "group": "control"
- },
- {
-  "id": "ctrl-pcb",
-  "file": "ctrl-pcb.stl",
-  "name": "制御基板 80×60（発注レイアウト・実装部品を反映）",
-  "color": "#1f7a3a",
-  "explode": [
-   0,
-   0.8,
-   0.6
   ],
   "group": "control"
  },
