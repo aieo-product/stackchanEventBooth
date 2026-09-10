@@ -20,12 +20,17 @@ use <tower.scad>;
 use <crank.scad>;
 use <motor_mount.scad>;
 use <ctrl_box.scad>;
+use <motor_pod.scad>;
+use <base_box.scad>;
 include <pcb_parts.scad>;
 use <axle.scad>;
 use <k151.scad>;
 use <base.scad>;
 
 PART = "all";
+V71 = false;                              // v7.1 embedded variant (motor pod + base box); towers sit 30 mm higher
+lift = V71 ? bb_z - base_t : 0;
+module raised() { translate([0, 0, lift]) children(); }
 
 // --- assembled geometry constants ------------------------------------------
 apex_zc   = tower_total_h - 22;          // 258: bearing centre in tower-local z
@@ -216,37 +221,105 @@ module a_crank() {
         translate([0, tower_y + 14, shaft_z]) rotate([-90, 0, 0]) crank_body();
 }
 
+// --- v7.1 embedded variant ---------------------------------------------------
+// Motor-side base box at y = +tower_y (front tower), plain riser at -tower_y.
+module a71_base_box()  { color("silver") translate([0, tower_y, 0]) rotate([0, 0, 180]) box_body(); }
+module a71_base_lid()  { color("gray")   translate([0, tower_y, 0]) rotate([0, 0, 180]) lid(); }
+module a71_base_rear() { color("silver") translate([0, -tower_y, 0]) box_plain_body(); }
+// PCB inside the box: box-local (x, y) -> world via the same 180° rotation
+module a71_in_box() { translate([0, tower_y, 0]) rotate([0, 0, 180]) children(); }
+module a71_pcb() {
+    a71_in_box() translate([0, bb_pcb_oy, bb_lid_t + bb_pcb_standoff]) {
+        color("darkgreen") translate([-pcb_x/2, -pcb_y/2, 0]) cube([pcb_x, pcb_y, pcb_t]);
+        for (p = pcb_parts) pcb_part(p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7]);
+    }
+}
+module a71_atom() {
+    a71_in_box() translate([(pcb_atom_cx - pcb_x/2), bb_pcb_oy + (pcb_y/2 - pcb_atom_cy), bb_lid_t + bb_pcb_standoff + pcb_t + 8.5]) {
+        color("black") translate([-12, -12, 0]) cube([24, 24, pcb_atom_h]);
+        color("deepskyblue") translate([-9, -9, pcb_atom_h]) cube([18, 18, 0.2]);
+        color("silver") for (x = [-7.62, 7.62], y = [-7.72, -5.18, -2.64, -0.10, 2.44]) if (!(x > 0 && y > 2)) translate([x, -y, -8.5]) cylinder(d = 0.64, h = 8.5, $fn = 8);
+    }
+}
+module a71_panel() {
+    // on the top face (box-local), vertical axis
+    a71_in_box() translate([0, 0, bb_z]) {
+        translate([bb_estop_pos[0], bb_estop_pos[1], 0]) { color("yellow") cylinder(d = 32, h = 1, $fn = 48); color("red") { cylinder(d = 22, h = 6, $fn = 40); translate([0, 0, 6]) cylinder(d = 40, h = 14, $fn = 48); } color("black") translate([0, 0, -30]) cylinder(d = 22, h = 30, $fn = 32); }
+        color("black") translate([bb_pot_pos[0], bb_pot_pos[1], 0]) cylinder(d = 16, h = 14, $fn = 32);
+        color("limegreen") translate([bb_btn_pos[0], bb_btn_pos[1], 0]) cylinder(d = 14, h = 6, $fn = 32);
+    }
+}
+module a71_cables() {
+    yf = tower_y + pod_gb_face_y;
+    color("black") {
+        // motor cable: rear-wall exit -> up the tower back -> pod bottom
+        hull() { translate([-30, tower_y - bb_y/2 - 2, 12]) sphere(2); translate([-30, tower_y + 3, 12]) sphere(2); }
+        hull() { translate([-30, tower_y + 3, 12]) sphere(2); translate([-30, tower_y + 3, lift + shaft_z + pod_bottom - 5]) sphere(2); }
+        hull() { translate([-30, tower_y + 3, lift + shaft_z + pod_bottom - 5]) sphere(2); translate([0, tower_y + pod_len/2, lift + shaft_z + pod_bottom - 5]) sphere(2); }
+        // 12 V lead out of the rear wall toward the wheel side... routed along the base
+        hull() { translate([45, tower_y - bb_y/2 - 2, 12]) sphere(2); translate([45, tower_y - bb_y/2 - 60, 12]) sphere(2); }
+    }
+}
+module a71_pod()   { color("darkorange") raised() translate([0, tower_y, shaft_z]) pod_body(); }
+module a71_cover() { color("orange") raised() translate([0, tower_y, shaft_z]) translate([-(pod_in_w + 2)/2, mpod_wall, pod_bottom + 3]) cover(); }
+module a71_motor() {
+    yf = tower_y + pod_gb_face_y;
+    color("gray") raised() {
+        translate([-motor_gb_w/2, yf, shaft_z - (motor_gb_h - motor_shaft_off)]) cube([motor_gb_w, motor_gb_t, motor_gb_h]);
+        translate([0, yf - 1, shaft_z]) rotate([-90, 0, 0]) cylinder(d = motor_shaft_d, h = motor_shaft_len + 1, $fn = 24);
+        translate([0, yf + motor_gb_t/2, shaft_z - (motor_gb_h - motor_shaft_off) + 0.01]) rotate([180, 0, 0]) cylinder(d = motor_body_d, h = motor_body_len, $fn = 32);
+    }
+}
+module a71_all() {
+    a71_base_box(); a71_base_lid(); a71_base_rear(); a71_pcb(); a71_atom(); a71_panel(); a71_cables();
+    raised() { a_tower_front(); a_tower_rear(); a_shaft_v7(); a_hubs(); a_rim_front(); a_rim_rear(); a_axles(); for (i = [0:3]) a_gondola(i); a_stackchan(); a_coupling(); }
+    a71_pod(); a71_cover(); a71_motor();
+}
+module a71_open() {
+    a71_base_box(); a71_base_rear(); a71_pcb(); a71_atom(); a71_panel(); a71_cables();
+    raised() { a_tower_front(); a_tower_rear(); a_shaft_v7(); a_hubs(); a_rim_front(); a_rim_rear(); a_axles(); for (i = [0:3]) a_gondola(i); a_stackchan(); a_coupling(); }
+    a71_motor();
+}
+
 // --- dispatch --------------------------------------------------------------
-if (PART == "all") {
+if (PART == "all") { if (V71) a71_all(); else {
     a_base(); a_tower_front(); a_tower_rear(); a_shaft(); a_hubs();
     a_rim_front(); a_rim_rear(); a_diffusers(); a_axles();
     for (i = [0:3]) a_gondola(i);
     a_stackchan();
-    a_crank();
-}
-else if (PART == "base")          a_base();
-else if (PART == "tower-front")   a_tower_front();   // v7: print tower-upper-motor for this one
-else if (PART == "tower-rear")    a_tower_rear();
-else if (PART == "shaft")         a_shaft();
-else if (PART == "hubs")          a_hubs();
-else if (PART == "rim-front")     a_rim_front();
-else if (PART == "rim-rear")      a_rim_rear();
-else if (PART == "diffusers")     a_diffusers();
-else if (PART == "axles")         a_axles();
-else if (PART == "stackchan")     a_stackchan();
-else if (PART == "crank")         a_crank();
-else if (PART == "shaft-v7")      a_shaft_v7();
-else if (PART == "motor-bracket") a_motor_bracket();
-else if (PART == "coupling")      a_coupling();
-else if (PART == "motor")         a_motor();
+    a_crank(); } }
+else if (PART == "all-v71")       a71_all();
+else if (PART == "all-v71-open")  a71_open();
+else if (PART == "base")          { if (V71) a71_base_box(); else a_base(); }
+else if (PART == "base-lid")      a71_base_lid();
+else if (PART == "base-rear")     a71_base_rear();
+else if (PART == "tower-front")   raised() a_tower_front();
+else if (PART == "tower-rear")    raised() a_tower_rear();
+else if (PART == "shaft")         raised() a_shaft();
+else if (PART == "hubs")          raised() a_hubs();
+else if (PART == "rim-front")     raised() a_rim_front();
+else if (PART == "rim-rear")      raised() a_rim_rear();
+else if (PART == "diffusers")     raised() a_diffusers();
+else if (PART == "axles")         raised() a_axles();
+else if (PART == "stackchan")     raised() a_stackchan();
+else if (PART == "crank")         raised() a_crank();
+else if (PART == "gondola-1")     raised() a_gondola(0);
+else if (PART == "gondola-2")     raised() a_gondola(1);
+else if (PART == "gondola-3")     raised() a_gondola(2);
+else if (PART == "gondola-4")     raised() a_gondola(3);
+else if (PART == "shaft-v7")      raised() a_shaft_v7();
+else if (PART == "motor-bracket") raised() a_motor_bracket();
+else if (PART == "coupling")      raised() a_coupling();
+else if (PART == "motor")         { if (V71) a71_motor(); else a_motor(); }
+else if (PART == "motor-pod")     a71_pod();
+else if (PART == "pod-cover")     a71_cover();
 else if (PART == "ctrl-box")      a_ctrl_box();
 else if (PART == "ctrl-tray")     a_ctrl_tray();
 else if (PART == "ctrl-lid")      a_ctrl_lid();
-else if (PART == "atom")          a_atom();
-else if (PART == "all-v7-open")  { a_base(); a_tower_front(); a_tower_rear(); a_shaft_v7(); a_hubs(); a_rim_front(); a_rim_rear(); a_axles(); for (i = [0:3]) a_gondola(i); a_stackchan(); a_coupling(); a_motor(); a_ctrl_tray(); a_ctrl_pcb(); a_atom(); a_cables(); }
-else if (PART == "ctrl-pcb")      a_ctrl_pcb();
-else if (PART == "ctrl-panel")    a_ctrl_panel();
-else if (PART == "cables")        a_cables();
+else if (PART == "ctrl-pcb")      { if (V71) a71_pcb(); else a_ctrl_pcb(); }
+else if (PART == "atom")          { if (V71) a71_atom(); else a_atom(); }
+else if (PART == "ctrl-panel")    { if (V71) a71_panel(); else a_ctrl_panel(); }
+else if (PART == "cables")        { if (V71) a71_cables(); else a_cables(); }
 else if (PART == "all-v7") {
     a_base(); a_tower_front(); a_tower_rear(); a_shaft_v7(); a_hubs();
     a_rim_front(); a_rim_rear(); a_axles();
@@ -255,7 +328,4 @@ else if (PART == "all-v7") {
     a_drive_v7();
     a_ctrl_v7();
 }
-else if (PART == "gondola-1")     a_gondola(0);
-else if (PART == "gondola-2")     a_gondola(1);
-else if (PART == "gondola-3")     a_gondola(2);
-else if (PART == "gondola-4")     a_gondola(3);
+else if (PART == "all-v7-open")  { a_base(); a_tower_front(); a_tower_rear(); a_shaft_v7(); a_hubs(); a_rim_front(); a_rim_rear(); a_axles(); for (i = [0:3]) a_gondola(i); a_stackchan(); a_coupling(); a_motor(); a_ctrl_tray(); a_ctrl_pcb(); a_atom(); a_cables(); }

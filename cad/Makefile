@@ -26,7 +26,12 @@ FERRIS_STL := \
 	$(FERRIS)/motor-bracket.stl \
 	$(FERRIS)/motor-coupler.stl \
 	$(FERRIS)/ctrl-box-tray.stl \
-	$(FERRIS)/ctrl-box-lid.stl
+	$(FERRIS)/ctrl-box-lid.stl \
+	$(FERRIS)/motor-pod.stl \
+	$(FERRIS)/motor-pod-cover.stl \
+	$(FERRIS)/base-box.stl \
+	$(FERRIS)/base-box-lid.stl \
+	$(FERRIS)/base-box-plain.stl
 
 BOOTH_STL := \
 	$(BOOTH)/floor-tile.stl \
@@ -154,6 +159,17 @@ $(FERRIS)/ctrl-box-tray.stl: ferris/ctrl_box.scad $(COMMON)
 	$(OPENSCAD) -D 'PART="tray"' -o $@ $<
 $(FERRIS)/ctrl-box-lid.stl: ferris/ctrl_box.scad $(COMMON)
 	$(OPENSCAD) -D 'PART="lid"' -o $@ $<
+# v7.1 embedded variant (2026-09-10)
+$(FERRIS)/motor-pod.stl: ferris/motor_pod.scad $(COMMON)
+	$(OPENSCAD) -D 'PART="pod"' -o $@ $<
+$(FERRIS)/motor-pod-cover.stl: ferris/motor_pod.scad $(COMMON)
+	$(OPENSCAD) -D 'PART="cover"' -o $@ $<
+$(FERRIS)/base-box.stl: ferris/base_box.scad $(COMMON)
+	$(OPENSCAD) -D 'PART="box"' -o $@ $<
+$(FERRIS)/base-box-lid.stl: ferris/base_box.scad $(COMMON)
+	$(OPENSCAD) -D 'PART="lid"' -o $@ $<
+$(FERRIS)/base-box-plain.stl: ferris/base_box.scad $(COMMON)
+	$(OPENSCAD) -D 'PART="box-plain"' -o $@ $<
 $(FERRIS)/rim-segment.stl: ferris/rim_segment.scad $(COMMON)
 	$(OPENSCAD) -o $@ $<
 $(FERRIS)/diffuser.stl: ferris/diffuser.scad $(COMMON)
@@ -189,16 +205,16 @@ $(BOOTH)/stand-clips.stl: booth/stand_clips.scad $(COMMON)
 
 # --- assembly viewer models (positioned, lightweight binary STL) ----------
 VIEWER       := ../docs/public/models/ferris
-VIEWER_PARTS := base tower-front tower-rear shaft hubs rim-front rim-rear \
+VIEWER_PARTS := base base-lid base-rear tower-front tower-rear shaft hubs rim-front rim-rear \
                 diffusers axles gondola-1 gondola-2 gondola-3 gondola-4 stackchan \
-                motor-bracket coupling motor ctrl-tray ctrl-lid ctrl-pcb atom ctrl-panel cables
+                motor-pod pod-cover coupling motor ctrl-pcb atom ctrl-panel cables
 
 .PHONY: viewer-models
 viewer-models:
 	@mkdir -p $(VIEWER)
 	@for p in $(VIEWER_PARTS); do \
 	  echo "  viewer $$p"; \
-	  $(OPENSCAD) -D '$$fn=40' -D "PART=\"$$p\"" --export-format binstl \
+	  $(OPENSCAD) -D '$$fn=40' -D 'V71=true' -D "PART=\"$$p\"" --export-format binstl \
 	    -o $(VIEWER)/$$p.stl ferris/assembly.scad 2>/dev/null || exit 1; \
 	done
 	@ls -l $(VIEWER)/*.stl | awk '{printf "  %-28s %8.1f KB\n", $$9, $$5/1024}'

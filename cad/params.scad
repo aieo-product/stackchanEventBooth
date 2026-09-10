@@ -385,3 +385,37 @@ panel_btn         = [panel_cx + 10, -18];
 panel_estop_hole_d = 22.3;
 panel_pot_hole_d   = 7.2;
 panel_btn_hole_d   = 16.2;
+
+// ===========================================================================
+// v7.1 (2026-09-10) EMBEDDED VARIANT — motor pod on the tower, PCB in a base box
+// Same PCB / motor / shaft; only the printed housings change.
+// ===========================================================================
+// --- Motor pod (ferris/motor_pod.scad): closed housing bolted to the tower's
+// 4 pilot holes (same pattern as the bracket). Gearbox sits INSIDE against the
+// outer wall (screws from outside into the gearbox threads), can hangs down.
+mpod_wall         = 4;
+pod_in_w          = mb_inner_w;                    // 38: coupling + hex-key room
+pod_top           = mb_top;                        // +25 above the shaft axis
+pod_bottom        = -(motor_gb_h - motor_shaft_off) - motor_body_len - 6;   // -68: can end + clearance
+pod_len           = mpod_wall + motor_gb_t + 2 + coupling_len - coupling_grip + shaft_protrude + 2;  // 4+21.5+2+25-12+20+2 = 62.5 -> tower face to outer face
+pod_gb_face_y     = pod_len - mpod_wall - motor_gb_t;   // gearbox output face from the tower face (37)
+pod_cover_t       = 2.5;                           // slide-in bottom cover
+pod_cover_slot    = 0.5;                           // groove clearance
+pod_vent_w        = 2;                             // side vent slots
+
+// --- Base box (ferris/base_box.scad): replaces base-mini on the motor side.
+// Tower foot slots on top (same +/-48 layout), PCB cavity underneath, panel
+// parts on the front wall, bottom lid (4 x M3 self-tap).
+bb_x              = 140;                           // outer footprint (across the tower feet)
+bb_y              = 110;                           // outer footprint (along the shaft)
+bb_z              = 45;                            // height
+bb_wall           = 3;
+bb_lid_t          = 2.5;
+bb_pcb_oy         = -18;                           // PCB centre offset (box-local y; -y = front = away from the wheel). Keeps the Atom window clear of the tower crossbar
+bb_pcb_standoff   = 4;                             // PCB underside above the lid inner face
+bb_atom_win       = pcb_atom_w + 1.5;              // top window for the AtomS3R
+// panel parts on the TOP face, front strip (outside the tower footprint), box-local (x, y)
+bb_estop_pos      = [48, -38];                     // E-stop 22 mm (body 30 mm deep, beside the PCB)
+bb_pot_pos        = [-40, -42];                    // speed pot
+bb_btn_pos        = [-60, -38];                    // RUN/STOP 16 mm
+bb_cable_hole_d   = 8;                             // motor / LED / 12V cable exits (rear wall)
