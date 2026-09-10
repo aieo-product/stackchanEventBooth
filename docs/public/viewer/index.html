@@ -97,8 +97,13 @@ renderer.setPixelRatio(devicePixelRatio);
 renderer.setSize(innerWidth, innerHeight);
 document.getElementById('canvas-wrap').appendChild(renderer.domElement);
 
+// v7.1 埋め込み版は assembly.scad の raised()/lift = bb_z - base_t (30 mm) だけ
+// 支柱・シャフト・ホイールが底上げされる。接続パーツレイヤーの座標もこの分だけ
+// Z方向にオフセットする（VIEWER_PARTS は常に V71=true で書き出している）。
+const LIFT = 30;
+
 const controls = new OrbitControls(camera, renderer.domElement);
-controls.target.set(0, 0, 170);
+controls.target.set(0, 0, 170 + LIFT);
 controls.enableDamping = true;
 
 scene.add(new THREE.HemisphereLight(0xffffff, 0x30364a, 1.0));
@@ -152,7 +157,7 @@ for (const p of parts) {
 // 座標系は assembly.scad と同一（原点=ベース底面中心・シャフト軸=Y・z上向き）。
 // STL実測: シャフト軸 z=293 / 支柱中心 y=±83 / リム継手ボス半径126 / スポークボルト円半径30。
 // evec は追従するパーツと同じ explode ベクトル（分解ビューで一緒に動く）。
-const SZ = 293, TY = 83, BOSS_R = 126, SPOKE_R = 30;
+const SZ = 293 + LIFT, TY = 83, BOSS_R = 126, SPOKE_R = 30;  // v7.1: SZ に LIFT を加算（TY はY方向なので不変）
 const ring = (a, r) => [r * Math.cos(a * Math.PI / 180), r * Math.sin(a * Math.PI / 180)];
 const FASTENERS = [
   { id:'f-608', name:'608ZZベアリング ×2＋予備', color:'#ffd43b', shape:'ring',
@@ -173,8 +178,8 @@ const FASTENERS = [
   { id:'f-m3-12', name:'M3×12（支柱 上下スプライス ×4）', color:'#845ef7', shape:'dot',
     note:'角ダボ嵌合部を左右の脚でネジ留め（z=150付近）',
     items:[
-      {p:[ 26, TY, 158], e:[0,1,0]}, {p:[-26, TY, 158], e:[0,1,0]},
-      {p:[ 26,-TY, 158], e:[0,-1,0]}, {p:[-26,-TY, 158], e:[0,-1,0]},
+      {p:[ 26, TY, 158+LIFT], e:[0,1,0]}, {p:[-26, TY, 158+LIFT], e:[0,1,0]},
+      {p:[ 26,-TY, 158+LIFT], e:[0,-1,0]}, {p:[-26,-TY, 158+LIFT], e:[0,-1,0]},
     ] },
   { id:'f-imo', name:'M3イモネジ ×6（ハブ・クランク）', color:'#ff922b', shape:'dot',
     note:'Φ8シャフトへの radial 固定。要六角レンチ1.5mm。M3ネジで事前タップ',
@@ -186,9 +191,9 @@ const FASTENERS = [
   { id:'f-thumb', name:'M3蝶ボルト ×6（支柱脚・ベース連結）', color:'#40c057', shape:'knob',
     note:'現地組立で工具レス着脱する箇所',
     items:[
-      {p:[ 48, TY, 23], e:[0,1,0]}, {p:[-48, TY, 23], e:[0,1,0]},
-      {p:[ 48,-TY, 23], e:[0,-1,0]}, {p:[-48,-TY, 23], e:[0,-1,0]},
-      {p:[ 50, 0, 18], e:[0,0,-1]}, {p:[-50, 0, 18], e:[0,0,-1]},
+      {p:[ 48, TY, 23+LIFT], e:[0,1,0]}, {p:[-48, TY, 23+LIFT], e:[0,1,0]},
+      {p:[ 48,-TY, 23+LIFT], e:[0,-1,0]}, {p:[-48,-TY, 23+LIFT], e:[0,-1,0]},
+      {p:[ 50, 0, 18+LIFT], e:[0,0,-1]}, {p:[-50, 0, 18+LIFT], e:[0,0,-1]},
     ] },
   { id:'f-led', name:'LED配線（SMコネクタ・WAGO・AtomS3R）', color:'#22b8cf', shape:'knob',
     note:'中央=AtomS3R＋バッテリー（ハブ同乗）／下端=テープDin端へSMメスを接続',

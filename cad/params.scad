@@ -286,3 +286,137 @@ marker_d      = 24;                  // standing-position marker disc
 dt_len        = 8;                   // protrusion length of the tenon
 dt_base_w     = 8;                   // narrow (root) width
 dt_neck_w     = 12;                  // wide (tip) width -> self-locking flare
+
+// ===========================================================================
+// v7 (2026-09-03) MOTOR DRIVE — 9/23 生成AIなんでも展示会 向け自動回転版
+// Hand crank -> JGY-370 12 V self-locking worm gear motor, direct-coupled to
+// the existing Ø8 steel shaft on the (former) crank side of the front tower.
+// Worm = non-back-drivable: a child pushing the rim cannot spin the wheel.
+// ===========================================================================
+
+// --- JGY-370 worm gear motor (ASLONG/Bringsmart drawing, Seeed 108990007) --
+motor_gb_w        = 32;      // gearbox width  (across the 18 mm hole pitch)
+motor_gb_h        = 46;      // gearbox length (across the 33 mm hole pitch)
+motor_gb_t        = 21.5;    // gearbox thickness (shaft face -> back)
+motor_hole_dx     = 18;      // M3 mounting holes, pitch across width
+motor_hole_dz     = 33;      // M3 mounting holes, pitch along length
+motor_shaft_off   = 15;      // shaft centre from the SHORT end of the gearbox
+                             // (upper hole row is 9 mm above the shaft, lower row 24 below)
+motor_shaft_d     = 6.0;     // D-shaft
+motor_shaft_flat  = 5.5;     // across the D flat
+motor_shaft_len   = 12;      // usable shaft length past the 1 mm boss
+motor_boss_d      = 10;      // bearing boss on the output face (clearance)
+motor_body_d      = 24.4;    // 370 can
+motor_body_len    = 30.8;    // 370 can length (hangs off the long end)
+motor_hole_d      = m3_clear;
+
+// --- Coupling: Ø8 wheel shaft <-> Ø6 motor shaft ---------------------------
+// Default = aluminium flexible (beam/jaw) coupling 6x8, D20 L25 (Amazon).
+// Fallback = printed rigid coupler (motor_mount.scad PART="coupler").
+coupling_d        = 20;
+coupling_len      = 25;
+coupling_grip     = 12;      // how far the Ø8 shaft enters the coupling
+shaft_protrude    = 20;      // Ø8 shaft past the tower OUTER face on the motor side
+                             // (v6 crank side was 32; slide the shaft 12 mm toward the
+                             //  rear tower so both ends protrude ~20 — re-measure the rod!)
+motor_standoff    = shaft_protrude - coupling_grip + coupling_len + 2 + motor_shaft_len;
+                             // 47: tower outer face -> gearbox output face
+                             // (coupling fully between them, 2 mm end play)
+
+// --- Motor bracket (motor_mount.scad PART="bracket") -----------------------
+// U-box: tower plate + 2 side walls + top wall + motor flange, open at the
+// bottom (motor can hangs down there; hex-key access to the 4 flange screws).
+mb_plate_t        = 4;       // tower plate thickness
+mb_wall_t         = 5;       // side / top wall thickness
+mb_flange_t       = 4;       // motor flange thickness
+mb_inner_w        = motor_gb_w + 6;          // 38: coupling Ø20 + hex key room
+mb_outer_w        = mb_inner_w + 2*mb_wall_t; // 48
+mb_top            = 25;      // box top wall inner face above the shaft axis
+mb_bottom         = -(motor_gb_h - motor_shaft_off) - 2;  // -33: flange reaches past the lower hole row
+mb_tower_hole_x   = 14;      // M3 screws into the tower apex block (pilot Ø2.9)
+mb_tower_hole_z   = 14;      //   at (±14, ±14) around the shaft axis
+mb_tower_pilot_depth = 12;   // pilot depth in the tower (M3x12 screws)
+mb_shaft_clear_d  = 12;      // tower-plate bore around the Ø8 shaft
+mb_flange_bore_d  = motor_boss_d + 2;  // 12: motor boss / shaft clearance
+
+// --- Printed rigid coupler (fallback if the aluminium coupling is late) -----
+pc_d              = 20;
+pc_len            = 30;
+pc_bore8          = shaft_hole_d;    // 8.2 side (Ø8 wheel shaft)
+pc_bore6          = 6.3;             // Ø6 D side (printed bores shrink ~0.2)
+pc_flat6          = motor_shaft_flat + 0.3;  // 5.8: D-flat chord
+pc_depth          = 14;              // each blind bore
+pc_set_d          = m3_thread;       // radial M3 set-screw pilots (self-tap)
+
+// --- Control board (EasyEDA / JLCPCB) + printed enclosure -----------------
+// Board outline is FIXED here first so the box can be printed before the
+// layout is finished: 80 x 60, 4 x M3 at 4 mm from the corners, AtomS3R
+// socket centred at (20, 30) from the board's bottom-left, connectors on the
+// +Y (top) edge.
+pcb_x             = 80;
+pcb_y             = 60;
+pcb_t             = 1.6;
+pcb_hole_inset    = 4;
+pcb_hole_d        = m3_clear;
+pcb_atom_cx       = 20;      // AtomS3R body centre on the board
+pcb_atom_cy       = 30;
+pcb_atom_w        = 24;      // AtomS3R footprint 24 x 24 (x 12.9 tall)
+pcb_atom_h        = 13;
+pcb_comp_h        = 12;      // tallest other component (DC jack / caps / XH)
+box_wall          = 2.0;
+box_clear         = 1.5;     // per side, board to inner wall
+box_floor_t       = 2.0;
+box_standoff_d    = 7;
+box_lip           = 2;       // lid lip depth
+box_conn_cut_h    = 10;      // connector-edge wall cut height (from the top)
+box_conn_cut_w    = 60;      // connector-edge cut width
+// Panel parts live on the LID over a PANEL BAY to the +X of the PCB (9/3 rev3):
+// the 22 mm E-stop body hangs ~30 mm below the lid, so nothing may sit under it.
+// The bay keeps the PCB free of any keep-out, and the PCB rides 20 mm standoffs
+// so the AtomS3R screen ends ~5 mm below the lid window.
+box_bay_w         = 44;      // panel bay width (E-stop mushroom Ø40 + wall)
+box_inner_h       = 40;      // tray inner depth (E-stop body 30 + clearance)
+box_standoff_h    = 20;      // (overrides the 5 above) PCB underside above the floor
+// panel positions relative to the BOX centre (x, y); bay centre x = 63.5
+panel_cx          = pcb_x/2 + box_clear + box_bay_w/2;
+panel_estop       = [panel_cx, 12];
+panel_pot         = [panel_cx - 10, -18];
+panel_btn         = [panel_cx + 10, -18];
+panel_estop_hole_d = 22.3;
+panel_pot_hole_d   = 7.2;
+panel_btn_hole_d   = 16.2;
+
+// ===========================================================================
+// v7.1 (2026-09-10) EMBEDDED VARIANT — motor pod on the tower, PCB in a base box
+// Same PCB / motor / shaft; only the printed housings change.
+// ===========================================================================
+// --- Motor pod (ferris/motor_pod.scad): closed housing bolted to the tower's
+// 4 pilot holes (same pattern as the bracket). Gearbox sits INSIDE against the
+// outer wall (screws from outside into the gearbox threads), can hangs down.
+mpod_wall         = 4;
+pod_in_w          = mb_inner_w;                    // 38: coupling + hex-key room
+pod_top           = mb_top;                        // +25 above the shaft axis
+pod_bottom        = -(motor_gb_h - motor_shaft_off) - motor_body_len - 6;   // -68: can end + clearance
+pod_len           = mpod_wall + motor_gb_t + 2 + coupling_len - coupling_grip + shaft_protrude + 2;  // 4+21.5+2+25-12+20+2 = 62.5 -> tower face to outer face
+pod_gb_face_y     = pod_len - mpod_wall - motor_gb_t;   // gearbox output face from the tower face (37)
+pod_cover_t       = 2.5;                           // slide-in bottom cover
+pod_cover_slot    = 0.5;                           // groove clearance
+pod_vent_w        = 2;                             // side vent slots
+
+// --- Base box (ferris/base_box.scad): replaces base-mini on the motor side.
+// Tower foot slots on top (same +/-48 layout), PCB cavity underneath, panel
+// parts on the front wall, bottom lid (4 x M3 self-tap).
+bb_x              = 140;                           // outer footprint (across the tower feet)
+bb_y              = 110;                           // outer footprint (along the shaft)
+bb_z              = 45;                            // height
+bb_wall           = 3;
+bb_lid_t          = 2.5;
+bb_pcb_oy         = -18;                           // PCB centre offset (box-local y; -y = front = away from the wheel). Keeps the Atom window clear of the tower crossbar
+bb_pcb_standoff   = 11.5;                          // PCB underside above the lid inner face
+bb_atom_win       = pcb_atom_w + 1.5;              // top window for the AtomS3R
+bb_foot_pad       = 4;                             // solid material left under the foot slot bottom (above the solid block floor)
+// panel parts on the TOP face, front strip (outside the tower footprint), box-local (x, y)
+bb_estop_pos      = [52, -34];                     // E-stop 22 mm (body 30 mm deep, beside the PCB)
+bb_pot_pos        = [-40, -42];                    // speed pot
+bb_btn_pos        = [-60, -38];                    // RUN/STOP 16 mm
+bb_cable_hole_d   = 8;                             // motor / LED / 12V cable exits (rear wall)

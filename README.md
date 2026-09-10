@@ -7,6 +7,8 @@
 📄 **公開提案サイト（Cloudflare Pages）: https://stackchan-event-booth.pages.dev/**
 🎤 LTスライド（リッチHTML）: https://stackchan-event-booth.pages.dev/slides/lt.html
 
+> **次回展示: 2026-09-23 生成AIなんでも展示会** — 観覧車を v7（モーター自動回転・安全版）に再構築中 → [docs/ferris-v7-auto.md](docs/ferris-v7-auto.md)
+
 ## このリポジトリの目的
 
 - ブース企画（アクセサリー／撮影ブース／必要スペース）の管理
