@@ -1,57 +1,32 @@
-# HANDOVER — stackchanEventBooth
+# HANDOVER — stackchanEventBooth（セッション名: stackchanKanransya → 次は stackchanKanransyaV2）
 
-> 最終更新: 2026-07-23 昼 (JST) / 更新セッション: フォトウォール・LED・LT会ジオラマ・v6量産・未着対応
-> **イベントは明日 7/24(金)13:00-17:00。今日はオフィス残り〜10hで印刷を全消化する日**
+> 最終更新: 2026-09-10 夕方 (JST)
+> **展示は 9/23(水) 生成AIなんでも展示会。JLCPCB 注文は 9/10 にカート投入まで完了（支払いはユーザー操作）**
 
 ## ゴール
-- AI Dev Day 2026(大手町プレイス1F)のスタックチャンブース。🎡手回し観覧車(実機搭乗)＋🎤LT会ジオラマ撮影ブース＋📺フォトウォール＋15分LT
+- 観覧車 v7: JGY-370 ウォームギアモーター直結（非逆駆動）＋ AtomS3R キャリア基板で自動回転。設計の正 = `docs/ferris-v7-auto.md`。
 
 ## 今いちばん大事な状態 🔥
-- **印刷分担(7/23午後確定)**: 応援=リム4＋**支柱上下各1＋base-mini×2**(足元パッド化で1枚1h・ジャーナル廃止・/dl/wheel-kit-20260723.zip v3・明朝神田受渡)。自宅=リム残→hub×2→crank(v2鋼棒ハンドル・最後)。**ブースは床タイル全廃→スタンド自立のハリボテ壁構成に変更し、壁+スタンドをブース応援者へ委譲**(/dl/booth-walls-kit-20260723.zip)。**608ベアリング不使用で確定**(支柱Φ9穴が滑り軸受・千石リストの608は購入不要に)
-- **昨夜のプレート(ゴンドラv6×4＋支柱4点＋crank＋Φ2.9かまぼこ)の完了確認がまだ会話に出ていない** — 失敗していたら最優先で再印刷
-- **7/13 Amazon便は7/27着に遅延=イベントに間に合わない** → 全代替を千石で現物調達: `research/akiba-backup-20260722.md`(LED配線含む・約¥6,200・商品コード確認済み)。**買い出しは本日中必須**(千石19時まで)
-- **Φ2.9セルフタップは7/23午後に実ネジで実証済み**(IMG_9508/9509: スポークパッド2枚をM3でハブ片に固定・しっかり噛合)。hub×2はこのまま本番使用可。これで観覧車の全接合部が検証完了
+1. **PCB は確定・発注中**（EasyEDA プロジェクト stackchan-ferris-ctrl-v7、Nets 25/25・DRC 0）。JLCPCB カート: PCB 5枚 $4.00 ＋ PCBA Economic 2枚 $35.75（THT 部品は実装対象外＝手はんだ、LED1 は C2286 赤に置換）、クーポン -$10。**支払い・配送（DHL 推奨）はユーザーが trade.jlcpcb.com で実施**。注文番号が分かったら本ファイルと `docs/ferris-v7-auto.md` に記録。
+   - 配線が階段状なのは自作ルーターの仕様。電気的・製造的に問題なし（最小異ネット間隔 0.245mm）。
+   - 製造ファイル: `hardware/ferris-ctrl-pcb/fab/`（Gerber/BOM/CPL 9/9 版。J9A/J9B は 9/10 に縦向き・列間 15.24mm に変更済みで JLC には EasyEDA からの one-click で最新版が転送されている）。
+2. **LCSC カート**（take.otani、Cart_20260909020357、12 品目 $15.01）: 手はんだ用 XH ヘッダ/ハウジング/コンタクト/DC ジャック/メスヘッダ/A3144(TO-92S)/電解。checkout で "Ship with JLCPCB order" を選ぶ（ユーザー操作）。
+3. **Amazon 発注（ユーザー）**: JGY-370 12V 3rpm、フレキシブルカップリング 6×8 D20L25、12V2A アダプタ(PSE)、非常停止 22mm、10kポット、押しボタン、M3×12、磁石。
+4. **筐体は 2 案が並存**:
+   - v7（外付け）: `tower-upper-motor` / `motor-bracket` / `motor-coupler` / `ctrl-box-tray`(131×67×42・操作部ベイ付) / `ctrl-box-lid` — STL 生成・寸法チェック済み、print-list.yaml に登録済み。**確実に動く案として先に印刷推奨**。
+   - v7.1（埋め込み・9/10 着手、ユーザー指示で一旦停止）: `motor-pod`（支柱外面にボルト止めの密閉ポッド、モーター内蔵、下から蓋 `motor-pod-cover`）、`base-box`（モーター側土台ボックス 140×110×45: 上面に足スロット・Atom 窓・非常停止/ツマミ/ボタン、後壁ケーブル穴、底蓋 `base-box-lid` に基板スタンドオフ）、`base-box-plain`（反対側の同高リ​ザー）。STL 生成・寸法 OK。**未完了**: 組立モデルの確認は 1 回のみ（`assembly.scad PART="all-v71"` / `-D V71=true`）、Atom の画面が窓から 15mm 沈む（スタンドオフを上げるか箱を低く）、print-list 未登録、ビューア manifest は v7.1 の ID（base-lid, base-rear, motor-pod, pod-cover）に未対応、docs 未記載。v7 の PCB はどちらの案でもそのまま使える。
 
-## 観覧車(v6・8b25bc4まで)
-- 駆動: 8mm鉄シャフト→ハブΦ8.2(イモネジM3×2/Φ2.9直タップ)→支柱上端支柱Φ9穴の直軸受(608不使用で確定・Φ22.2ポケットは空きでOK)→クランク。ゴンドラ吊りΦ6印刷軸+キャップ(検証済)
-- v6: pivot100(装飾ロボ頭上33mm)・支柱300mm・ゴンドラ88×74×107.4。v5でシャフト/着座/吊り/水平は実機合格済み
-- **スポーク⇔ハブ**: パッドΦ3.4素通し+ハブΦ2.9タップ×8穴、M3×8。**リム継手**: ダブテール+M3×8(タップ側Φ2.9)。**白リム1号のみ旧Φ4.0→M4×8**
-- リム応援印刷4個(配布URL: /dl/rim-segment-v20260722.stl・最新Φ2.9版と同一ハッシュ確認済み)
+## 設計・作図の要点
+- CAD: `cad/params.scad` が唯一の正（v7 セクション `motor_*/mb_*/pc_*/pcb_*/box_*`、v7.1 セクション `mpod_*/pod_*/bb_*`）。`make -C cad ferris` → `python3 cad/check_dims.py print/files/ferris`。
+- AtomS3R ソケット: 公式 STL＋回路図から確定。列間 15.24mm、J9A(5ピン)=3V3/G5/G6/G7/G8、J9B(4ピン)=G39/G38/5V/GND。
+- EasyEDA 作図はブラウザ JS API（`easyeda.extension.exec(api=>…)`, getSource/applySource type 5.x）で全自動。手順と落とし穴はメモリ `easyeda-scripting-via-browser` と `hardware/ferris-ctrl-pcb/README.md`。
+- ファーム `firmware/ferris_ctrl/ferris_ctrl.ino`（AtomS3R コンパイル済・未実機）。
+- 3D ビューア: `make -C cad viewer-models`（現在は V71=true で生成する設定に変えたが manifest は v7 のまま → 次セッションで manifest を v7.1 に合わせるか、Makefile の `-D 'V71=true'` を外して v7 に戻す）。
 
-## LED(実装完了・配線材のみ未調達)
-- AtomS3R + `firmware/led_rainbow/led_rainbow.ino` 書込済: SK6812 60LED×2本をGrove G2(前リム)/G1(後リム)、画面ボタンで50/25/100%/OFF、900mAキャップ
-- 配線: Grove切断ケーブル→WAGO分岐→SMメスピグテール(千石CAB-14575)→テープ**Din側**(矢印始点)。7/22の不点灯はDOUT側接続+仮結線が原因
-- 電源: ATOMICバッテリーベース(A151)×3差し替え・稼働1h以内なら容量OK。ベースUSB-Cにモバブ挿しで延命可
-
-## LT会ジオラマ(7/23設計完了・印刷待ち)
-- **7/23夕変更: 床なし・stand_clipsスタンド自立式(ハリボテ)**。旧床ソケット案は記録。スクリーンはL/R分割→半厚ダブテール連結で300mm幅、**紙288×117(A4横)が2枚跨ぎで上から差さる**。窓壁(左)・通常壁(右)・演台(ロゴ紙43×25)・ステージ台
-- 印刷紙: **https://stackchan-event-booth.pages.dev/dl/lt-paper-a4.pdf**(GPT-image-2生成・公式ルックのスタックチャン+AIDevDayロゴ+スタックチャンLT会！バナー・トンボ付き)。等倍印刷→カット
-- 3Dビューア: /viewer-booth/(組立確認用・分解ビュー可)
-
-## 📺フォトウォール(運用のみ残)
-- /photowall/ 1枚10秒スライドショー・60秒毎posts.json再取得・Fで全画面。7/21実Xポストでリハ成功済(Chrome拡張+Xログイン要)
-- 更新手順=`scripts/photowall/README.md`(スクレイピングはmedia ID形式でDLP回避)。除外=ban.json
-
-## スライド(7/23昼 再構成デプロイ済み・25枚)
-- 実体: `docs/public/slides/lt.html`(生HTML・ビルドで dist へコピー)。本番 /slides/lt.html
-- 7/23再構成: ①歴史に「5歳お誕生日会」「OpenAI公式CM登場(@OpenAIDevs Build Week動画)」追加 / ②を新フロー化: 2.5mmケーブル入手難(6月出荷分から同梱)→MeloTTS挫折→Kokoroチューニング→フィラー0ms→最新音声ルート全体図SVG→Gemma4司令官(9〜27秒→1〜2秒)→AIEO構想(aieo-robot.pages.dev)→Utaさんへバトン。素材元=baseIdea/stackChan/(未コミット・slides/assetsに変換済コピーをコミット)
-- **#22ゲストスライド**: 7/24朝に素材(PlaiPin/Natalie Yeoさん PDF)到着→ユーザー指示で誕生日会スライド直後(6P)にフルスライド挿入・デプロイ済み(assets/plaipin-guest.jpg)
-- **markdown-it罠**(docsのみ): `**…（…）**`+CJK隣接→`<b>`使用。lt.htmlは生HTMLなので無関係
+## 未確定・要実測
+- Φ8 シャフト実長（設計 236mm・両端突出 20 前提 → `shaft_protrude`）。
+- 7/24 で破損したパーツの有無。会場の AC100V。
 
 ## 定型作業
-- ビルド: `export PATH="$HOME/.nvm/versions/node/v24.14.1/bin:$PATH"` → `cd docs && npm run build`
-- デプロイ: `export CLOUDFLARE_API_TOKEN=$(security find-generic-password -s CLOUDFLARE_API_TOKEN -w); export CLOUDFLARE_ACCOUNT_ID=$(security find-generic-password -s CLOUDFLARE_ACCOUNT_ID -w); npx wrangler@latest pages deploy .vitepress/dist --project-name=stackchan-event-booth --commit-dirty=true`(要sandbox解除・自動デプロイ運用実績あり)
-- CAD: `cad/params.scad`が唯一の正→`make -C cad all`/`check`/`viewer-models`/`viewer-models-booth`/`joint-check`。スライサー: `open -a BambuStudio <stl>`
-- git: main直コミット。動画解析はffmpegフレーム抽出
-
-## 参照
-| 項目 | 値 |
-|---|---|
-| 本番 | https://stackchan-event-booth.pages.dev/ ｜ /viewer/ ｜ /viewer-booth/ ｜ /photowall/ ｜ /slides/lt.html |
-| 買い物 | research/akiba-backup-20260722.md(千石・今日必須) / 100均=research/hyakkin-props-20260716.md |
-| K151実寸 | 54×70.5×61.5・187.2g / ベース48×56×11.1 / cad/vendor/k151 |
-
-## 申し送り
-- 印刷は立ち会い運用。0.6ノズル化は却下済み(公差が0.4基準)。高速化はブース系のみ0.28/8%可・観覧車系は実績設定厳守
-- ディフューザー(PETG)は正式断念。テスト記録=baseIdea/観覧車/testresult/(個人情報スクショはコミット除外)
-- 秘密情報はKeychain参照のみ(-a付けない)
+- docs ビルド/デプロイ: `export PATH="$HOME/.nvm/versions/node/v24.14.1/bin:$PATH"; cd docs && npm run build` → `akc run -- npx wrangler@latest pages deploy .vitepress/dist --project-name=stackchan-event-booth --commit-dirty=true`（CLOUDFLARE_* は keychain:// 参照）。
+- markdown-it 罠: docs では `**…**`+CJK が崩れる → `<b>`。
