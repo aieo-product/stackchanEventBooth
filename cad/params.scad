@@ -368,8 +368,11 @@ box_clear         = 1.5;     // per side, board to inner wall
 box_floor_t       = 2.0;
 box_standoff_d    = 7;
 box_lip           = 2;       // lid lip depth
-box_conn_cut_h    = 10;      // connector-edge wall cut height (from the top)
-box_conn_cut_w    = 60;      // connector-edge cut width
+box_conn_cut_h    = 20;      // connector-edge wall cut height (from the top). Must reach down to
+                              // below the DC jack barrel (PCB top = box_floor_t + box_standoff_h +
+                              // pcb_t = 23.6; jack barrel occupies roughly z 25-34.6) -- 10 left the
+                              // cut at z 32-42 only, blocking the plug (issue #28). 20 -> z 22-42.
+box_conn_cut_w    = 64;      // connector-edge cut width (60 clipped J1 by ~1mm on the left; +4 margin)
 // Panel parts live on the LID over a PANEL BAY to the +X of the PCB (9/3 rev3):
 // the 22 mm E-stop body hangs ~30 mm below the lid, so nothing may sit under it.
 // The bay keeps the PCB free of any keep-out, and the PCB rides 20 mm standoffs
@@ -377,8 +380,12 @@ box_conn_cut_w    = 60;      // connector-edge cut width
 box_bay_w         = 44;      // panel bay width (E-stop mushroom Ø40 + wall)
 box_inner_h       = 40;      // tray inner depth (E-stop body 30 + clearance)
 box_standoff_h    = 20;      // (overrides the 5 above) PCB underside above the floor
-// panel positions relative to the BOX centre (x, y); bay centre x = 63.5
-panel_cx          = pcb_x/2 + box_clear + box_bay_w/2;
+// panel positions relative to the BOX centre (x, y); bay centre x = 41.5
+// (pcb_ox = -box_bay_w/2 in ctrl_box.scad/assembly.scad cancels the +box_bay_w/2
+//  term below -- this IS already box-centre relative. Previously this expression
+//  matched the PCB-centre-relative value instead, offsetting all 3 panel holes by
+//  22mm; see issue #28.)
+panel_cx          = pcb_x/2 + box_clear;
 panel_estop       = [panel_cx, 12];
 panel_pot         = [panel_cx - 10, -18];
 panel_btn         = [panel_cx + 10, -18];
