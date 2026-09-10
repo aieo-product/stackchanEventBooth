@@ -20,6 +20,19 @@
 
 > `cad/ferris/assembly.scad PART="all-v7"` のレンダリング。<a href="/viewer/" target="_blank">3D組立シミュレーター</a>にも「駆動」「制御」グループとして反映済み（モーターブラケット・カップリング・モーター・制御ボックス・基板・操作パネル・配線）。
 
+### 内部構造（9/10 発注内容を反映）
+
+<div style="display:grid;grid-template-columns:repeat(auto-fit,minmax(300px,1fr));gap:12px;margin:12px 0;">
+  <img src="/img/ferris/v7_open_all.png" alt="ブラケットと蓋を外した全体" style="width:100%;border-radius:10px;" />
+  <img src="/img/ferris/v7_open_box.png" alt="制御ボックス内部: 発注レイアウトの基板・AtomS3R・コネクタ" style="width:100%;border-radius:10px;" />
+  <img src="/img/ferris/v7_closed_motor.png" alt="モーターブラケット（閉）" style="width:100%;border-radius:10px;" />
+  <img src="/img/ferris/v7_open_motor.png" alt="ブラケットを外した状態: Φ8シャフト→カップリング→JGY-370" style="width:100%;border-radius:10px;" />
+</div>
+
+- <b>駆動部</b>: 前支柱の外面に箱型ブラケット（M3×4）。内部で Φ8 鋼シャフトの突出 20mm にアルミ フレキシブルカップリング（6×8）を通し、JGY-370 の Φ6 D 軸と接続。ギアボックスはブラケット外面にフランジ固定、モーター缶は下向き。
+- <b>制御ボックス</b>: 左に基板 80×60（JLCPCB 発注レイアウトの部品位置を CPL から取り込み）。AtomS3R は縦向き 2 本のメスヘッダ（列間 15.24mm）に装着し、画面が蓋の窓の直下に来る。右の操作部ベイに非常停止・ツマミ・ボタン。コネクタは全て基板の上辺（ホイール側）。
+- <a href="/viewer/" target="_blank">3D 組立シミュレーター</a>では「制御」グループの <b>蓋・トレイ・基板・AtomS3R・操作パネル</b>、「駆動」グループの <b>ブラケット・カップリング・モーター</b> が別パーツになっており、パーツ名クリックで非表示、「透視（内部構造）」でスケルトン表示、「分解距離」で分解ビューにできる。
+
 ### 制御の構成（PCB は「土台」・頭脳は AtomS3R）
 
 - <b>AtomS3R を基板のソケットに挿す</b>。モーター PWM・ポット・ホール・ボタン・非常停止検知は Atom の底面 6 GPIO、LED は従来通り Grove から出す。

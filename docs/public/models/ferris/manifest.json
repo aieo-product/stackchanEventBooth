@@ -204,21 +204,45 @@
   "group": "drive"
  },
  {
-  "id": "ctrl-box",
-  "file": "ctrl-box.stl",
-  "name": "制御ボックス（印刷トレイ＋蓋）",
+  "id": "ctrl-tray",
+  "file": "ctrl-tray.stl",
+  "name": "制御ボックス トレイ（印刷）",
   "color": "#555555",
   "explode": [
    0,
    0.8,
-   0
+   -0.3
+  ],
+  "group": "control"
+ },
+ {
+  "id": "ctrl-lid",
+  "file": "ctrl-lid.stl",
+  "name": "制御ボックス 蓋（印刷・外すと内部が見える）",
+  "color": "#666666",
+  "explode": [
+   0,
+   0.8,
+   1.2
+  ],
+  "group": "control"
+ },
+ {
+  "id": "atom",
+  "file": "atom.stl",
+  "name": "AtomS3R（ソケットに装着）",
+  "color": "#222222",
+  "explode": [
+   0,
+   0.8,
+   0.8
   ],
   "group": "control"
  },
  {
   "id": "ctrl-pcb",
   "file": "ctrl-pcb.stl",
-  "name": "制御基板 80×60（AtomS3R を挿すキャリア: 電源・DRV8871・コネクタ）",
+  "name": "制御基板 80×60（発注レイアウト・実装部品を反映）",
   "color": "#1f7a3a",
   "explode": [
    0,

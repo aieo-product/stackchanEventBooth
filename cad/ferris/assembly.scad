@@ -20,6 +20,7 @@ use <tower.scad>;
 use <crank.scad>;
 use <motor_mount.scad>;
 use <ctrl_box.scad>;
+include <pcb_parts.scad>;
 use <axle.scad>;
 use <k151.scad>;
 use <base.scad>;
@@ -151,32 +152,39 @@ box_h    = box_inner_h + box_floor_t;                             // 47
 pcb_z    = box_floor_t + box_standoff_h;                          // 7: PCB underside
 module in_box() { translate([box_cx, box_cy, 0]) rotate([0, 0, 180]) children(); }
 
-module a_ctrl_box() {
-    in_box() {
-        color("dimgray") tray();
-        color("dimgray", 0.9) translate([0, 0, box_h]) mirror([0, 0, 1]) lid();   // lid flipped onto the tray
+module a_ctrl_tray() { in_box() color("dimgray") tray(); }
+module a_ctrl_lid()  { in_box() color("dimgray", 0.9) translate([0, 0, box_h]) mirror([0, 0, 1]) lid(); }
+module a_ctrl_box()  { a_ctrl_tray(); a_ctrl_lid(); }
+
+// PCB with the parts at the ordered positions (fab/PickAndPlace csv -> pcb_parts.scad).
+// Board coords (x right, y down from the top-left) -> board-centre model coords.
+module pcb_part(d, xb, yb, rot, w, h, z, kind) {
+    translate([xb - pcb_x/2, pcb_y/2 - yb, pcb_t]) rotate([0, 0, -rot]) {
+        if (kind == "cyl")      color("black") { cylinder(d = w, h = z, $fn = 32); color("silver") translate([0, 0, z]) cylinder(d = w, h = 0.3, $fn = 32); }
+        else if (kind == "ic")  color("black") translate([-w/2, -h/2, 0]) cube([w, h, z]);
+        else if (kind == "xh")  color("ivory") translate([-w/2, -h/2, 0]) cube([w, h, z]);
+        else if (kind == "hdr") color("black") translate([-w/2, -h/2, 0]) cube([w, h, z]);
+        else if (kind == "tht") color("black") translate([-w/2, -h/2, 0]) cube([w, h, z]);
+        else                    color(d[0] == "R" ? "black" : d[0] == "L" && d != "LED1" ? "gray" : d == "LED1" ? "red" : "tan") translate([-w/2, -h/2, 0]) cube([w, h, z]);
     }
 }
 module a_ctrl_pcb() {
     in_box() translate([pcb_ox, 0, pcb_z]) {
-        // PCB 80 x 60 x 1.6 (green), origin = board centre
         color("darkgreen") translate([-pcb_x/2, -pcb_y/2, 0]) cube([pcb_x, pcb_y, pcb_t]);
-        // AtomS3R plugged into its socket (24 x 24 x 12.9, screen up)
-        translate([pcb_atom_cx - pcb_x/2, pcb_atom_cy - pcb_y/2, pcb_t]) {
-            color("black") translate([-12, -12, 0]) cube([24, 24, pcb_atom_h]);
-            color("deepskyblue") translate([-9, -9, pcb_atom_h]) cube([18, 18, 0.2]);
-        }
-        // DRV8871 + LM2596 + inductor + bulk cap (right half, board-centre coords)
-        color("black")  translate([10, -2, pcb_t]) cube([6, 5, 1.5]);        // DRV8871 HSOP-8
-        color("black")  translate([22, -22, pcb_t]) cube([10, 10, 4.5]);     // LM2596 TO-263
-        color("gray")   translate([6, -26, pcb_t]) cube([12, 12, 8]);        // 100uH inductor
-        color("black")  translate([32, 6, pcb_t]) cylinder(d = 8, h = 12, $fn = 24);   // 470uF
-        // connectors on the +Y edge: DC jack + 7 x JST XH
-        color("black")  translate([-38, pcb_y/2 - 14, pcb_t]) cube([9, 14, 11]);       // DC jack
-        for (i = [0 : 6])
-            color("ivory") translate([-24 + i * 9, pcb_y/2 - 7, pcb_t]) cube([7.5, 7, 7]);
+        for (p = pcb_parts) pcb_part(p[0], p[1], p[2], p[3], p[4], p[5], p[6], p[7]);
     }
 }
+// AtomS3R plugged into J9A/J9B (body 24 x 24 x 12.9 on the 8.5 mm sockets, screen up, Grove port toward the connector edge)
+module a_atom() {
+    in_box() translate([pcb_ox + (pcb_atom_cx - pcb_x/2), pcb_y/2 - pcb_atom_cy, pcb_z + pcb_t + 8.5]) {
+        color("black") translate([-12, -12, 0]) cube([24, 24, pcb_atom_h]);
+        color("deepskyblue") translate([-9, -9, pcb_atom_h]) cube([18, 18, 0.2]);
+        color("white") translate([-2.5, 12 - 0.5, 2]) cube([5, 1, 3]);   // Grove port (toward +y = connector edge)
+        // pins into the sockets
+        color("silver") for (x = [-7.62, 7.62], y = [-7.72, -5.18, -2.64, -0.10, 2.44]) if (!(x > 0 && y > 2)) translate([x, -y, -8.5]) cylinder(d = 0.64, h = 8.5, $fn = 8);
+    }
+}
+
 module a_ctrl_panel() {
     // panel-mount parts on the lid: E-stop mushroom, speed knob, RUN/STOP button
     in_box() translate([0, 0, box_h]) {                        // panel bay, box-centre coords
@@ -201,7 +209,7 @@ module a_cables() {
         hull() { translate([60, box_cy - 33, 8]) sphere(2); translate([120, box_cy - 33, 8]) sphere(2); }
     }
 }
-module a_ctrl_v7() { a_ctrl_box(); a_ctrl_pcb(); a_ctrl_panel(); a_cables(); }
+module a_ctrl_v7() { a_ctrl_tray(); a_ctrl_lid(); a_ctrl_pcb(); a_atom(); a_ctrl_panel(); a_cables(); }
 
 module a_crank() {
     color("gold")
@@ -232,6 +240,10 @@ else if (PART == "motor-bracket") a_motor_bracket();
 else if (PART == "coupling")      a_coupling();
 else if (PART == "motor")         a_motor();
 else if (PART == "ctrl-box")      a_ctrl_box();
+else if (PART == "ctrl-tray")     a_ctrl_tray();
+else if (PART == "ctrl-lid")      a_ctrl_lid();
+else if (PART == "atom")          a_atom();
+else if (PART == "all-v7-open")  { a_base(); a_tower_front(); a_tower_rear(); a_shaft_v7(); a_hubs(); a_rim_front(); a_rim_rear(); a_axles(); for (i = [0:3]) a_gondola(i); a_stackchan(); a_coupling(); a_motor(); a_ctrl_tray(); a_ctrl_pcb(); a_atom(); a_cables(); }
 else if (PART == "ctrl-pcb")      a_ctrl_pcb();
 else if (PART == "ctrl-panel")    a_ctrl_panel();
 else if (PART == "cables")        a_cables();
