@@ -412,10 +412,11 @@ bb_z              = 45;                            // height
 bb_wall           = 3;
 bb_lid_t          = 2.5;
 bb_pcb_oy         = -18;                           // PCB centre offset (box-local y; -y = front = away from the wheel). Keeps the Atom window clear of the tower crossbar
-bb_pcb_standoff   = 4;                             // PCB underside above the lid inner face
+bb_pcb_standoff   = 11.5;                          // PCB underside above the lid inner face
 bb_atom_win       = pcb_atom_w + 1.5;              // top window for the AtomS3R
+bb_foot_pad       = 4;                             // solid material left under the foot slot bottom (above the solid block floor)
 // panel parts on the TOP face, front strip (outside the tower footprint), box-local (x, y)
-bb_estop_pos      = [48, -38];                     // E-stop 22 mm (body 30 mm deep, beside the PCB)
+bb_estop_pos      = [52, -34];                     // E-stop 22 mm (body 30 mm deep, beside the PCB)
 bb_pot_pos        = [-40, -42];                    // speed pot
 bb_btn_pos        = [-60, -38];                    // RUN/STOP 16 mm
 bb_cable_hole_d   = 8;                             // motor / LED / 12V cable exits (rear wall)

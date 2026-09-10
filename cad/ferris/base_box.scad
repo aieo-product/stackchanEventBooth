@@ -37,7 +37,7 @@ module box_body() {
         difference() {
             translate([-in_x/2, -in_y/2, -1]) cube([in_x, in_y, in_z + 1]);
             // keep solid blocks under the foot slots (30 x 34 like base_mini) so the tabs bite into material
-            for (sx = [-1, 1]) translate([sx * 48 - 15, -17, bb_z - base_slot_d - 10]) cube([30, 34, base_slot_d + 11]);
+            for (sx = [-1, 1]) translate([sx * 48 - 15, -17, bb_z - base_slot_d - bb_foot_pad]) cube([30, 34, base_slot_d + bb_foot_pad + 1]);
             // corner bosses for the lid screws
             for (sx = [-1, 1], sy = [-1, 1]) translate([sx * (in_x/2 - boss/2), sy * (in_y/2 - boss/2), 0]) cube([boss, boss, in_z], center = false);
             for (sx = [-1, 1], sy = [-1, 1]) translate([sx * (in_x/2 - boss/2) - boss/2, sy * (in_y/2 - boss/2) - boss/2, -1]) cube([boss, boss, in_z + 1]);
@@ -67,7 +67,7 @@ module box_plain_body() {
         translate([-bb_x/2, -bb_y/2, 0]) cube([bb_x, bb_y, bb_z]);
         difference() {
             translate([-in_x/2, -in_y/2, -1]) cube([in_x, in_y, in_z + 1]);
-            for (sx = [-1, 1]) translate([sx * 48 - 15, -17, bb_z - base_slot_d - 10]) cube([30, 34, base_slot_d + 11]);
+            for (sx = [-1, 1]) translate([sx * 48 - 15, -17, bb_z - base_slot_d - bb_foot_pad]) cube([30, 34, base_slot_d + bb_foot_pad + 1]);
             // cross ribs for stiffness
             translate([-in_x/2, -3, -1]) cube([in_x, 6, in_z + 1]);
             translate([-3, -in_y/2, -1]) cube([6, in_y, in_z + 1]);
