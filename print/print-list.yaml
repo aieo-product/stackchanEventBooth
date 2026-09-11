@@ -128,6 +128,63 @@ jobs:
     copies: 1
     enabled: false
 
+  # ---- 観覧車 v7 自動回転版（2026-09-03・docs/ferris-v7-auto.md）先行印刷 ----
+  - key: ferris-v7-tower-upper-motor
+    name: 観覧車v7 前支柱 上半分（モーターブラケット パイロット付き）
+    source: self-designed
+    url: https://github.com/aieo-product/stackchanEventBooth/blob/main/docs/ferris-v7-auto.md
+    license: 自作（本企画オリジナル）
+    author: 本企画
+    redistribute: true
+    file: files/ferris/tower-upper-motor.stl
+    color: アッシュグレー
+    ams_mapping: [2]
+    copies: 1
+    enabled: true
+    notes: 観覧車系の実績設定厳守（0.4ノズル・0.2mm・15%）。約2.2h
+
+  - key: ferris-v7-motor-bracket
+    name: 観覧車v7 モーターブラケット（JGY-370 箱型）
+    source: self-designed
+    url: https://github.com/aieo-product/stackchanEventBooth/blob/main/docs/ferris-v7-auto.md
+    license: 自作（本企画オリジナル）
+    author: 本企画
+    redistribute: true
+    file: files/ferris/motor-bracket.stl
+    color: アッシュグレー
+    ams_mapping: [2]
+    copies: 1
+    enabled: true
+    notes: 支柱プレート面を下に。フランジは26mmブリッジ（面取り済み）。約1h
+
+  - key: ferris-v7-motor-coupler
+    name: 観覧車v7 印刷カプラー Φ8/Φ6D（アルミカップリングの保険）
+    source: self-designed
+    url: https://github.com/aieo-product/stackchanEventBooth/blob/main/docs/ferris-v7-auto.md
+    license: 自作（本企画オリジナル）
+    author: 本企画
+    redistribute: true
+    file: files/ferris/motor-coupler.stl
+    color: アッシュグレー
+    ams_mapping: [2]
+    copies: 1
+    enabled: true
+    notes: 立てて印刷。約0.3h
+
+  - key: ferris-v7-ctrl-box
+    name: 観覧車v7 制御基板 筐体（トレイ＋蓋）
+    source: self-designed
+    url: https://github.com/aieo-product/stackchanEventBooth/blob/main/docs/ferris-v7-auto.md
+    license: 自作（本企画オリジナル）
+    author: 本企画
+    redistribute: true
+    file: files/ferris/ctrl-box-tray.stl
+    color: 任意
+    ams_mapping: [2]
+    copies: 1
+    enabled: true
+    notes: 蓋 files/ferris/ctrl-box-lid.stl も同プレートに載せる。合計約1.6h
+
   # ---- 観覧車（自作STL・Issue #12）STL確定後に file を置いて enabled:true ----
   - key: ferris-rim-segment
     name: 観覧車 リム1/4円弧（スポーク一体）
@@ -290,7 +347,7 @@ jobs:
     ams_mapping: [0, 1, 2, 3]
     copies: 1
     enabled: false
-    notes: 不採用（2026-07-15 実物確認: 机・棚がベース一体成形のジオラマで単品配置不可）。代替を再調査中。
+    notes: "不採用（2026-07-15 実物確認: 机・棚がベース一体成形のジオラマで単品配置不可）。代替を再調査中。"
 
   - key: booth-prop-desk-set
     name: ミニチュアビンテージ学校机と椅子セット

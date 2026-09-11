@@ -2,6 +2,10 @@
 // A-frame support post, total height 280, printed in two halves.
 //   part = "lower" : feet (base slot tabs + M3 thumbscrew) + splice dowels (male)
 //   part = "upper" : apex with 608 bearing pocket + splice sockets (female)
+//   part = "upper-motor" : v7 (9/3) = "upper" + 4 x M3 pilot holes on the OUTER
+//                  apex face for the motor bracket (motor_mount.scad). Print
+//                  ONE of these for the motor-side (former crank-side) tower;
+//                  the other tower keeps the plain "upper".
 // Select at CLI:  openscad -D 'part="upper"' -o tower-upper.stl tower.scad
 // Splice = square dowel + M3 x2 (one per leg). Bearing axis is Y (toward wheel).
 
@@ -78,6 +82,14 @@ module splice_bolts() {
             cylinder(d = m3_clear, h = depth + 2);
 }
 
+module motor_pilots() {
+    // 4 x Ø2.9 self-tap pilots from the OUTER face (local y = 0) into the apex
+    // block, on the (±14, ±14) square around the shaft axis (mb_tower_hole_*).
+    for (sx = [-1, 1], sz = [-1, 1])
+        translate([sx * mb_tower_hole_x, -1, apex_zc + sz * mb_tower_hole_z])
+            rotate([-90, 0, 0]) cylinder(d = m3_thread, h = mb_tower_pilot_depth + 1, $fn = 24);
+}
+
 module tower(part) {
     // #18: ground each half to z=0 for a print-ready STL (was modelled in the
     // assembled position). Lower feet-tabs down; upper sits on its split face.
@@ -105,6 +117,7 @@ module tower(part) {
             bearing_features();
             splice_sockets();
             splice_bolts();
+            if (part == "upper-motor") motor_pilots();
         }
     }
 }
